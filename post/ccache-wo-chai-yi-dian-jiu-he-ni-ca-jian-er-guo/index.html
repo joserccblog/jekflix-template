@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>CCache 我差一点就和你擦肩而过 | 君赏博客</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555670817008">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555670817008" class="site-logo">
+        <h1 class="site-title">君赏博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">CCache 我差一点就和你擦肩而过</h2>
+            <div class="post-date">2019-04-19</div>
+            
+              <div class="feature-container" style="background-image: url('https://diycode.b0.upaiyun.com/photo/2018/339a4b5a41d19830205db46a6a3976f5.png')">
+              </div>
+            
+            <div class="post-content">
+              <blockquote>
+<p>可能有些同学还不知道什么是 <code>CCache</code>，简单说一些 <code>CCache</code> 是针对于 <code>C/C++/OC</code> 的一套优化缓存的编译系统</p>
+<ul>
+<li>
+<p><code>Xcode</code> 编译缓存</p>
+<ul>
+<li>
+<p><code>archive</code> 模式会忽略缓存</p>
+</li>
+<li>
+<p><code>DerivedData</code> 目录经常出问题</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>CCache</code></p>
+<ul>
+<li><code>archive</code> 不会忽略缓存</li>
+<li>命中率基本稳定</li>
+</ul>
+</li>
+</ul>
+<p>使用 <code>CCache</code> 大体上可以提升<code>70%</code>的编译时间。</p>
+</blockquote>
+<p>我之前也看过网上介绍 <code>CCache</code> 加速编译时间的文章，但是也是一时间的冲动。最后发现用到的一些第三方库也用到了<code>@import</code>,也没在网上的文章中发现解决办法就放弃了。</p>
+<p>其实加速编译有很多种方法，但是影响最小的应该是升级硬件。前段时间也申请了 <code>Mac</code> 打包机器，但是阴差阳错的申请失败。</p>
+<p>但是可喜的是重新申请的买的都是新型的灰色 <code>Mac</code> 机器，喜闻乐见呀！。</p>
+<p>我是今年把公司一个台式机安装成了黑苹果，从我电脑打包转移到黑苹果上面。显然硬件很差，打包起来十分吃力，苦等新电脑的下来。</p>
+<p>既然暂时硬件升级指望不上，那就从软件入手。其中提升最大的就是接入 <code>CCache</code> 了，那就再次的尝试接入。</p>
+<h2 id="安装-ccache">安装 CCache</h2>
+<p>第一步就是在电脑上面安装 <code>CCache</code>，因为我们需要在我们的电脑上面进行测试。</p>
+<pre><code class="language-shell">brew install ccache
+</code></pre>
+<p>网上很多教程都是这个命令进行安装，但是很多人连 <code>HomeBrew</code>都没有安装，导致命令会报错。后来我写了一个脚本放在 <code>Xcode</code> 新建的脚本命令里面。</p>
+<p><strong>install_ccache</strong></p>
+<pre><code class="language-shell">#!/bin/bash
+echo &quot;开始安装 CCache&quot;
+if command -v ccache &gt;/dev/null 2&gt;&amp;1; then
+	echo &quot;CCache 已经安装&quot;
+else
+	if command -v brew &gt;/dev/null 2&gt;&amp;1; then
+		echo &quot;HomeBrew已经安装&quot;
+		brew install ccache
+	else
+		echo &quot;HomeBrew没有安装&quot;
+		ruby_path=`which ruby`
+		echo $ruby_path
+		$ruby_path -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+		brew install ccache
+	fi
+fi
+</code></pre>
+<p>后来小伙伴告诉我运行会报错，最后发现运行这个脚本安装 <code>HomeBrew</code>需要手动输入密码获取权限的。没办法，这个脚本只能从 <code>Xcode</code> 进行移除了。</p>
+<p>难道还让其他的小伙伴按照网上的教程真的一步步的配置安装吗？那岂不是太麻烦了。因为 <code>ccache-clang</code>已经伴随着代码托管更新在小伙伴电脑上面，所以小伙伴就不用配置 <code>CCache</code>配置文件了。</p>
+<p>既然没办法在 <code>Xcode</code>运行脚本，我们可以新建一个脚本，自动化运行，这叫脚本大法。</p>
+<p><strong>setup.sh</strong></p>
+<pre><code class="language-shell">chmod 777 ccache-clang
+chmod 777 ccache-clang++
+chmod 777 ZHCCache
+chmod 777 install_ccache
+bash install_ccache
+</code></pre>
+<p>上面的 <code>Shell</code>脚本代码里面就 <code>ZHCCache</code>是我写的一个基于 <code>Swift</code>的一个 <code>Command Line Tool</code>程序，程序的源代码托管在下面的链接。</p>
+<p><a href="https://github.com/josercc/ZHCCache">ZHCCache(修改@import 工具)</a></p>
+<p>这样其他小伙伴只需要运行下面命令就可以成功接入 <code>CCache</code></p>
+<pre><code class="language-shell">cd setup.sh目录
+bash setup.sh
+</code></pre>
+<h2 id="项目设置">项目设置</h2>
+<p>电脑我们已经安装好了 <code>CCache</code>，接下来我们要做的就是项目设置 <code>CCache</code></p>
+<h3 id="项目关闭-enable-module">项目关闭 Enable Module</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-28-063827.png" alt="image-20181128143826795"></p>
+<p>因为我这边自动打包需要就新建一个 <code>AdHoc</code>的配置，基本配置和 <code>Debug</code>一样但是证书是和 <code>Release</code>一致的。</p>
+<h3 id="新建-macro-cc">新建 Macro CC</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-28-064017.png" alt="image-20181128144016903"></p>
+<p>我一致很奇怪为什么可以走我们新建的 <code>ccache-clang</code>脚本，这个配置就是让 <code>Xcode</code> 自动运行路径脚本，所以我们才要赋予 <code>777</code>权限</p>
+<p>项目已经配置好了，关闭了 <code>Enable Module</code>。我们要删除工程里面用到所有 <code>@import</code>的代码换成 <code>#import &lt;&gt;</code></p>
+<p>可能我们要把系统自动引入的库收到导进来。</p>
+<p>因为我们项目里面包含的<code>@import</code>代码很少，很快就修改完毕。引入的库手动也很快的添加完毕。</p>
+<h3 id="修复第三方的import">修复第三方的@import</h3>
+<p>我们项目用到了很多的 <code>Cocoapods</code> 第三方，其中也少不了第三方用到了 <code>@import</code>。但是改动代码之后，下次 <code>pod</code>更新再次回滚了。</p>
+<p>怎么能每次编译之前，把第三方里面的 <code>@import</code>替换掉。我第一想到是用脚本，<code>shell</code>语法了解甚少，决定还是用 <code>Swift Command Line Tool</code>进行修改。</p>
+<p>写出来的工具就是 <code>ZHCCache</code>用来修改我们的第三方库的 <code>@import</code>.关键怎么让脚本知道我要修改那些，怎么才能容易扩展。</p>
+<p>我想到了配置文件，比如可以把配置文件写成下面的模式。</p>
+<pre><code class="language-shell">需要修改文件路径
+&gt;&gt;&gt;
+需要修改代码
+&gt;&gt;&gt;
+修改之后的代码
+</code></pre>
+<p>我们可以在 <code>Project</code>文件目录新建一个文件夹用于存放我们需要修复的配置文件。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-28-065955.png" alt="image-20181128145955495"></p>
+<h4 id="修改-cocoapods源码存在的import">修改 CocoaPods源码存在的@import</h4>
+<p><strong>配置文件</strong></p>
+<pre><code class="language-ruby">$PWD/Pods/GrowingIO/GrowingIO-iOS-SDK/Growing.h
+&gt;&gt;&gt;
+#ifndef __cplusplus
+@import Foundation;
+@import WebKit;
+@import CoreTelephony;
+@import SystemConfiguration;
+@import Foundation;
+@import Security;
+@import CFNetwork;
+@import CoreLocation;
+@import Security;
+#endif
+&gt;&gt;&gt;
+#import &lt;Foundation/Foundation.h&gt;
+#import &lt;WebKit/WebKit.h&gt;
+#import &lt;SystemConfiguration/SystemConfiguration.h&gt;
+#import &lt;CFNetwork/CFNetwork.h&gt;
+#import &lt;CoreLocation/CoreLocation.h&gt;
+#import &lt;Security/Security.h&gt;
+</code></pre>
+<blockquote>
+<p><code>$PWD</code>代表获取工程文件所在的目录</p>
+</blockquote>
+<p>但是比如我们项目用到了很多的 <code>Swift</code>源码的 <code>CocoaPods</code>第三方库，会在编译的时候生成 <code>-Swift.h</code>类似的桥接文件。</p>
+<p>有些桥接文件里面是存在 <code>@import</code>的，我们不能用上面指定目录设置修复。因为动态生成的，路径我们没办法获取。</p>
+<p>就在我心灰意冷的时候我发现在 <code>xcodebuild -showBuildSettings</code>命令输出里面，包含了很多信息，还真的让我用曲线救国的思想找到了。</p>
+<h4 id="修改-cocoapods-自动生成-swifth-桥接文件import">修改 CocoaPods 自动生成-Swift.h 桥接文件@import</h4>
+<pre><code class="language-shell">$PODS_CONFIGURATION_BUILD_DIR/GlobalegrowIMSDK/GlobalegrowIMSDK.framework/Headers/GlobalegrowIMSDK-Swift.h
+&gt;&gt;&gt;
+#if __has_feature(modules)
+@import CoreGraphics;
+@import Foundation;
+@import ObjectiveC;
+@import Photos;
+@import UIKit;
+#endif
+&gt;&gt;&gt;
+#import &lt;CoreGraphics/CoreGraphics.h&gt;
+#import &lt;Foundation/Foundation.h&gt;
+#import &lt;Photos/Photos.h&gt;
+#import &lt;UIKit/UIKit.h&gt;
+</code></pre>
+<blockquote>
+<p><code>PODS_CONFIGURATION_BUILD_DIR</code>这个作为我们的关键词用于我们动态的获取所在的目录。</p>
+<p>并且<code>build</code> 和 <code>archive</code> 的目录还是不一致的。</p>
+</blockquote>
+<h3 id="编译修复import">编译修复@import</h3>
+<p>我们需要在编译工程源代码之前运行我们的脚本修复。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-28-083854.png" alt="image-20181128163853950"></p>
+<p><strong>脚本代码</strong></p>
+<pre><code class="language-shell"># 修复文件存在@imprt问题
+$PWD/ZHCCache PWD=&quot;$PWD&quot; OTHER_CFLAGS=&quot;$OTHER_CFLAGS&quot; FIX_PATH=&quot;$PWD/CCacheHeaderFix&quot; CONFIGURATION=${CONFIGURATION}
+</code></pre>
+<blockquote>
+<p><code>ZHCCache</code> 脚本我会放在 <code>ccache-clang</code>同级目录，<code>CCacheHeaderFix</code>是我们存在修复的配置文件目录。<code>CONFIGURATION</code>这个参数是获取当前的工程配置，因为我们在 <code>Debug</code>模式下面不修改，不然就会重复编译问题。</p>
+</blockquote>
+<h2 id="cocoapods-有没有必要使用-ccache">CocoaPods 有没有必要使用 CCache</h2>
+<p>对于我们的项目其实也用到了很多的 <code>CocoaPods</code>，我们也想在 <code>Archive</code> 使用缓存加快时间。我们可以使用下面的进行修改 <code>podfile</code></p>
+<pre><code class="language-ruby">  # 支持 CCache 的 Pod 数组
+  @support_ccache_pod_names = []
+  
+  post_install do |installer|
+      installer.pods_project.targets.each do |target|
+          # 添加 POD 支持 CCache
+          if @support_ccache_pod_names.include? target.name
+              target.build_configurations.each do |config|
+                  puts config.build_settings
+                  if config.name != 'Debug'
+                      config.build_settings['CC'] = '$(PODS_ROOT)/ccache-clang' # 替换为你的 ccache-clang 文件路径
+                      config.build_settings['CLANG_ENABLE_MODULES'] = 'NO'
+                  end
+              end
+          end
+      end
+  end
+</code></pre>
+<p>后来我试了，把 <code>CocoaPods</code>里面的 <code>Enable Module</code>关闭之后，把需要引用的系统库添加到工程里面，还是一样的报错。</p>
+<p>只有把对应的 <code>CocoaPods</code>配置里面添加对应的系统库添加进去才不报错，和网上说的不一致，所以因为这个问题暂时没把 <code>CocoaPods</code>支持 <code>CCache</code>。</p>
+<blockquote>
+<ul>
+<li>
+<p>其实可以通过动态修改下发的 PodSpec 文件(猜测可行)</p>
+</li>
+<li>
+<p>把第三方库托管成本地私有库 改掉本地的 PodSpec</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="切换分支编译优化">切换分支编译优化</h2>
+<p>因为在同一个项目切换分支修改功能，Xcode 会频繁的编译。对于针对不同的分支修改 <code>BUG</code>和新增功能，就会变得十分的麻烦，需要频繁的编译等待。</p>
+<p>对于这个我目前写了一个脚本，针对于不同的分支有不同的编译路径，这样就解决了频繁切换分支，进行频分编译的问题。</p>
+<p>这样间接的在日常的开发工作中，提升了不少的编译时间，这也算是一种编译时间的优化吧。</p>
+<p>对于切换分支编译优化，会在下一篇写一下思路。</p>
+
+            </div>
+            
+            
+
+            
+              
+
+              
+                <div id="disqus_thread" data-aos="fade-in"></div>
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+
+  
+    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+    <script>
+
+    var options = {
+      shortname: 'josercc',
+      apikey: 'DBJHHPsqZBT5EUYFyQmorAozkwxTDoySOnd4bmdt9G29YFySUFhFE6SLZrSCHee4',
+    }
+    if ('') {
+      options.api = ''
+    }
+    var dsqjs = new DisqusJS(options)
+
+    </script>
+  
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>如何快速制作支持源码和 Framework 切换的 Cocoapods 库 | 君赏博客</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555670817008">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555670817008" class="site-logo">
+        <h1 class="site-title">君赏博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">如何快速制作支持源码和 Framework 切换的 Cocoapods 库</h2>
+            <div class="post-date">2019-04-19</div>
+            
+              <div class="feature-container" style="background-image: url('https://diycode.b0.upaiyun.com/photo/2018/7dd095ad45abe20772931845d8e38378.png')">
+              </div>
+            
+            <div class="post-content">
+              <blockquote>
+<p>目前发现一个问题 因为生成的Framework 是基于 Carthage 生成的，所以是‘动态库 Framework’。这就导致我们依赖一些库被重复打包进去。所以目前这个方案只能支持不依赖其他库，如果需要其他库可以制作成静态库方案。</p>
+</blockquote>
+<h1 id="如何快速制作支持源码和-framework-切换的-cocoapods-库">如何快速制作支持源码和 Framework 切换的 Cocoapods 库</h1>
+<p>最近一直在搞怎么加快编译速度，也查看了很多的资料。</p>
+<p><a href="https://blog.csdn.net/zhaoxy_thu/article/details/30073485">加快XCode的编译链接速度（200%+）—XCode编译速度慢的解决方案</a></p>
+<p>根据我自己的理解，我觉得大致分为下面几个方面优化。</p>
+<ul>
+<li>
+<p>硬件方面(可以飞速提升)</p>
+<ul>
+<li>给编译结果存储采用机械硬盘存储</li>
+<li>提升机器配置 比如 <code>CPU</code> <code>内存</code>和<code>硬盘</code></li>
+</ul>
+</li>
+<li>
+<p>基于技巧</p>
+<ul>
+<li>
+<p>开启多线程编译</p>
+<blockquote>
+<p>貌似最新的 <code>Xcode9</code>支持多线程编译 但是貌似机器会更卡 敲代码都一顿一顿的。</p>
+</blockquote>
+</li>
+<li>
+<p>使用 <code>CCache</code></p>
+<blockquote>
+<p>使用 <code>Cache</code> 是可以大幅度的节省大量的编译时间 但是我们用到很多打包的 <code>Framework</code> 使用了<code>@import</code> 不支持 <code>Cache</code> 很苦逼</p>
+</blockquote>
+</li>
+<li>
+<p>去掉 <code>PCH</code> 文件(减少 <code>PCH</code> 引用文件头改动)</p>
+<blockquote>
+<p><code>PCH</code> 本来是为了引入外部的框架头部进行预编译，从而加快 <code>build</code> 和 <code>build run</code> 的速度的。</p>
+<p>甚至可以方便开发人员在工程其他地方不需要再次引入框架就可以使用代码，加快开发速度。</p>
+<p>但是许多开发人员没有了解 <code>PCH</code> 的原理，为了方便什么头文件都放在里面。结果没有起到加快编译还越来越慢。</p>
+<p>最后苹果只好隐藏的不做支持，需要的自己去配置。</p>
+</blockquote>
+</li>
+<li>
+<p>修改工程配置</p>
+<ul>
+<li>
+<p>关闭生成 <code>DSYM</code> 文件</p>
+<blockquote>
+<p>发布一定要生成 不然崩溃都分析不出来</p>
+</blockquote>
+</li>
+<li>
+<p>开启 PCH 文件预编译</p>
+<blockquote>
+<p>这个一旦导入的第三方有改动是不会及时编译的 比如上次我从 <code>Carthage</code> 转换成 <code>Cocoapods</code></p>
+</blockquote>
+</li>
+<li>
+<p>其他</p>
+<blockquote>
+<p>其他影响平时开发 收效不明显</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>代码方面</p>
+<ul>
+<li>
+<p>源代码尽量使用 <code>Framework</code></p>
+<blockquote>
+<p>比如工程不经常改动的类 或者第三方</p>
+</blockquote>
+</li>
+<li>
+<p>删除不需要代码文件</p>
+<blockquote>
+<p>比如一些第三方库都没用到  一些新建类已经不用都可以删除</p>
+</blockquote>
+</li>
+<li>
+<p>减轻头文件不需要的<code>#import</code> 引用</p>
+<blockquote>
+<p>只要引用的类有代码的改动 引用该类的文件就要重新编译</p>
+</blockquote>
+</li>
+<li>
+<p>删除工程的一些垃圾代码</p>
+<blockquote>
+<p>比如一些根本不走的逻辑 或者方法</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>基于我们工程目前情况，硬件方面是基于我 <code>Mac Mini</code> 是没办法再升级了。</p>
+<p>从技巧方面，我开启了<code>8</code>个线程进行编译,没觉得有多大的提升。</p>
+<p><code>CCache</code> 不支持我们的工程，所以 <code>CCache</code> 方案也放弃了。</p>
+<p>我们工程 <code>PCH</code> 太庞大，全部移除必然有问题。只能把里面引用的第三方全部换成 <code>Framework</code> 之后引用到 <code>PCH</code> 文件里面。</p>
+<p>关闭 <code>DSYM</code>，我们已经 <code>Debug</code> 关闭了，<code>Release</code> 再开启，所以也不需要改动了。</p>
+<p>其他的配置可能会影响之后的开发，所以暂时也不做太大的改动。</p>
+<p>从代码方面，我们<code>2.5.0</code>版本是两个版本的融合版本。<code>2.5.0</code>全部重构了为了防止重构出问题，我们合并<code>2.4.0</code>和<code>2.5.0</code>在一起。</p>
+<p>最新的我们删除了<code>2.4.0</code>的老代码，减少了<code>1200</code>个文件。这是一个重量级的优化。</p>
+<p>目前能做的就是把工程里面能做的源代码托管为 <code>Framework</code>,就引出了本文的教程。</p>
+<p>最先的做法是基于 <code>Carthage</code> 把一些第三方做成 <code>Framework</code> 之后引入到工程。这一步十分的重要，一定要测试，特别第三方库用到一些文件。</p>
+<p>之前从 <code>Main Bdunle</code> 已经不行了，要换成 <code>BundleWithClass</code> 读取，不然就会程序出问题。</p>
+<p>后来发现一个问题，第三方库有问题，可能不稳定，想要如之前 <code>Cocoapods</code> 手动改动代码调试发现不行了。</p>
+<p>如果换回 <code>Cocoapods</code> 调试完毕再换回 <code>Framework</code> 十分的麻烦。到底用什么方案呢？</p>
+<p><strong>我刚开始看的虾神的文章</strong></p>
+<p><a href="http://www.10tiao.com/html/221/201701/2650948487/1.html">I have a pod, I have a carthage</a></p>
+<p>发现 <code>perpare_command</code> 一个发布 <code>Cocoapods</code> 的预发布命令。</p>
+<p><strong>之后看了青总的文章</strong></p>
+<p><a href="https://blog.dianqk.org/2017/05/01/dev-on-pod/">基于 CocoaPods 进行 iOS 开发</a></p>
+<p>看着有点累，甚至觉得有写麻烦。</p>
+<p>但是看了青总和虾神文章，我决定用 <code>Cocoapods</code> 制作子库来支持源码和 <code>Framework</code>。</p>
+<ul>
+<li><strong>比如下面使用 <code>Framework</code></strong></li>
+</ul>
+<pre><code class="language-ruby">pod 'PodName/Framework' #使用 Framework 模式
+</code></pre>
+<ul>
+<li><strong>比如下面使用 源码形式</strong></li>
+</ul>
+<pre><code class="language-ruby">pod 'PodName/Source' #使用源码形式
+</code></pre>
+<p>我们平时可以采用 <code>Framework</code> 形式来开发，遇到问题切换成 <code>Source</code> 形式源码进行调试修复问题。</p>
+<p>怎么快速创建支持源码和 <code>Framework</code> 的 <code>Cocoapods</code> 库呢。我之前是希望创建一个 <code>Pod</code> 模板的库，但是需要配置 <code>Config</code> 文件，十分复杂。</p>
+<p>我干脆就自己创建一个配置完毕的模板工程，自己写一个基于 <code>Swift Command Line</code> 的脚本进行替换生成即可。</p>
+<p><a href="https://github.com/josercc/Pod-Template">可以快速创建支持源码和 Framework 的 Pod库模板</a></p>
+<h2 id="制作支持-framework-和-source-源码库的示例">制作支持 <code>Framework</code> 和 <code>Source</code> 源码库的示例</h2>
+<ul>
+<li>
+<p>打开需要<code>Clone</code> 的目标地址在终端 比如我 <code>Clone</code> 在下载目录</p>
+<pre><code class="language-shell">cd /Users/zhangxing/Downloads
+</code></pre>
+</li>
+<li>
+<p>执行下面的命令 比如我们的 <code>Pod</code> 库名称叫做 <code>ZHTestPod</code></p>
+<pre><code class="language-shell">git clone git@github.com:josercc/Pod-Template.git &amp;&amp; cd Pod-Template &amp;&amp; GBPods-Template-CommandLine &amp;&amp; open ./
+</code></pre>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-05-12-075000.png" alt="image-20180512155000526"></p>
+<p>打开的目录就是自动生成好的。</p>
+<pre><code class="language-shell">open &quot;ZHTestPod Example/ZHTestPod Example.xcodeproj&quot;
+</code></pre>
+<p>我们创建一个测试的类 <code>ZHTestPod</code> 到我们的 <code>FrameworkTarget</code> 里面。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-05-12-075259.png" alt="image-20180512155259289"></p>
+<p>设置文件为暴露头文件</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-05-12-075400.png" alt="image-20180512155400236"></p>
+<p>我们把生成的目录放在 <code>Git</code> 上面，打一个 <code>Tag</code> 比如叫做<code>0.1.0</code>。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-05-12-084121.png" alt="image-20180512164115756"></p>
+<p>对于 <code>podspec</code> 文件的配置，我们主要关系的是图中所示的位置。每次修改都要把<code>@version</code> 修改为对应的 <code>Tag</code> 值。</p>
+<p>如果我们 <code>Name</code> 重名可以修改 <code>s.name</code> 的值。</p>
+<p>比如一些需要支持资源文件，可以自己进行添加。这个配置已经支持大部分的项目了。</p>
+<p>图中我是基于我们公司 <code>Gitlab</code> 项目的，所以<code>@baseURL</code> 和<code>@basePath</code> 也要改成对应的路径，最新的代码我会修改一下。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-05-12-083701.png" alt="image-20180512163701082"></p>
+<p>执行下面命令</p>
+<pre><code class="language-shell">pod lib lint --verbose --no-clean --allow-warnings
+</code></pre>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-05-12-083617.png" alt="image-20180512163616942"></p>
+</li>
+</ul>
+<p>此时验证通过，我们就可以发布到共有仓库或者是私有仓库即可。</p>
+
+            </div>
+            
+            
+
+            
+              
+
+              
+                <div id="disqus_thread" data-aos="fade-in"></div>
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+
+  
+    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+    <script>
+
+    var options = {
+      shortname: 'josercc',
+      apikey: 'DBJHHPsqZBT5EUYFyQmorAozkwxTDoySOnd4bmdt9G29YFySUFhFE6SLZrSCHee4',
+    }
+    if ('') {
+      options.api = ''
+    }
+    var dsqjs = new DisqusJS(options)
+
+    </script>
+  
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>关于 Apple Pay 原生支付的研究 | 君赏博客</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555670817008">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555670817008" class="site-logo">
+        <h1 class="site-title">君赏博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">关于 Apple Pay 原生支付的研究</h2>
+            <div class="post-date">2019-04-19</div>
+            
+              <div class="feature-container" style="background-image: url('https://diycode.b0.upaiyun.com/photo/2018/de5b76c52df79036957785c90c05d509.png')">
+              </div>
+            
+            <div class="post-content">
+              <blockquote>
+<p>第二期要使用原生的 <code>Apple Pay</code> 作为新的支付方式，不过这个 <code>Apple Pay</code> 也是为了生成 <code>Token</code> 来配置 <code>Word Pay</code> 支付。</p>
+<p>第二期的需求还没上线，目前 <code>Apple Pay</code> 的的进展只处于研究的阶段，所以可能稳重有一些纰漏的地方很正常。</p>
+<p>有问题请指正，我及时去修复。</p>
+</blockquote>
+<p>关于接入 <code>Apple Pay</code> 是一脸懵逼，不知道从什么地方入手，之前完全没有做过这样的需求。只能去百度上面搜索一些文章，看一下怎么入门。</p>
+<p><a href="https://www.jianshu.com/p/321e55189033">iOS-APP集成Apple Pay指南</a></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-14-055943.png" alt="image-20181114135942927"></p>
+<p>上图就是我所理解对于 <code>Apple Pay</code> 进行支付的粗略的流程图。</p>
+<p>想要使用 <code>Apple Pay</code> 支付功能，请导入系统框架，代码如下。</p>
+<pre><code class="language-objc">#import &lt;PassKit/PassKit.h&gt;
+</code></pre>
+<p>因为 <code>Apple Pay</code> 对于手机型号和 <code>iOS</code>版本还有要求，所以并不是所有的用户都支持 <code>Apple Pay</code>。 为了检测是否支持 <code>Apple Pay</code>，我们可以使用下面的 <code>API</code>。</p>
+<pre><code class="language-objc">// Determine whether this device can process payment requests.
+// YES if the device is generally capable of making in-app payments.
+// NO if the device cannot make in-app payments or if the user is restricted from authorizing payments.
++ (BOOL)canMakePayments;
+</code></pre>
+<p>对于 <code>canMakePayments</code> 这个方法我们会发现有两个不同类，名字还有点相似，他们分别是 <code>PKPaymentAuthorizationViewController</code> 和 <code>PKPaymentAuthorizationController</code>。</p>
+<p>当时我还在疑惑这两个类有什么区别呢？他们的接口还是一样的。直到我谷歌了一下资料，才知道有什么不同(客观上)。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-14-063611.png" alt="image-20181114143611411"></p>
+<p>而且两者对于 <code>iOS</code> 版本要求也是不一样的，一个开始于 <code>iOS8</code>之后，一个开始于 <code>iOS10</code>之后。</p>
+<p>因为我们是使用于<code>iOS</code>系统，所以直接使用 <code>PKPaymentAuthorizationViewController</code> 这样我们就可以最低兼容 <code>iOS8.0</code>系统了。</p>
+<p>其实对于 <code>Apple Pay</code> 我们可以理解为另外一种信用卡表单支付方式，也就是把信用卡表单信息，物流信息等交给苹果获取之后加密给我们。</p>
+<h3 id="获取设备是否支持-apple-pay">获取设备是否支持 Apple Pay</h3>
+<pre><code class="language-objc">+ (BOOL)deviceSupportApplePay {
+   return [PKPaymentAuthorizationViewController canMakePayments];
+}
+</code></pre>
+<p>假设我们当前的设备是支持 Apple Pay 的，我们来创建一个 Apple Pay 的按钮用来指引用户。</p>
+<pre><code class="language-objc">API_AVAILABLE(ios(8.3))
+@interface PKPaymentButton : UIButton
+
++ (instancetype)buttonWithType:(PKPaymentButtonType)buttonType style:(PKPaymentButtonStyle)buttonStyle;
+
+- (instancetype)initWithPaymentButtonType:(PKPaymentButtonType)type paymentButtonStyle:(PKPaymentButtonStyle)style API_AVAILABLE(ios(9.0)) NS_DESIGNATED_INITIALIZER;
+
+@property (nonatomic, assign) CGFloat cornerRadius API_AVAILABLE(ios(12.0));
+
+@end
+</code></pre>
+<p>我们会发现这个按钮是在 <code>iOS8.3</code>之上才存在的，如果属于 <code>iOS8.3</code>之下，需要我们自定义 <code>Apple Pay</code> 按钮，但是需要符合 <code>Apple Pay</code> 设计规范。</p>
+<p><a href="https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/introduction/">Apple Pay 设计指南(英文)</a></p>
+<p>我们会发现我们需要设置按钮的类型和样式，有什么不同吗？难道我们在展示的过程中还要展示不同的样式和类型？那样岂不是很多的判断。</p>
+<h3 id="pkpaymentbuttontype">PKPaymentButtonType</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-14-065619.png" alt="PKPaymentButtonType 类型"></p>
+<h3 id="pkpaymentbuttonstyle">PKPaymentButtonStyle</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-14-065803.png" alt="PKPaymentButtonStyle"></p>
+<p>我们选取 <code>PKPaymentButtonTypeBuy</code>类型和 <code>PKPaymentButtonStyleBlack</code>类型创建我们的 <code>Apple Pay</code> 按钮。</p>
+<p>我们已经创建一个 <code>Apple Pay</code>用来支付的按钮，我们放在我们合适的位置，之后赋予一个点击事件用来调起支付界面。</p>
+<h3 id="过滤卡种">过滤卡种</h3>
+<p>可能刚才我们已经注意到还有两个类方法</p>
+<pre><code class="language-objc">// Determine whether this device can process payment requests using specific payment network brands.
+// Your application should confirm that the user can make payments before attempting to authorize a payment.
+// Your application may also want to alter its appearance or behavior when the user is not allowed
+// to make payments.
+// YES if the user can authorize payments on this device using one of the payment networks supported
+// by the merchant.
+// NO if the user cannot authorize payments on these networks or if the user is restricted from
+// authorizing payments.
++ (BOOL)canMakePaymentsUsingNetworks:(NSArray&lt;PKPaymentNetwork&gt; *)supportedNetworks;
+
+// Determine whether this device can process payments using the specified networks and capabilities bitmask
+// See -canMakePaymentsUsingNetworks:
++ (BOOL)canMakePaymentsUsingNetworks:(NSArray&lt;PKPaymentNetwork&gt; *)supportedNetworks capabilities:(PKMerchantCapability)capabilties API_AVAILABLE(ios(9.0));
+</code></pre>
+<p>这两个方法分别是判断所选择的卡中是否被支持，<code>PKMerchantCapability</code>这个类型可以筛选卡类型。</p>
+<h4 id="pkpaymentnetwork">PKPaymentNetwork</h4>
+<p><code>PKPaymentNetwork</code> 代表着信用卡的不同的类型，而且随着 <code>Api</code>出现了新的卡类型。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-14-073154.png" alt="image-20181114153153348"></p>
+<p>看到这里我要吐槽一下苹果爸爸，<code>iOS10.3</code> 新出一个卡种 <code>CarteBancaire</code>，到 <code>iOS11.0</code> 废弃了 新出了卡种 <code>CarteBancaires</code> 之后到 <code>iOS11.2</code>再次废弃推出了新的字段 <code>CartesBancaires</code></p>
+<p>如果真的要查找设置卡是否支持，一定要判断版本才能赋值，不然就会造成低版本崩溃问题。</p>
+<h4 id="pkmerchantcapability">PKMerchantCapability</h4>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-14-075003.png" alt="image-20181114155003672"></p>
+<blockquote>
+<p>而且对于我们的跨境电商一定要支持3DS 卡的。</p>
+</blockquote>
+<p>上面也普及了一些基础知识，我已经迫不及待的等待支付页面的出现了。</p>
+<h3 id="创建支付请求">创建支付请求</h3>
+<pre><code class="language-objc">- (nullable instancetype)initWithPaymentRequest:(PKPaymentRequest *)request
+</code></pre>
+<p>我们发起 <code>Apple Pay</code>支付的时候需要创建一个支付请求 <code>PKPaymentRequest</code>。</p>
+<h4 id="pkpaymentrequest">PKPaymentRequest</h4>
+<p>获取目前设备支持的卡种数组</p>
+<pre><code class="language-objc">// The payment networks and platforms supported for in-app payment
++ (NSArray&lt;PKPaymentNetwork&gt; *)availableNetworks API_AVAILABLE(ios(10.0), watchos(3.0));
+</code></pre>
+<p>设置商业标志符</p>
+<pre><code class="language-objc">// Identifies the merchant, as previously agreed with Apple.  Must match one of the merchant
+// identifiers in the application's entitlement.
+@property (nonatomic, copy) NSString *merchantIdentifier;
+</code></pre>
+<p><code>merchantIdentifier</code> 是什么东西，我该怎么去赋值？。</p>
+<p>我们先看一下加密和解密的过程。</p>
+<p>只有开发者创建自己应用的 <code>App</code> 对应的商户号，商户号是不分正式和测试环境的。 这个需要给第三方或者后台拿个用户正式那个用户测试之后去解密我们的 <code>Token</code>。</p>
+<h3 id="创建商户号">创建商户号</h3>
+<p>创建商户号需要 <code>256位 CSR</code> 文件，不管是第三方给的比如 <code>WordPay</code>还是我们自己生成的，一定要保障是基于 <code>256位</code></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-15-002256.png" alt="image-20181115082256104"></p>
+<h4 id="创建256位的-csr-文件">创建256位的 CSR 文件</h4>
+<p>打开钥匙串</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-14-091226.png" alt="image-20181114171226083"></p>
+<p>从证书助理请求证书</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-14-091428.png" alt="image-20181114171428237"></p>
+<p>设置邮箱地址/保存本地/自定义钥匙对</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-14-091550.png" alt="image-20181114171550465"></p>
+<p>设置类型为 <code>ECC/256</code>位</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-14-092035.png" alt="image-20181114172035242"></p>
+<p>保存到本地存起来，用户以后使用。</p>
+<h4 id="创建商户号-2">创建商户号</h4>
+<p><a href="https://developer.apple.com/account/ios/identifier/merchant">前往商户号证书网页</a></p>
+<p>创建一个新商户号</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-14-092550.png" alt="image-20181114172546535"></p>
+<p>编辑商户号创建证书</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-14-092656.png" alt="image-20181114172656220"></p>
+<p>我们提交刚才的 <code>CSR</code> 文件即可。</p>
+<h4 id="xcode-开启-apple-pay">Xcode 开启 Apple Pay</h4>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-14-092842.png" alt="image-20181114172842317"></p>
+<blockquote>
+<p>点击刷新按钮获取最新的商户号</p>
+<p>一定要点击前面勾选 不勾选进行 <code>Apple Pay</code> 初始化会抱错的。</p>
+</blockquote>
+<p>现在我们已经有商户号了，一定要创建测试和正式的用户区分，之后我们设置国家编号。</p>
+<pre><code class="language-objc">// The merchant's ISO country code.
+@property (nonatomic, copy) NSString *countryCode;
+</code></pre>
+<p>这个要设置商户所在国家的简码，一定要在支持的列表里面，不然会崩溃的。这个我亲自试过，不然也不知道这里有坑（😄）。</p>
+<p>获取支付的国家简码列表</p>
+<pre><code class="language-objc">// Set of two-letter ISO 3166 country codes. When provided will filter the selectable payment passes to those
+// issued in the supported countries.
+@property (nonatomic, copy, nullable) NSSet&lt;NSString *&gt; *supportedCountries API_AVAILABLE(ios(11.0), watchos(4.0));
+</code></pre>
+<p>我们可以判断是否支持我们收款方所在的国家，之后设置。</p>
+<p>设置支持的卡类型</p>
+<pre><code class="language-objc">// The payment networks supported by the merchant, for example @[ PKPaymentNetworkVisa,
+// PKPaymentNetworkMasterCard ].  This property constrains payment cards that may fund the payment.
+@property (nonatomic, copy) NSArray&lt;PKPaymentNetwork&gt; *supportedNetworks;
+</code></pre>
+<p>我们获取全部的按照我们的要求过滤之后赋值。</p>
+<p>设置商户支持类型</p>
+<pre><code class="language-objc">// The payment processing capabilities of the merchant.
+@property (nonatomic, assign) PKMerchantCapability merchantCapabilities;
+</code></pre>
+<p>设置金额明细</p>
+<pre><code class="language-objc">// Array of PKPaymentSummaryItem objects which should be presented to the user.
+// The last item should be the total you wish to charge, and should not be pending
+@property (nonatomic, copy) NSArray&lt;PKPaymentSummaryItem *&gt; *paymentSummaryItems;
+</code></pre>
+<blockquote>
+<p>这个定义每个金额含义，是否是确定还是预估金额。</p>
+</blockquote>
+<p>设置支付的币种类型</p>
+<pre><code class="language-objc">// Currency code for this payment.
+@property (nonatomic, copy) NSString *currencyCode;
+</code></pre>
+<p>设置账单必须字段</p>
+<pre><code class="language-objc">// Indicates which billing contact fields the merchant requires in order to process a transaction.
+// Currently only postal address may be requested for billing contact. For all other fields use -requiredShippingContactFields
+@property (nonatomic, strong) NSSet&lt;PKContactField&gt; *requiredBillingContactFields API_AVAILABLE(ios(11.0), watchos(4.0));
+
+// Indicates which billing address fields are required. The default is PKAddressFieldNone.
+// This property is deprecated and should not be used.
+@property (nonatomic, assign) PKAddressField requiredBillingAddressFields API_DEPRECATED_WITH_REPLACEMENT(&quot;requiredBillingContactFields&quot;, ios(8.0, 11.0), watchos(2.0, 4.0));
+</code></pre>
+<p>设置账单地址</p>
+<pre><code class="language-objc">// If the merchant already has a billing address on file, set it here.
+@property (nonatomic, strong, nullable) PKContact *billingContact API_AVAILABLE(ios(9.0), watchos(3.0));
+
+@property (nonatomic, assign, nullable) ABRecordRef billingAddress __WATCHOS_PROHIBITED API_DEPRECATED(&quot;ABRecordRef has been deprecated, and does not support all available address properties. You should migrate to billingContact.&quot;, ios(8.0, 9.0));
+</code></pre>
+<p>设置物流信息必须字段</p>
+<pre><code class="language-objc">// Indicates which shipping contact fields the merchant requires in order to process a transactions
+//
+@property (nonatomic, strong) NSSet&lt;PKContactField&gt; *requiredShippingContactFields API_AVAILABLE(ios(11.0), watchos(4.0));
+
+// Indicates which shipping address fields are required. The default is PKAddressFieldNone.
+// This property is deprecated and should not be used
+@property (nonatomic, assign) PKAddressField requiredShippingAddressFields API_DEPRECATED_WITH_REPLACEMENT(&quot;requiredShippingContactFields&quot;, ios(8.0, 11.0), watchos(2.0, 4.0));
+</code></pre>
+<p>设置物流信息地址</p>
+<pre><code class="language-objc">// If the merchant already has a shipping address on file, set it here.
+@property (nonatomic, strong, nullable) PKContact *shippingContact API_AVAILABLE(ios(9.0), watchos(3.0));
+
+// These properties have been deprecated and should not be used.
+@property (nonatomic, assign, nullable) ABRecordRef shippingAddress __WATCHOS_PROHIBITED API_DEPRECATED(&quot;ABRecordRef has been deprecated, and does not support all available address properties. You should migrate to shippingContact.&quot;, ios(8.0, 9.0));
+</code></pre>
+<p>设置物流方式</p>
+<pre><code class="language-objc">// Shipping methods supported by the merchant.
+@property (nonatomic, copy, nullable) NSArray&lt;PKShippingMethod *&gt; *shippingMethods;
+</code></pre>
+<p>设置物流类型</p>
+<pre><code class="language-objc">// Indicates the display mode for the shipping (e.g, &quot;Pick Up&quot;, &quot;Ship To&quot;, &quot;Deliver To&quot;). Localized.
+// The default is PKShippingTypeShipping
+@property (nonatomic, assign) PKShippingType shippingType API_AVAILABLE(ios(8.3), watchos(3.0));
+</code></pre>
+<p>我们按照我们的需求配置一下支付请求信息，之后发起支付。</p>
+<blockquote>
+<p>到现在我还有点没搞懂的事情</p>
+<p>我们已经在下单的时候有客人的物流信息，我们此时只是想获取用户的账单地址。但是怎么设置账单的邮箱和手机号必填</p>
+<p>还是无法出现需要用户输入的界面，最后只好使用设置必须设置物流邮箱和手机号来让用户输入。</p>
+</blockquote>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-14-095855.png" alt="image-20181114175855001"></p>
+<p>设置回调接受 <code>Apple Pay</code> 支付完成的信息</p>
+<pre><code class="language-objc">// Deprecated delegate methods
+// These methods are deprecated. Please migrate away from them to their replacements.
+- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
+                       didAuthorizePayment:(PKPayment *)payment
+                                completion:(void (^)(PKPaymentAuthorizationStatus status))completion API_DEPRECATED(&quot;Use paymentAuthorizationViewController:didAuthorizePayment:handler: instead to provide more granular errors&quot;, ios(8.0, 11.0));
+                                
+                                
+// Sent to the delegate after the user has acted on the payment request.  The application
+// should inspect the payment to determine whether the payment request was authorized.
+//
+// If the application requested a shipping address then the full addresses is now part of the payment.
+//
+// The delegate must call completion with an appropriate authorization status, as may be determined
+// by submitting the payment credential to a processing gateway for payment authorization.
+- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
+didAuthorizePayment:(PKPayment *)payment
+   handler:(void (^)(PKPaymentAuthorizationResult *result))completion API_AVAILABLE(ios(11.0), watchos(4.0));
+</code></pre>
+<p>验证返回的账单信息/地址信息 之后返回结果码</p>
+<pre><code class="language-objc">PKPaymentAuthorizationStatus status = [self paymentAuthorizationFailureStatusWithError:error];
+        completion(status);
+</code></pre>
+<p>到这里整个流程已经结束了，我们已经拿到了我们所需要的 <code>Token</code> 信息。但是获取到用户输入的账单信息是不是我们要求的规则，需要我们这边兼容处理(苹果爸爸在说明文档备注的)。</p>
+<h3 id="进行-apple-pay-测试">进行 Apple Pay 测试</h3>
+<h4 id="创建测试的-app-id">创建测试的 App ID</h4>
+<p><a href="https://appstoreconnect.apple.com/access/testers">前往沙箱用户测试中心</a></p>
+<p>添加一个新的用户</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-14-100528.png" alt="image-20181114180527720"></p>
+<blockquote>
+<p>这个一定要使用一个不是现有 App ID 的账户，不然不允许创建的。</p>
+</blockquote>
+<p>把创建的沙箱用户登录到我们需要测试的手机账户中。</p>
+<p><a href="https://developer.apple.com/cn/support/apple-pay-sandbox/">前往 Apple Pay 沙箱测试中心</a></p>
+<p>将需要测试的卡片添加到 <code>Wallet</code> 钱包里面，之后进行 <code>Apple Pay 测试即可</code>。</p>
+<blockquote>
+<p>有一点需要注意，最好用移动网添加卡片，不然就会像我之前一直提示不支持，换成移动网就可以了。</p>
+</blockquote>
+
+            </div>
+            
+            
+
+            
+              
+
+              
+                <div id="disqus_thread" data-aos="fade-in"></div>
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+
+  
+    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+    <script>
+
+    var options = {
+      shortname: 'josercc',
+      apikey: 'DBJHHPsqZBT5EUYFyQmorAozkwxTDoySOnd4bmdt9G29YFySUFhFE6SLZrSCHee4',
+    }
+    if ('') {
+      options.api = ''
+    }
+    var dsqjs = new DisqusJS(options)
+
+    </script>
+  
+
+
+
+
+  </body>
+</html>

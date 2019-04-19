@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>原生支付 SDK 技术回顾 | 君赏博客</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555670817008">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555670817008" class="site-logo">
+        <h1 class="site-title">君赏博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">原生支付 SDK 技术回顾</h2>
+            <div class="post-date">2019-04-19</div>
+            
+              <div class="feature-container" style="background-image: url('https://diycode.b0.upaiyun.com/photo/2018/508a17fd16640c71221f97aaf5fe412d.png')">
+              </div>
+            
+            <div class="post-content">
+              <blockquote>
+<p>最近的一个月一直在做原生支付 SDK 的事情，最近第一个版本才上线，才慢慢的回顾做原生支付 SDK 的一些技术点。</p>
+<p>之前项目里面的支付部分都是基于 M 网页的支付，一般支付出问题也只是网站的事情。但是也涉及到对于电商项目技术核心支付客户端并没有。</p>
+<p>对于支付原生 SDK 开始的设想，从17年初提出 PayPal 原生支付 SDK 的设想，从 PayPal 自身的 SDK 技术不成熟搁置了。到最新因为支付率的下降，也从支付做成原生的来提高转化率渐渐的提上了日程。</p>
+<p>支付的原生化导致了支付风险从网站转移到客户端，一下子也让我们涉及到了支付这一块从来都没碰到的领域。</p>
+</blockquote>
+<p>对于支付原生 SDK 涉及到的一些技术点如下：</p>
+<ul>
+<li>RTL 语言的翻转
+<ul>
+<li>各种控件翻转</li>
+<li>强行不翻转文本</li>
+</ul>
+</li>
+<li>静态库制作</li>
+<li>Bitcode 支持</li>
+<li>Bundle 资源文件坑
+<ul>
+<li>bundle 所在位置的不同</li>
+</ul>
+</li>
+<li>项目集成</li>
+<li>图片
+<ul>
+<li>代码改动颜色</li>
+<li>自动翻转</li>
+</ul>
+</li>
+<li>关于信用卡加密</li>
+<li>金额精度计算</li>
+<li>统计
+<ul>
+<li>崩溃</li>
+<li>FPS</li>
+<li>中断时长</li>
+</ul>
+</li>
+</ul>
+<h2 id="项目立项">项目立项</h2>
+<p>这个项目从十一放假之前开始提起，当时只觉得这个项目只是属于我们平时工作附属品。工作任务优先，有空再来开展支付原生 SDK。</p>
+<p>等到了十一放假结束之后，从新开始支付原生评审的时候，发现留给我们的时间并不多了，困难强度十分大。</p>
+<p>怎么表述这个难度，当时我们评审这个支付收银台页面原生化的时候，我们评审的时间工作时间需要45天。而且在项目重构的时候，当时网站整个团队整整的做了将近两个月的时间。</p>
+<p>但是评审需要十月19号提测，那么留给我们的开发时间只有8天的工作日。并且负责开发我和安卓两个人，其他人还在做正常版本的需求。</p>
+<p>8天的时间需要完成这么多的东西，我当时都觉得是不可能的事情。只好把当时已经完成和半完成的需求交给了团队的小伙伴，我全心全意的投入支付原生 SDK 的研发之中。</p>
+<p>对于这个项目整个开发计划，我分为了下面的几个阶段:</p>
+<ul>
+<li>项目框架的搭建</li>
+<li>收银台界面的编写</li>
+<li>支付加密的完成</li>
+<li>支付方式的跑通</li>
+<li>信用卡表单的验证</li>
+<li>多语言</li>
+<li>埋点</li>
+<li>后期 UI 和 BUG 处理</li>
+</ul>
+<h3 id="项目框架的搭建">项目框架的搭建</h3>
+<p>开始项目框架搭建的时候，当时准备和我们目前的项目脱离。这样项目所用到文件和框架就不会受到目前项目的影响，之后打包成 Framework 包集成到项目里面。</p>
+<p>当时在想，做这个原生 SDK 是做成静态库还是动态库的时候。也是谷歌了一下，对于动态库和静态库的区别可以参考下面的文章。</p>
+<p><a href="https://www.jianshu.com/p/42891fb90304">iOS里的动态库和静态库</a></p>
+<p>当时单独新建了一个工程存放这个支付原生 SDK 的源代码，之后编译成 Framework 给我们目前的项目 GearBest 用。但是也面临一个问题，就是我修改了支付原生 SDK 的源码，我怎么能实时的同步呢？</p>
+<p>最后我还是基于我们的工程新建了一个 Framework 类型的 Target，之后链接到我们的库。这样就可以随时链接到最新的代码了，但是也为之后暴露的问题留下了一个伏笔。</p>
+<blockquote>
+<p>其实后来想了想，可以做成 Developer Pods。这样就解决了上面的一个问题，当时也没想到放到 Pods，所以也没做成 Developer Pods。</p>
+</blockquote>
+<h3 id="收银台界面的编写">收银台界面的编写</h3>
+<p>先把界面放在框架之后是因为界面已经被设计做出来了，对于这个项目前期没一点头绪，所以就先从界面开始了。因为时间很紧促，所以界面也是一个框架做出来，也没做交互那么细。</p>
+<p>看着设计做出来的十几个界面，当时心里面更加的没底了，但是仔细的看一下，其实主要的界面也没多少。</p>
+<p>界面主要分为下面几个:</p>
+<ul>
+<li>收银台主界面</li>
+<li>信用卡表单输入界面</li>
+<li>错误界面(网络错误/无支付方式)</li>
+<li>弹框选择(币种/国家/州/信用卡过期时间)</li>
+</ul>
+<p>因为收银台主界面和信用卡表单界面共用下面的支付按钮，所以这两个界面做到同一个 ViewController 里面了。对于界面的设计模式可以参考我的另外的一篇文章。</p>
+<p><a href="https://www.jianshu.com/p/351ac4ce5a59">模块化架构你为什么这么火，让我如此亲睐你？</a></p>
+<p>虽然目前的 MVVM 框架很火，但是并不是所有的框架都会适应自己的项目。我们的框架也是基于 MVVM 做了一下变种，目前用着很顺手。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-05-030507.png" alt="image-20181105110502814"></p>
+<ul>
+<li>Base(存放分类/宏/常量)</li>
+<li>Core(一些界面框架和核心库)</li>
+<li>Component(请求元件/其他元件)</li>
+<li>Manager(可以单利的管理器)</li>
+<li>Controller(界面控制器)
+<ul>
+<li>Controller(控制器)</li>
+<li>View(基于 UIView 试图)</li>
+<li>Model(一些数据 Model)</li>
+<li>Api(请求配置)</li>
+<li>Other(基于界面的宏和其他)</li>
+</ul>
+</li>
+<li>Module(功能模块)</li>
+</ul>
+<p>对于界面的搭建可以使用系统的 UITableView和 UICollectionView。不但可以分组还可以原生滑动，不动关心界面高度不够的问题。</p>
+<p>既然使用 UITableView 和 UICollectionView 自然少不了我的一个库。</p>
+<p><a href="https://github.com/josercc/ZHTableViewGroup">ZHTableViewGroup为 UITableView 而生</a></p>
+<p>其实对于收银台界面设计到的东西也不多，就是创建不同的 UITableViewCell,之后通过我的库加载即可。其中有一个点还是需要注意的，就是更新约束的。</p>
+<p>收银台界面显示很多的支付方式，每一组支付方式都要显示支付图标。因为图标是后台获取的，长度不固定。所以开始设置的约束我们并不知道，所以要更新约束。</p>
+<p>开始的时候我先设置用 YYWebImage 加载图片之后回调去更新约束，之后设置约束代码。这个是一个异步的过程，看上去没问题。</p>
+<p>但是图片下载之后，那么回调很快就回来了，所以就会引起崩溃。</p>
+<p>之后我修改了代码的位置，先设置约束，再写用 YYWebImage获取图片更新约束，但是依然会崩溃。当时猜测只能是设置约束还没有执行[self layoutIfNeed]方法没有生效，之后走更新约束才会报错的。</p>
+<p>为了解决这个崩溃，也没有多余的时间去查资料了，干脆就换一种思路。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-05-032232.png" alt="image-20181105112231920"></p>
+<p>我先用 YYWebImageManager 获取是否存在图片缓存，如果存在就在约束之后直接设置宽度为图片的宽度。否则就在图片下载之后更新约束。</p>
+<p>这样设置之后，冲突解决了，但是原因还是不得而知。</p>
+<p>其实第一期收银台界面的东西并不多，没有过多的逻辑和交互。实现起来并不是十分的复杂，而且形成的 BUG 并不是很多。</p>
+<p>其中一个点还是目前优化用到的，最后也去掉了，这里备注一下，以后方便查找。</p>
+<h4 id="代码改变图片的颜色">代码改变图片的颜色</h4>
+<p>对于之前，只知道加载图片都是固定的。我们在工程里面看到是什么样子，出来就是什么样子。但是之前一个页面需要用到之前一个图片，我按照名字加载出来懵逼了。</p>
+<p>明明我在工程里面这一张图片是灰色的，并且没有出现重名的图片，怎么运行起来是蓝色的了？我带着疑问问了身边小伙伴，小伙伴想了一下，他说之前需要一张红色的图片。没让 UI 作图，之后修改工程为模板图片了。</p>
+<p>现在突然需要修改支付方式右侧的选中按钮的颜色，UI 设计师说帮我换一套最新颜色的图片。我突然想起来了，是可以代码动态更改图片颜色的，就说让我尝试一下。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-13-031745.png" alt="image-20181113111743393"></p>
+<pre><code class="language-objective-c">//        _selectButton.imageView.tintColor = GG_COLOR_RGB(184, 0, 79, 1.0);
+        [_selectButton setImage:({
+            UIImage *image = [UIImage gg_imageNameSupportRTL:@&quot;unSelected&quot;];
+//            image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            image;
+        })
+</code></pre>
+<ul>
+<li>设置 <code>UIImageView</code> 的 <code>tintColor</code> 属性</li>
+<li>获取 <code>UIImage</code>之后设置<code>UIImageRenderingMode</code>为模板类型</li>
+</ul>
+<h3 id="信用卡表单界面">信用卡表单界面</h3>
+<p>信用卡表单界面是工作的中心，基本上最复杂的 UI 和最复杂的逻辑都在里面。基本上后期的 BUG 全部出在这个界面，最后改的都无爱了。</p>
+<p>我们先目睹一下信用卡表单界面。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-13-033513.png" alt="image-20181113113508410"></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-14-002056.png" alt="image-20181113113540139"></p>
+<p>这个界面有最多13个输入框，最多3个选择框。</p>
+<p>我们看着界面就一堆输入框，而且样式还十分相似。对于都开发四五年的，简直是分分钟搞定的事情。</p>
+<p>界面是小事情，这个界面最复杂的是逻辑和交互。</p>
+<p>每一个输入框都有四五条显示和错误提示，不同国家选择省份是选择还是输入也不同。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-13-034406.png" alt="image-20181113114404951"></p>
+<p>选择卡种的区域，我选择采用 <code>UICollectionView</code> 方式进行布局，这样后期维护也会十分的简单。</p>
+<p>但是这个 <code>UICollectionView</code> 是添加在一个 <code>UITableViewCell</code> 上面的，所以还有一些需要注意的点的。</p>
+<p>既然需要布局 <code>UICollectionView</code>，自然离不开我的布局套装了<code>ZHCollectionViewDataSource</code>.</p>
+<p>因为 <code>UITableViewCell</code> 的高度需要里面的 <code>UICollectionView</code> 真正的告诉来决定，不然就会造成这个区域可有单独滚动，交互十分的不好。</p>
+<p>对于 <code>UITableView</code> 需要先获取 <code>UITableViewCell</code> 的高度，之后在进行 <code>UITableViewCell</code> 里面的布局的。</p>
+<p>我们必须在事先算出 <code>UICollectionView</code> 的合适高度来通知外部的 <code>UITableView</code>。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-13-035122.png" alt="image-20181113115120658"></p>
+<p>我们通过创建临时的 <code>UICollectionView</code> 之后利用我们的数据源管理器获取到合适大小之后赋值给 <code>UITableViewCell</code> 的 <code>sizeToFits</code> 这个方法返回合适大小。</p>
+<h4 id="输入框模板">输入框模板</h4>
+<p>为了让信用卡表单界面做起来更加的简单，我设置了一个 <code>UITableViewCell</code> 模板 <code>Cell</code> 和分化成界面的各个元素。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-13-055906.png" alt="image-20181113135906312"></p>
+<p>分别由<strong>左侧试图</strong> <strong>右侧试图</strong> 和<strong>错误提示</strong> 组成</p>
+<p>因为界面上有的试图不是输入框，有的试图没有右侧多余的。没有错误的时候还要隐藏错误试图，所以要做这样的一个模板。</p>
+<p>我们从而可以从模板分化出几种其他试图出来，这种代码风格的起初的来源于 <code>YTK(猿题库)</code>请求库。最后因为不支持 <code>AFNetworking3.0</code>，被我重构里面的代码，这种代码风格保留了下来。虽然文件和类变多了，但是配置和使用起来十分的简单了。</p>
+<p>界面撸起来之后，我们接下来要做的就是我们输入框输入之后的验证，这个我们只需要监听输入完毕之后的回调即可。</p>
+<pre><code class="language-objective-c">        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(textFieldDidChangeNotification:)
+                                                     name:UITextFieldTextDidChangeNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(textDidEndEditingNotification:)
+                                                     name:UITextFieldTextDidEndEditingNotification
+                                                   object:nil];
+</code></pre>
+<p>你一定会问我，为什么要注册监听文本改变的通知呢。因为我们使用的同一套的模板，涉及到表格重用问题。我们就在文本编辑改变的时候赋值保留下面，也方便我们进行服务器通讯时候取用。</p>
+<p>当我们收到编辑框输入完毕之后，我们拿着输入的结果按照我们自定义的验证。如果验证失败，则需要在输入框的下面提示错误的文案让用户修改输入。</p>
+<p>现在我们已经注册了<code>文本编辑完成</code>的通知了，接下来怎样才能一步步的把这个逻辑做出来呢。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-13-061616.png" alt="image-20181113141614703"></p>
+<p>上图就是我们整个的接受，判断输入，展示的逻辑。</p>
+<p>最关键的步骤就是中心的判断中心，这个判断中心应该怎么做呢？是做这个逻辑的主要工作。</p>
+<p>我们新建一个类，代码如下。</p>
+<pre><code class="language-objc">/**
+ 输入框的类型
+
+ - GGPayCashierTextFieldTypeCardNumber: 卡号码
+ - GGPayCashierTextFieldTypeExpirationDate: 过期时间
+ - GGPayCashierTextFieldTypeSecurityCode: 安全吗
+ - GGPayCashierTextFieldTypeCardHolder: 卡持有人
+ - GGPayCashierTextFieldTypeBillingFirstName: 账单姓
+ - GGPayCashierTextFieldTypeBillingLastName: 账单名
+ - GGPayCashierTextFieldTypeBillingEmailAddress: 账单邮箱
+ - GGPayCashierTextFieldTypeBillingAddressLine1: 账单地址1
+ - GGPayCashierTextFieldTypeBillingAddressLine2: 账单地址2
+ - GGPayCashierTextFieldTypeBillingCountry: 账单国家
+ - GGPayCashierTextFieldTypeBillingRegion: 账单州省
+ - GGPayCashierTextFieldTypeBillingCity: 账单城市
+ - GGPayCashierTextFieldTypeBillingPostCode: 账单税号
+ - GGPayCashierTextFieldTypeBillingPhoneNumber: 账单的手机号
+ */
+typedef NS_ENUM(NSUInteger, GGPayCashierTextFieldType) {
+    GGPayCashierTextFieldTypeCardNumber = 0,
+    GGPayCashierTextFieldTypeExpirationDate = 1,
+    GGPayCashierTextFieldTypeSecurityCode = 2,
+    GGPayCashierTextFieldTypeCardHolder = 3,
+    GGPayCashierTextFieldTypeBillingFirstName = 4,
+    GGPayCashierTextFieldTypeBillingLastName = 5,
+    GGPayCashierTextFieldTypeBillingEmailAddress = 6,
+    GGPayCashierTextFieldTypeBillingAddressLine1 = 7,
+    GGPayCashierTextFieldTypeBillingAddressLine2 = 8,
+    GGPayCashierTextFieldTypeBillingCountry = 9,
+    GGPayCashierTextFieldTypeBillingRegion = 10,
+    GGPayCashierTextFieldTypeBillingCity = 11,
+    GGPayCashierTextFieldTypeBillingPostCode = 12,
+    GGPayCashierTextFieldTypeBillingPhoneNumber = 13,
+};
+
+@interface GGListenTextFiledModel : NSObject
+
+@property (nonatomic, copy) NSString *errorMessage;
+@property (nonatomic, copy) NSString *(^verifyBlock)(NSString *inputText);
+@property (nonatomic, assign) GGPayCashierTextFieldType type;
+@property (nonatomic, copy) NSString *inputText;
+
+@end
+</code></pre>
+<p>其中的字段我们可以显而易见的看出来代表什么意思，就不一一的解释了。</p>
+<p>我们新建一个方法，让设置的验证放入到我们的数组里面，当做我们的验证中心。</p>
+<pre><code class="language-objective-c">- (void)listenTextFiledEditWithType:(GGPayCashierTextFieldType)type
+               verifyInputTextBlock:(NSString *(^)(NSString *inputText))verifyInputTextBlock {
+    GGListenTextFiledModel *model = [[GGListenTextFiledModel alloc] init];
+    model.type = type;
+    model.verifyBlock = verifyInputTextBlock;
+    [_listenTextFieldModels addObject:model];
+}
+</code></pre>
+<p>我们就可以像下面一样添加验证代码了。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-13-062159.png" alt="image-20181113142157595"></p>
+<p>为了说明验证的复杂，下面只写一个验证规则。</p>
+<ul>
+<li>
+<p>卡号</p>
+<ul>
+<li>为空</li>
+<li>只能为数字判断</li>
+<li>长度为12到20之间判断</li>
+<li><a href="https://zh.wikipedia.org/wiki/Luhn%E7%AE%97%E6%B3%95">mod10算法</a>判断</li>
+</ul>
+</li>
+<li>
+<p>信用卡过期日期</p>
+<ul>
+<li>为空</li>
+<li>日期必须大于等于当前年月</li>
+</ul>
+</li>
+<li>
+<p>安全码</p>
+<ul>
+<li>为空</li>
+<li>必须全为数字</li>
+<li>AMEX 卡长度为4</li>
+<li>非 AMEX 卡长度为3</li>
+</ul>
+</li>
+<li>
+<p>持卡人</p>
+<ul>
+<li>为空</li>
+<li>不能为数字</li>
+<li>不能带特殊字符</li>
+</ul>
+</li>
+<li>
+<p>First Name</p>
+<ul>
+<li>为空</li>
+<li>只能大小字母</li>
+<li>长度2~32位</li>
+</ul>
+</li>
+<li>
+<p>Last Name</p>
+<ul>
+<li>为空</li>
+<li>只能大小字母</li>
+<li>长度2~32位</li>
+</ul>
+</li>
+<li>
+<p>邮箱</p>
+<ul>
+<li>为空</li>
+<li>邮箱正则</li>
+</ul>
+</li>
+<li>
+<p>地址1</p>
+<ul>
+<li>为空</li>
+<li>不能全为数字</li>
+<li>不能包含&quot;&quot;</li>
+<li>长度5~35位</li>
+</ul>
+</li>
+<li>
+<p>地址2</p>
+<ul>
+<li>长度不为0最大不能超过100</li>
+</ul>
+</li>
+<li>
+<p>州省</p>
+<ul>
+<li>为空</li>
+<li>可以选择必须选择</li>
+<li>不能选择必须输入</li>
+</ul>
+</li>
+<li>
+<p>城市</p>
+<ul>
+<li>长度 1~30位</li>
+</ul>
+</li>
+<li>
+<p>邮编</p>
+<ul>
+<li>
+<p>为空</p>
+</li>
+<li>
+<p>如果美国</p>
+<ul>
+<li>长度5~10</li>
+<li>只能数字 - 空格组成</li>
+</ul>
+</li>
+<li>
+<p>如果加拿大</p>
+<ul>
+<li>长度6~9</li>
+<li>只能数组 - 空格 字母组成</li>
+</ul>
+</li>
+<li>
+<p>其他国家</p>
+<ul>
+<li>长度2~10</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>手机号</p>
+<ul>
+<li>为空</li>
+<li>长度6~20</li>
+<li>必须() + - 数字组成</li>
+</ul>
+</li>
+</ul>
+<p>顺便提一下验证正则需要用到<a href="https://www.jianshu.com/p/2b599fc55011">NSRegularExpression</a>这个类。</p>
+<h4 id="信用卡加密部分">信用卡加密部分</h4>
+<p>对于信用卡的加密我们都采用的是原生的 SDK 的加密和 RSA 加密算法。</p>
+<p>本来主要涉及到三种SDK 加密和一种服务器加密，因为第一期暂时没做那么多的支付方式，所以第一期就暂时做了设计的 <code>WordPay 加密</code> <code>设备指纹风控</code> <code>RSA 加密</code>。</p>
+<h5 id="wordpay-加密">WordPay 加密</h5>
+<p>这个加密十分的简单，只要集成 WordPay 加密的 SDK，执行加密即可。</p>
+<pre><code class="language-ruby">pod 'WorldpayCSE'
+</code></pre>
+<pre><code class="language-objc">- (NSString *)wordPayEncryption:(NSString *)cardNumber
+               cardHolder:(NSString *)cardHolder
+                     year:(NSString *)year
+                    month:(NSString *)month
+                      CVC:(NSString *)CVC {
+    NSError *error = nil;
+    WorldpayCSE *wpCSE = [WorldpayCSE new];
+    [wpCSE setPublicKey:kGGWordPayPublicKey
+                  error:&amp;error];
+    
+    if (error != nil) {
+        return nil;
+    }
+    WPCardData *cardData = [WPCardData new];
+    cardData.cardNumber = cardNumber;
+    cardData.cvc = CVC;
+    cardData.expiryMonth = month;
+    cardData.expiryYear = year;
+    cardData.cardHolderName = cardHolder;
+    // encrypt card data and validate
+    NSString *encryptedData = [wpCSE encrypt:cardData error:&amp;error];
+    if (error) {
+        if (error.code == WPErrorInvalidCardData) {
+            NSArray *cardValidationErrors = error.userInfo[kWPErrorDetailsKey];
+            NSLog(@&quot;%@&quot;,cardValidationErrors);
+        }
+    }
+    return encryptedData;
+}
+</code></pre>
+<h4 id="rsa-加密">RSA 加密</h4>
+<p>本来这个加密也是十分简单，我们找到对应的库。服务器把生成的公钥 <code>PEM</code> 文件给我们客户端，我们去加密，之后服务器解密即可。</p>
+<p>但是这个支付因为是网站做的，他们采用了十六进制加密公钥，之后采用他们那边的一个 <code>JS</code> 方法进行加密传递。</p>
+<p>公钥文件丢失，我们只能获取到 <code>JS</code> 那边16进制加密之后残缺的字符串。本地无法加密，直接加密为空。</p>
+<p>这个导致郁闷了很久，不可能那么多库都是一样的结果呀。最后试了网上的公钥和私钥都是可以的，这说明是给我们的公钥的问题。</p>
+<p>最后一问才知道，他们是进行十六进制加密之后截取的字符串，我说这个公钥怎么全部小写字段加数字，很奇怪呢。</p>
+<p>这个字符串给我们是没办法加密了，而且时间很紧促，所以做了一个曲线救国的方针。那就是利用新建一个 <code>UIWebView</code>放在屏幕看不见的位置，利用网站的 <code>JS</code> 进行本地加密。</p>
+<p>虽然实现很恶心，但是也是成功了。</p>
+<pre><code class="language-objc">- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    NSDictionary *dic = @{
+                          @&quot;cardNo&quot; : self.parameter.cardNumber,
+                          @&quot;month&quot; : self.parameter.month,
+                          @&quot;year&quot; : [self.parameter.year substringFromIndex:2],
+                          @&quot;cvv&quot; : self.parameter.CVC,
+                          };
+    NSString *jsonText = [dic yy_modelToJSONString];
+    NSString *jsStr = [NSString stringWithFormat:@&quot;enCode('%@')&quot;,jsonText];
+    NSString *result = [_webView stringByEvaluatingJavaScriptFromString:jsStr];
+    self.parameter.request.creditCardRsaStr = result;
+    self.parameter.request.rsaLength = result.length;
+    _webView.delegate = nil;
+    [_webView removeFromSuperview];
+    [self completionSuccess];
+}
+</code></pre>
+<p>说道这里，有必要说一下 <code>Bundle</code> 的加载了。</p>
+<h4 id="bundle-的加载">Bundle 的加载</h4>
+<p>因为我测试的 <code>Framework</code> 是作为一个 <code>Target</code> 来开发和调试的，所以获取的路径是在 <code>Cocoapods</code> 里面获取不到的，这个也是放在 <code>Cocoapods</code> 之后发现的一个问题。</p>
+<pre><code>+ (NSBundle *)gg_paySDKBundle {
+    NSBundle *bundle = [NSBundle bundleForClass:[GGPayCashierViewController class]];
+    /* 获取 POD bundle */
+    NSURL *paySDKBundleURL = [bundle URLForResource:@&quot;GGPaySDK&quot; withExtension:@&quot;bundle&quot;];
+    if (!paySDKBundleURL) {
+        /* 获取不到获取 Framework */
+        paySDKBundleURL = [bundle URLForResource:@&quot;Frameworks/GGPaySDK.framework/GGPaySDK&quot; withExtension:@&quot;bundle&quot;];
+    }
+    NSBundle *paySDKBundle = [NSBundle bundleWithURL:paySDKBundleURL];
+    return paySDKBundle;
+}
+</code></pre>
+<ul>
+<li>
+<p>如果属于工程里面的 <code>Target</code> 的话</p>
+<p>路径在 <code>./Frameworks/xxxx.framework/xxxx.bundle</code></p>
+</li>
+<li>
+<p>如果是 <code>Cocoapods</code> 的话</p>
+<p>直接在根目录 <code>./xxxx.bundle</code></p>
+</li>
+</ul>
+<h4 id="trustdefender设备指纹">TrustDefender设备指纹</h4>
+<p>需要获取到<code>TrustDefender.framework</code>对应的 <code>SDK</code>。</p>
+<pre><code class="language-objc">-(void)doProfile:(void (^)(NSString *))callbackBlock {
+    THMProfileHandle* profileHandle = [_profile doProfileRequestWithOptions:@{THMSessionID:[NSString stringWithFormat:@&quot;%@%@&quot;,_merchantId,_sessionId]} andCallbackBlock:^(NSDictionary *dic) {
+        NSLog(@&quot;callbackBlock:%@&quot;,dic);
+    } ];
+    if (profileHandle &amp;&amp; callbackBlock) {
+        callbackBlock(profileHandle.sessionID);
+    }
+}
+</code></pre>
+<p>这么简单的代码，竟然试了一两天。每次都获取不到设备指纹，当时突发奇想，是不是我没有用真机，导致的。</p>
+<p>用真机，果然可以收到支付的设备指纹了。</p>
+<h3 id="四舍五入多币种精度计算">四舍五入多币种精度计算</h3>
+<p>对于支持外币支付的应用，重要的也包含四舍五入的多币种换算。对于 <code>CLP</code> 币种，甚至还要支持五舍六入的支付方式。</p>
+<p>简单的说一下多币种计算的工具逻辑。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-11-13-73541.png" alt="image-20181113153539357"></p>
+<p>说道多币种，有必要说一下后台如果金额是 <code>Float</code> 或者是 <code>Double</code> 精度丢失问题。</p>
+<h4 id="ios-json-解析精度丢失">iOS JSON 解析精度丢失</h4>
+<p>我们都知道后台和 <code>App</code> 的交互，对于金额相关最好的使用字符串进行交互。但是总有一些刁民想害朕，用 <code>Float</code> 和 <code>Double</code> 类型传递过来。</p>
+<p>导致 <code>iOS</code> 在底层进行 <code>JSON</code> 解析的时候造成精度丢失，比如<code>0.01</code>可能解析为<code>0.000001</code>的字符串。</p>
+<p>这种最好还是后台换成字符串，<code>App</code> 什么都不需要改动这个 <code>BUG</code> 就迎刃而解。</p>
+<p>但是考虑到实际情况，对于后台换成字符串，如果 <code>Android</code> 用的不是字符串类型的，就会出问题。也不可能让后台根据<code>App</code>让后台返回不同的数据类型（除非线上遇到了 BUG）。</p>
+<p>其实我们也可以自己处理，但是有一些麻烦。</p>
+<pre><code class="language-objc">- (NSString *(^)(NSUInteger position))gg_fomatterPrice {
+    return ^NSString *(NSUInteger position) {
+        NSDecimalNumberHandler *handler = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain
+                                                                                                 scale:position
+                                                                                      raiseOnExactness:NO
+                                                                                       raiseOnOverflow:NO
+                                                                                      raiseOnUnderflow:NO
+                                                                                   raiseOnDivideByZero:NO];
+        NSDecimalNumber *floatDecimal = [[NSDecimalNumber alloc] initWithDouble:[self doubleValue]];
+        NSDecimalNumber *resultNumber = [floatDecimal decimalNumberByRoundingAccordingToBehavior:handler];
+        return [NSString stringWithFormat:@&quot;%@&quot;,resultNumber];
+    };
+};
+</code></pre>
+<p>我们用字符串接受，之后重写对应金额属性，用上面方法转换即可。</p>
+<h3 id="统计">统计</h3>
+<p>统计其实调用后台接口，但是传递的字段有一些技术难点。</p>
+<h4 id="获取fps">获取FPS</h4>
+<p>获取最高 <code>FPS</code>，最低 <code>FPS</code> 和平均的 <code>FPS</code></p>
+<p>我们可以使用系统的一个类<a href="https://www.jianshu.com/p/c35a81c3b9eb">CADisplayLink</a>去获取。</p>
+<ul>
+<li>添加 FPS 监听</li>
+</ul>
+<pre><code class="language-objc">    _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(displayLinkAction:)];
+    [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+</code></pre>
+<ul>
+<li>获取到 当前的 FPS 值</li>
+</ul>
+<pre><code class="language-objc">- (void)displayLinkAction:(CADisplayLink *)link {
+    static NSTimeInterval lastTime = 0;
+    static int frameCount = 0;
+    if (lastTime == 0) {
+        lastTime = link.timestamp;
+        return;
+    }
+    frameCount ++;
+    NSTimeInterval passTime = link.timestamp - lastTime;
+    if (passTime &gt; 1) {
+        int fps = frameCount / passTime;
+        lastTime = link.timestamp;
+        frameCount = 0;
+        if (!_currentWebInfoTimeRequest.highestFps) {
+            _currentWebInfoTimeRequest.highestFps = [@(fps) stringValue];
+            _currentWebInfoTimeRequest.fpsStartTime = [@([[NSDate date] timeIntervalSince1970]) stringValue];
+        }
+        if (!_currentWebInfoTimeRequest.lowestFps) {
+            _currentWebInfoTimeRequest.lowestFps = [@(fps) stringValue];
+        }
+        if (fps &gt; [_currentWebInfoTimeRequest.highestFps integerValue]) {
+            _currentWebInfoTimeRequest.highestFps = [@(fps) stringValue];
+        }
+        if (fps &lt; [_currentWebInfoTimeRequest.lowestFps integerValue]) {
+            _currentWebInfoTimeRequest.lowestFps = [@(fps) stringValue];
+        }
+        [_fpsList addObject:@(fps)];
+//        NSLog(@&quot;👉🏻fps:%@&quot;,@(fps));
+    }
+}
+</code></pre>
+<h4 id="收银台中断时间比如电话-挂起">收银台中断时间(比如电话 挂起)</h4>
+<p>利用<code>applicationDidBecomeActive</code>方法和<code>applicationWillResignActive</code>方法来统计支付挂起的时间。</p>
+<blockquote>
+<p>不清楚这两个方法是否概括了全部的挂起的时间。</p>
+</blockquote>
+<h4 id="崩溃信息">崩溃信息</h4>
+<p>这个我记得第三方 <code>Fabric</code>拦截的崩溃，其他是获取不到的。刚开始的时候，我还在说我们拿不到崩溃信息，这个点做不到。</p>
+<p>并且我们拦截了，其他第三方就获取不到了，这个功能是冲突的。后来我错了，孤陋寡闻，原来崩溃还可以转发。</p>
+<pre><code class="language-objc">void GGHandleException(NSException *exception) {
+    if ([GGUncaughtExceptionHandler shareUncaughtExceptionHandler].exceptionHandeler) {
+        [GGUncaughtExceptionHandler shareUncaughtExceptionHandler].exceptionHandeler(exception);
+    }
+    gg_previousHandler(exception);
+}
+
++ (void)installUncaughtExceptionHandler {
+    gg_previousHandler = NSGetUncaughtExceptionHandler();
+    NSSetUncaughtExceptionHandler(&amp;GGHandleException);
+}
+</code></pre>
+<ul>
+<li>获取上一个崩溃监听者</li>
+<li>注册崩溃监听</li>
+<li>发送崩溃到上一个崩溃监听者</li>
+</ul>
+<p>关于如果判断是我原生支付的 BUG，暂时没有想到好办法，只是判断是否存在 <code>GG</code> 前缀。</p>
+<h3 id="rtl-语言翻转">RTL 语言翻转</h3>
+<p>针对于支持多语言的应用，自然需要支持阿拉伯国家界面翻转的支持。我们之前应用是没做阿拉伯界面翻转支持的，所以对于这一块不是特别的了解。</p>
+<p>我们的支付原生 SDK 是针对于公司服装部门用的，他们支持了阿拉伯界面的翻转。所以我这个 SDK也需要支持了。</p>
+<p><a href="https://www.jianshu.com/p/3383ca5f6de0">RTL适配历程</a></p>
+<p>我发一下我目前怎么开启界面翻转的。</p>
+<pre><code class="language-objc">- (void)rtlWithLanguageCode:(NSString *)languageCode {
+    NSArray *supports = @[
+                          @&quot;ar&quot;,
+                          ];
+    if ([supports containsObject:languageCode]) {
+        [[UIView appearance] setSemanticContentAttribute:UISemanticContentAttributeForceRightToLeft];
+        [[UITextField appearance] setSemanticContentAttribute:UISemanticContentAttributeForceRightToLeft];
+        [UITextField appearance].textAlignment = NSTextAlignmentRight;
+        [[UILabel appearance] setSemanticContentAttribute:UISemanticContentAttributeForceRightToLeft];
+        [[UIButton appearance] setSemanticContentAttribute:UISemanticContentAttributeForceRightToLeft];
+    } else {
+        [[UIView appearance] setSemanticContentAttribute:UISemanticContentAttributeForceLeftToRight];
+        [[UILabel appearance] setSemanticContentAttribute:UISemanticContentAttributeForceLeftToRight];
+        [[UITextField appearance] setSemanticContentAttribute:UISemanticContentAttributeForceLeftToRight];
+        [UITextField appearance].textAlignment = NSTextAlignmentLeft;
+        [[UIButton appearance] setSemanticContentAttribute:UISemanticContentAttributeForceLeftToRight];
+    }
+}
+
+</code></pre>
+<p>可以根据语言自动设置界面翻转或者是不翻转。</p>
+<pre><code class="language-objc">@property (nonatomic) UISemanticContentAttribute semanticContentAttribute NS_AVAILABLE_IOS(9_0);
+</code></pre>
+<p>作为一个<code>UIView</code> 的一个属性，我们可以设置翻转或者不翻转。</p>
+<p>需要注意一点的是对于使用 <code>Masonry</code> 一定要规范，用 <code>leading</code> 代替 <code>left</code>,用<code>trailing</code> 代替 <code>right</code>。</p>
+<h4 id="图片的翻转">图片的翻转</h4>
+<p>这个也就是 <code>UIImage</code> 的问题，我们可以统一封装一下使用即可。</p>
+<pre><code class="language-objc">    if ([UIView appearance].semanticContentAttribute == UISemanticContentAttributeForceRightToLeft &amp;&amp; isSupportRTL) {
+        image = [image imageFlippedForRightToLeftLayoutDirection];
+    }
+</code></pre>
+<h4 id="对于币种金额强行不翻转">对于币种金额强行不翻转</h4>
+<p>这个当时很苦恼，毕竟这个是系统自动翻转的。后台 Android 同事提供了思路，可以使用代码<code>\u200e</code>强行不翻转。</p>
+<pre><code class="language-objc">NSString *payNowText = ({
+        payNowText = @&quot;&quot;;
+        if ([UIView appearance].semanticContentAttribute == UISemanticContentAttributeForceRightToLeft) {
+            payNowText = [NSString stringWithFormat:@&quot;%@ (\u200e%@)&quot;,GGLocalizedString(@&quot;soa_paynow&quot;, @&quot;PAY NOW&quot;),[self subTotalPriceManager].displayPrice];
+        } else {
+            payNowText = [NSString stringWithFormat:@&quot;%@ (%@)&quot;,GGLocalizedString(@&quot;soa_paynow&quot;, @&quot;PAY NOW&quot;),[self subTotalPriceManager].displayPrice];
+        }
+        payNowText;
+    });
+</code></pre>
+<h3 id="bitcode-的支持">BitCode 的支持</h3>
+<p>对于新建的静态库是默认支持 <code>Bitcode</code> 的，但是打包出来。使用人说会提示文件类不存在，谷歌一下原来是 <code>Bitcode</code> 的不支持。</p>
+<p>当时是毫无头绪，我也是开启的。最后我觉得可能是因为，我是合并的 <code>Build</code> 的模拟器和真机的包导致的问题。</p>
+<p>最后模拟器用 <code>Build</code>，真机用 <code>Archive</code> 打包之后合并，真的再也没有提示 <code>Bitcode</code> 不支持的问题了。</p>
+<p>还有就是静态库是编译之后的产物，所以不存在 DEBUG 和 Release 只说。所以我们不要写一些宏的判断，是不起任何效果的。</p>
+<p>我们只需要直接进行 <code>Release</code> 进行编译库即可。</p>
+<p>为了提高生产率，加上喜欢写脚本。就新建一个 <code>Target</code> 专门用来编译成发布的<code>framework</code>。</p>
+<pre><code class="language-shell">#!/bin/bash
+BUILD_ROOT_LENGHT=${#BUILD_ROOT} #获取 build 目录长度
+SUB_LENGHT=`expr $BUILD_ROOT_LENGHT - 8` #获取需要截取的长度
+SDK_ROOT=${BUILD_ROOT:0:SUB_LENGHT} #获取 SDK 合并主目录
+echo $SDK_ROOT
+xcworkSpanceName=&quot;GearBest&quot; #xcworkspance 名字
+sdkName=&quot;GGPaySDK&quot; #SDK名称
+schemename=&quot;GGPaySDK&quot; #scheme 名字
+#模拟器编译
+xcodebuild -workspace $xcworkSpanceName.xcworkspace -scheme $schemename build -sdk iphonesimulator
+echo &quot;👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻模拟器编译成功👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻&quot;
+
+#真机编译
+xcodebuild -workspace $xcworkSpanceName.xcworkspace -scheme $schemename archive -sdk iphoneos
+echo &quot;👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻真机编译成功👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻&quot;
+
+
+SDK_NAME=&quot;GGPaySDK&quot;
+IPHONE_SIMULATOR_SDK_PATH=$SDK_ROOT&quot;Products/Release-iphonesimulator/${SDK_NAME}.framework/${SDK_NAME}&quot;
+IPHONE_OS_SDK_PATH=$SDK_ROOT&quot;Intermediates.noindex/ArchiveIntermediates/GGPaySDK/IntermediateBuildFilesPath/UninstalledProducts/iphoneos/${SDK_NAME}.framework/${SDK_NAME}&quot;
+lipo -create $IPHONE_SIMULATOR_SDK_PATH $IPHONE_OS_SDK_PATH -output $IPHONE_OS_SDK_PATH
+echo &quot;👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻合并库成功👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻👉🏻&quot;
+
+open $SDK_ROOT&quot;Intermediates.noindex/ArchiveIntermediates/GGPaySDK/IntermediateBuildFilesPath/UninstalledProducts/iphoneos&quot;
+
+</code></pre>
+<p>切换 <code>Target</code> 之后执行编译，等待打开 <code>Finder</code> 之后就可以获取发布的包。</p>
+<h2 id="结束语">结束语</h2>
+<p>这一篇算是结束了，写一篇这样超长的很累！</p>
+<p>接下来因为准备接入 <code>Apple Pay</code>，准备下一下关于目前接入 <code>Apple Pay</code> 的文章</p>
+
+            </div>
+            
+            
+
+            
+              
+
+              
+                <div id="disqus_thread" data-aos="fade-in"></div>
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+
+  
+    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+    <script>
+
+    var options = {
+      shortname: 'josercc',
+      apikey: 'DBJHHPsqZBT5EUYFyQmorAozkwxTDoySOnd4bmdt9G29YFySUFhFE6SLZrSCHee4',
+    }
+    if ('') {
+      options.api = ''
+    }
+    var dsqjs = new DisqusJS(options)
+
+    </script>
+  
+
+
+
+
+  </body>
+</html>

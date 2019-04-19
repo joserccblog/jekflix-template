@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>重构你让我身心疲惫 | 君赏博客</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555670817008">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555670817008" class="site-logo">
+        <h1 class="site-title">君赏博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">重构你让我身心疲惫</h2>
+            <div class="post-date">2019-04-19</div>
+            
+              <div class="feature-container" style="background-image: url('https://diycode.b0.upaiyun.com/photo/2018/8762bfcd50e35c7532f4d01e7d2fef5b.png')">
+              </div>
+            
+            <div class="post-content">
+              <h3 id="前言">前言</h3>
+<p>最近已经很久没有写技术文章了，主要是最近需要重构的项目时间太紧促了。再加上回到家之后累的就不想摸电脑，就一直没有写文章了。</p>
+<p>最近一段时间总算是松了一口气下来，需求做完了，开始了测试阶段。</p>
+<h3 id="项目重构">项目重构</h3>
+<p>说是项目重构，其实也不完全是重构。因为涉及到 UI 重构的只是一部分，大部分都是逻辑上面的重构。</p>
+<p>关于这次重构，我并不觉得是公司项目为了后期维护着想，我觉得大部分的因素还是领导还是想在公司有些业绩站立脚跟吧。</p>
+<p>我们之前的老接口是基于 PHP 开发的，确实维护起来十分的困难。里面有大量的判断是 iOS 还是 Android 的判断逻辑，很容易造成后期很难维护。</p>
+<p>但是针对重构也是漫长的一个过程，需要不断测试之后在测试才能进行上线替换。</p>
+<p>但是我们的万万没想到，就一个月的时间。而且 APP 端也是最繁琐的任务，并且 iOS 是最复杂的工作。</p>
+<p>如果只是重做不做灰度发布功能的话，我们的工作量至少也没有现在这么多。</p>
+<p>当时出了几个方案，我们主张的时候后台PHP 端不管 JAVA 什么字段，封装之前的老字段返回即可。</p>
+<p>这样只用在 PHP 边进行 JAVA 接口大数据测试，真的有问题 PHP 再切回去老接口即可。</p>
+<p>但是对于公司宝贝儿子 PHP 来说，能让别人多干自己就少干些。</p>
+<p>说到这里，我想到之前在《中国合伙人》黄教主这样说过一个感人啼笑的故事。故事讲述他在大学一直帮助一个女生打热水，这个女生对他不冷不热。</p>
+<p>最后他才发现这个女生是有男朋友，只是不想累到自己男朋友而已。</p>
+<p>我觉得我们目前在公司的角色位于这个故事一直打热水的小伙，功劳没有，工作都是自己的。</p>
+<p>最后决定我们 APP 做灰度发布功能。</p>
+<h3 id="灰度发布功能">灰度发布功能</h3>
+<p>这个灰度发布功能主要是根据用户所在的区域，是否开启 SOA 新接口。如果开启就用 SOA 新接口，如果没有就用老接口。</p>
+<p>关键这个灰度发布功能只测试一个月，一个月之后就会开启全量。</p>
+<p>意思我们所做的努力只不过属于一个月的过渡期的产物而已。</p>
+<p>针对灰度发布功能，主要涉及到一些功能点。</p>
+<ul>
+<li>是否公用一个 AppDelegate 入口</li>
+<li>老版本代码和新版本代码合并会不会出现很多编译错误</li>
+<li>合并之后互相切换本地序列化的类会不会抱错</li>
+<li>两个版本合并之后分类会不会出现絮乱调用</li>
+<li>第三方能否公用一套</li>
+<li>一些第三方统计等怎么区分</li>
+<li>灰度发布之后怎么移除老版本</li>
+</ul>
+<p>这是当时我们进行项目危险度评估一些关键点评估，对于我们都是一个未知数，不知道会不会遇到问题解决不了，就中断了过程。</p>
+<p>本来我主张 PHP 可以让风险降低在最低，也会很快的度过这个灰度发布期。最后在公司的压力之下，我们只好妥协。</p>
+<p>我当时也在Swift 开发者大会的大群问过很多大神，没有人遇到过我们类似的需求和任务。基本上没有任何的帮助，剩下的只有自己探索而已。</p>
+<p>对于我们来说，这个想法理论上是可以实现的，但是中间会遇到怎么的荆棘，谁也不知道。我们的项目还是用运行时语法 OC，这样更增加危险程度。</p>
+<p>对于 M 和 WEB 他们只需要连接重定向就可以把老用户转到新的重构版本，他们的工作只需要放在重构的任务当众。</p>
+<p>但是 APP，我们难道也让 APP 安装两个版本的 APP，让用户切换到新的 APP 上吗。这个方案明显不行，那么唯一能做的就是合并两个版本在一起发布。</p>
+<p>这个对于安卓也没十分的难度，那就是分包即可互不影响。但是对于我们来说，只有 Swift 才有包概念。对于 OC，除非打包成 Framework 才可以。</p>
+<p>唯一可行方案，用前缀进行区分。</p>
+<ul>
+<li>类名称添加前缀</li>
+<li>文件名称</li>
+<li>C 语言的方法</li>
+<li>分类的方法</li>
+<li>枚举</li>
+<li>常量</li>
+</ul>
+<p>如果之前这些都加上前缀，我们复制一份，更改一下前缀即可。可是，可是，我们的项目经过的手比较多，在我接手之后，经历一次代码规范。</p>
+<p>后期的前缀十分规范，但是之前遗留的老代码依然是没有前缀。</p>
+<p>利用前缀融合两个包这个概念在我们团队里面算是达成共识，也不会更改了。</p>
+<h2 id="在什么时候启动切换">在什么时候启动切换</h2>
+<p>之前 PM 考虑到在启动时候就获取是否启用新接口，然后就走新接口。</p>
+<p>因为在 Main 函数里面是无法同步请求的，那么只能公用一个 AppDelegate 类。</p>
+<p>如果公用，中间涉及到一些第三方，DeepLink 等就要加判断。这样容易出错，果断就抛弃了方案。</p>
+<p>我们决定采用第二种，启动时候异步获取是否启用 SOA，存在本地。下次启动在 AppDelegate 判断到底执行那个分支。</p>
+<p>这样启动的接口是上一次启动的控制的风险，没办法，他们的方案本身就自带很大风险。</p>
+<h3 id="何时合并两个版本">何时合并两个版本</h3>
+<p>安卓因为是分包，很早就合并两个版本进行开发，之后就互相转移代码。</p>
+<p>为什么还要互相转移代码，又是坑爹的 PM。他们为了完成 PMO 的一个月发一次 版本的任务，就在做重构版本时候，还要做老版本需求，之后再上线一个新需求。</p>
+<p>关键老版本的需求用 PHP 旧服务器开发，新的版本用最新的 JAVA SOA 开发。因为请求不同，导致使用的类和字段不同，加上老版本的需求和重构还有不同。</p>
+<p>进行挪动代码时候只有一部分可以挪，一部分不可以。</p>
+<p>我们最初尝试的分离一个分支，进行重新命名前缀。改完也编译完成，最后合并两个版本之前我停止了。因为我想到另外一个好办法。</p>
+<p>我们先紧着老版本的需求做完，做到最大程度之后再次分分支。这样工作量就小了很多，也不用频繁的合并代码。</p>
+<p>对于我们来说我们只有新版本重构的排期，针对于老版本的需求他们 PMO 是让我们挤一下时间完成。</p>
+<p>安卓是五个人开发，当时我们iOS 只有三个人。我们的合并在一起还比较困难。我们没有同时开发老版本和新版本重构，自然要落后安卓许多。</p>
+<p>虽然后来从公司调来一个同事，但是不熟悉我们工程的代码，基本上帮助不大。我是属于项目最原始开发者，最了解这个项目。</p>
+<p>所以我就负责项目主流程，重构购物车，订单确认页面，支付，物流，订单详情等。</p>
+<p>当时我们三个认为我们就按照自己的进度的开发，如果真的完成不了，我们也尝试尽力了，自己问心无愧了。</p>
+<p>我们第一步就先根据最新的设计图布局最新的界面，第二步再去调试后台接口。</p>
+<p>界面做完之后，开始了我们等待接口，还开始了猜测接口字段，之后再去改。</p>
+<p>别人都是过年时段就会不忙，可以早点回家。我们是天天加班，好不容易双休也要去加班一天。过年之前，除了腊月28那天放假，晚上没有加班。</p>
+<p>其他时间一直在加班，一直到现在，估计还要持续到四月底。</p>
+<p>老版本在我们抽空完成并且上线，也让我们松一口气开始专心的重构。</p>
+<p>最近的前几天也基本上完成了 SOA 版本的对接，马上接近上线，准备上线之前合并两个版本。</p>
+<p>我本来是拿着上线的版本全面的做一下重新命名前缀，但是仔细一想重新命名前缀。上线版本的本地序列化的数据读取出来岂不是崩溃了。</p>
+<p>就在这个时候，PM 新的需求来了。那就是我们要做本地数据迁移。主要设计到下面的内容，</p>
+<ul>
+<li>购物车数据迁移</li>
+<li>本地国家</li>
+<li>本地汇率</li>
+<li>本地语言</li>
+<li>用户数据</li>
+<li>服务支持聊天数据</li>
+</ul>
+<p>因为老接口和新接口用到数据库不一样，之前的用户和数据是不兼容。虽然做了后台做了数据迁移，但是用户本地的用户还是没法安全迁移，就放弃了。</p>
+<p>购物车如果登录直接拿线上数据，本地的话就要把旧数据上传到服务器转换成重构的数据格式。</p>
+<p>我们分支了一个版本，最后还是把重构的修改了前缀。关键数量实在太多，可能有一些不改修改也被修改了。</p>
+<p>前天做了融合版本的第一个版本，果然爆了很多重复类名，文件错误。</p>
+<p>解决错了，这些还没完，对于分类一些没有前缀的会走不同的分类，直接抱错。我们把遇到的地方都解决了。</p>
+<p>目前我们担心就是一些还没遇到的，还有交换系统方法会覆盖的问题，会不会影响老版本的功能。</p>
+<p>不过总算老版本上线了，重构也进了测试阶段，两个版本也融合一起了。切换也可以切换版本。</p>
+<p>现在剩下就是未知引起崩溃，功能有错误的地方。如果解决就可以赶上3月20号上线。</p>
+<p>万万没想到，昨天 PM 喊我们开会，包括 APP M 和 WEB。</p>
+<p>说忘记了币种的问题，针对于一些币种，比如日元，泰币都不能有小数点。</p>
+<p>这就涉及到金额向下取整和向上取整问题。还要做子元素取整再去计算。</p>
+<p>举个例子，比如用户买100件商品。一件换算成日元12.2日元，那么12.2取整就是13。</p>
+<p>100件就是1300日元，比之前1220多了80日元。</p>
+<p>比如用户退款就向下取整，这样不会多退款，还可以多赚。</p>
+<p>现在这个需求还没开始，但是我们一致觉得三端难度打，根本赶不上3月20上线。需求还在商讨中，</p>
+<p>这次重构感觉自己换了一层雪，从来没有这么累过。</p>
+<p>这不算一篇技术文章，算作一种经验分享，这样之后谁遇到同样问题可以有方法参考。</p>
+
+            </div>
+            
+            
+
+            
+              
+
+              
+                <div id="disqus_thread" data-aos="fade-in"></div>
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+
+  
+    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+    <script>
+
+    var options = {
+      shortname: 'josercc',
+      apikey: 'DBJHHPsqZBT5EUYFyQmorAozkwxTDoySOnd4bmdt9G29YFySUFhFE6SLZrSCHee4',
+    }
+    if ('') {
+      options.api = ''
+    }
+    var dsqjs = new DisqusJS(options)
+
+    </script>
+  
+
+
+
+
+  </body>
+</html>

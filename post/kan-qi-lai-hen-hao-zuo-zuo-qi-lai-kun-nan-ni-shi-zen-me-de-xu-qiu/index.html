@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>看起来很好做，做起来困难，你是怎么的需求！ | 君赏博客</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555670817008">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555670817008" class="site-logo">
+        <h1 class="site-title">君赏博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">看起来很好做，做起来困难，你是怎么的需求！</h2>
+            <div class="post-date">2019-04-19</div>
+            
+              <div class="feature-container" style="background-image: url('https://diycode.b0.upaiyun.com/photo/2018/de69bdb20fdf8484922d64eaad7bb26b.png')">
+              </div>
+            
+            <div class="post-content">
+              <p>[TOC]</p>
+<blockquote>
+<ul>
+<li>怎么选取一个好的框架做界面更加快速</li>
+<li>怎么从一张图分析出一个界面出来</li>
+<li>介绍 <code>InjectionIII</code> 的使用</li>
+<li><code>UITableView</code> 和 <code>UICollectionView</code> 的数据框架</li>
+<li><code>ZHLocalizationStringManager</code>多语言类</li>
+<li><code>CSV</code> 多语言提取写入<code>Mac</code>工具</li>
+<li>封装一个泛型链式语法的类</li>
+<li>学习如何用 <code>PaintCode</code> 用设计模式绘制代码</li>
+<li>学习使用 <code>Objc_Dep</code> 分析工程依赖，提取模块化。</li>
+</ul>
+</blockquote>
+<p>很久没有写文章了，可能是因为太忙，还是不知道怎么写？还是有点懒了。</p>
+<p>一直不知道要写一篇什么样的文章，才能给大家一份交付，不能简单的写一篇就去骗点击。</p>
+<p>最近做了一个会员中心体系的需求，觉得里面有一些坑，也涉及到很多的知识点，觉得是有必要的写一下了。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-011730.jpg" alt=""></p>
+<p>这个界面看上去简约，第一眼看上去又是新增的界面，做这个应该很容易的。但是真正做起来的时候，小细节还是很多的，甚至因为小细节还重新改动过几次。</p>
+<h2 id="关于-injection">关于 Injection</h2>
+<p>这个界面开始做之前，如果你没有还没有听说过 <code>Injection</code>，或者平时还没有使用 <code>Injection</code> 进行过开发，甚至说平时遇到问题就没再用的话，看这篇文章算是对的。</p>
+<p>对于 <code>Injection</code> 我是很早之前就听说过，是一种代码注射器，可以动态运行代码。不需要重新运行，就可以修改代码，去在后期做一些调试。</p>
+<p>虽然我们编译之后运行起来也花费不了太多的时间，但是对比着 <code>Injection</code> 可以在我们保存之后自动编译，不需要我们重新编译运行，甚至可以不用关闭 App 基础上面，我觉得至少节省了70%的调试时间。</p>
+<p>最早出现的时候时候是这个库<a href="https://github.com/johnno1962/injectionforxcode">injectionforxcode</a>，作为一个 <code>Xcode</code> 插件。并且还要在代码里面写一下这个插件的回调方法。</p>
+<ul>
+<li>
+<p><code>OC</code></p>
+<pre><code class="language-objective-c">- (void)injected
+{
+    NSLog(@&quot;I've been injected: %@&quot;, self);
+}
+</code></pre>
+</li>
+<li>
+<p><code>Swift</code></p>
+<pre><code class="language-swift">@objc func injected() {
+print(&quot;I've been injected: \(self)&quot;)
+}
+</code></pre>
+</li>
+</ul>
+<p>对于 <code>UIViewController</code> 试图要在回调函数重新调用 <code>ViewDidLoad</code> 方法。针对于每一个类甚至控制器都要设置回调方法。</p>
+<p>我觉得这个工具污染了源代码，虽然很方便，但是危害也很大。就放弃了尝试使用的想法。</p>
+<p>我怎么最近又想起来怎么使用了呢？那是因为这个项目 <code>For Swift</code> 的开发和发布。</p>
+<p><a href="https://github.com/johnno1962/InjectionIII">InjectionIII</a> 作为之前 <code>InjectXcode</code> 的 <code>Swift</code> 版本，抛弃了 <code>Xcode</code> 插件过时的思路，改成了独立的 <code>APP</code> 进行运行，而且在 <code>Framework</code> 内部封装了回调函数，不污染我们工程的任何代码。</p>
+<h3 id="injectioniii-使用">InjectionIII 使用</h3>
+<p>使用起来也是十分的简单，只需要下载对应的版本到<code>应用程序</code>目录，打开运行。之后在我们程序运行之前加载 <code>InjectionIII</code> 框架。</p>
+<ul>
+<li>
+<p><code>Swift</code></p>
+<pre><code class="language-swift">#if DEBUG
+Bundle(path: &quot;/Applications/InjectionIII.app/Contents/Resources/iOSInjection.bundle&quot;)?.load()
+//for tvOS:
+Bundle(path: &quot;/Applications/InjectionIII.app/Contents/Resources/tvOSInjection.bundle&quot;)?.load()
+//Or for macOS:
+Bundle(path: &quot;/Applications/InjectionIII.app/Contents/Resources/macOSInjection.bundle&quot;)?.load()
+#endif
+</code></pre>
+</li>
+</ul>
+<h3 id="injectioniii-下载地址">InjectionIII 下载地址</h3>
+<p><a href="http://johnholdsworth.com/InjectionIII.app.zip">点击下载</a></p>
+<ul>
+<li>
+<p>如果遇到打开提示源文件损坏，请执行下面的命令再次打开即可。</p>
+<pre><code class="language-shell">xattr -d com.apple.quarantine ~/Downloads/InjectionIII.app
+</code></pre>
+</li>
+<li>
+<p>你可能在想为什么 <code>InjectionIII</code> 不需要我们写回调函数了呢，是因为已经在 <a href="https://github.com/johnno1962/InjectionIII/blob/master/InjectionBundle/SwiftInjection.swift">https://github.com/johnno1962/InjectionIII/blob/master/InjectionBundle/SwiftInjection.swift</a>中帮助我们自己写好了。</p>
+</li>
+</ul>
+<h3 id="injectioniii-遇到的其他问题">InjectionIII 遇到的其他问题</h3>
+<ul>
+<li>
+<p><strong><code>Symbol not found: ___llvm_profile_runtime  error</code></strong></p>
+<blockquote>
+<p>前往 <code>Edit Scheme -&gt; Test -&gt; Info -&gt; Code Coverage</code>关闭代码覆盖率统计。</p>
+</blockquote>
+</li>
+<li>
+<p><strong>提示找不到对应的 <code>iOSInjection.bundle</code>文件</strong></p>
+<p>出现这个情况可能就是自己没有安装或者团队的其他人没有安装 <code>InjectionIII</code> 这一款软件，我们安装一下即可。</p>
+<p>如果团队其他人没有安装，也不想影响其他人的使用，可以改成下面进行加载即可。</p>
+<pre><code class="language-objective-c">#ifdef DEBUG
+    NSString *path = @&quot;/Applications/InjectionIII.app/Contents/Resources/iOSInjection.bundle&quot;;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        [[NSBundle bundleWithPath:path] load];
+    }
+#endif
+</code></pre>
+</li>
+<li>
+<p><strong>当前的界面修改无效</strong></p>
+<p>是因为需要重新新建这个界面打开，如果想在当前界面修改一些界面元素可以结合 <a href="https://revealapp.com/">Reveal</a> 和 <a href="https://github.com/Flipboard/FLEX">FLEX</a>这两款软件，足以满足。</p>
+<p>如果想新写代码进行测试查看，可以 <code>Push</code> 到这个界面，修改编译之后，我们 <code>Pop</code> 回来再次 <code>Push</code> 即可。</p>
+</li>
+<li>
+<p><strong>运行提示 <code>Swift</code> 版本找不到</strong></p>
+<p>因为这个是基于最新的 <code>Swift</code> 语法版本进行开发的，请务必更新到 <code>Xcode9.4</code>版本，并且这个 <code>Xcode9.4</code>版本一定是 <code>Xcode</code> 名字。如果你的是 <code>Xcode-9.4</code>这样的名字，是找不到对应的 <code>Swift</code> 库的。</p>
+</li>
+</ul>
+<p>这是我最近使用 <code>InjectionIII</code> 做需求和改 <code>Bug</code>，所遇到的一些问题和心得。暂时没遇到解决不了的坑，值得推荐大家使用。</p>
+<h2 id="界面框架的选择">界面框架的选择</h2>
+<p>如果对于之前的 <code>APP</code>，我们可是要兼容 <code>iOS8.0</code>系统的。所以对于悬浮头部<code>Header</code>，我所能想到的就是 <code>UITableView</code>,因为 <code>UICollectionView</code> 支持头部悬停是 <code>iOS9.0</code>才支持的。</p>
+<pre><code class="language-objective-c">@property (nonatomic) BOOL sectionHeadersPinToVisibleBounds NS_AVAILABLE_IOS(9_0);
+@property (nonatomic) BOOL sectionFootersPinToVisibleBounds NS_AVAILABLE_IOS(9_0);
+</code></pre>
+<p><code>UICollectionView</code> 对比与 <code>UITabelView</code> 缺少一个 <code>HeadView</code> 和 <code>FootView</code>,但是 <code>UICollectionView</code> 可以实现瀑布流。</p>
+<p>我们的项目因为去年引进了 <code>LivePerson</code> 的即时聊天的库，那个库是最低支持 <code>iOS9.0</code>的，我们的 <code>APP</code> 也被迫提升最低版本为 <code>iOS9.0</code>了。</p>
+<p>所以这个界面可以用<code>UICollectionView</code> 做为开发的框架，最上面的部分可以作为 <code>Section 0</code>的区域</p>
+<p>做这个界面你是不是要在代理方法里面判断不同的 <code>Section</code> 返回不同的 <code>UICollectionViewCell</code>，在点击回调哪里判断不同 <code>Section</code> 执行不同逻辑。</p>
+<h3 id="zhtableviewgroup">ZHTableViewGroup</h3>
+<p><code>ZHTableViewGroup</code>是一个可以管理 <code>UITableView</code> 和 <code>UICollectionView</code> 的数据管理器。</p>
+<p>如果你就是这样的想法，甚至你还在为这些乱七八糟的逻辑烦透了心。如果你用了其他第三方，但是封装不太好想转移中数据框架可以尝试下面我推荐的自己框架。</p>
+<p><a href="https://github.com/josercc/ZHTableViewGroup">UITableView和 UICollectionView 数据框架</a></p>
+<p>你问我这个库有什么优点？不要眨眼，看下面的代码。</p>
+<pre><code class="language-objc">- (void)setupCollectionViewData {
+    [self.collectionDataSource clearData];
+    @weakify(self);
+    [self.collectionDataSource addGroupWithCompletionHandle:^(ZHCollectionViewGroup *group) {
+        @strongify(self);
+        [group addHeaderWithCompletionHandle:^(ZHCollectionViewHeaderFooter *headerFooter) {
+            @strongify(self);
+            [self setupVipHeaderView:headerFooter];
+        }];
+        [group addCellWithCompletionHandle:^(ZHCollectionViewCell *cell) {
+            @strongify(self);
+            [self setupVipCenterRecomendCell:cell];
+        }];
+    }];
+    [self.collectionDataSource reloadCollectionViewData];
+}
+
+- (void)setupVipHeaderView:(ZHCollectionViewHeaderFooter&lt;SOAVipCenterHeaderView *&gt; *)header {
+    header.anyClass = [SOAVipCenterHeaderView class];
+    header.identifier = @&quot;SOAVipCenterHeaderView&quot;;
+    @weakify(self);
+    [header configurationHeader:^(SOAVipCenterHeaderView *header, NSUInteger section) {
+        @strongify(self);
+        SOAVipCenterHeaderDataModel *model = [SOAVipCenterHeaderDataModel transformVipCenterModel:self.vipCenterModel];
+        header.headerDataModel = model;
+        header.bannerDidClickCompletionHandle = self.bannerDidClickCompletionHandle;
+    }];
+}
+
+- (void)setupVipCenterRecomendCell:(ZHCollectionViewCell&lt;SOACartNoGoodsRecommendCollectionViewCell *&gt; *)collectionViewCell {
+    _recommendCollectionCell = collectionViewCell;
+    collectionViewCell.anyClass = [SOACartNoGoodsRecommendCollectionViewCell class];
+    collectionViewCell.identifier = @&quot;SOACartNoGoodsRecommendCollectionViewCell&quot;;
+    collectionViewCell.cellNumber = 0;
+    CGFloat width = SOA_SCREEN_WIDTH / 2.0;
+    CGFloat height = [SOACartNoGoodsRecommendCollectionViewCell recommendCellHeight];
+    collectionViewCell.size = CGSizeMake(width, height);
+    @weakify(self);
+    [collectionViewCell setConfigCompletionHandle:^(SOACartNoGoodsRecommendCollectionViewCell *cell, NSIndexPath *indexPath) {
+        @strongify(self);
+        cell.cartRecommendModel = self.recommendModels[indexPath.row];
+        cell.addRecommendCartButtonBlock = ^(SOACartRecommendModel *model) {
+            @strongify(self);
+            [self addCartRequestWithCartModel:model];
+        };
+    }];
+    [collectionViewCell setDidSelectRowCompletionHandle:^(SOACartNoGoodsRecommendCollectionViewCell *cell, NSIndexPath *indexPath) {
+        @strongify(self);
+        SOACartRecommendModel *model = self.recommendModels[indexPath.row];
+        if (self.didClickVipCenterRecommendCompletionHandle) {
+            self.didClickVipCenterRecommendCompletionHandle(model);
+        }
+    }];
+}
+</code></pre>
+<p>是不是这个页面 <code>UICollectionView</code> 的代理代码更加简洁了，不是我吹，现在我们工程项目很多实用我的框架。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-035628.png" alt="image-20180823115627496"></p>
+<p>我们工程有23处<code>UITableView</code> 用到了我的代码托管框架。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-053816.png" alt="image-20180823133816054"></p>
+<p>我们工程有8处 <code>UICollectionView</code> 用到了我的代码托管框架。</p>
+<p>因为这个框架让之前的代码更简单和易于维护，这个依赖的数量以后只会只多不减。</p>
+<h3 id="项目的框架">项目的框架</h3>
+<p>你一定很好奇我们的项目目前是什么框架?</p>
+<p>在我眼中，不要和我谈什么框架，不要谈什么架构和算法，我遇见需求都是复制粘贴一把梭。</p>
+<p>虽然我是复制粘贴一把梭，但是我复制粘贴多了，之后遇到 <code>BUG</code> 之后，我立马傻眼了，就决定提炼成一个方法。</p>
+<p>提炼之后我还发现，我代码虽然精简了，但是代码很乱，修改一个功能或者修复一个 <code>BUG</code> 的时候我短时间根本无法定位代码的位置。</p>
+<p>于是我就把一些功能规定放在特意的地方，一些文件放在特定的位置，于是也有了自己的一套框架，下面的链接讲述了这个框架的详细。</p>
+<p><a href="https://www.jianshu.com/p/351ac4ce5a59">模块化架构你为什么这么火，让我如此亲睐你？</a></p>
+<p>看了上面链接的文章，应该已经知道了下面会员中心分组文件所能代表的功能了。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-055053.png" alt="image-20180823135053435"></p>
+<p>这自然是我们写完这个功能才有的这么多的分组，但是开始我们一定会先从 <code>Controller</code> 开始，因为这个是进入这个界面的引流的入口。</p>
+<h3 id="导航条">导航条</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-055340.png" alt="image-20180823135340122"></p>
+<p>我们先从最上面设置导航条开始，我们的返回按钮的样式完全可以在项目初始化设置好即可。</p>
+<p>这是我们的一个新界面，我们只用关心我们显示的标题 <code>VIP Center</code>和右侧显示 <code>Rule</code>的按钮。</p>
+<h4 id="设置导航标题">设置导航标题</h4>
+<pre><code class="language-objective-c">self.title = GBLocalizedString(@&quot;VIP Center&quot;, @&quot;VIP Center&quot;);
+</code></pre>
+<p>这个虽然很简单，但是大家也发现我们的代码和你们的代码有一些的出入，甚至有一些聪明的同学已经猜出来这应该是为了做本地化。</p>
+<p>但是本地化的宏应该是叫做 <code>NSLocalizedString</code>这个宏，为什么我们是 <code>GBLocalizedString</code>这个宏呢？</p>
+<p>因为 <code>GBLocalizedString</code>这个宏在代码里面是这样定义的。</p>
+<pre><code class="language-objc">#define GBLocalizedString(key, commentString) [[ZHLocalizationStringManager shareLocalizable] localizedString:key comment:commentString]
+</code></pre>
+<h3 id="多语言管理类zhlocalizationstringmanager">多语言管理类<code>ZHLocalizationStringManager</code></h3>
+<p>从上面的代码可以看出我们这个 <code>GBLocalizedString</code>这个宏把代码重定向到 <code>ZHLocalizationStringManager</code>这个类的方法里面。</p>
+<p>说到这里，我们引出我的另外一个语言管理库登场。</p>
+<p><a href="https://github.com/josercc/ZHLocalizationStringManger">ZHLocalizationStringManger管理本地化语言工具</a></p>
+<p>这个和系统的有什么区别吗，只能说有很大区别也有很大相似。</p>
+<ul>
+<li>获取工程支持的语言列表</li>
+<li>设置默认的语言</li>
+<li>获取语言本地化 如果存在就返回 不存在就返回默认值 默认值没设置就返回 Key</li>
+</ul>
+<p>对于本地化我们做的不止这些，我们还做了一个专门的工具，用于查询多语言和刷最新的多语言到本地。</p>
+<h3 id="多语言提取工具localizedcsv">多语言提取工具LocalizedCSV</h3>
+<p><a href="https://github.com/josercc/LocalizedCSV">LocalizedCSV</a></p>
+<p>关于这个工具的使用可以参考我的另外的一篇文章 <a href="https://www.jianshu.com/p/8668bd245056">团队自用的iOS CSV多语言工具今天终于发布1.0.0版本</a></p>
+<p>就只说一下支持的功能列表吧</p>
+<ul>
+<li>支持从已经翻译的<code>CSV</code>文件读取已经翻译的内容一键保存到指定的<code>.Strings</code>文件里面</li>
+<li>支持查看某种语言未翻译和已翻译部分</li>
+<li>支持导出还未翻译的字段 支持查找相似已经翻译的 <code>Key</code></li>
+<li>支持读取源码<code>NSLocalizeString()</code>(或者其他自定义)读取键值保存到原语言包</li>
+<li>支持一键保存到本地</li>
+<li>支持配置多语言简码表</li>
+<li>支持查找出翻译的多语言和开发母语占位符不匹配的问题</li>
+</ul>
+<p>导航条我们在右侧需要添加一个 <code>Rule</code> 的按钮，添加代码过于简单就不需要写了。作为一个优秀的开发，这个功能不仅仅满足于这个，我们要考虑到如果这个页面加载失败，这个跳转的链接获取不到的情况。</p>
+<p>我们可以在开始时候设置 <code>Rule</code>按钮隐藏，当我们获取成功数据之后我们再来显示。</p>
+<h2 id="界面的布局">界面的布局</h2>
+<p>我们选取的布局如下</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-074710.jpg" alt=""></p>
+<p>我们把推荐商品上面内容设置为 <code>Section</code> 里面的 <code>Header View</code>。</p>
+<p>我们可以把 UICollectionView 的代码设置如下。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-075147.png" alt="image-20180823155147047"></p>
+<p>对于下面推荐商品的 <code>Cell</code> 的布局和设置，这里不多做太多解释，因为我觉得简单没有必要说。</p>
+<p>现在我们说一下头部。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-082325.jpg" alt=""></p>
+<p>因为头部是一个整体，我们可以把头部塞进去一个 <code>UITableView</code>，<code>UITableView</code> 的布局如上。</p>
+<p>我们总共分为6种不同的 Cell,如果按照判断返回，我们的代码一定是很难维护的。这就引出了 <code>ZHTableViewDataSource</code> 管理器。</p>
+<p>我们布局代码如下。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-092553.jpg" alt=""></p>
+<ul>
+<li>
+<p>会员信息展示</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-092926.jpg" alt=""></p>
+<p>对于会员信息界面有点复杂，我们可以设计如下。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-094334.jpg" alt=""></p>
+</li>
+</ul>
+<p><code>🧡 黄色</code>区域我们设置为 <code>UIImageView</code>，因为设计到贝塞尔曲线，甚至还有渐变。我们让对应设计给我们切一张图即可。</p>
+<p><code>❤️ 红色</code>区域我们也设置为 <code>UIImageView</code>，因为设计到渐变，我们也对应设置成图片。</p>
+<p><code>💼 巧克力色</code>区域我们设置一个 <code>UILabel</code>，展示我们当前的等级需要多少积分。</p>
+<p><code>💚 绿色</code>区域我们设置为 <code>UICollectionView</code>,用于展示我们当前等级所获取的权益。</p>
+<ul>
+<li>
+<p>权益最右边需要不显示完全</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-100745.png" alt="image-20180824180745358"></p>
+<p>权益的 <code>UICollectionView</code> 布局如下。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-005927.jpg" alt=""></p>
+<p>因为权益显示的最多是<code>8</code>个，按照设计图设计一个元素<code>80x80</code>的大小计算。是显示不完全的。</p>
+<p>如果想要用户知道右侧还有多余的元素，我们要设置最后一个显示的元素不能完全显示出来。</p>
+<p>为了让左右 元素间距 和元素大小不做太多的改动，我们必须新建一个例子，在 <code>StroryBord</code>或者 <code>Xib</code> 里面新建一个 <code>UICollectionView</code>，用于我们在对应的屏幕宽度调试出最合适的大小。</p>
+<p>我们针对目前主流的屏幕宽度 <code>320</code> <code>375</code> <code>414</code>的屏幕宽度制定三套布局的间距，但是怎么让程序自动找到我们设置对应值呢。</p>
+</li>
+</ul>
+<h3 id="封装屏幕宽度工具类">封装屏幕宽度工具类</h3>
+<p>如果对于上面我们要根据屏幕的宽度判断返回不同的值大小，绝对是一种很难维护的代码。</p>
+<p>怎么封装一个工具类，才能更好的扩展使用呢？</p>
+<p>我们假设我们获取对应尺寸的伪代码如下</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-090819.png" alt="image-20180824170819150"></p>
+<p><code>SOA_SCREEN_WIDTH</code>是指向获取屏幕宽度的宏，有人看到伪代码可能会问为什么不直接返回 <code>CGFloat</code> 类型呢。</p>
+<p>这个地方我也考虑过，为了做兼容性。对于根据屏幕尺寸返回对应的不止是 <code>CGFloat</code> 值可能是一些现实文本。</p>
+<p>为了兼容其他类型的情况，我们返回 <code>id</code> 类型。</p>
+<h4 id="设置泛型">设置泛型</h4>
+<p>从上图看出来，我们有 <code>screen320</code> <code>screen375</code> <code>screen414</code>三种屏幕对应的变量。如果我们设置为 <code>id</code> 类型，功能也是可以的。</p>
+<p>但是，这个功能对于我来说，我是知道怎么使用的。但是对于不清楚我写的人来说，设置之后，想要对应的类型，获取错误岂不是造成崩溃。</p>
+<p>我们都知道对于 <code>NSArray</code> 可以设置泛型，设置和获取的时候我们就可以知道数组具体存的值什么类型了。</p>
+<p>设置泛型其实很简单，我们只需要在定义类的地方加一个泛型。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-093036.png" alt="image-20180824173035530"></p>
+<p>我们也可以给泛型指定特定的类型，具体可以参考一下网上资料。</p>
+<p><a href="https://www.jianshu.com/p/e903b67468b8">iOS 强大的泛型</a></p>
+<h4 id="链式语法">链式语法</h4>
+<p>写到这里，大家可能在想这个类已经封装好了，已经封装很完美了。但是对于我来说，这还不算完美，完美是用起来十分的方便。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-093851.png" alt="image-20180824173850533"></p>
+<p>如果是这样的让其他人使用，虽然也是可以的，但是感觉代码有点臃肿呀。有没有一种代码可以连续的写下去，答案是有的。</p>
+<p>我们可能在日常开发写布局代码时候，使用 <code>Masonry</code> 库的时候。写布局代码可以写成一行是不是很爽。</p>
+<p>我们假设把设置值的写成链式语法的，岂不是扩展更好，代码更加的简洁。我们可以新增三个方法只是链式语法，代码如下。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-095123.png" alt="image-20180824175122680"></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-095140.png" alt="image-20180824175140263"></p>
+<p>这样我们上面的代码就可以优化成下面的样子。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-095457.png" alt="image-20180824175456487"></p>
+<h3 id="会员头部">会员头部</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-024308.png" alt="image-20180827104308338"></p>
+<p>最复杂的界面应该是这个了，这个地方之前没有做好，出现了一些问题优化了很多地方。</p>
+<p>我们设置页面模板如下。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-030621.jpg" alt=""></p>
+<p>头像是固定在中心点位置的，我们设置在 <code>UICollectionView</code> 上面中心点对齐即可。</p>
+<p>头像下面是一段一段的等级对应表，每一段距离都是相等的，并且宽度把整个 <code>UICollectionView</code> 的宽度四等分了。</p>
+<h4 id="方案1-等级图标在最右侧">方案1: 等级图标在最右侧</h4>
+<p>最初的方案很简单，把整个 <code>UICollectionView</code> 四等分。之后在每个 <code>UICollectionViewCell</code> 的最右侧添加一个 <code>UIButton</code>。</p>
+<p>为什么要添加<code>UIButton</code> 不是 <code>UIImageView</code>，因为我们的等级图标需要点击跳转到头像最下面的位置。</p>
+<p>我们的布局伪代码如下所示:</p>
+<pre><code class="language-objective-c">[self.levelButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.centerX.equalTo(self.contentView.mas_trailing);
+    make.centerY.equalTo(self.contentView);
+    make.size.mas_equalTo(CGSizeMake(40, 40));
+}];
+</code></pre>
+<p>因为我们保证最小按钮的可以点击的范围，我们设置大小为<code>40x40</code>。</p>
+<p>虽然效果是出来了，但是还有有一些瑕疵，因为上一个 <code>UICollectionViewCell</code> 会遮挡上一个按钮的一半的大小，我们只能点击左边一半的按钮才会有点击效果。</p>
+<p>虽然我们可以设置 <code>UICollectionViewCell</code> 的可以交互的属性为 <code>NO</code>，就可以解决这个问题，但是这个应该不是最好的方案。</p>
+<p>随意这个方案没有成为我现在最后的方案，这个方案被抛弃。</p>
+<h4 id="方案2-把所有的按钮都添加到-uicollectionview-cell-上面">方案2: 把所有的按钮都添加到 UICollectionView Cell 上面</h4>
+<p>为了做到后面的 <code>UICollectionViewCell</code> 不把前面的 <code>UIButton</code> 遮挡的问题，我们可以把按钮添加在 <code>UICollectionView</code> 上面，之后再找到 <code>UICollectionView</code> 的子试图中的 <code>UIButton</code> 按照 <code>UICollectionViewCell</code> 进行约束布局。</p>
+<p>结果发现按钮终于不被遮挡了，整个点击都是可以有效果的。但是另外的一个问题出现了，最后一个元素按钮不见了。</p>
+<p>我滑动一下，就可以显示出来。难道是因为 <code>UICollectionView</code> 只是把当前界面显示的 <code>UICollectionViewCell</code> 显示出来了导致的？。</p>
+<p>查了原因之后，真的是这个原因导致的，那么这个方案也是不可行的，也被抛弃了。</p>
+<h4 id="方案3在-uicollectionview-新添加一个-uiview">方案3：在 UICollectionView 新添加一个 UIView</h4>
+<p>最后想到的方案，我直接新建一个 <code>UIView</code> 作为父试图，把所有等级的 <code>UIButton</code> 全部布局在上面，之后添加到 <code>UICollectionView</code> 上面即可。</p>
+<p>这样做果然是可以的，可是我觉得这个方案还不是最好的方案，还有哪里没有想到兼容性。</p>
+<p>大家都发现了我们等级之间是有成长值进度条的，我们可以使用两个 <code>UIView</code> 进行做，也可以用 <code>CALayer</code> 进行做，还可以绘制。</p>
+<h3 id="paintcode-例子1-绘制进度条">PaintCode 例子1: 绘制进度条</h3>
+<p><a href="https://www.paintcodeapp.com">PaintCode 下载和文档地址</a></p>
+<p>对于怎么下载和安装，还有一些精深的教程，这里就不多说了，具体可以看上面的官网的网址。</p>
+<p>下面说一下对于我们需要的进度条，我们究竟该怎么做出来。</p>
+<h4 id="新建一个-paintcode-画布">新建一个 PaintCode 画布</h4>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-033253.png" alt="image-20180827113252750"></p>
+<h4 id="设置画布名称和大小">设置画布名称和大小</h4>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-033740.png" alt="image-20180827113740110"></p>
+<p>因为我们需要绘制的代码，根本不知道调用的人需要多大的尺寸，一定不是我们默认的<code>240x120</code>。</p>
+<p>这个是没有关系的，这个会随着我们自定义 <code>UIView</code> 的画布大小进行绘制的。我们为了效果看出来好一些，我们设置成<code>100x4</code>。</p>
+<h4 id="设置缩放比例">设置缩放比例</h4>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-034105.png" alt="image-20180827114104578"></p>
+<p>此时我们显示大小很小，我们很难操作这个画板，我们可以通过上图所示的位置调整缩放的比例。</p>
+<h4 id="设置-frame">设置 Frame</h4>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-034232.png" alt="image-20180827114232778"></p>
+<p>为了能让我们在画板上面的元素进行自适应大小，我们新建一个 <code>Frame</code>。</p>
+<p>设置 <code>Frame</code>的大小如下。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-034353.png" alt="image-20180827114352475"></p>
+<h4 id="试图控件">试图控件</h4>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-034517.png" alt="image-20180827114517459"></p>
+<p>因为进度条需要一个两个颜色进行显示，我们可以新建两个试图控件。我们需要的长方形的试图，所以我们选择红线区域最左侧的一个。</p>
+<h5 id="backgroundview-底部试图">backgroundView 底部试图</h5>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-034821.png" alt="image-20180827114820492"></p>
+<h5 id="progressview">progressView</h5>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-034930.png" alt="image-20180827114930368"></p>
+<h4 id="设置布局约束">设置布局约束</h4>
+<p>从上图看出来我们新建的两个试图设置的固定位置大小为<code>(0,0,100,4)</code>，但是这个写死的绝对不行的，这个就用到了我们刚才新建的 <code>Frame</code>的控件了。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-035415.png" alt="image-20180827115415525"></p>
+<p>我们在刚才设置控件大小的时候可以能已经注意到左侧有一个区域，不知道是怎么回事对吧，我给大家讲解一下就全清楚了。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-054824.jpg" alt=""></p>
+<ul>
+<li><code>Top</code>：代表距离顶部最近试图的间距</li>
+<li><code>Leading</code>：代表距离左边最近试图的间距</li>
+<li><code>Bottom</code>：代表距离底部最近试图的间距</li>
+<li><code>Trailing</code>：代表距离右侧最近试图的间距</li>
+<li><code>Width</code>：代表试图的宽度</li>
+<li><code>Height</code>：代表试图的高度</li>
+<li><code>~</code>：虚线代表自动约束</li>
+<li><code>—</code>：实线代表不跟随改变</li>
+</ul>
+<p>对于 <code>backgroundView</code> 我们希望随着外部设置大小自动进行约束改变，那么我们设置约束如下。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-060143.png" alt="image-20180827140143738"></p>
+<p>我们设置宽度和高度跟随约束自动改变。</p>
+<h4 id="变量">变量</h4>
+<p>我们目前需要让外部给我们一个进度值，我们获取进度试图的宽度。对于上面设置约束和写死大小已经不适应我们的需求了。</p>
+<p>我们可以使用变量这个功能，在下面的区域进行设置。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-090210.png" alt="image-20180827170209101"></p>
+<p>因为进度我们在设计的界面是无法获取的，只有使用者才知道当前的进度。我们就新建一个进度的变量，叫做 <code>progress</code>。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-090513.png" alt="image-20180827170420983"></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-090634.png" alt="image-20180827170633296"></p>
+<p>此时我们已经在变量的列表里面了。</p>
+<p>因为我们是无法获取到刚才设置 <code>Frame</code> 的大小的，所以我们无法进行下一步的操作。我们可以新建一个 <code>Rect</code> 的变量，叫做 <code>Frame</code>，删除之前的约束 <code>Frame</code>。</p>
+<ul>
+<li>
+<p>删除 <code>Frame</code>约束</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-091206.png" alt="image-20180827171206452"></p>
+</li>
+<li>
+<p>新建 <code>Frame Rect</code> 类型的变量</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-091252.png" alt="image-20180827171251261"></p>
+<p>我们设置大小为<code>(0,0,100,4)</code>。</p>
+</li>
+</ul>
+<h4 id="连线">连线</h4>
+<p>我们在刚才已经新建了一个 <code>Frame</code> 的变量来表示我们父试图的 <code>Bounds</code>，但是怎么让 <code>backgroundView</code> 跟随者改变呢?</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-092546.png" alt="image-20180827172546318"></p>
+<p>我们可以按照上图所示，把这个变量通过连线的方式赋值给 <code>backgroundView</code> 的大小。</p>
+<h4 id="公式">公式</h4>
+<p>对于 <code>backgroundView</code> 我们已经设置好大小了，但是对于 <code>progressView</code>，我们该怎么知道大小呢?</p>
+<p>刚才我们已经新建了一个 <code>progress</code>的变量，值的范围是<code>0-1</code>之间。这个时候我们就用到公式了。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-092918.png" alt="image-20180827172917747"></p>
+<p>我们新建一个 <code>progressViewWidth</code> 的变量，公式设置如下。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-093026.png" alt="image-20180827173026282"></p>
+<p>我们新建一个 <code>height</code> 的变量，公式设置如下。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-093202.png" alt="image-20180827173201789"></p>
+<p>我们把刚才设置的 <code>progressViewWidth</code> 和 <code>height</code>变量分别给 <code>progressView</code>的宽度和高度进行赋值。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-093340.png" alt="image-20180827173340346"></p>
+<p>写到这里，我们突然想到。刚才 <code>backgroundView</code>的 <code>Frame</code> 是来源于外部设置的，假设外部设置的起始点不是<code>(0,0)</code>位置的话，那么我们绘制出来的 <code>UI</code> 岂不是成为了笑话。</p>
+<p>为了严谨，为了兼容性好一些，我们新建一个 <code>width</code>的变量，公式设置如下。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-093734.png" alt="image-20180827173734298"></p>
+<p>我们重新设置 <code>progressView</code>的 <code>Frame</code> 如下所示。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-093830.png" alt="image-20180827173830728"></p>
+<h4 id="颜色">颜色</h4>
+<p>对于我们的进度条，我们应该有颜色区分的呀，不然怎么看的出来。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-093928.png" alt="image-20180827173928349"></p>
+<p>我们可以新建两个简单的颜色，黑色和白色。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-094057.png" alt="image-20180827174056556"></p>
+<p>我们按照之前变量的方式给之前新建的 <code>backgroundView</code>设置填充颜色为 <code>backgroundViewColor</code>，给 <code>progressView</code>设置填充颜色为 <code>progressViewColor</code>。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-094234.png" alt="image-20180827174234343"></p>
+<h4 id="效果">效果</h4>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-2018-08-27+17_46_13.gif" alt=""></p>
+<h4 id="修改为方法变量">修改为方法变量</h4>
+<p>为了增加兼容性，我们的两个颜色如果可以通过方法传递进来的话，那样做出来的效果就更好了。</p>
+<p>我们可以通过下面把刚才新建的颜色变量修改为方法的变量。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-094954.png" alt="image-20180827174953951"></p>
+<h4 id="使用">使用</h4>
+<p>使用的方法有两种</p>
+<ul>
+<li>
+<p>第一种直接复制代码在 <code>drawRect</code> 方法里面调用方法。</p>
+<blockquote>
+<p>适合简单的试图</p>
+</blockquote>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-095203.png" alt="image-20180827175202653"></p>
+</li>
+<li>
+<p>导出生成类通过类方法在 <code>drawRect</code>方法里面进行调用。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-095304.png" alt="image-20180827175304273"></p>
+</li>
+</ul>
+<p>如果把进度条从 <code>UICollectionViewCell</code> 的左侧开始布局的话，那么就会有一部分会被遮挡。</p>
+<p>为了能让界面看起来好看和显示数据正常一些，我们可以设置布局从按钮的右侧开始布局，右侧按钮的左侧。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-102231.jpg" alt=""></p>
+<p>写到这里，我们怎么让最低等级和最高等级滑动到中心点的位置停下呢。我们根据 <code>UIScrollView</code> 的特性，那么最左侧和最右侧就必然有两个同等大小空白的 <code>UICollectionViewCell</code>。</p>
+<p>我们可以用两个同等大小的空白试图进行填充，也可以用两倍宽度大小试图进行填充。</p>
+<p>写到这里，我们界面其他元素已经不是很大的难度了，再说写了这么多，我也累了😄。</p>
+<p>你以为这样就结束了吗？这不是我的套路，到最后我再放一个福利。</p>
+<h2 id="objc_dep">objc_dep</h2>
+<p>你还在为模块话找不到理清程序模块依赖的思路吗？那么推荐的这个工具就可以解决你的燃眉之急。</p>
+<p><a href="https://github.com/nst/objc_dep">objc_dep</a></p>
+<p>这个工具有点遗憾是基于 <code>Objective-C</code> 做的，也就是找到工程类文件<code>#import</code> 引入的文件进行查找的。</p>
+<p>虽然有一些瑕疵，但是作为只有一百行的 <code>Shell</code> 文件做到这样功能已经不错了，对于模块化起来十分有用。</p>
+<p>并且对于本文做的会员中心模块，做完后期用这个工具可以很好的梳理中间的一些逻辑依赖。</p>
+<p>比如我命令行到我会员中心的目录。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-115215.png" alt="image-20180827193158538"></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-115220.png" alt="image-20180827193228567"></p>
+<p>执行 <code>Shell</code> 命令就可以生成一张图片和后缀为<code>.dot</code> 的文件。如果图片看着很乱，可以用</p>
+<p><code>OmniGraffle</code> 软件打开<code>.dot</code> 文件，把一些不必要的依赖删掉，就可以很清晰依赖的逻辑。</p>
+
+            </div>
+            
+            
+
+            
+              
+
+              
+                <div id="disqus_thread" data-aos="fade-in"></div>
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+
+  
+    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+    <script>
+
+    var options = {
+      shortname: 'josercc',
+      apikey: 'DBJHHPsqZBT5EUYFyQmorAozkwxTDoySOnd4bmdt9G29YFySUFhFE6SLZrSCHee4',
+    }
+    if ('') {
+      options.api = ''
+    }
+    var dsqjs = new DisqusJS(options)
+
+    </script>
+  
+
+
+
+
+  </body>
+</html>

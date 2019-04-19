@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>最基本的调试是NSLog及DEBUG预处理器宏 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">最基本的调试是NSLog及DEBUG预处理器宏</h2>
+            <div class="post-date">2017-11-25</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-095928.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <h2 id="最基本的调试是nslog及debug预处理器宏">最基本的调试是NSLog及DEBUG预处理器宏</h2>
+<p>在系统控制台显示日志信息运行应用程序时是最早调试机制之一,利用<code>log</code>你可以查看应用程序的运行记录，当程序运行完毕，你可以长时间查看。此外，您的应用程序运行期间，可以观察所产生并写入到控制台，在您的应用程序它们所描述正在发生的事件的日志消息。作为一个开发者你是用<code>NSLog</code>的在<code>console</code>中显示的文本和信息的完全控制权，<code>log</code>可以发现即使是最难查找一个应用程序的问题.</p>
+<p>此文档关于有关<code>NSLog</code>的功能及<code>DEBUG</code>预处理程序宏实际考虑为调试有用的对话</p>
+<p>下面是<code>NSLog</code>调用的一个例子。</p>
+<pre><code class="language-objc">NSString *message = @&quot;test message&quot;;
+NSLog( @&quot;Here is a test message: '%@'&quot;, message );
+</code></pre>
+<p>并且，对于上述说法，控制台输出将显示如下：</p>
+<pre><code class="language-objc">Here is a test message: 'test message'
+</code></pre>
+<p>这真的就是这么简单！而且，在这个文件中的这个时刻，你现在有足够的信息来开始使用<code>NSLog</code>的调试您的应用程序.但是，你应该继续往下看：在本文档的剩余部分补充说，你可以使用授权您可以在您的项目更有效地使用记录更多详细信息。</p>
+<p>此文档适用于所有<code>iOS</code>和<code>OS X</code>开发,本示例假定正在使用<code>Xcode</code>的读者，是熟悉的<code>Objective-C</code>语言，并了解使用<code>C</code>语言预处理程序的基础知识。</p>
+<p>[TOC]</p>
+<h3 id="在哪里可以找到nslog的输出">在哪里可以找到NSLog的输出</h3>
+<p>有史以来<code>Founction</code>框架的<code>NSLog</code>功能一直适用于<code>iOS</code>和<code>OSX</code>的个个版本。因此，您可以依赖它是可用于在任何苹果的平台，让您的应用程序将运行调试用的。<code>NSLog</code>的输出消息记录到苹果系统日志工具或控制台应用程序（通常以时间及进程ID作为前缀）。许多系统框架中使用<code>NSLog</code>的用于记录异常和错误，但不要求来限制及其使用于上述目的这也是完全可以接受的使用<code>NSLog</code>的输出变量值，参数，函数结果，堆栈跟踪等信息，所以你可以看到什么是在你的代码在运行时发生。</p>
+<p>控制台输出可以出现在许多地方，包括（但不限于）<code>Xcode</code>和控制台应用程序，参考有关从您的应用程序的调用NSLog的找到控制台输出的更多信息，请参见技术Q＆A QA1747：<a href="xcdoc://?url=developer.apple.com/library/ios/qa/qa1747/_index.html">调试部署iOS应用</a></p>
+<h3 id="如何调用nslog的">如何调用NSLog的</h3>
+<p>该<code>Founction</code>框架<code>NSLog</code>功能的工作就像标准C库printf函数，最大的区别在于格式字符串被指定为 <strong>NSString</strong>类型的值，而不是<strong>C</strong>风格的字符串</p>
+<h4 id="简单的例子">简单的例子</h4>
+<p>这里是展示如何调用NSLog的一个例子：</p>
+<pre><code class="language-objc">NSString *outputData = @&quot;A quick brown fox jumps over a lazy dog!&quot;;
+NSLog( @&quot;text: %@&quot;, outputData );
+/* Comment:
+    @&quot;text: %@&quot; - is the printf style formatting template for output (an NSString *)
+    outputData - refers to to the text we wish to display (also an NSString *)
+*/
+</code></pre>
+<p>而且，这里是输出的显示方式：</p>
+<pre><code class="language-objc">text: A quick brown fox jumps over a lazy dog!
+</code></pre>
+<h4 id="高级详细信息">高级详细信息</h4>
+<p>出现用于<code>NSLog</code>的函数定义如下：</p>
+<pre><code class="language-objective-c">void NSLog(NSString *format, ...);
+</code></pre>
+<p>注意第一个参数是一个格式化字符串，它可以含有意味着额外的参数之后期望特殊的替换标记.如果关心和关注不能采取措施，确保格式字符串的内容匹配起来，其余的参数，您的应用程序可能会崩溃（或者，至少是，它将输出不可用的数据到控制台）</p>
+<p>像printf函数，使用NSLog的标记替换:</p>
+<p>然而，出现在<code>Objective-C</code>，<code>％@</code>，用于指示及其对应的参数应该是一个<code>Objective-C</code>的对象一个额外取代标记提供。</p>
+<p>除了<code>％@</code>替换标识所有常规的<code>printf</code>风格替换标记是供您使用</p>
+<p>关于有关NSLog的使用的替换标记的详细信息，请参见“<a href="xcdoc://?url=developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Strings/Articles/formatSpecifiers.html#//apple_ref/doc/uid/TP40004265-SW1">字符串编程指南</a>”的“<a href="xcdoc://?url=developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Strings/introStrings.html">字符串格式说明</a>”部分。</p>
+<h3 id="好东西要在日志文件包括">好东西要在日志文件包括</h3>
+<p>日志记录允许您创建描述您的应用程序，你可以在你的闲暇之后分析操作的抄本。因此，你想在你的日志尽可能多的有用信息，这样更容易在你的应用程序运行期间让你真正看到正在发生的事情。</p>
+<p>下面是一些通常包含在一些解释日志的一些项目：</p>
+<h4 id="逻辑和分支">逻辑和分支</h4>
+<p>新增您代码的逻辑内部的日志语句将帮助您了解正在被执行的部分，并正在使用你的逻辑，分支机构</p>
+<p>日志对于十分复杂的程序落实十分有用的，你可以看到运行期间的程序逻辑。</p>
+<h4 id="独特且易于查找文本模式">独特且易于查找文本模式</h4>
+<p>在每个日志声明，它是有用的，包括一些独特的并且容易找到的文本模式，所以如果你确定该日志语句有问题，可以很容易地通过你的源文件搜索和找到它的位置</p>
+<h4 id="变量和属性值">变量和属性值</h4>
+<p>你在你的应用程序关键地方打印变量和属性可以验证这些值是否是允许的范围之内。在日志打印错误信息，可以帮助你识别超出值范围的这一种情况。</p>
+<p>除了用<code>%@</code>标记，任何在<code>Printf</code>使用的标记都可以在格式化字符串中使用。这将允许您显示许多不同类型的值，更多关于格式化信息你可以参考“<a href="xcdoc://?url=developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Strings/Articles/formatSpecifiers.html#//apple_ref/doc/uid/TP40004265-SW1">字符串编程指南</a>”的“<a href="xcdoc://?url=developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Strings/introStrings.html">字符串格式说明</a>”部分</p>
+<blockquote>
+<p>printf函数提供了大量用于打印数字替换标记（例如％d，％ld，％f）为方便起见，你可以使用Objective-C的<code>Box能力</code>，以节省时间，避免编译器警告。例如，以下内容：</p>
+</blockquote>
+<pre><code class="language-objective-c">double myNumber = 7.7;
+NSLog(@&quot;number: %@&quot;, @(myNumber));
+</code></pre>
+<p>打印如下</p>
+<pre><code class="language-objective-c">number: 7.7
+</code></pre>
+<p>这种技术适用于所有数字类型，编译器意识到（或签定任何大小的无符号整数或浮点数 - 8，16，32或64位），并且将任何必要的强制类型转换为你而不会产生的任何编译器警告</p>
+<h3 id="谁正在被调用">谁正在被调用</h3>
+<p>分析应用程序的操作是至关重要的，你可以知道那些程序那些功能被顺序调用。在这种情况下，它是添加接近的方法和函数定义之初即只需打印出函数名称的声明NSLog的一个很好的主意。</p>
+<pre><code class="language-objective-c">- (void)pressButton:(id)sender
+{
+    NSLog( @&quot;calling: %s&quot;, __PRETTY_FUNCTION__ );
+    ....
+</code></pre>
+<p>这里，预定义的编译时间变量__PRETTY_FUNCTION__（一个C风格字符串）被用于打印函数的名称调用.当你分析大量的功能代码，你想知道正在调用你代理方法的层次是非常有用的。</p>
+<p>以上将打印在console以下内容：</p>
+<pre><code class="language-objective-c">calling: -[MyObjectClassName pressButton:]
+</code></pre>
+<p>该__PRETTY_FUNCTION__编译time变量和其他类似在技术Q＆A QA1669讨论：<a href="xcdoc://?url=developer.apple.com/library/mac/qa/qa1669/_index.html">改进了日志记录在Objective-C</a>。</p>
+<h3 id="记录你的堆栈信息">记录你的堆栈信息</h3>
+<p>当检查崩溃日志，在堆栈中是非常宝贵找出导致的任何特定情况下的连锁事件。当使用<code>NSLog</code>进行调试，您可以通过调用<code>NSThread-callStackSymbols</code>类方法随时检索当前堆栈跟踪的副本。你可以在堆栈中使用<code>%@</code>打印<code>NSArray</code>的堆栈的信息。</p>
+<pre><code class="language-objective-c">NSLog(@&quot;%@&quot;, [NSThread callStackSymbols]);
+</code></pre>
+<p>上面的语句输出是下面的样子。</p>
+<pre><code class="language-objective-c">2014-04-30 18:44:30.075 AVCustomEdit[52779:60b] (
+ 0  AVCustomEdit      0x0000efa6 -[APLSimpleEditor buildCompositionObjectsForPlayback:] + 278
+ 1  AVCustomEdit      0x0000686e -[APLViewController viewDidAppear:] + 590
+ 2  UIKit             0x007a4099 -[UIViewController _setViewAppearState:isAnimating:] + 526
+ 3  UIKit             0x007a4617 -[UIViewController __viewDidAppear:] + 146
+ 4  UIKit             0x007a49aa -[UIViewController _executeAfterAppearanceBlock] + 63
+ 5  UIKit             0x0069f0d0 ___afterCACommitHandler_block_invoke_2 + 33
+ 6  UIKit             0x0069f055 _applyBlockToCFArrayCopiedToStack + 403
+ 7  UIKit             0x0069ee9a _afterCACommitHandler + 568
+ 8  CoreFoundation    0x029db2bf __CFRunLoopDoObservers + 399
+ 9  CoreFoundation    0x029b9254 __CFRunLoopRun + 1076
+ 10 CoreFoundation    0x029b89d3 CFRunLoopRunSpecific + 467
+ 11 CoreFoundation    0x029b87eb CFRunLoopRunInMode + 123
+ 12 GraphicsServices  0x0318b5ee GSEventRunModal + 192
+ 13 GraphicsServices  0x0318b42b GSEventRun + 104
+ 14 UIKit             0x00681f9b UIApplicationMain + 1225
+ 15 AVCustomEdit      0x000026bd main + 141
+ 16 libdyld.dylib     0x0269e701 start + 1
+)
+</code></pre>
+<h3 id="该debug预处理程序宏">该DEBUG预处理程序宏</h3>
+<p>简而言之，该DEBUG处理器宏作用一样，你可以打开和关闭一部分的调试代码。具体地，<code>Debug</code>宏旨在被用于打开和关闭相关的调试中不同部分源代码.在Xcode的默认配置中,调试默认为1，发布为0.而且，你可以利用它来自动地包含额外的调试和记录代码的调试版本。</p>
+<p>下面是<code>Debug</code>使用的一个例子。</p>
+<pre><code class="language-objective-c">- (void)pressButton:(id)sender
+{
+#if DEBUG
+    NSLog(@&quot;preparing to press button!&quot;);
+#endif
+    [self prepareForButtonPress];
+ 
+#if DEBUG
+    NSLog(@&quot;pressing button!&quot;);
+#endif
+ 
+    [self activatePressButtonSequence:self withCompletion:^{
+#if DEBUG
+        NSLog(@&quot;button sequence complete.&quot;);
+#endif
+            [self buttonPowerDown];
+        }];
+    NSLog(@&quot;This line has no DEBUG macro, so it gets printed in both debug and release builds!&quot;);
+}
+</code></pre>
+<p>调试版本<code>(DEBUG == 1)</code>将输出下面的信息</p>
+<pre><code class="language-objective-c">preparing to press button!
+pressing button!
+button sequence complete.
+This line has no DEBUG macro, so it gets printed in both debug and release builds!
+</code></pre>
+<p>发布版本<code>(DEBUG == 0)</code>将输出下面的信息</p>
+<pre><code class="language-objective-c">This line has no DEBUG macro, so it gets printed in both debug and release builds!
+</code></pre>
+<blockquote>
+<p><code>NSLog</code>需要时间去执行，如果你在你的应用程序里面加了很多这样的代码，将加大你程序的运行时间。在测试过程中，这通常不是问题。但是在发布的时候最好删除所有的打印，让用户体验最好的性能，不是打印一大堆看不懂的信息。正因为如此，开发者可以使用<code>Debug</code>宏可以让<code>NSLog</code>只有在调试的时候出现。</p>
+</blockquote>
+<p>在Xcode里面的<code>DEBUG</code>宏</p>
+<p>在Xcode中<code>DEBUG</code>定义调试模式，预编译宏可以编译<code>DEBUG</code>可以让你<code>DEBUG</code>模式运行程序。如果你不确定你是否定义了，可以通过打开你工程<code>Build Setting</code>搜索预处理，确保在<code>Debug</code>模式<code>DEBUG ==1</code>。如果还没有定义，你可以手动的添加，预编译宏是区分大小写的。</p>
+<p>​	图一在Xcode设置<code>DEBUG</code>预编译宏</p>
+<p>​	<img src="http://upload-images.jianshu.io/upload_images/545662-c16b7a816a5c01aa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<h3 id="添加更多的log">添加更多的LOG</h3>
+<p>如果你已经添加了<code>log</code>你还是找不到问题的所在，你可以添加很多的<code>Log</code>去查找。继续添加记录到您的应用程序，直到你能够获取足够的信息，以便您能够明白发生了什么。</p>
+<h3 id="nslog是调试的朋友">NSLog是调试的朋友</h3>
+<p>每一个<code>iOS</code>或者<code>OSX</code>的开发人员无时无刻的使用<code>NSLog</code>调试你的程序，而且，你知道开发者可能对如何使用它的一些有趣的想法可能对你有帮助。如果您对NSLog的任何其他问题或需要帮助调试，请询问您的问题在适当的Mac或iOS开发者论坛调试的部分。</p>
+<p>如果您对本文有任何意见，请通过反馈标签提交的文档的底部</p>
+<h3 id="更多的资源">更多的资源</h3>
+<ul>
+<li><a href="xcdoc://?url=developer.apple.com/library/ios/qa/qa1747/_index.html">调试部署iOS应用</a></li>
+<li><a href="xcdoc://?url=developer.apple.com/library/mac/qa/qa1669/_index.html">在Objective-C改进了日志记录</a></li>
+<li><a href="xcdoc://?url=developer.apple.com/library/mac/technotes/tn2124/_index.html">Mac OS X的调试魔术</a></li>
+<li>“<a href="xcdoc://?url=developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Strings/Articles/formatSpecifiers.html#//apple_ref/doc/uid/TP40004265-SW1">字符串编程指南</a>”的“<a href="xcdoc://?url=developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Strings/introStrings.html">字符串格式说明</a>”</li>
+<li><a href="xcdoc://?url=developer.apple.com/library/mac/technotes/tn2124/_index.html">如何使用调试时断言</a></li>
+<li><a href="xcdoc://?url=developer.apple.com/library/ios/technotes/tn2239/_index.html">iOS的调试魔术</a></li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/xcode" class="tag">
+                    Xcode
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-25-使用agvtool自动化版本号和编译号">
+                  <h3 class="post-title">
+                    使用agvtool自动化版本号和编译号
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

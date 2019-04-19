@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>UIBarButtonItem我用了这些姿势才能和你交互 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">UIBarButtonItem我用了这些姿势才能和你交互</h2>
+            <div class="post-date">2017-11-24</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-16.png')">
+              </div>
+            
+            <div class="post-content">
+              <p>下面是需求完成图(自己做了优化)</p>
+<ul>
+<li>字符串和传递进来的一样 则不允许进行提交交互</li>
+<li>当编辑框没有任何的编辑文字也不允许交互</li>
+</ul>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-24-336B7BEB-2D11-4624-BF25-4AE788CD2273.png" alt="336B7BEB-2D11-4624-BF25-4AE788CD2273"></p>
+<p>因为系统是没有方式可以获取到 <code>Done</code> 按钮的，我们运用运行时倒是可以获取到这个按钮。</p>
+<p>下面是获取按钮的逻辑。</p>
+<pre><code class="language-objc">UIButton *btn;
+for (UIView *view in self.navigationController.navigationBar.subviews) {
+    if ([view isKindOfClass:NSClassFromString(@&quot;UINavigationButton&quot;)]) {
+            UIButton *btn = (UIButton *)view;
+            btn.userInteractionEnabled = isAllowOperation;
+            btn.enabled = isAllowOperation;
+     }
+}
+</code></pre>
+<p>大家可以看出来，我们便利了 <code>self.navigationController.navigationBar</code>所有的子试图，找到 <code>UINavigationButton</code>这个类控件。因为我们这个界面只有一个元素，我们就逻辑就没做复杂的判断了。</p>
+<p>我们在输入框文字进行改变的时候，动态获取发现是可以的。当我在 <code>ViewDidLoad</code>方法直接调用这个方法竟然这个按钮还没有添加。</p>
+<p>当我们对已经存在的数据进行编辑的时候，如果进来没有做判断，可以允许用户进行编辑的时候，这是一个不好的交互体验。</p>
+<p>我们要做就做的好一些，在 <code>ViewDidLoad</code>页面加载设置 <code>Done</code>按钮不允许用户进行交互。</p>
+<p>但是刚才的方法已经不能获取到了。如果我们自定义按钮，自然是没有什么难度的，但是考虑到要自己设置按钮的颜色。如果之后全部更改颜色，这个地方就要改动，万一忘记改动就会出现问题。</p>
+<p>所以觉得还是用系统的，之后禁用系统的交互。这样出问题的几率比较小。</p>
+<p>我首先想到的利用 <code>KVO</code>最后发现对于数组 字典是无法进行 <code>KVO</code>，只能通过其他的方法。这是系统内部的数组，我们不清楚系统怎么添加的，简单的拦截 <code>NSArray</code>的添加元素方法或者重写或者会出现其他的问题。</p>
+<p>唯一方法就是我们怎么知道界面展示的时候，什么时候子试图里面才有 <code>Done</code>这个按钮。</p>
+<p>经过测试， <code>viewDidLayoutSubviews</code>方法和 <code>viewDidAppear</code>方法都可以获取到这个按钮。</p>
+<p>但是调用是 <code>viewDidLayoutSubviews</code>在 <code>viewDidAppear</code>之前。我们为了不出现页面已经出现在用户严重，按钮 <code>Done</code>从可用变成不可用。 我们在 <code>viewDidLayoutSubviews</code> 方法里面来进行判断。</p>
+<pre><code class="language-objc">- (void)setNeedDoneButtonOperation {
+    NSString *nowEditString = self.editStringView.textFiled.text;
+    /*!
+     * 当正在编辑的字符串等于赋值过来字符串 或者没有编辑内容
+     */
+    BOOL isAllowOperation = nowEditString.length &gt; 0 &amp;&amp; ![nowEditString isEqualToString:self.editString];
+    UIButton *btn;
+    for (UIView *view in self.navigationController.navigationBar.subviews) {
+        if ([view isKindOfClass:NSClassFromString(@&quot;UINavigationButton&quot;)]) {
+            UIButton *btn = (UIButton *)view;
+            btn.userInteractionEnabled = isAllowOperation;
+            btn.enabled = isAllowOperation;
+        }
+    }
+}
+</code></pre>
+<p>这样我们在页面出现的时候，就已经禁用了 <code>Done</code>按钮。</p>
+<blockquote>
+<p>突然想起来，没有任何一个编辑界面让用户进来就可以提交，都是用户改变了输入框的内容之后才可以进行提交的。</p>
+<p>这样我们在进入这个页面直接禁用 <code>Done</code>也是可以的。</p>
+</blockquote>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/uibarbuttonitem" class="tag">
+                    UIBarButtonItem
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/uitextfiled" class="tag">
+                    UITextFiled
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-24-xcode8时代让我们一起继续使用我们的插件吧">
+                  <h3 class="post-title">
+                    Xcode8时代让我们一起继续使用我们的插件吧
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

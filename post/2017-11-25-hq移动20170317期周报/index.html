@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>HQ移动20170317期周报 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">HQ移动20170317期周报</h2>
+            <div class="post-date">2017-11-25</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-20.png')">
+              </div>
+            
+            <div class="post-content">
+              <p>[TOC]</p>
+<h2 id="1-nsassert-和-nscassert的使用">1. <code>NSAssert()</code> 和 <code>NSCAssert()</code>的使用</h2>
+<blockquote>
+<p><code>NSAssert()</code>用于 OC 语法的断言</p>
+<p><code>NSCAssert()</code>用于 C语言语法的断言</p>
+</blockquote>
+<h2 id="2-swift30使用nsnotificationname">2. Swift3.0使用NSNotification.name</h2>
+<pre><code class="language-swift">let kOpenXcodePathNotification = &quot;kOpenXcodePathNotification&quot;
+NotificationCenter.default.post(name: NSNotification.name, object: url)
+</code></pre>
+<p>上面的代码错误 需要用NSNotification.name进行初始化字符串</p>
+<pre><code class="language-swift">let kOpenXcodePathNotification = NSNotification.Name(&quot;kOpenXcodePathNotification&quot;)
+</code></pre>
+<!--more-->
+<h2 id="3-自定义-nstableview的-cell">3. 自定义 NSTableView的 Cell</h2>
+<p><a href="http://sxiaojian.com/2015/08/11/Mac-NSTableView/">mac开发中使用自定义NSTableCellView</a></p>
+<h3 id="4-设置-nswindow-不允许用户改变大小">4 . 设置 NSWindow 不允许用户改变大小</h3>
+<p>设置 ReSize 属性为 NO</p>
+<h2 id="5-unable-to-find-a-pod-with-name-author-summary-or-description-matching">5. Unable to find a pod with name, author, summary, or description matching</h2>
+<p>删除缓存：rm ~/Library/Caches/CocoaPods/search_index.json</p>
+<h2 id="6一个判断的小坑">6.一个判断的小坑</h2>
+<pre><code class="language-objc">if ([PQAccountManager shareManager].isSignIn) {
+     // Do One
+} else {
+     // Do Other
+}
+</code></pre>
+<pre><code class="language-objc">if (![PQAccountManager sharedManager].isSignIn) { 
+    // Do Other
+    return;
+}
+// Do One
+</code></pre>
+<p>按我们平常的理解上述两个判断是一样的，但是这次我却发现了有问题，他们执行的不一样.</p>
+<pre><code class="language-objc">PS:   这块的打印是没有问题的，正常操作后，都是在 0  和 1 切换的
+NSLog(@&quot;SignIn === %d,&quot;,[PQAccountManager sharedManager].isSignIn);
+</code></pre>
+<p>因此觉的很奇怪，为什么是这样呢？改好了但是却一下子真不懂啊，于是我自己写了一个 demo 测试，发现在那块类似的判断是一样的，<strong>所以其中的判断是肯定没问题的，还是我们项目中有问题的。</strong></p>
+<p>后来才发现原来是我们项目中有一个：</p>
+<pre><code class="language-objc">#import &lt;Foundation/Foundation.h&gt;
+
+/*!
+ * 生成单例对象的分类
+ */
+@interface NSObject (Manager)
+/*!
+ * 生成单例对象
+ * @return 基于 NSObject类的单例对象
+ */
++ (instancetype)shareManager;
+
+@end
+</code></pre>
+<p>然后之前管理类中 单例确是： <code>sharedManager</code>，差了一个字母的，所以这种坑，一定要注意细节：</p>
+<ul>
+<li>注意细节，字母，单词的准确性</li>
+<li>注意私有公用方法添加类似<pre><code class="language-objc">- (void)pq_ sharedManager; 
+</code></pre>
+作为区别，同时也提醒了自己，一些 hook 类的方法，能不用就尽量不用，哈哈哈。</li>
+</ul>
+<h2 id="7-再次想私有成员变量">7 再次想私有成员变量</h2>
+<p>今天突然想起，为什么有属性的时候，为什么还要再直接用成员变量呢？它有什么方便之处呢？ 首先明确的是 ** 类内使用成员变量{}, 类外使用属性@property,**  所以，此处我说的基本是 .m 文件中使用的成员变量。</p>
+<pre><code>@implementation ViewController {
+    NSString *_testName;
+    NSString *tempStr;
+    BOOL isStop;
+}
+</code></pre>
+<p>为什么用它呢？</p>
+<ul>
+<li>执行速度更快，IPA体积更小  ( 从 <a href="http://blog.devtang.com/2015/03/15/ios-dev-controversy-1/">iOS 开发中的争议（一）</a>得知）</li>
+</ul>
+<p>感觉个人平常很少用成员变量，当然除了在 <code>init</code> 和 <code>dealloc</code> 、<code>getter</code>、<code>setter</code>中 除外咯，其他地方例如临时生成一个<code>tempStr</code> 或者临时的判断值 <code>isStop</code>, 此时是否需要用它呢？</p>
+<p>想了想，为了代码的看起来的规范性，我是不愿这样写的。
+但是细细想来，一些临时的值确实没必要经过 setter 和 getter 方法，所以想着还是直接用 成员变量的。</p>
+<p>PS： 在 Block 中对于成员变量一定要 使用 <code>self-&gt; _testName</code>, 否则直接使用 <code>_testName</code>, 就算添加了 weakSelf/strongSelf 还是会有循环引用的。</p>
+<h2 id="8-this-class-is-not-key-value-coding-compliant-for-the-key-错误">8  this class is not key value coding-compliant for the key 错误</h2>
+<p>对于这种 Bug ，最常见的是我们用 stroyboard 时，某个设置IBAction和IBOutlet时有多余或错误的连线。但是我此处不是的哦，而且这个问题在 <a href="http://stackoverflow.com/questions/3088059/what-does-this-mean-nsunknownkeyexception-reason-this-class-is-not-key-v">stackoverflow 处</a> 已经讨论很多了，而我此处的场景是使用 谓词 时遇到的。</p>
+<pre><code class="language-objc">NSPredicate *tempPredicate = [NSPredicate predicateWithFormat:@&quot;cateId == %d&quot;, key];
+NSArray *filteredTempArray = [array filteredArrayUsingPredicate:tempPredicate];
+</code></pre>
+<p>其实也是很简单，就是一个字母写错了，相当于 key 值换了， 改成正确的值就好了。
+（<code>cateId</code> === 》 <code>catId</code> （catId 才是之前设置的））。</p>
+<h2 id="9-用了-uiimagerenderingmodealwaysoriginal-图片颜色倒是变化啦">9 用了 UIImageRenderingModeAlwaysOriginal , 图片颜色倒是变化啦</h2>
+<p>这个问题是，我们项目中最近在 改变 UITabBarItem 的图片时 使用了获取网络图片，然后对于 selectedImage 必然的做 UIImageRenderingModeAlwaysOriginal 处理，结果却发现那个 颜色变了。。</p>
+<hr>
+<p>先再次熟悉下： UIImageRenderingModeAlwaysOriginal 这个属性值。</p>
+<pre><code class="language-objc">typedef NS_ENUM(NSInteger, UIImageRenderingMode) {
+    UIImageRenderingModeAutomatic,          // Use the default rendering mode for the context where the image is used
+    //根据图片的使用环境和所处的绘图上下文自动调整渲染模式
+    UIImageRenderingModeAlwaysOriginal,     // Always draw the original image, without treating it as a template
+    // 绘制图片原始状态，不使用Tint Color
+    UIImageRenderingModeAlwaysTemplate,     // Always draw the image as a template image, ignoring its color information 
+    // 根据Tint Color绘制图片，忽略图片的颜色信息
+} NS_ENUM_AVAILABLE_IOS(7_0);
+</code></pre>
+<h2 id="网上超经典的图"><img src="http://upload-images.jianshu.io/upload_images/784630-abd6431ce5c0048e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="网上超经典的图"></h2>
+<hr>
+<pre><code class="language-objc">UIImage *selectImage = [
+                        [[YYWebImageManager sharedManager].cache getImageForKey:@&quot;https://example.com/test.png&quot;]
+                        imageWithRenderingMode:UIImageRenderingModeAutomatic
+                        ];
+tabBarItem.selectedImage = selectImage;
+</code></pre>
+<pre><code class="language-objc">UIImage *selectImage = [
+                        [[YYWebImageManager sharedManager].cache getImageForKey:@&quot;https://example.com/test.png&quot;]
+                        imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal
+                        ];
+tabBarItem.selectedImage = selectImage;
+</code></pre>
+<p>后来发现其实我没错，只是恰好后台配置的是蓝色：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/784630-ee4281451fd875d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图例"></p>
+<p>这个错很凑巧，因为 刚好后台 返回的图片也是蓝色 和 灰色，然后就阴差阳错的错了，毕竟看起来是正常的。毕竟 UITabBarItem 默认选中的颜色是 蓝色 和灰色的</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/swift" class="tag">
+                    Swift
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/zhou-bao" class="tag">
+                    周报
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-25-jekyll-admin-mac-开发纪要-左侧菜单栏">
+                  <h3 class="post-title">
+                    Jekyll-Admin-Mac-开发纪要-左侧菜单栏
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

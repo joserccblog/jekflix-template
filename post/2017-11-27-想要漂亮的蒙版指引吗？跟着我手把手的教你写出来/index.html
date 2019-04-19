@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>想要漂亮的蒙版指引吗？跟着我手把手的教你写出来 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">想要漂亮的蒙版指引吗？跟着我手把手的教你写出来</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-074438.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p>最近版本的一个需求是给首页添加新人蒙版，类似的效果图如下图所示。</p>
+<p><strong>首页第一层蒙版的效果图</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-c90dd6f8e25f8af9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="首页蒙层"></p>
+<p><strong>首页第二层的蒙版效果图</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-3760d05d85f1d5af.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="首页蒙层2"></p>
+<p><strong>个人中心的蒙版效果图</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-2cac899c38c495bf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="用户中心蒙层"></p>
+<blockquote>
+<p>其实我觉得这些新人引导完全是没必要的，对于一个知道用 APP 买东西的用户怎么看不明白这些标志，还要用蒙版引导告诉他。</p>
+</blockquote>
+<p>既然接到了这个需求，那么就需要做出来，第一眼看上去确实有点难。当时安卓已经找到了对应的库，十分容易的做这个需求了。</p>
+<p>我当时的第一个想法是，既然安卓有类似的库，那么 <code>iOS</code>应该也有类似的库。我当即就在最大的成人同性交友网站 <code>GitHub</code> 查找对应关键词去找对应的蒙版指引的库。</p>
+<p>虽然是找到了，但是被别人 <code>Star</code>的星很少，或者是有几百的下载出来运行<code>Demo</code> 就崩溃了，导致我第一时间严重怀疑这个库的健壮性。</p>
+<p>既然没有找到可以信赖的轮子，那就自己研究一下，毕竟之前没有做过。之前一致觉得中间镂空的是用周围很多块不露空的组合在一起形成的，所以很复杂的镂空我都觉得很难弄。</p>
+<p>这个需求我之前的想法一定是做不出来的，就百度一下蒙版指引的做法。在简书上面看到一个前辈写的教程，只有怎么做出来的部分关键的代码，是没有例子的。</p>
+<p>那个前辈说，想问他要例子是没有的，如果想要，自己就动手写一个。我觉得这个前辈说的很少，只有自己亲手写一个才可以理解的更深。</p>
+<p>经过查询，我找到了做这个功能一个重要的属性。</p>
+<pre><code class="language-objective-c">@property(nullable, strong) CALayer *mask;
+</code></pre>
+<p>这个属性解释的通俗易懂就是其他的 <code>CALayer</code> 是添加到哪里，那里就不显示。这个 <code>mask</code> 的 <code>CALayer</code> 是添加到哪里，那里就可以显示出来。</p>
+<p>既然有了这个属性，那么就好办多了。</p>
+<p>我们可以观察上面的三张效果图，争取找到最多的共同点，我们可以封装一个组件，用于支持我们三张蒙版指引。</p>
+<p><strong>发现的共同点</strong></p>
+<ul>
+<li>有一个全屏的半透明的蒙版试图</li>
+<li>每一个指引有一个透明的圈(不管是椭圆还是圆形)</li>
+<li>每一个圈外面都有一个虚线圈</li>
+<li>每一个指引都有一个指引剪头</li>
+<li>每一个指引都有一段指引的文字</li>
+</ul>
+<p><strong>发现的不同点</strong></p>
+<ul>
+<li>椭圆或者是圆形</li>
+<li>有按钮或者没按钮</li>
+</ul>
+<blockquote>
+<p>此处我就要吐槽一下这个设计交互。我们发现最后一个是没有按钮的，那么意味着我们点击任何地方就可以让蒙版消失。</p>
+<p>如果点击任何地方就可以让蒙版消失，那么首页的两张蒙版上面的按钮真的有保留的意义了。</p>
+<p>如果只允许个人中心的蒙版可以点击任何地方消失，那么这个需求的交互就不统一了。最后是三张蒙版点击任何地方都消失</p>
+</blockquote>
+<p>我们可以把相同的地方做成一个基类，不同的地方可以在对应的子类进行修改即可。</p>
+<p>我们创建一个继承于 <code>UIView</code> 的类名字叫做<code>GBBaseMaskView</code>类用于封装我们指引的共同点。</p>
+<p>我们设置子类试图的背景颜色为黑色 0.8透明</p>
+<pre><code class="language-objective-c">self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
+</code></pre>
+<p>因为我们的指引目前只有两种，那就是椭圆和原型。我们就设置一个枚举用于区分这两种类型。</p>
+<pre><code class="language-objective-c">/**
+ * 创建蒙版的类型
+
+ - GBMaskItemStyleCircle: 圆形
+ - GBMaskItemStyleOval: 椭圆
+ */
+typedef NS_ENUM(NSUInteger, GBMaskItemStyle) {
+    
+    GBMaskItemStyleCircle,
+    GBMaskItemStyleOval,
+};
+</code></pre>
+<p>我们给 <code>UIView</code> 添加点击事件，用于点击可以让蒙版消失。</p>
+<pre><code class="language-objective-c">@weakify(self);
+[self addTapGestureWithComplete:^(UIView * _Nonnull view) {
+    @strongify(self);
+    [self actionButtonClick];
+}];
+</code></pre>
+<p>此处我们用到的是我们基于 <code>UIView</code> 写的一个快捷添加点击事件的分类方法。</p>
+<pre><code class="language-objective-c">- (void)addTapGestureWithComplete:(UIViewGestureComplete)complete {
+    NSParameterAssert(complete);
+    self.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick)];
+    objc_setAssociatedObject(self, @selector(tapGesture), tapGesture, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(tapGestureComplete), complete, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    [self addGestureRecognizer:tapGesture];
+}
+
+#pragma mark - gesture method
+- (void)tapClick{
+    self.tapGestureComplete(self);
+}
+
+#pragma mark - property get
+- (nullable UITapGestureRecognizer *)tapGesture {
+    return objc_getAssociatedObject(self,_cmd);
+}
+
+- (UIViewGestureComplete)tapGestureComplete {
+    return objc_getAssociatedObject(self, _cmd);
+}
+</code></pre>
+<p>为了让界面消失之前，传递界面消失的信息给外界，我们新建一个用于异步回调的 Block</p>
+<pre><code class="language-objective-c">/**
+ * 操作按钮的回调
+ */
+@property (nonatomic, copy) void(^actionCompletionHandle)(void);
+</code></pre>
+<p>那么我们在<code>actionButtonClick</code>方法实现如下。</p>
+<pre><code class="language-objective-c">- (void)actionButtonClick {
+    if (self.actionCompletionHandle) {
+        self.actionCompletionHandle();
+    }
+    [self removeFromSuperview];
+}
+</code></pre>
+<p>这个类似于 <code>Alert</code>和 <code>Sheet</code>弹框的方式，我们就定义类似的方法叫做 <code>showInWindow</code>用于展示界面。</p>
+<pre><code class="language-objective-c">- (void)showInWindow {
+    [self setupMakeMask];
+    [GB_ROOT_WINDOWS addSubview:self];
+}
+</code></pre>
+<p>我们在这个方法分别调用了 <code>setupMakeMask</code>和用了 <code>GB_ROOT_WINDOWS</code>这个宏。现在我们抛开 <code>setupMakeMask</code>不说，咱们先说一下 <code>GB_ROOT_WINDOWS</code>这个宏这个中间曲折的故事吧。</p>
+<blockquote>
+<p>故事是这样开始的，可以参考下面的连接。</p>
+<p><a href="http://www.jianshu.com/p/116115583b55">【已解决】UIView添加到KeyWindow上面自动会被 Release</a></p>
+<p>😂忽略我 <code>GB_ROOT_WINDOWS</code>多一个 <code>s</code>单词的手误吧。</p>
+<p>我们当时新下载进入首页的时候会弹出很多的弹框😀比如</p>
+<ul>
+<li>强制更新提示(只有 APP 无法使用 很少出现)</li>
+<li>蒙版提示(没有弹出蒙版的才出现)</li>
+<li>新人大礼包(三天一次)</li>
+<li>注册通知确认框</li>
+<li>评分弹框</li>
+<li>。。。。。。</li>
+</ul>
+<p>大体上目前就有这么多，恰巧新用户下载就会弹出<strong>注册通知弹出框</strong>， <strong>新人大礼包弹出框</strong>， <strong>新人蒙版指引弹出框</strong>。</p>
+<p>当时没有注意 <code>KeyWindow</code>这个点，所以就觉得如果全屏锁定就 <code>addSubView</code>到 <code>keyWindow</code>就可以了。</p>
+<p>没想到<strong>新人蒙版指引</strong>不需要后台做控制就直接可以执行代码展示。但是 <strong>新人大礼包</strong>需要后台控制，所以会在网络回调之后才会执行弹出操作。</p>
+<p>当时出现了这么的一个情况</p>
+<ul>
+<li>出现 <strong>新人蒙版指引</strong> <strong>注册通知弹出框</strong> <strong>新人大礼包弹出框</strong></li>
+<li>出现 <strong>新人蒙版指引</strong> <strong>注册通知弹出框</strong></li>
+</ul>
+<p>偶尔会弹出来新人大礼包弹出框，开始我以为是接口没有回来数据，导致才无法显示出来的。</p>
+<p>后来测试说<strong>安卓</strong>的就可以显示出来，就 <code>iOS</code>的不出现。我测试了接口是正常的，那么就是客户端的影响了。</p>
+<p>当时的一个想法是 <code>苹果</code>对于 <code>window</code>的蒙版或许做了限制？因为首页这样一次性出现这么多，会体验不好才自动优化帮我们去除的？</p>
+<p>我顺着这个想法就去做了测试用例，注释了 <code>新人蒙版指引</code>的弹出框。就只留下 <code>新人大礼包</code>和 <code>注册通知的弹出框</code>。</p>
+<p>如果每次都出现，就验证了我的猜想。</p>
+<p>结果也是偶尔会出现 <code>新人蒙版指引</code>，大部分测试用例都不会弹出。</p>
+<p>当是看了代码写法都很正常，并且类似的写法在 <code>新人蒙版指引</code>的需求上就表现的很正常，为什么在 <code>新人大礼包</code>的需求上面就表现不正常，时而出现时而不出现的。</p>
+<p>我感觉这个需求的类代码有毒。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-f08c58a06c8907a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="A81BCCDC-F828-40D3-8A8F-0DD411C5BBBD"></p>
+<p>后来我用 <code>Reveal</code>查看试图在什么位置的时候，发现了一个问题，那就是这个对象根本没出现。</p>
+<p>如果没出现，难道被释放了。</p>
+<p>于是我在 <code>dealloc</code>的方法添加了 <code>Log</code>信息，果然竟然走了 <code>dealloc</code>的方法。</p>
+<p>虽然我创建的局部变量，但是我通过 <code>addSubView</code>方法已经添加到试图上面了。还被释放，我读书少，不要骗我。</p>
+<p>我大胆的用了一个全局变量，这样总不会释放了吧，我看你还不出现。</p>
+<p>竟然 TMD 还是没出现！！！</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-5884d042a5baecbf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="756EDF51-D681-4F3D-92BF-840EEDFA101B"></p>
+<p>这究竟是怎么个情况，最后在群中得到的答复是我添加在 <code>keyWindow</code>是当时弹出来的 <code>Alert</code>的 <code>注册通知的弹出框</code>。</p>
+<p>之后 <code>keyWindow</code>换回来之后，我们的控件就被移除，之后就被释放了。让我们用 <code>AppDelegate</code>创建的 <code>window</code>这样才保证不会出问题。</p>
+<p>听完觉得说的很有道理，就改了一下，果然解决了。</p>
+<p>事情到此就结束了，现在想一下，应该是我们 <code>新人蒙版指引</code>没有经过网络请求瞬间执行，当时我们的 <code>keyWindow</code>还没有改变，当 <code>新人大礼包</code>网络回调之后。我们的 <code>keyWindow</code>已经改变了。但是为什么偶尔会出现，可能原因是我们是内容，当请求足够快的时候，就可以正常的显示出来。</p>
+<p>作为最后，为了这样的问题不会再出现，写代码最好规范一点用下面的宏代替我们常用的 <code>keyWindow</code>即可。</p>
+<pre><code class="language-objective-c">#define GB_ROOT_WINDOWS [[[UIApplication sharedApplication] delegate] window] // 获取应用的的 Root Window
+</code></pre>
+</blockquote>
+<p>现在关于 <code>GB_ROOT_WINDOWS</code>的梗我们已经听完了，我们继续讲解 <code>setupMakeMask</code>这个初始化蒙层的方法。</p>
+<pre><code class="language-objective-c">- (void)setupMakeMask {
+    if ([self conformsToProtocol:@protocol(GBBaseMaskViewDataSource)]) {
+        id&lt;GBBaseMaskViewDataSource&gt; dataSource = (id&lt;GBBaseMaskViewDataSource&gt;)self;
+        _maskItems = [dataSource maskViewItems:self];
+    }
+    [self makeMask];
+}
+</code></pre>
+<p>我们的初始化方法，用到了一个代理源用于获取需要添加的蒙层对象。我们看一下我们写的代理。</p>
+<pre><code class="language-objective-c">@protocol GBBaseMaskViewDataSource&lt;NSObject&gt;
+- (NSArray&lt;GBBaseMaskViewItem *&gt; *)maskViewItems:(GBBaseMaskView *)maskView;
+@end
+</code></pre>
+<p>我们的蒙层数据对象协议很简单，就是获取一个数组即可。这个 <code>GBBaseMaskViewItem</code>对象是什么东西呢？</p>
+<p>当时是这么想的，因为配置一个对象就需要很多的数据，所以每一个就做成一个模型保留我们需要的数据。</p>
+<p>这样我们需要的时候就只需要配置我们的数据模型，就会自动生成我们的蒙版。</p>
+<p>因为我们的蒙版类型有两种，分别是 <code>原型</code>和 <code>椭圆形</code>。</p>
+<p><strong>关于GBBaseMaskViewItem对象解释</strong></p>
+<p>那么我们就写一个 <code>GBMaskItemStyle</code>类型的变量来区分到底是 <code>椭圆</code>还是 <code>原型</code></p>
+<pre><code class="language-objective-c">/**
+ * 蒙版风格
+ */
+@property (nonatomic, assign) GBMaskItemStyle maskStyle;
+</code></pre>
+<p>我们画圆形需要两点，一点就是原型，另外就是半径。只要有这两点，我们就可以画出一个圆。</p>
+<pre><code class="language-objective-c">/**
+ * 圆形的圆心
+ */
+@property (nonatomic, assign) CGPoint arcCenter;
+/**
+ * 圆形的半径
+ */
+@property (nonatomic, assign) CGFloat radius;
+</code></pre>
+<p>对于剪头图片的放置，我当时采取的方案是下面的。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-c192b02bccefda1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="13B4DAAE-EC53-4680-9DA0-3B5AB2D7C57F"></p>
+<p>这里面有三个重要的点分别是 <code>A</code>点 <code>B</code>点 <code>C</code>点。</p>
+<p>这三个重要点来帮助我们配置和实现我们上面的效果。</p>
+<p><code>A</code> 点是我们画圆圈需要的中心点，也是我们需要按钮控件的中心点。半径这个我们可以设置，这个半径距离多少，我们就可以根据设计图微调即可。</p>
+<p><code>B</code>点作为剪头的初始点，我们蒙版上面的剪头是让 UI 切出来的图片。图片是中规中矩的正方形，所以我们知道了 <code>B</code>点和图片的大小 就可以计算出 <code>C</code>点的位置</p>
+<p>但是我们怎么知道 C 点的具体位置，我们就要引入一个数量名词 <code>象限</code>。</p>
+<p>知道  <code>C</code>点距离 <code>B</code>点位于那个象限，我们就可以求出来 <code>C</code>点的坐标，那么就可以画出剪头的位置所在。</p>
+<p>我们定义一个新的枚举，用于标识象限。</p>
+<pre><code class="language-objective-c">/**
+ * 剪头距离中心的象限位置
+
+ - GBMaskItemQuadrant1: 第一象限
+ - GBMaskItemQuadrant2: 第二象限
+ - GBMaskItemQuadrant3: 第三象限
+ - GBMaskItemQuadrant4: 第四象限
+ */
+typedef NS_ENUM(NSUInteger, GBMaskItemQuadrant) {
+    GBMaskItemQuadrant1,
+    GBMaskItemQuadrant2,
+    GBMaskItemQuadrant3,
+    GBMaskItemQuadrant4,
+};
+</code></pre>
+<blockquote>
+<p>当时可能不是把剪头作为中心点的，所以当时计算可能有点出入。</p>
+</blockquote>
+<pre><code class="language-objective-c">/**
+ * 剪头距离中心点的象限
+ */
+@property (nonatomic, assign) GBMaskItemQuadrant arrowQuadrant;
+</code></pre>
+<p>我们怎么定位 <code>B</code>的位置，因为现在我们只知道 <code>A</code>点的位置，我们不可能让使用的人给出 <code>B</code>点的位置，这样以后适配很麻烦。</p>
+<p>我们就引入了叫做 <code>偏移量</code>东西，有了 <code>B</code>点距离 <code>A</code>的偏移量，我们自然就可以求出 <code>B</code>的坐标。</p>
+<pre><code class="language-objective-c">/**
+ * 剪头距离中心圆的偏移量
+ */
+@property (nonatomic, assign) CGPoint arrowOffset;
+</code></pre>
+<p>为了求出 <code>C</code>点我们需要知道剪头图片的大小，这个我们都可以通过 UI 给的图片看出来，这个设置也是简单的。</p>
+<pre><code class="language-objective-c">/**
+ * 剪头的范围大小
+ */
+@property (nonatomic, assign) CGSize arrowSize;
+</code></pre>
+<p>有了这么，如果没有图片，我们怎么显示出来。我们新建一个图片的变量。</p>
+<pre><code class="language-objective-c">/**
+ * 剪头的图片
+ */
+@property (nonatomic, strong) UIImage *arrowImage;
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-3d97ff27efc02b6b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="272AF3ED-89C5-43D0-A965-290F9B2FC0F9"></p>
+<p>我们剩下的是放置提示的文本。我们发现放置文本只存在两种情况，也么在剪头图片的上方，要么在剪头图片的下方。</p>
+<p>我们新建一个枚举用于标识。</p>
+<pre><code class="language-objective-c">/**
+ * 箭头提示文本在剪头的方向
+
+ - GBMaskItemArrowTipPosiionTop: 上方
+ - GBMaskItemArrowTipPosiionBottom: 下方
+ */
+typedef NS_ENUM(NSUInteger, GBMaskItemArrowTipPosition) {
+    GBMaskItemArrowTipPositionTop,
+    GBMaskItemArrowTipPositionBottom,
+};
+</code></pre>
+<pre><code class="language-objective-c">#pragma mark - 配置提示文本位置
+@property (nonatomic, assign) GBMaskItemArrowTipPosition tipPosition;
+</code></pre>
+<p>我们新建一个字符串变量赋值文本内容</p>
+<pre><code class="language-objective-c">/**
+ * 提示文本的内容
+ */
+@property (nonatomic, copy) NSString *tipText;
+</code></pre>
+<p>效果图有的文本居左，有的居右，我们需要让外部设置布局方式</p>
+<pre><code class="language-objective-c">/**
+ * 文本的对其方式
+ */
+@property (nonatomic, assign) NSTextAlignment textAlignment;
+</code></pre>
+<p>提示文本已经确定好了，现在就是个人中心的蒙版</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-ddd3532cb01d9578.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="C5917E49-FF02-49FF-8AE7-EA7802935FDD"></p>
+<p>绘制椭圆我们需要知道这个椭圆外部长方形的大小，我们新加下面的属性。</p>
+<pre><code class="language-objective-c">/**
+ * 绘制椭圆的大小
+ */
+@property (nonatomic, assign) CGSize ovalSize;
+</code></pre>
+<p>我们还需要开放文本和剪头图片控件的试图</p>
+<pre><code class="language-objective-c">/**
+ * 提示文本
+ */
+@property (nonatomic, strong, readonly) UILabel *tipLabel;
+/**
+ * 剪头的图片
+ */
+@property (nonatomic, strong, readonly) UIImageView *arrowImageView;
+</code></pre>
+<pre><code class="language-objective-c">- (UILabel *)tipLabel {
+    if (!_tipLabel) {
+        _tipLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _tipLabel.textColor = [UIColor whiteColor];
+        _tipLabel.font = [UIFont systemFontOfSize:14];
+        _tipLabel.numberOfLines = 0;
+    }
+    return _tipLabel;
+}
+
+- (UIImageView *)arrowImageView {
+    if (!_arrowImageView) {
+        _arrowImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        _arrowImageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    return _arrowImageView;
+}
+</code></pre>
+<p>我们的数据模型类已经配置完毕，现在我们要开始我们正常奇妙之旅了。</p>
+<pre><code class="language-objective-c">- (void)makeMask {
+  	// 如果没有配置数据 就可以直接返回 什么都不做
+    if (_maskItems.count == 0) {
+        return;
+    }
+  	 // 绘制一个整个大小的画板 用于防止镂空的路径
+    UIBezierPath *path = [UIBezierPath bezierPathWithRect:self.bounds];
+  	// 便利外部传入的数据源
+    [_maskItems enumerateObjectsUsingBlock:^(GBBaseMaskViewItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        switch (obj.maskStyle) {
+            // 如果是原型 就绘制圆形
+            case GBMaskItemStyleCircle: {
+                [path appendPath:[self addArcBezierPath:obj isDash:NO]];
+            }
+                break;
+            // 如果是椭圆 就绘制椭圆
+            case GBMaskItemStyleOval: {
+                [path appendPath:[self addOvalBezierPath:obj isDask:NO]];
+            }
+                break;
+            default:
+                break;
+        }
+      	// 添加剪头图标
+        [self addArrowImageInView:obj];
+      	// 添加提示文本
+        [self addArrowTipLabel:obj];
+    }];
+  	// 新建一个CAShapeLayer用于绘制我们的路径 做镂空
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    shapeLayer.path = path.CGPath;
+    self.layer.mask = shapeLayer;
+}
+</code></pre>
+<p>上面的代码就是我们蒙版绘制的核心。</p>
+<p>下面是绘制圆形的方法</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-c60c3a990932c1c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="A864B257-D350-4668-B663-F93715F03459"></p>
+<pre><code class="language-objective-c">/*
+* 绘制一个圆形
+* @param item 配置的数据源
+* @param isDash 是否需要绘制虚线圈 也就是上图的所指示位置
+*/
+- (UIBezierPath *)addArcBezierPath:(GBBaseMaskViewItem *)item isDash:(BOOL)isDash {
+  	// 设置绘制的圆比我们设置的大3 因为我们外部是按照图片尺寸设置的 所以需要大于3 实际情况你们可以自己决定
+    CGFloat radius = item.radius + 3;
+  	// 如果是绘制虚线圈就 让范围大一些
+    if (isDash) {
+        radius += 4;
+    }
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithArcCenter:item.arcCenter radius:radius startAngle:0 endAngle:2 * M_PI clockwise:NO];
+    return bezierPath;
+}
+</code></pre>
+<p>下面是绘制椭圆的方法</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-ddd3532cb01d9578.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="C5917E49-FF02-49FF-8AE7-EA7802935FDD"></p>
+<pre><code class="language-objective-c">/*
+* 绘制椭圆形
+* @param item 配置的数据
+* @param isDash 是否是绘制外围的虚线圈
+*/
+- (UIBezierPath *)addOvalBezierPath:(GBBaseMaskViewItem *)item isDask:(BOOL)isDash {
+  	// 设置偏移量为3
+    CGFloat offSet = 3;
+  	// 如果是虚线圈就设置5 大一些
+    if (isDash) {
+        offSet = 5;
+    }
+    CGRect rect = CGRectMake(item.arcCenter.x - item.ovalSize.width / 2.0 - offSet, item.arcCenter.y - item.ovalSize.height / 2.0 - offSet, item.ovalSize.width + offSet * 2, item.ovalSize.height + offSet * 2);
+    UIBezierPath *bezierPath = [[UIBezierPath bezierPathWithOvalInRect:rect] bezierPathByReversingPath];
+    return bezierPath;
+}
+</code></pre>
+<p>添加剪头的图片</p>
+<pre><code class="language-objective-c">/*
+* 添加剪头的图片到试图中
+* @param item 配置的数据对象
+*/
+- (void)addArrowImageInView:(GBBaseMaskViewItem *)item {
+  	// 如果没有设置图片就不设置
+    if (!item.arrowImage) {
+        return;
+    }
+  	// 如果没有设置大小 也不设置
+    if (CGSizeEqualToSize(item.arrowSize, CGSizeZero)) {
+        return;
+    }
+  	// 根据绘制的中心点和偏移量计算出 剪头点的位置坐标
+    CGPoint arrowPoint = CGPointMake(item.arcCenter.x + item.arrowOffset.x, item.arcCenter.y + item.arrowOffset.y);
+  	// 剪头点坐标对点的坐标值
+    CGFloat arrowCenterX, arrowCenterY;
+  	// 因为参考点是剪头图片的中心点 所以计算方法如下 因为屏幕的值从上到下 从左到右依次增大的。
+    switch (item.arrowQuadrant) {
+        // 如果是第一象限 X-W/2 Y+H/2
+        case GBMaskItemQuadrant1: {
+            arrowCenterX = arrowPoint.x - item.arrowSize.width / 2.0;
+            arrowCenterY = arrowPoint.y + item.arrowSize.height / 2.0;
+        }
+            break;
+        // 如果是第二象限 X+W/2 Y+H/2
+        case GBMaskItemQuadrant2: {
+            arrowCenterX = arrowPoint.x + item.arrowSize.width / 2.0;
+            arrowCenterY = arrowPoint.y + item.arrowSize.height / 2.0;
+        }
+            break;
+        //如果是第三象限 X+W/2 Y-H/2
+        case GBMaskItemQuadrant3: {
+            arrowCenterX = arrowPoint.x + item.arrowSize.width / 2.0;
+            arrowCenterY = arrowPoint.y - item.arrowSize.height / 2.0;
+        }
+            break;
+        //如果是第四象限 X-W/2 Y-H/2
+        case GBMaskItemQuadrant4: {
+            arrowCenterX = arrowPoint.x - item.arrowSize.width / 2.0;
+            arrowCenterY = arrowPoint.y - item.arrowSize.height / 2.0;
+        }
+            break;
+        default:
+            break;
+    }
+    item.arrowImageView.image = item.arrowImage;
+    item.arrowImageView.frame = CGRectMake(0, 0, item.arrowSize.width, item.arrowSize.height);
+    item.arrowImageView.center = CGPointMake(arrowCenterX, arrowCenterY);
+    [self addSubview:item.arrowImageView];
+}
+</code></pre>
+<p>添加提示文本</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-ba3b7c1bdd8d00e5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="B28319B2-BFEC-4333-9F8A-2FA02C2E87A0"></p>
+<pre><code class="language-objective-c">/*
+* 添加提示文本
+* @param item 配置的对象
+*/
+- (void)addArrowTipLabel:(GBBaseMaskViewItem *)item {
+  	// 如果没有设置提示文本就不设置
+    if (item.tipText.length == 0) {
+        return;
+    }
+    item.tipLabel.text = item.tipText;
+    item.tipLabel.textAlignment = item.textAlignment;
+    [self addSubview:item.tipLabel];
+  	// 设置提示文本如上图红线圈所示，左侧5 右侧5 和剪头图片的距离为5 下面不设置自适应 怎么可以形成上图的结果呢  我们可以让文本添加\n 换行符即可。
+    [item.tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.mas_offset(10);
+        make.trailing.mas_offset(-10);
+        switch (item.tipPosition) {
+            case GBMaskItemArrowTipPositionTop: {
+                make.bottom.equalTo(item.arrowImageView.mas_top).offset(-5);
+            }
+                break;
+            case GBMaskItemArrowTipPositionBottom: {
+                make.top.equalTo(item.arrowImageView.mas_bottom).offset(5);
+            }
+                break;
+            default:
+                break;
+        }
+    }];
+}
+</code></pre>
+<p>到此位置我们虚线圈还是没有绘制出来，我们刚才的代码为什么没有出现虚线圈的代码？</p>
+<p>那是因为如果设置虚线圈，则是镂空，无法出现设计图的效果。我们需要进行绘制，则是用到了 <code>drawRect</code>方法。</p>
+<pre><code class="language-objective-c">- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+    [_maskItems enumerateObjectsUsingBlock:^(GBBaseMaskViewItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        switch (obj.maskStyle) {
+            // 如果是圆类型 就绘制圆形虚线圈
+            case GBMaskItemStyleCircle: {
+                [[self addDashInBezierPath:[self addArcBezierPath:obj isDash:YES]] fill];
+            }
+                break;
+            // 如果是椭圆类型 就绘制椭圆形虚线圈
+            case GBMaskItemStyleOval: {
+                [[self addDashInBezierPath:[self addOvalBezierPath:obj isDask:YES]] fill];
+            }
+                break;
+            default:
+                break;
+        }
+    }];
+}
+</code></pre>
+<p>添加虚线圈</p>
+<pre><code class="language-objective-c">- (UIBezierPath *)addDashInBezierPath:(UIBezierPath *)bezierPath {
+    [[UIColor whiteColor] setStroke];
+    bezierPath.lineWidth = 2;
+    CGFloat dash[] = {3,3};
+    [bezierPath setLineDash:dash count:2 phase:0];
+    [bezierPath stroke];
+    return bezierPath;
+}
+</code></pre>
+<p>别问我这里面值怎么来的，我也是通过 <code>PaintCode</code>这个软件做出来，再设置的。就是通过下面的软件，一个图形，或者是动画可以生成代码软件。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-1c2e706c6526585c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="93584A07-C604-45FA-9E3B-AEFDFA2C7655"></p>
+<p>此时我们封装蒙版基类已经完成了。</p>
+<p>剩下就十分简单了，我们只需要创建一个 <code>GBBaseMaskView</code>的子类，实现 <code>GBBaseMaskViewDataSource</code>协议，配置我们需要的数据。</p>
+<p>还有一点忘记说明，我们可以在父类添加下面方法，用于查找试图对应父类试图所在的中心点位置。</p>
+<pre><code class="language-objective-c">- (CGPoint)convertCenterView:(UIView *)view {
+    CGRect rect = [view convertRect:view.bounds toView:self];
+    return CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
+}
+</code></pre>
+<p>这样我们只需要找到界面绘制按钮或者试图对象即可，这样不用考虑界面兼容，完全是自动计算的。</p>
+<p>在结束本篇教程之前，还有一个说明点说明一下。如果通过系统自带的方法创建 <code>UIBarButtonItem</code>是无法找到对象，需要查找子试图，并且在 <code>iOS11</code>上面改了试图层次。</p>
+<p><strong>通过标题或者是图片获取导航条按钮的对象</strong></p>
+<pre><code>- (UIButton *)gb_barButtonWithTitle:(NSString *)title {
+    return [self findBarButtonInView:self verify:^BOOL(UIButton *btn) {
+        return [[btn titleForState:UIControlStateNormal] isEqualToString:title];
+    }];
+}
+
+- (UIButton *)gb_barButtonWithImage:(UIImage *)image {
+    return [self findBarButtonInView:self verify:^BOOL(UIButton *btn) {
+        return btn.imageView.image.hash == image.hash;
+    }];
+}
+
+- (UIButton *)findBarButtonInView:(UIView *)view verify:(BOOL(^)(UIButton *btn))verify {
+    for (UIButton *btn in [self findAllButtonsInView:view]) {
+        if (verify(btn)) {
+            return btn;
+        }
+    }
+    return nil;
+}
+
+- (NSArray&lt;UIButton *&gt; *)findAllButtonsInView:(UIView *)view {
+    NSMutableArray&lt;UIButton *&gt; *buttons = [NSMutableArray array];
+    [view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([view isKindOfClass:[UIButton class]]) {
+            [buttons addObject:(UIButton *)view];
+        }
+        [buttons addObjectsFromArray:[self findAllButtonsInView:obj]];
+    }];
+    return buttons;
+}
+</code></pre>
+<p>还有就是 <code>UITabBar</code>我们可以通过下面的方法获取。</p>
+<pre><code class="language-objective-c">- (UIImageView *)gb_tabbarItemTitle:(NSString *)title {
+    __block UIImageView *imageView;
+    [[self findAllBarButtonInView:self] enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        BOOL isNeedButton = NO;
+        for (UIView *v in obj.subviews) {
+            if ([v isKindOfClass:[UIImageView class]]) {
+                imageView = (UIImageView *)v;
+            }
+            if ([v isKindOfClass:[UILabel class]]) {
+                UILabel *label = (UILabel *)v;
+                isNeedButton = [label.text isEqualToString:title];
+            }
+        }
+        if (isNeedButton) {
+            *stop = YES;
+        }
+    }];
+    return imageView;
+}
+
+- (NSArray&lt;UIButton *&gt; *)findAllBarButtonInView:(UIView *)view {
+    NSMutableArray *buttons = [NSMutableArray array];
+    [view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([view isKindOfClass:NSClassFromString(@&quot;UITabBarButton&quot;)]) {
+            [buttons addObject:view];
+        }
+        [buttons addObjectsFromArray:[self findAllBarButtonInView:obj]];
+    }];
+    return buttons;
+}
+</code></pre>
+<p>这样我们这个需求就基本完成了，剩下就是配置数据源就可以出现。如果以后再有类似界面，我们只用新建一个子类，配置数据源即可。</p>
+<p>看完了本篇文章，是不是觉得做这样镂空的新手指引特别简单呢。</p>
+<p><strong>扩展阅读</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-6fc6b7af39a0ca66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="A8CE916E-AE02-46C1-85C1-C44EDCE8ABEC"></p>
+<p>此处的展示还有一点小坑，那就是这是一个表格。刚开始这个表格并没有显示这个 <code>cell</code>。当滑动出现才展示出来。</p>
+<p>这样就要这样做</p>
+<ul>
+<li>滑动停止或者拖动停止</li>
+<li>滑动 <code>Settings</code>的 <code>Cell</code>的底部一定要出可视范围大于20</li>
+<li>用变量标记 出现之后来回滚动不会再次出现</li>
+</ul>
+<p>这样才能不会有来回快速滚动 或者 只露出一点 就显示出来的 BUG</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-uiview添加到keywindow上面自动会被-release">
+                  <h3 class="post-title">
+                    UIView添加到KeyWindow上面自动会被 Release
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

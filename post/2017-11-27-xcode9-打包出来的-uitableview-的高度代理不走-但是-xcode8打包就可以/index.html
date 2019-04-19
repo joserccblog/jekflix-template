@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Xcode9 打包出来的 UITableView 的高度代理不走 但是 Xcode8打包就可以 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Xcode9 打包出来的 UITableView 的高度代理不走 但是 Xcode8打包就可以</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-073411.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <h2 id="问题描述">问题描述</h2>
+<p>我们首页有点复杂，因为结构是下面是一个横向滚动的 UIScrollView 上面是一个 UITableView 但是整体看起来是连贯的 所以上面的 UITableView 的高度就要算出来。</p>
+<p>但是在 Xcode9运行时候发现 CELL 的高度代理竟然不走了，导致我计算高度的方法没有被执行，结果计算出高度为0.</p>
+<p>但是线上的包在iOS11上面显示十分的正常，并且团队其他的小伙伴运行没出现问题，就我的 Xcode9运行出现问题。</p>
+<p>那就是 Xcode9打包出来的出现了问题。</p>
+<h2 id="解决办法">解决办法</h2>
+<pre><code class="language-objective-c">_tableView.rowHeight = 0;
+_tableView.estimatedRowHeight = 0;
+</code></pre>
+<p>感谢2017@Swift群里面的 <strong>List</strong>提供的解决办法。设置这两个属性之后，首页上面 UITableView 的数据果然出现了。</p>
+<blockquote>
+<p>虽然解决了，但是首页因为多个 UIScrollView 导致十分滚动会卡顿。这个最好的解决办法是抛弃左右滚动切换功能</p>
+<p>这样最下面的 UICollectionView 就可以不用 直接整体一个 UITableView 这样就可以实现滚动顺畅。</p>
+<p>首页的设计思路可以参考我的一篇文章</p>
+<p><a href="http://www.jianshu.com/p/4821fcecf6a6">关于首页设计框架和一些细节处理分析</a></p>
+</blockquote>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/zhi-shi-dian" class="tag">
+                    知识点
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-在-xcode8运行新出的@available()宏方法">
+                  <h3 class="post-title">
+                    在 Xcode8运行新出的@available()宏方法
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>研究一下未知参数的方法 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">研究一下未知参数的方法</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-020624.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p>最近要写一个小方法让组装字符串为一个数组进行下一步的传递，直接写进数组会因为可能数组为空决定写一个多参数的方法 判断就在里面进行判断</p>
+<p>对于之前写过测试，但是只记得VA开头，今天再次看一下。</p>
+<blockquote>
+<p>参考文献地址 http://blog.csdn.net/edonlii/article/details/8497704</p>
+</blockquote>
+<p><a href="http://www.cplusplus.com/reference/cstdarg/va_list/">va_list参考文献地址</a></p>
+<p><a href="http://www.cplusplus.com/reference/cstdarg/va_start/">va_start参考文献地址</a></p>
+<p><a href="http://www.cplusplus.com/reference/cstdarg/va_copy/">va_copy参考文献地址</a></p>
+<p><a href="http://www.cplusplus.com/reference/cstdarg/va_end/">va_end参考文献地址</a></p>
+<p><a href="http://www.cplusplus.com/reference/cstdarg/va_arg/">va_arg参考文献地址</a></p>
+<p>va_list是接受除第一个参数之外的其余参数数组</p>
+<p>取值的步骤如下</p>
+<ol>
+<li>利用va_list初始化一个c语言的数组</li>
+<li>使用va_start进行参数接受</li>
+<li>利用va_arg进行超找参数 参数的类型必须和接受的类型一致 是c语言的类型</li>
+<li>利用va_end进行结束查找</li>
+</ol>
+<p>看一下下面的例子</p>
+<pre><code class="language-c">- (void)vaList:(NSString *)str, ... {
+    va_list list; // 接受其他的参数
+    va_start(list, str); // 开始查找
+    if (str) { // 判断第一个参数是否存在
+        NSLog(@&quot;%@&quot;,str); // 输出第一个参数
+        id arg; // 其他参数 可能是C语言的其他类型
+        while (YES) {
+            arg = va_arg(list, id); // 赋值
+            if (!arg) { // 如果不存在就退出循环
+                break;
+            }
+            NSLog(@&quot;%@&quot;,arg); // 输出其他参数
+        }
+    }
+    va_end(list); // 结束查找 一定要写va_end
+}
+</code></pre>
+<p>我们就可以调用这个函数了</p>
+<pre><code class="language-objective-c">[self vaList:@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,nil];
+</code></pre>
+<p>输出</p>
+<pre><code class="language-c">2016-12-15 14:12:32.634 GearBest[14179:276358] 1
+2016-12-15 14:12:32.634 GearBest[14179:276358] 2
+2016-12-15 14:12:32.635 GearBest[14179:276358] 3
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/c" class="tag">
+                    C
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-关于autolayout原生content-hugging和content-resistance小研究">
+                  <h3 class="post-title">
+                    关于AutoLayout原生Content Hugging和Content Resistance小研究
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

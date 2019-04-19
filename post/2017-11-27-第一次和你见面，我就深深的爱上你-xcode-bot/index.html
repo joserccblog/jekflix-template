@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>第一次和你见面，我就深深的爱上你-Xcode Bot | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">第一次和你见面，我就深深的爱上你-Xcode Bot</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-060726.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p>最近研究起了 APP 的自动化测试，发现了 <code>Xcode Bot</code>自动化打包测试发布的功能，就开始研究起来。</p>
+<p>对于 <code>Xcode Bot</code>的研究也不算精通，写一下入坑的过程帮助一下还没有入坑的新人。</p>
+<p>入坑之前需要准备两样东西</p>
+<ul>
+<li><strong>Xcode:</strong> 这个作为 iOS 开发是必不可少的</li>
+<li><strong>Server:</strong> Apple Mac 的一个强大的服务运行软件 强大的现在很多功能我都不会用</li>
+</ul>
+<p><strong>配置 Server Xcode 服务</strong></p>
+<ol>
+<li>
+<p>打开 <code>Server</code>软件</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-b504f00d9e264a2d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>点击我们下载安装之后地球图标。</p>
+</li>
+<li>
+<p>进入我们所在的本地服务器</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-356c46de53dd58cf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们可以进入本地自己电脑的服务器，还可以进入远程服务器电脑。看自己的需要了。</p>
+</li>
+<li>
+<p>选择 <code>Xcode</code>服务</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-5f1ad172a08ccd2a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>第一次配置需要让我们配置一些参数和选择本地的 Xcode，我已经选择了，这里不贴图了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-e8fed1f41214026e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+<li>
+<p>新建本地的 git 库。</p>
+<p>如果我们使用 <code>SVN</code>或者例如 <code>Github</code>类似的代码仓库也是可以的。我们新建一个本地的 GIT 仓库用户以后测试工程使用</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-6b78197970fb75ee.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们点击加号进行新建一个储存的仓库</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-6ee2f6c982e2f64b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们命名叫做 <code>LocalGitRepo</code>用来存储以后测试的工程代码。</p>
+</li>
+<li>
+<p>查看我们本地 git 库连接地址</p>
+</li>
+</ol>
+<p>双击下面图所指我们新建的库</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-8bf86155900951d0.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们可以查看我们本地库所在的路径和 SSH 和 HTTPS 的连接。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-d4ecded06d8c6858.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><strong>配置 Xcode</strong></p>
+<ol>
+<li>
+<p>我们打开 <code>Xcode</code>的 <code>Perferences-&gt;Accounts</code></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-aa693e2572e9dda4.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>​</p>
+</li>
+<li>
+<p>我们新建一个仓库帐号</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-240754837f48d798.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>地址我们选择我们刚才 https 地址，输入我们授权的账号 ，一般输入我们登录用户和密码就可以。</p>
+</li>
+<li>
+<p>我们CheckOut 刚才的库到本地</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-91f297873a88ba9f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-5f28d641bca33fc4.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><strong>新建一个测试的工程</strong></p>
+<ol>
+<li>
+<p>新建一个 <code>XcodeBotExample</code>工程</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-fcd2cbd229163436.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们包含我们的测试工程，用户以后的测试。</p>
+<p>保存我们新建的工程到刚才我们在本地 Check Out 下来的库。</p>
+</li>
+<li>
+<p>提交我们刚才的代码到远程仓库</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-b15332fa58689fc4.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+<li>
+<p>​</p>
+</li>
+</ol>
+</li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-f08ac2f7772330c4.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ol start="3">
+<li>
+<p>开启 Target 分享</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-b1ebec7afe17f917.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-8f42e52660f67f90.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+<li>
+<p>设置测试生成代码覆盖率统计</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-a5b7d03423b2f48a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+</ol>
+<p><strong>新建自动化 Bot</strong></p>
+<ol>
+<li>
+<p>创建一个新的 Bot</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-bee6d49151c81f27.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+<li>
+<p>选择一个服务</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-3c288b588825bc11.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-c7a2c9ea96db58ba.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ol start="3">
+<li>
+<p>登录我们的 git 服务器</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-7a9fa92375d1bddb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+<li>
+<p>开启代码覆盖率</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-71642ece64c1b39e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+<li>
+<p>去掉自动测试选择提交才测试</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-cd4803a446fa8dd3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+<li>
+<p>选择我们需要测试的设备和模拟器</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-b3f4c865c63af716.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>因为之前一些设备删除导致选择全部抱错 暂时也没有找到解决的办法。</p>
+<p>之后一路 Next 完成设置。</p>
+</li>
+</ol>
+<p>完成设置后会自动的自动化测试一次</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-69a278e5ff21b784.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>错误的原因是没有把全部文件上传到 git 导致远程仓库进行打包找不到对应的 <code>Scheme</code></p>
+<p>编译完成我们可以看到打包的信息</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-05365f508220aad4.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>包含中间的错误 警告 静态编译 测试 打包的 ipa 和 Archive 文件。</p>
+<p><strong>查看代码覆盖率</strong></p>
+</li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-9578e319d7e5191a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们看到 <code>AppDelegate</code>类只有33%的覆盖。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-fcfa5e9bb7983d8d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这几个方法代表测试用例没用测试过所以就没有覆盖。这样可以我们可以写测试用例帮助解决一些 bug</p>
+<p>我们新建一个类 <code>TestCoverage</code>用来作为测试。</p>
+<p>我们新建一个类方法判断让只有前十名才可以有奖励吃到苹果。</p>
+<pre><code class="language-objective-c">+ (BOOL)userCanEatAppleAtIndex:(NSInteger)index
+</code></pre>
+<pre><code class="language-objective-c">+ (BOOL)userCanEatAppleAtIndex:(NSInteger)index {
+    return index &lt;= 10;
+}
+</code></pre>
+<p>我们执行 Commond + U 进行测试。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-20be2e94ba396cac.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>当完成我们就有可以点击查看结果。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-3faa1c8eee5c5f8d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们可以看到我们新建的类代码覆盖为0</p>
+<p>因为我们写的方法还没进行测试。</p>
+<pre><code class="language-objective-c">- (void)testExample {
+    NSInteger userTop = 1;
+    [TestCoverage userCanEatAppleAtIndex:userTop];
+}
+</code></pre>
+<p>我们执行这个方法左边执行测试的按钮进行测试。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-53caea4307c04efe.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-cf24c82dd8702e27.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们看到当执行完测试之后我们的代码覆盖率已经100%。</p>
+<p>因为我们的不管输入任何的值 判断的代码都会走。</p>
+<p>我们现在更改代码为如下代码。</p>
+<pre><code class="language-objective-c">+ (BOOL)userCanEatAppleAtIndex:(NSInteger)index {
+    if (index &lt;= 10) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+</code></pre>
+<p>现在的代码和之前的代码都是一样的只不过这个写的复杂。</p>
+<p>我们再次的执行刚才的测试代码。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-0a170ade1d50923d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们可以看到我们的代码覆盖率已经成为了50%。</p>
+<p>我们点击类进去查看详情。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-72a44f46b6c13832.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>绿色的代码测试用例测试过 右侧数字是执行的次数。</p>
+<p>下面返回 NO的一次也没有执行。</p>
+<p>我们写一下 NO 的测试逻辑。</p>
+<pre><code class="language-objective-c">    NSInteger userTop1 = 11;
+    [TestCoverage userCanEatAppleAtIndex:userTop1];
+</code></pre>
+<p>我们再次执行我们测试代码方法。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-b070f1d4e6189412.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们可以看到我们的类已经全部的代码覆盖了。是不是很棒。</p>
+<p>我们再次升级我们的代码。假设全班56人，我们循环测试一下。</p>
+<pre><code class="language-objective-c">- (void)testExample {
+    for (int i = 0; i &lt; 56 ; i ++) {
+        [TestCoverage userCanEatAppleAtIndex:i];
+    }
+}
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-b23926fd6aae5117.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们查看执行方法可以看到我们成功执行了11次 失败执行了45次。</p>
+<p>今天的文章就到此结束了，是不是还有问题没解决。可以私信我，如果我知道解决方法的话。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/zi-dong-hua" class="tag">
+                    自动化
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/xcode" class="tag">
+                    Xcode
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-一些获取-svn-版本提交记录信息的库">
+                  <h3 class="post-title">
+                    一些获取 SVN 版本提交记录信息的库
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

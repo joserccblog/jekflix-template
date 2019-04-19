@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>关于AutoLayout原生Content Hugging和Content Resistance小研究 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">关于AutoLayout原生Content Hugging和Content Resistance小研究</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-015933.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p>之前就知道系统<code>AutoLayout</code>有拉伸和挤压的设置，平时用<code>Masonry</code>设置优先级也是可以解决这样的挤压和压缩的问题。但是设置Masonry的优先级自己一直设置不好。可能自己太菜了，或者自己对于Masonry研究的不是很精通。</p>
+<p>今天用Reveal调试设置了一下竟然达到了自己预想的结果，所以今天就仔细的研究一下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-30efe3fc2a068b59.gif?imageMogr2/auto-orient/strip" alt=""></p>
+<p>看来默认的Content Hugging的默认值是250，我只要轻轻的增加一个，就压缩了。</p>
+<p>从上面的图中我们可以得到:</p>
+<p>Content Hugging: 默认大小250</p>
+<p>Content Resistance: 默认大小750</p>
+<p>关于一些详细的介绍可以看我的小伙伴的文章 <a href="http://www.jianshu.com/p/89bb8a1888c8">Masonry 笔记</a></p>
+<pre><code class="language-objective-c">- (UILayoutPriority)contentHuggingPriorityForAxis:(UILayoutConstraintAxis)axis NS_AVAILABLE_IOS(6_0);
+- (void)setContentHuggingPriority:(UILayoutPriority)priority forAxis:(UILayoutConstraintAxis)axis NS_AVAILABLE_IOS(6_0);
+
+- (UILayoutPriority)contentCompressionResistancePriorityForAxis:(UILayoutConstraintAxis)axis NS_AVAILABLE_IOS(6_0);
+- (void)setContentCompressionResistancePriority:(UILayoutPriority)priority forAxis:(UILayoutConstraintAxis)axis NS_AVAILABLE_IOS(6_0);
+</code></pre>
+<h2 id="uilayoutpriority">UILayoutPriority</h2>
+<p>布局优先级用于向基于约束的布局系统指示哪些约束更重要，从而允许系统在满足系统整体的约束时进行适当的权衡</p>
+<blockquote>
+<p><code>UILayoutPriorityRequired:1000</code> 必需的约束。 不要指定超过此数字的布局约束。</p>
+<p><code>UILayoutPriorityDefaultHigh:750</code> 这是按钮抵抗其内容压缩的优先级。</p>
+<p><code>UILayoutPriorityDefaultLow:250</code> 这是按钮在水平方向上拥抱其内容的优先级。</p>
+<p><code>UILayoutPriorityFittingSizeLevel：50</code> 当向一个视图发送一个<code>systemLayoutSizeFittingSize：</code>消息时，计算最接近目标大小的大小。 这是视图希望在该计算中符合目标大小的优先级。 这是相当低。 通常不恰当地在这个优先级上进行约束。 你想要更高或更低。</p>
+</blockquote>
+<h2 id="uilayoutconstraintaxis">UILayoutConstraintAxis</h2>
+<blockquote>
+<p><code>UILayoutConstraintAxisHorizontal</code> : 水平约束</p>
+<p><code>UILayoutConstraintAxisVertical</code>: 竖直约束</p>
+</blockquote>
+<p>我们根据上面说的根据我们刚才<code>Reveal</code>设置250以上就是<code>UILayoutPriorityDefaultHigh</code>，设置水平<code>UILayoutConstraintAxisHorizontal</code></p>
+<pre><code class="language-objective-c">[_locationTitleLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
+</code></pre>
+<p>我们运行一下看一下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-07be2dd43446a009.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>设置成功。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/autolayout" class="tag">
+                    AutoLayout
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-关于数据进行排序小研究">
+                  <h3 class="post-title">
+                    关于数据进行排序小研究
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

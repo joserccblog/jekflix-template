@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>关于首页倒计时处理一些细节 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">关于首页倒计时处理一些细节</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-054248.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p>关于首页倒计时处理一些细节</p>
+<p>下面是效果图</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-94de1798823829c7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这个模块是展示促销商品模块的：</p>
+<p>需求有下面的几点:</p>
+<ul>
+<li>上面是频道栏目 可以左右滑动进行切换</li>
+<li>下面是促销商品的列表</li>
+<li>商品栏目数目为2 为了后期兼容做成可以左右滚动</li>
+<li>当两个其中只有一个已经停止就把停止的商品显示 DEAL ENDED</li>
+<li>当两个都已经停止就去除对应的栏目</li>
+</ul>
+<blockquote>
+<p>本来想把定时器做到 Cell 里面或者上面显示时间的控件里面 开始做的时候没发现什么问题。后来切换了频道，发现其他频道已经两个结束了竟然没有删除对应的栏目</p>
+</blockquote>
+<p>经过思考，导致这个问题出现的原因是</p>
+<p><strong>促销商品展示的 Cell 是重用的，开始的时候其他栏目是没有赋值的。导致是不能收到已经停止的消息的，自然也就没办法从列表里面进行移除</strong></p>
+<p>解决的方案就是对数据源进行各自的监听，当数据源显示时间已经停止的时候，就移除对应的数据源，重新刷新界面。</p>
+<p>新建一个基类用于管理倒计时GBSaleTimeModel</p>
+<p>因为倒计时只分为还<strong>没有开始</strong> <strong>正在进行</strong> <strong>已经结束</strong>三种时间段，我们新建一个 ENUM 类型来标识</p>
+<pre><code class="language-objc">/**
+  销售的三种状态
+
+ - GBSaleTimeTypeNoStart: 还没有开始
+ - GBSaleTimeTypeStarting: 开始销售中
+ - GBSaleTimeTypeEnded: 已经结束
+ */
+typedef NS_ENUM(NSUInteger, GBSaleTimeType) {
+    GBSaleTimeTypeNoStart,
+    GBSaleTimeTypeStarting,
+    GBSaleTimeTypeEnded
+};
+</code></pre>
+<p>新建一个 typedef用户 Block 进行回调</p>
+<pre><code class="language-objc">/**
+ 当定时器值改变的时候就回调
+
+ @param model GBSaleTimeModel
+ */
+typedef void(^GBSaleTimeValueChangeCompletionHandle)(GBSaleTimeModel *model);
+</code></pre>
+<p>让外部可以知道当前的数据源处于什么状态，我们新建一个只读的变量用于让外接知道当前数据源处于什么状态。</p>
+<pre><code class="language-objc">/**
+ 当前销售状态
+ */
+@property (nonatomic, assign, readonly) GBSaleTimeType saleTimeType;
+</code></pre>
+<p>我们是只读的属性 我们实现一个 Get 方法</p>
+<pre><code class="language-objc">- (GBSaleTimeType)saleTimeType {
+    NSTimeInterval nowTimeInterval = [[NSDate date] timeIntervalSince1970];
+    if (nowTimeInterval &lt; self.startTimeInterval) {
+        return GBSaleTimeTypeNoStart;
+    } else if (nowTimeInterval &lt; self.endTimeInterval) {
+        return GBSaleTimeTypeStarting;
+    } else {
+        return GBSaleTimeTypeEnded;
+    }
+}
+</code></pre>
+<p>因为是获取距离现在时间的状态，自然要获取的是现在时间距离1970的时间戳，比较时间戳。</p>
+<p>如果现在时间戳小于开始的时间戳 标识还没有开始销售</p>
+<p>如果现在的时间戳大于等于开始时间戳并且小于结束的时间戳 标识正在销售</p>
+<p>如果现在的时间戳大于等于结束的时间戳 标识已经结束销售</p>
+<p>因为开始的时间和结束的时间是后段给的 我们无法知道所有新建两个属性 只读让子类实现 get 方法</p>
+<pre><code class="language-objc">/**
+ 开始时间 子类重写 get 方法
+ */
+@property (nonatomic, assign, readonly) NSTimeInterval startTimeInterval;
+
+/**
+ 结束时间 子类重写 get 方法
+ */
+@property (nonatomic, assign, readonly) NSTimeInterval endTimeInterval;
+</code></pre>
+<p>新建一个只读的属性 让外部可以知道现在时间距离开始 或者 结束 时间段 方便做倒计时</p>
+<pre><code class="language-objc">/**
+ 时间段 如果还没有开始就是现在时间和开始时间的间距 如果是已经开始就等于现在时间和结束时间的间距 如果是已经结束就等于0
+ */
+@property (nonatomic, assign, readonly) NSTimeInterval nowTimePeriod;
+</code></pre>
+<pre><code class="language-objc">- (NSTimeInterval)nowTimePeriod {
+    NSTimeInterval nowTimeInterval = [[NSDate date] timeIntervalSince1970];
+    if (self.saleTimeType == GBSaleTimeTypeNoStart) {
+        return self.startTimeInterval - nowTimeInterval;
+    } else if (self.saleTimeType == GBSaleTimeTypeStarting) {
+        return self.endTimeInterval - nowTimeInterval;
+    } else {
+        return 0;
+    }
+}
+</code></pre>
+<p>我们判断目前的状态 如果是还没有开始就 获取距离开始的时间</p>
+<p>如果是正在销售 就获取距离结束的时间</p>
+<p>如果是已经销售结束 就赋值等于0</p>
+<p>我们新增一个注册监听的方法 让外界监听销售状态和改变倒计时状态</p>
+<pre><code class="language-objc">/**
+ 注册监听时间改变的回调
+
+ @param completionHandle 回调
+ */
+- (void)registerSaleTimeValueChangedCompletionHandle:(GBSaleTimeValueChangeCompletionHandle)completionHandle;
+</code></pre>
+<pre><code class="language-swift">- (void)registerSaleTimeValueChangedCompletionHandle:(GBSaleTimeValueChangeCompletionHandle)completionHandle {
+    if (!_completionHandleList) {
+        _completionHandleList = [NSMutableArray array];
+    }
+    if (completionHandle) {
+        [_completionHandleList addObject:completionHandle];
+    }
+    [self valueChnaged];
+    if (!_saleTimer &amp;&amp; self.endTimeInterval &gt; self.startTimeInterval &amp;&amp; self.startTimeInterval &gt; 0) {
+        _saleTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(valueChnaged) userInfo:nil repeats:YES];
+    }
+}
+</code></pre>
+<p>为什么要把 Block 添加到数组里面 ？</p>
+<blockquote>
+<p>因为要做一个功能 就是让多个人进行监听同一个对象的回调 这个也直接导致下面的一个问题的出现</p>
+</blockquote>
+<p>为什么要判断 Block 存在再添加呢？</p>
+<blockquote>
+<p>因为如果外部调用方法不实现 block 就会直接的崩溃</p>
+</blockquote>
+<p>为什么要在定时器之前还调用一下valueChnaged值改变的方法呢？</p>
+<blockquote>
+<p>因为可能用户注册的时候 倒计时已经停止 或者 不满足定时器开启的条件 外接就无法得到对应的状态 会出现一些问题无法修复</p>
+</blockquote>
+<pre><code class="language-objc">- (void)valueChnaged {
+    for (int i = 0; i &lt; _completionHandleList.count; i ++) {
+        GBSaleTimeValueChangeCompletionHandle completionHandle = _completionHandleList[i];
+        completionHandle(self);
+    }
+    if (self.saleTimeType == GBSaleTimeTypeEnded) {
+        [_saleTimer invalidate];
+        [_completionHandleList removeAllObjects];
+    }
+}
+</code></pre>
+<p>因为要监听还没有显示的模块信息 所以我们在给整个模块赋值的时候 进行遍历销售的商品进行监听倒计时</p>
+<p>如果其中的一组已经全部停止 就删除对应的频道</p>
+<pre><code class="language-objc">- (void)checkSaleItem:(BOOL)needRegister {
+    NSMutableArray *nowSaleModels = [NSMutableArray array];
+    @weakify(self);
+    [_headerModel.homeSaleModels enumerateObjectsUsingBlock:^(GBHomeSaleModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        @strongify(self);
+        NSMutableArray *hotSaleGoodList = [NSMutableArray array];
+        [obj.hotSaleGoodList enumerateObjectsUsingBlock:^(GBHomeSaleItemModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop) {
+            @strongify(self);
+            if (obj1.saleTimeType != GBSaleTimeTypeEnded) {
+                // 如果还没有结束才显示
+                [hotSaleGoodList addObject:obj1];
+                if (needRegister) {
+                    [obj1 registerSaleTimeValueChangedCompletionHandle:^(GBSaleTimeModel *model) {
+                        @strongify(self);
+                        if (model.saleTimeType == GBSaleTimeTypeEnded) {
+                            [self checkSaleItem:NO];
+                            [self registerTableViewGroup];
+                            [self.tableView reloadData];
+                        }
+                    }];
+                }
+            }
+        }];
+        if (hotSaleGoodList.count &gt; 0) {
+            [nowSaleModels addObject:obj];
+        }
+    }];
+    _headerModel.homeSaleModels = nowSaleModels;
+}
+
+</code></pre>
+<p>为什么要在方法添加一个是否需要注册的参数呢？</p>
+<blockquote>
+<p>因为 我们在倒计时结束的时候 重新走了一次本方法 进行数据的筛选。 如果我们每次都注册 导致如果结束的时候回调就会死循环 如果在添加之前判断时候结束 也是可以的</p>
+</blockquote>
+<p>为什么要做销售商品数组大于零 就添加对应的频道？</p>
+<blockquote>
+<p>因为之前做的是 如果商品已经销售停止 就删除对应的元素 让界面只显示正在销售的</p>
+<p>后来产品说只显示一个元素界面会不好看  就改成了如果两个都销售停止才删除对应的频道 如果只有一个就让已经销售停止的展示 DEAL ENDED</p>
+</blockquote>
+<p>我们在销售商品的试图 Cell 上面赋值数据源的地方进行监听倒计时</p>
+<pre><code class="language-objc">    [itemModel registerSaleTimeValueChangedCompletionHandle:^(GBSaleTimeModel *model) {
+        @strongify(self);
+        if (self.itemModel != model) {
+            return ;
+        }
+        self.saleTimeLabel.timeInterval = model.nowTimePeriod;
+        NSString *startLabelText;
+        if (model.saleTimeType == GBSaleTimeTypeNoStart) {
+            startLabelText = @&quot;Starts in&quot;;
+
+        } else {
+            startLabelText = @&quot;Ended in&quot;;
+        }
+        BOOL isHideDealEnded = model.saleTimeType == GBSaleTimeTypeEnded;
+        UIColor *startTimeColor = isHideDealEnded ? GB_COLOR_RGB(153, 153, 153, 1.0) : GB_COLOR_RGB(51, 51, 51, 1.0);
+        self.startTimeLabel.textColor = startTimeColor;
+        self.dealEndedView.hidden = !isHideDealEnded;
+        self.startTimeLabel.text = startLabelText;
+    }];
+</code></pre>
+<p>这个方法存在 一个严重的问题就是 当切换频道 就会cell 重用 新的数据源就会重新的注册 block</p>
+<p>但是之前注册的 block 还是存在在内存里面就会出现显示的倒计时的时间不正确</p>
+<pre><code class="language-objc">        if (self.itemModel != model) {
+            return ;
+        }
+</code></pre>
+<p>这一句代码就是为了判断如果回调的 block 如果不是现在显示的数据源回调就不会往下继续走</p>
+<blockquote>
+<p>其实还有一个更好的方法 就是注册的时候保留 block 对象 cell 进行刷新的时候 移除之前注册的</p>
+<p>这样不仅解决了数据源显示错误问题 而且可以让之前注册 block 不会回调 减少性能消耗</p>
+</blockquote>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-hq移动20170317期周报">
+                  <h3 class="post-title">
+                    HQ移动20170317期周报
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

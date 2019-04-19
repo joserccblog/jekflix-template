@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>ClangFormat语法1.0 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">ClangFormat语法1.0</h2>
+            <div class="post-date">2017-11-25</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-081429.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <h3 id="accessmodifieroffsetint类型">AccessModifierOffset(Int类型)</h3>
+<blockquote>
+<p>访问修饰符偏移量</p>
+</blockquote>
+<h3 id="accessmodifieroffset-0">AccessModifierOffset: 0</h3>
+<pre><code class="language-objc">@public
+NSMutableArray *_cellHeightArray;
+</code></pre>
+<h3 id="accessmodifieroffset-4">AccessModifierOffset: 4</h3>
+<pre><code class="language-objective-c">    @public
+NSMutableArray *_cellHeightArray;
+</code></pre>
+<h3 id="alignescapednewlinesleft-bool">AlignEscapedNewlinesLeft (bool)</h3>
+<blockquote>
+<p>如果是true就是左对齐,如果是false就是右对齐</p>
+</blockquote>
+<h4 id="true">true</h4>
+<pre><code class="language-c">if (foo &amp;&amp; // Some comment
+bar) {
+    baz();
+}
+
+void foo() {
+    someFunction();
+    someOtherFunction();
+}
+</code></pre>
+<h4 id="false">false</h4>
+<pre><code class="language-c">if (foo &amp;&amp; // Some Comment
+    bar) {
+        baz();
+}
+
+void foo() {
+        someFunction();
+  someOtherFunction();
+}
+</code></pre>
+<h3 id="aligntrailingcomments-bool">AlignTrailingComments (bool)</h3>
+<blockquote>
+<p>注释的对齐方式 如果是<code>true</code>将左对齐，如果是<code>false</code>不会对齐</p>
+</blockquote>
+<h4 id="true-2">true</h4>
+<pre><code class="language-c">// Unrelated comment
+void someFunction() {
+    doWork();     // Does something
+    doMoreWork(); // Does something else
+}
+</code></pre>
+<h4 id="false-2">false</h4>
+<pre><code class="language-c">// Unrelated comment
+void someFunction() {
+   doWork(); // Does something
+   doMoreWork(); // Does something else
+}
+</code></pre>
+<h3 id="allowallparametersofdeclarationonnextline-bool">AllowAllParametersOfDeclarationOnNextLine (bool)</h3>
+<blockquote>
+<p>如果TRUE就让参数上下对齐 否则将是默认</p>
+</blockquote>
+<h4 id="true-3">true</h4>
+<pre><code class="language-c">someFunction(foo,
+             bar,
+             baz);
+</code></pre>
+<h4 id="false-3">false</h4>
+<pre><code class="language-c">someFunction(foo, bar, baz);
+</code></pre>
+<h3 id="allowshortfunctionsonasingleline-bool">AllowShortFunctionsOnASingleLine (bool)</h3>
+<blockquote>
+<p>是否允许方法单行</p>
+</blockquote>
+<h4 id="true-4">true</h4>
+<pre><code class="language-c">int f() { return 0; }
+</code></pre>
+<h4 id="false-4">false</h4>
+<pre><code class="language-c">int f() {
+    return 0;
+}
+</code></pre>
+<h3 id="allowshortifstatementsonasingleline-bool">AllowShortIfStatementsOnASingleLine (bool)</h3>
+<blockquote>
+<p>是否允许if单行</p>
+</blockquote>
+<h4 id="true-5">true</h4>
+<pre><code class="language-c">void foo() {
+    if (!someVar) return;
+    if (someOtherVar) return;
+
+    if (doingSomething) {
+        // Unrelated
+    }
+}
+</code></pre>
+<h4 id="false-5">false</h4>
+<pre><code class="language-c">if (!someVar) {
+    return;
+}
+if (someOtherVar) {
+    return;
+}
+
+if (doingSomething) {
+    // Unrelated
+}
+</code></pre>
+<h3 id="allowshortloopsonasingleline-bool">AllowShortLoopsOnASingleLine (bool)</h3>
+<blockquote>
+<p>是否允许循环单行</p>
+</blockquote>
+<h4 id="true-6">true</h4>
+<pre><code class="language-c">// Eat some cycles
+int i = 10000;
+while(i&gt;0) i--;
+</code></pre>
+<h4 id="false-6">false</h4>
+<pre><code class="language-c">// Eat some cycles
+int i = 10000;
+while(i&gt;0) {
+    i--;
+}
+</code></pre>
+<h3 id="alwaysbreakbeforemultilinestrings">AlwaysBreakBeforeMultilineStrings</h3>
+<blockquote>
+<p>在多行字符串之前总是打破</p>
+</blockquote>
+<h3 id="alwaysbreakbeforemultilinestrings-true-or-false没找到实例">AlwaysBreakBeforeMultilineStrings: true or false(没找到实例)</h3>
+<pre><code class="language-objective-c">NSString *string = @&quot;deqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwde&quot;
+                   @&quot;qwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeqwdeq&quot;
+                   @&quot;wdeqwdeqw&quot;;
+</code></pre>
+<h3 id="alwaysbreaktemplatedeclarations-bool">AlwaysBreakTemplateDeclarations (bool)</h3>
+<blockquote>
+<p>总是打破模板声明</p>
+</blockquote>
+<h3 id="binpackparameters-bool">BinPackParameters (bool)</h3>
+<blockquote>
+<p>如果为 false，函数调用或函数定义的参数将会都是在同一行上或者会有一行每个。</p>
+</blockquote>
+<p>BreakBeforeBinaryOperators (bool)</p>
+<blockquote>
+<p>如果为 true，则将换行符后放置二元运算符。</p>
+</blockquote>
+<h4 id="true-7">true</h4>
+<pre><code class="language-c">bool value = someVal
+             + anotherVal
+             + thirdVal
+             == alternateValue
+                * fooVar
+                + barVar
+             &amp;&amp; anotherCondition
+                &gt; smallerCondition
+                * powerMultiplier;
+
+if (someVal
+    + anotherVal
+    * thirdVal
+    == finalVlaue) {
+    // ...
+}
+
+if (someVal) {
+
+} else if (anotherVal &amp;&amp; thirVal
+                        &gt; smallerVal)
+{
+    // ...
+}
+
+return foo::bar::baz
+       == foo::bar::bop;
+}
+</code></pre>
+<h2 id="false-7">false</h2>
+<pre><code class="language-c">bool value = someVal + anotherVal + thirdVal == alternateValue * fooVar + barVar &amp;&amp; anotherCondition &gt; smallerCondition * powerMultiplier;
+
+if (someVal + anotherVal * thirdVal == finalVlaue) {
+    // ...
+}
+
+if (someVal) {
+
+} else if (anotherVal &amp;&amp; thirVal &gt; smallerVal)
+{
+    // ...
+}
+
+return foo::bar::baz == foo::bar::bop;
+</code></pre>
+<h3 id="breakbeforebraces-bracebreakingstyle">BreakBeforeBraces (BraceBreakingStyle)</h3>
+<blockquote>
+<p>大括号打破使用的样式。</p>
+</blockquote>
+<p>可能的值:
+<code>BS_Attach</code> (在配置: 附加) 总是将大括号附加到上下文。
+<code>BS_Linux</code> (在配置: <code>Linux</code>) 像附加，但是休息前大括号对功能、 命名空间和类定义。
+<code>BS_Stroustrup</code> (在配置: <code>Stroustrup</code>) 像附加，但是在函数定义之前休息。
+<code>BS_Allman</code> (在配置: 奥尔曼) 总是休息前大括号。
+<code>BS_GNU</code> (在配置: <code>GNU</code>) 总是打破前大括号和对大括号内的控制语句，而不是那些的类、 函数或其他定义中添加额外的缩进级别。</p>
+<h3 id="breakbeforeternaryoperators-bool">BreakBeforeTernaryOperators (bool)</h3>
+<blockquote>
+<p>如果为 true，则将换行符后放置三元运算符。</p>
+</blockquote>
+<h3 id="breakconstructorinitializersbeforecomma-bool">BreakConstructorInitializersBeforeComma (bool)</h3>
+<blockquote>
+<p>总是打破在逗号之前的构造函数初始值设定项和对齐以冒号逗号。</p>
+</blockquote>
+<h3 id="columnlimit-unsigned">ColumnLimit (unsigned)</h3>
+<blockquote>
+<p>每一行限制字符的长度</p>
+</blockquote>
+<h3 id="commentpragmas-stdstring">CommentPragmas (std::string)</h3>
+<blockquote>
+<p>描述具有特殊的意义，不应分成行或以其他方式改变了评论的正则表达式。</p>
+</blockquote>
+<h3 id="constructorinitializerallononelineoroneperline-bool">ConstructorInitializerAllOnOneLineOrOnePerLine (bool)</h3>
+<blockquote>
+<p>如果在构造函数初始值设定项不适合在一条线，把每个初始值设定项放在自己的行上。</p>
+</blockquote>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/clang-format" class="tag">
+                    Clang Format
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/objetive-c" class="tag">
+                    Objetive-C
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-25-autolayout简洁之道">
+                  <h3 class="post-title">
+                    AutoLayout简洁之道
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

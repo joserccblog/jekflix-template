@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>颤抖吧!都在我的魔法下颤抖吧!我是iOS黑魔法师! | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">颤抖吧!都在我的魔法下颤抖吧!我是iOS黑魔法师!</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-072436.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <h2 id="availability可用性">availability(可用性)</h2>
+<p>让我们来看一个例子。</p>
+<pre><code class="language-c">void f(void) __attribute__((availability(macos,introduced=10.4,deprecated=10.6,obsoleted=10.7)));
+</code></pre>
+<p>这个 API 包含下面几个信息：</p>
+<ul>
+<li>只能在 <code>macos</code>使用</li>
+<li>在<code>10.4</code>系统之后才可以开始使用</li>
+<li>在 <code>10.6</code>系统之后开始废弃但是还是可以用</li>
+<li>在 <code>10.7</code>已经完全移除，没有这个 API。</li>
+</ul>
+<p>属性列表：</p>
+<ul>
+<li>
+<p><code>introduced</code>：版本号类型</p>
+<p>开始的版本</p>
+</li>
+<li>
+<p><code>deprecated</code>：版本号类型</p>
+<p>废弃的版本</p>
+</li>
+<li>
+<p><code>obsoleted</code>：版本号类型</p>
+<p>移除的版本</p>
+</li>
+<li>
+<p><code>unavailable</code>：平台类型</p>
+<p>标识那些平台不可用</p>
+</li>
+<li>
+<p><code>message</code>： 文本类型</p>
+<p>过时时提示的文字</p>
+</li>
+<li>
+<p><code>replacement</code>：文本类型</p>
+<p>废弃替换的文本</p>
+</li>
+</ul>
+<p>支持的平台列表：</p>
+<ul>
+<li><code>ios</code></li>
+<li><code>macos</code></li>
+<li><code>tvos</code></li>
+<li><code>watchos</code></li>
+</ul>
+<h4 id="后面声明的必须要符合前面的声明准则">后面声明的必须要符合前面的声明准则。</h4>
+<p>声明一个  <code>g</code>函数在 <code>MacOS10.4</code>之后可以用。</p>
+<pre><code class="language-c">void g(void) __attribute__((availability(macos,introduced=10.4)));
+</code></pre>
+<p>新增在 <code>iOS4.0</code>支持</p>
+<pre><code class="language-c">void g(void) __attribute__((availability(ios,introduced=4.0)));
+</code></pre>
+<p>声明在 <code>MacOS</code>和 <code>iOS</code>可用。</p>
+<pre><code class="language-c">void g(void)
+</code></pre>
+<p>下面再声明在 <code>MacOS10.5</code>之后支持是错误的。</p>
+<pre><code class="language-c">void g(void) __attribute__((availability(macos,introduced=10.5)))
+</code></pre>
+<h4 id="如果要重写方法重写方法必须支持范围更广">如果要重写方法重写方法必须支持范围更广。</h4>
+<pre><code class="language-objc">@interface A
+
+/**
+ 声明 method在 iOS5.0之后可以使用
+ */
+- (void)method __attribute__((availability(ios,introduced=5.0)));
+
+/**
+ 声明 method2在 iOS5.0之后可以使用
+ */
+- (void)method2 __attribute__((availability(ios,introduced=5.0)));
+
+@end
+</code></pre>
+<pre><code class="language-objc">@interface B : A
+
+/**
+ 重写父类方法 method 在 iOS4.0就可以用
+ */
+- (void)method __attribute__((availability(ios,introduced=4.0)));
+
+/**
+  重写父类方法 method2 在 iOS6.0之后才可以用
+ */
+- (void)method2 __attribute__((availability(ios,introduced=6.0)));
+
+@end
+</code></pre>
+<p>对于子类 <code>B</code>重写父类 <code>A</code>方法 <code>method2</code>在 <code>iOS6.0</code>之后才可以用是错误的，因为父类方法是可以在 <code>iOS5.0</code>就可以用的。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-4336cf3d04deb15d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="deprecated过时">deprecated(过时)</h2>
+<p>支持语法:</p>
+<ul>
+<li>函数</li>
+<li>变量</li>
+<li>类型</li>
+</ul>
+<pre><code class="language-c">void function(void) __attribute__((deprecated(&quot;已经过时请用function2方法&quot;,&quot;function2&quot;)));
+</code></pre>
+<p>参数:</p>
+<ul>
+<li>第一个参数: 过时的提示语</li>
+<li>第二个参数 : 让编译器替换的内容</li>
+</ul>
+<p>当我们调用 <code>function</code>方法的时候编译器会提示警告，并且提示我们修复。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-2523b48ed36bc5e1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>当我们点击 <code>Fix-it</code>时候编译器会自动把第二个参数修复掉。</p>
+<p>我认为这个属性是我们编程过程中一个不错的功能属性。</p>
+<h2 id="objc_boxable封箱">objc_boxable(封箱)</h2>
+<p>标有objc_boxable属性的 <code>struct</code> 和 <code>union</code> 可以与Objective-C boxed表达式语法 <code>@(...)</code>  一起使用。</p>
+<pre><code class="language-c">struct __attribute__((objc_boxable)) struct1 {
+    int i;
+};
+</code></pre>
+<pre><code class="language-objc">        struct struct_demo demo;
+        NSValue *value = @(demo);
+</code></pre>
+<h2 id="objc_requires_super子类必须调用父类">objc_requires_super(子类必须调用父类)</h2>
+<p>一些Objective-C类允许一个子类覆盖父类中的一个特定方法，但是期望覆盖方法也会调用父类中的被覆盖的方法。对于这些情况，我们提供一个属性来指定一个方法需要在子类中的覆盖方法中调用<code>super</code>。</p>
+<p><code>__attribute__((objc_requires_super))</code>这个属性放在方法的尾部。</p>
+<p>让我们创建 <code>TestOne</code>类声明一个方法 <code>Function</code>实现这个属性。</p>
+<pre><code class="language-objc">@interface TestOne : NSObject
+
+- (void)function __attribute__((objc_requires_super));
+
+@end
+</code></pre>
+<p>我们创建一个 <code>TestTwo</code>的类重写 <code>Function</code>。</p>
+<pre><code class="language-objc">@implementation TestTwo
+
+- (void)function {
+
+}
+
+@end
+</code></pre>
+<p>我们可以看到编译器曝出一个警告类似这样。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-380998209e8c95eb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这样子类只要重写父类就要调用父类的方法了。</p>
+<pre><code class="language-objc">- (void)function {
+    [super function];
+}
+</code></pre>
+<h2 id="运行时名称">运行时名称</h2>
+<p>默认情况下，Objective-C接口或协议标识符用于该对象的元数据名称。objc_runtime_name属性允许注释的接口或协议在对象的元数据名称中使用指定的字符串参数，而不是默认名称。</p>
+<p><code>__attribute__((objc_runtime_name(&quot;MyLocalName&quot;)))</code>在 <code>@protocol</code>和 <code>@interface</code>声明之前声明。</p>
+<p>我们在类 <code>TestOne</code>实现这个属性。</p>
+<pre><code class="language-objc">__attribute__((objc_runtime_name(&quot;TestThree&quot;)))
+@interface TestOne : NSObject
+
+- (void)function __attribute__((objc_requires_super));
+
+@end
+</code></pre>
+<p>让我们 <code>AppDelegate</code>创建一个 <code>TestOne</code>输出一下看看输出什么。</p>
+<pre><code class="language-objc">    TestOne *one = [[TestOne alloc] init];
+    NSLog(@&quot;%@&quot;,one);
+</code></pre>
+<p>我们看一下控制台的输出</p>
+<pre><code class="language-objc">&lt;TestThree: 0x600000004b50&gt;
+</code></pre>
+<p>显示是我们替换的名字。</p>
+<h2 id="objc_runtime_visible只允许在运行时可见">objc_runtime_visible(只允许在运行时可见)</h2>
+<p>该属性指定其应用于的Objective-C类对于Objective-C运行时可见，但不对链接器可见。用此属性注释的类不能被子类化，并且不能为它们定义类别。</p>
+<p>我们给 <code>TestTwo</code>类增加这个属性</p>
+<pre><code class="language-objc">__attribute__((objc_runtime_visible))
+@interface TestTwo : TestOne  
+
+@end
+</code></pre>
+<p>我们新建一个类 <code>TestFour</code>继承于 <code>TestTwo</code>当我们 <code>@implementation</code>实现的时候编译器会直接提示我们不可以子类。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-fe3ab52b04a94261.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="overloadable-方法重载">overloadable (方法重载)</h2>
+<p>Clang提供对C中C ++函数重载的支持，使用 <code>overloadable</code> 属性引入C中的函数重载。</p>
+<p>我们创建一个无参数无返回值重载的方法 <code>TestFunction</code></p>
+<pre><code class="language-c">void TestFunction(void)  __attribute__((overloadable)){
+
+}
+</code></pre>
+<p>我们创建一个接受 <code>int</code>属性返回 <code>int</code>值的重载方法 <code>TestFunction</code></p>
+<pre><code class="language-objc">int TestFunction(int a) __attribute__((overloadable)) {
+    return a;
+}
+</code></pre>
+<p>我们创建一个接受 <code>int *</code>指针类型属性返回 <code>int *</code>指针的重载方法 <code>TestFunction</code></p>
+<pre><code class="language-c">int * TestFunction(int *a) __attribute__((overloadable)) {
+    int *b = 0;
+    *b += *a;
+    return b;
+}
+</code></pre>
+<p>一样的方法名称因为加上 <code>overloadable</code>属性不会让编译器抱错，类似于 <code>Swift</code>语言方法，可以让同一个方法接受不同的类型。</p>
+<p>让我们调用尝试一下。</p>
+<pre><code class="language-c">        TestFunction();
+        TestFunction(2);
+        int *a;
+        TestFunction(a);
+</code></pre>
+<p>正常编译。</p>
+<p>你可以试一下删除其中一个函数的 <code>__attribute__((overloadable))</code>看看会提示什么。</p>
+<h2 id="objc_subclassing_restricted类不可以子类化">objc_subclassing_restricted(类不可以子类化)</h2>
+<p>这个和 <code>objc_runtime_visible</code>看着有点像。</p>
+<p>我们给类 <code>TestTwo</code>添加属性 <code>objc_subclassing_restricted</code></p>
+<pre><code class="language-objc">__attribute__((objc_subclassing_restricted))
+@interface TestTwo : TestOne
+
+@end
+</code></pre>
+<p>我们创建一个类 <code>TestSex</code>类继承于 <code>TestTwo</code></p>
+<pre><code class="language-objc">@interface TestSex : TestTwo
+
+@end
+</code></pre>
+<p>编译器会抱错提示下面的信息</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-fbd857e394cf3a37.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="compatibility_alias-别名">@compatibility_alias (别名)</h2>
+<p>这个可以让其他的类名运行时使用其他类。</p>
+<p>我们创建 <code>TestSex</code>指向 <code>TestTwo</code></p>
+<pre><code class="language-objc">__attribute__((objc_subclassing_restricted))
+@interface TestTwo : TestOne
+
+@end
+
+@compatibility_alias TestSex TestTwo;
+</code></pre>
+<p>我们在 <code>AppDelegate</code>使用</p>
+<pre><code class="language-objc">    TestSex *sex = [[TestSex alloc] init];
+</code></pre>
+<p>但是 <code>TestSex</code>是不存在的。你可以让老代码兼容新的框架。</p>
+<p>不信你试一下。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/hei-mo-fa" class="tag">
+                    黑魔法
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-怎么代码加载localizeable.strings文件到一个字典里面">
+                  <h3 class="post-title">
+                    怎么代码加载Localizeable.strings文件到一个字典里面
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

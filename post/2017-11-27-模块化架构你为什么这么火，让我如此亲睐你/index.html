@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>模块化架构你为什么这么火，让我如此亲睐你 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">模块化架构你为什么这么火，让我如此亲睐你</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-024826.png')">
+              </div>
+            
+            <div class="post-content">
+              <blockquote>
+<p>转载请注明出处</p>
+</blockquote>
+<p>关于GB移动小组iOS端关于新架构的一些研究</p>
+<p>前几天就开始研究了关于新项目的架构，也研究了模块化架构和关于Cocoapods私有库的研究。</p>
+<p>对于前几天的研究也有了自己的心得，就把我们目前研究的一套适合自己项目的框架拿出来。</p>
+<p>先说一下架构，大神可以忽略下面我的胡言乱语了，直接可以关闭不看了。</p>
+<p>可能我下面说的你们觉得既陌生又熟悉，甚至熟悉不能再熟悉，陌生的觉得我说的有点不对。</p>
+<p>研究的不是太透彻可以忽略.....</p>
+<p>架构思想:</p>
+<blockquote>
+<p>模块化架构 + MVVM变种的设计模式 +Cocoapods版本依赖</p>
+</blockquote>
+<p>下面是我们星期五简单写了一下PPT,做一下简单的讲解。</p>
+<h2 id="为什么要在新项目使用新的框架呢">为什么要在新项目使用新的框架呢？</h2>
+<ul>
+<li>大GB项目耦合度太高</li>
+<li>相互依赖性太强</li>
+<li>对于代码没有写接口 有的在基类里面写死了</li>
+<li>之前的代码对于新项目很难做到重用</li>
+<li>之前的设计模式既不是MVC 也不是MVVM 乱作一团</li>
+<li>项目文件命名太随意 容易和其他人的文件有冲突</li>
+<li>项目的功能无法提炼</li>
+<li>功能没有版本控制 回滚太麻烦</li>
+<li>两个一样的APP进行一样的功能 修改一个APP的BUG还需要同步代码到另外一处</li>
+</ul>
+<h2 id="之前项目的架构">之前项目的架构</h2>
+<blockquote>
+<p>之间的依赖如果用一个东西形容那就是地球网络之间的连线</p>
+</blockquote>
+<p><img src="https://ww2.sinaimg.cn/large/006tNbRwgw1fbs6q2f613j30lr0d9adz.jpg" alt="C6B2DB3A-CF37-40A6-BA26-3DAEF9F4E637"></p>
+<h2 id="现在新项目架构的构想">现在新项目架构的构想</h2>
+<p><img src="https://ww1.sinaimg.cn/large/006tNbRwgw1fbs6qlye4rj30sg0f1774.jpg" alt="E4D70902-56E5-4DA0-9A61-3981902624EA"></p>
+<h2 id="现在的模块条跳转">现在的模块条跳转</h2>
+<p><img src="https://ww1.sinaimg.cn/large/006tNbRwgw1fbs6rgrbxpj30l90do0vc.jpg" alt="984573B4-B7B2-47B1-9284-020DEFC159C0"></p>
+<h2 id="模块中心">模块中心</h2>
+<p><img src="https://ww1.sinaimg.cn/large/006tNbRwgw1fbs6rxz02nj30li0dr76n.jpg" alt="B8E1B5E1-19D2-4414-BEE7-FBDC8184E1B0"></p>
+<h2 id="模块中心件核心思想">模块中心件核心思想</h2>
+<blockquote>
+<p>模块A如果跳转到B</p>
+<p>模块A发送路由到中间件 中间件分别分发剩下的模块 红色的线代表无法解析 蓝色可以解析成功 进行跳转</p>
+</blockquote>
+<p><img src="https://ww3.sinaimg.cn/large/006tNbRwgw1fbs6sm7ypaj30lf0czjsx.jpg" alt="740FDE2D-F676-4E6E-B56B-FFFC030E050D"></p>
+<h2 id="对于新架构优点">对于新架构优点</h2>
+<ul>
+<li>层次分明</li>
+<li>不会相互依赖 高层依赖底层 底层不依赖高层</li>
+<li>容易分离模块</li>
+<li>查找问题十分的方便</li>
+<li>容易解决多个APP存在的同一个问题</li>
+<li>适用性强</li>
+</ul>
+<h2 id="简单的描述什么是cocoapods">简单的描述什么是CocoaPods</h2>
+<blockquote>
+<p>红色代表app从源代码安装库</p>
+<p>黄色代表从一个APP更新代码到库再去更新其他的APP</p>
+</blockquote>
+<p><img src="https://ww4.sinaimg.cn/large/006tNbRwgw1fbs6tkibtkj30ld0cy0uj.jpg" alt="2416918F-C1B8-4098-960A-AA49FC088323"></p>
+<h2 id="使用cocoapods的好处">使用CocoaPods的好处</h2>
+<ul>
+<li>模块有历史版本 并且每一个版本都能独立编译运行</li>
+<li>一处修改 处处运行</li>
+<li>一人造轮子 全公司使用</li>
+<li>每一次都有版本记录 好维护 找问题</li>
+<li>每一次发布都能保证模块化结构清晰可见</li>
+<li>其他的APP一键集成 删除</li>
+</ul>
+<h2 id="关于module设计模式我们称为mvvm的变种模式">关于Module设计模式,我们称为MVVM的变种模式</h2>
+<ul>
+<li>目前大GB项目使用的是基于MVVM变种 我们准备使用全新的设计模式</li>
+<li>Controller: 负责界面的跳转</li>
+<li>view：负责界面的展示</li>
+<li>Modle: 负责后台接口数据解析</li>
+<li>ViewModel: 负责界面数据解析 和发送请求</li>
+<li>Api: 负责封装请求参数</li>
+<li>Other: 负责Manager 类初始化配置Style 或者其他</li>
+<li>我们叫做MVVM-AOC设计模式</li>
+</ul>
+<p>对于上面的PPT，小组的小伙伴也提出了不同的建议和意见。我是一致的坚持把不同的模块也进行Cocoapods托管，这样才真正的模块化，才会模块单独编译，模块版本控制，模块一键集成。</p>
+<p>下面是上面所做的PPT做一个讲解，希望大家看完也可以提出自己不同的见解。</p>
+<h2 id="为什么我一再的坚持使用cocoapods托管">为什么我一再的坚持使用Cocoapods托管？</h2>
+<p>我是一个乐于分享代码的人，但是这不意味着分享公司的代码。</p>
+<p>我现在对于公司项目进行Cocoapods进行托管，只是想把代码分享公司所有其他的项目。哪怕大家项目模块不一样，总可以借鉴，进行分支变种吧。</p>
+<p>哪怕分支变种也不行，对于自己的项目进行依赖进行模块化的版本记录我觉得也比之前直接放在工程里面是一个好的方案。</p>
+<p>对于我来说什么是模块化，模块化就是大树上面的树叶。树叶离开大树可能不能活，但是大树离开树叶照样生长。</p>
+<p>对于大树来说，不能因为扯掉一片树叶就要连枝扯掉。</p>
+<p>所以对于工程和模块来说，工程就是所谓的大树，模块就是叶子。</p>
+<p>模块可以单独的编译，但是离开了工程可能运行不了。但是工程离开了其他的模块也是可以编译运行的。这是我对于模块化架构设计的一个理解。</p>
+<p>什么东西可以让代码进行模块化和版本呢控制，单独编译呢，并且可以意见集成呢。我现在除了Cocoapod，别的没想到任何可以替代，这就是我坚持使用Cocoapodas的原因。</p>
+<p><img src="https://ww1.sinaimg.cn/large/006tNbRwgw1fbsb1p44lgj307405ht8z.jpg" alt="2B8D3AA6-7393-495B-B4FC-AE29CC6B06C2"></p>
+<p>工程和模块的依赖</p>
+<p><img src="https://ww2.sinaimg.cn/large/006tNbRwgw1fbsb66jmm7j30t70kb77j.jpg" alt="A80263AE-4C03-4B1B-82F8-DD2D954DF81B"></p>
+<p>模块的依赖</p>
+<p><img src="https://ww3.sinaimg.cn/large/006tNbRwgw1fbsbfq3el0j30td0k6wh1.jpg" alt="7D04518D-D5A3-48AB-9CE9-CA376F0A20F6"></p>
+<h2 id="我们口中所了解的mvvm的变种模式">我们口中所了解的MVVM的变种模式</h2>
+<p><img src="https://ww2.sinaimg.cn/large/006tNbRwgw1fbsbnaro1yj30rz0ougpv.jpg" alt="38A502DB-90AA-44BF-8E3B-289890124981"></p>
+<p>我们称作MVVM-AOC变种的设计模式。</p>
+<p>每一个模块里面都是一个MVVM-AOC的设计模式,是属于一个模式的循环</p>
+<p>中间件,是解决模块之间传递的中间转发器。模块之间进行配置文件到转发器，转发器再把配置文件到对应的模块。</p>
+<p>我们之前想到的是模块先注册到中间件，之后其他模块发送配置文件到中间件，中间件再把配置文件转发到之前注册的模块。</p>
+<p>这是我了解的模块化架构的核心思想。</p>
+<p>关于MVVM-AOC设计模式就如上图所示那样子。</p>
+<h2 id="新架构层次的说明">新架构层次的说明</h2>
+<p>之前是相互依赖的所以会造成无法解耦，造成错综复杂的交叉网络。现在如果分为层级，上层只能依赖下层的文件。下层无法依赖上层的，同级用中间件进行连接，就不会造成错综复杂的关联关系。</p>
+<p><img src="https://ww3.sinaimg.cn/large/006tNbRwgw1fbsdz5j6b1j30rm0es75e.jpg" alt="6E9982E2-6FF6-420D-986F-12A4B9294987"></p>
+<h2 id="说一下cocoapods私有仓库原理吧">说一下Cocoapods私有仓库原理吧</h2>
+<p><img src="https://ww3.sinaimg.cn/large/006tNbRwgw1fbse72it6rj30pd0hetbo.jpg" alt="35E1A4EF-C00C-4330-9EAE-AD7A7A2818B3"></p>
+<p>其实和公有库原理是一样的。</p>
+<p>公有库和私有库就只是放置配置文件的地方，根据配置文件找到对应库的版本和源文件。</p>
+<p>私有库有很多，但是公有库只有一个。</p>
+<h2 id="目前模块路由转发的问题所在">目前模块路由转发的问题所在</h2>
+<p>我看了最火的就是蘑菇街的模块路由转发，但是问题依然存在。</p>
+<p>我觉得模块化存在的问题就是A到B模块就要引入B的文件存在耦合。如果解决这个问题就解决模块化问题了。</p>
+<p>蘑菇街的库是利用DeepLink的路由查找，第一其他库属性比如block不支持，还有万一改属性，容易出BUG。</p>
+<p>我目前想到一个可以解决的方案，但是还有一些问题。</p>
+<p>每个模块通过中间件注册，每个中间件都有一个配置文件。配置文件存在架构模块化下层。这样A跳转到B，就从下层找到B模块配置文件配置。</p>
+<p>A发送配置文件到中间件，B模块收到配置文件创建对象返回A，A进行自定义的跳转和其他操作。</p>
+<p>这样不是通过字符串路由方式，可以和之前传值一样的，又达到了模块化解耦的方案。</p>
+<p>下面的设计图。</p>
+<p><img src="https://ww4.sinaimg.cn/large/006tNbRwgw1fbsek461hpj30n60b7abb.jpg" alt="C3843126-F6F6-420B-9147-EC6ECEDBAAF2"></p>
+<p>现在每一个模块都要注册到中间件，都要有一个配置文件是一个问题。</p>
+<p>之后慢慢优化吧。下面是我们模块化组件中间件实现库。</p>
+<h3 id="gbmodulemiddleware"><a href="https://github.com/HQMoble/GBModuleMiddleware">GBModuleMiddleware</a></h3>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/mo-kuai-hua" class="tag">
+                    模块化
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-创建cocoapods私有库托管工程的模块进行依赖">
+                  <h3 class="post-title">
+                    创建Cocoapods私有库托管工程的模块进行依赖
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

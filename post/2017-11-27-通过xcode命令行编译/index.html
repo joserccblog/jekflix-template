@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>通过Xcode命令行编译 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">通过Xcode命令行编译</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-003957.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <h2 id="通过xcode命令行编译">通过Xcode命令行编译</h2>
+<p>本文档提供命令行常提到一些问题</p>
+<h3 id="命令行工具是什么">命令行工具是什么</h3>
+<p>命令行工具包是一个小型独立包,可供下载独立于<code>Xcode</code>的和允许您执行命令行开发<code>OS X</code>，它由两部分组成：<code>OS X SDK</code>和<code>命令行工具</code>，如<code>Clang</code>的，这是安装在<code>/ usr/ bin</code>中</p>
+<p>下载命令行工具无法使用在<code>Xcode</code>的<code>OS X10.9</code>。我怎么能在我的机器上安装它们?</p>
+<p>在<code>OS X10.9</code>，<code>Xcode</code>预设的下载窗格将不会支持下载命令行工具，使用下列任何一个方式到你的系统上安装命令行的工具：</p>
+<h4 id="使用xcode">使用Xcode</h4>
+<p>如果您计算机上安装<code>Xcode</code>，那么就没有必要安装它们。<code>Xcode</code>绑定了所有的命令行工具。<code>OSX10.9</code>
+包含所有的安装包，这些垫片，安装在<code>/ usr/ bin</code>中，可以映射列入在<code>/ usr / bin</code>添加到里面的<code>Xcode</code>相应之一的任何工具。<code>xcrun</code>就是这样垫片之一，它可以让你找到或者在命令行内运行的<code>Xcode</code>任何工具。使用它可从命令行调用在<code>Xcode</code>中的任何工具。</p>
+<h5 id="图1-在终端应用程序运行dwarfdump">图1 在终端应用程序运行<code>dwarfdump</code></h5>
+<pre><code class="language-objective-c">$ xcrun dwarfdump --uuid MySample.app/MySample
+
+UUID: AD019F0E-1318-3F9F-92B6-9F95FBEBBE6F (armv7) MySample.app/MySample
+
+UUID: 4776671F-0C12-3172-AE97-3676E83E3F19 (armv7s) MySample.app/MySample
+
+UUID: BB59C973-06AC-388F-8EC1-FA3701C9E264 (arm64) MySample.app/MySample
+
+</code></pre>
+<h5 id="用终端">用终端</h5>
+<p>如清单2中看到，您可以通过运行<code>xcode-select --install</code>
+命令或试图使用在终端任何其他工具进行安装</p>
+<h5 id="尝试在终端使用git">尝试在终端使用Git</h5>
+<pre><code class="language-objective-c">$ git
+xcode-select: note: no developer tools were found at '/Applications/Xcode.app', requesting install. Choose an option in the dialog to download the command line developer tools.
+</code></pre>
+<blockquote>
+<p>OS X还附带在<code>Xcode-Select</code>，一个是安装在<code>/ usr/ bin</code>命令行工具,它允许你管理活跃的开发者目录下<code>Xcode</code>和其他<code>BSD</code>的开发工具,有关详细信息，请参阅其手册页。</p>
+</blockquote>
+<p>OS X会显示一个对话框，尝试运行在终端的任何工具时，如图1所示.</p>
+<p>选择“<code>Install</code>”来设置命令行工具包的<code>/Library/Developer/CommandLineTools</code>。</p>
+<p><strong>图一 对话框下载工具</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-f9031dfcce085f8f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<p>在开发者网站上使用“<code>Download for Apple Developers</code>”页面</p>
+<p>命令行工具包可供下载的下载地址用于Apple开发者页面,登录你的<code>Apple ID</code>，然后搜索并下载命令行工具包<code>OS X Mavericks</code>，</p>
+<p>如图2。在命令行的工具包下载地址页面</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-21b2dc21f384545d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<blockquote>
+<p>在OS X10.9，软件更新时会通知你的命令行工具的新版本可用于更新。</p>
+</blockquote>
+<p>如何卸载我的命令行工具？</p>
+<ul>
+<li><code>Xcode</code>中包括所有的命令行工具。如果它被安装在系统上，删除卸载你的工具。</li>
+<li>如果你的工具是从<code>Xcode</code>中单独下载，那么他们位于<code>/Library/Developer/CommandLineTools</code>。删除<code>CommandLineTools</code>文件夹将其卸载。</li>
+</ul>
+<h3 id="我有我机器上安装的xcode的多个版本-什么版本的xcode确实目前我使用的命令行工具">我有我机器上安装的<code>Xcode</code>的多个版本。什么版本的<code>Xcode</code>确实目前我使用的命令行工具?</h3>
+<p>要找出正在使用的<code>Xcode</code>的版本用你的工具，请在终端中输入以下命令：</p>
+<pre><code class="language-objective-c">$ xcode-select --print-path
+</code></pre>
+<p>打印目前使用我的工具<code>Xcode</code>的版本</p>
+<pre><code class="language-objective-c">$ xcode-select --print-path
+/Applications/Xcode5.1.1/Xcode.app/Contents/Developer
+</code></pre>
+<h3 id="如何选择xcode中的默认版本用于我的命令行工具">如何选择Xcode中的默认版本用于我的命令行工具？</h3>
+<p>为了选择适合您的命令行工具<code>Xcode</code>默认运行在终端下面的命令：</p>
+<pre><code class="language-objective-c">$ sudo xcode-select -switch &lt;path/to/&gt;Xcode.app
+</code></pre>
+<p>其中，<code>&lt;path/to/&gt;</code>是路径要使用的开发<code>Xcode.app</code>包</p>
+<p>设置<code>Xcode</code>的默认版本</p>
+<pre><code class="language-objective-c">$ sudo xcode-select -switch /Applications/Xcode5.1.1/Xcode.app
+</code></pre>
+<h3 id="我怎么用命令行编译我的工程">我怎么用命令行编译我的工程？</h3>
+<p><code>xcodebuild</code>是一个命令行的工具，可以让你的工程通过<code>projects</code> <code>workspaces</code>进行编译，测试，分析，打包。他可以运行在包含一个或者多个<code>Target</code>的工程上面，或者在<code>projects</code> <code>workspaces</code>包含<code>scheme</code>上面。<code>xcodebuild</code>提供了几个选项，可以在<a href="xcdoc://?url=developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/xcodebuild.1.html">Main Page</a>看到这些。默认情况下,<code>xcodebuild</code>会保存和输出在<code>Xcode</code>的<a href="xcdoc://?url=developer.apple.com/library/ios/recipes/xcode_help-locations_preferences/_index.html">本地定义的面板</a>里面。</p>
+<p>请观看下面<code>xcodebuild</code>运用的各种用法。请确保终端运行在<code>projects</code> <code>workspaces</code>目录,然后运行下面命令。</p>
+<p>列出所有的<code>Target</code>,编译你工程的配置和<code>schemes</code>。在命令行打印下面的命令。</p>
+<pre><code class="language-objective-c">xcodebuild -list -project &lt;your_project_name&gt;.xcodeproj
+</code></pre>
+<p><code>&lt;your_project_name&gt;</code>是你工程的名称。</p>
+<p>图5 列出你工程所有的信息</p>
+<pre><code class="language-objective-c">$ cd /Users/username/Desktop/MyApplication
+$ xcodebuild -list -project MyApplication.xcodeproj
+Information about project &quot;MyApplication&quot;:
+    Targets:
+        MyMacApp
+        MyMacAppTests
+        MyiOSApp
+        MyiOSAppTests
+ 
+    Build Configurations:
+        Debug
+        Release
+ 
+    If no build configuration is specified and -scheme is not passed then &quot;Release&quot; is used.
+ 
+    Schemes:
+        MyMacApp
+        MyiOSApp
+</code></pre>
+<p>可以运行下面的命令去编译你工程一个<code>scheme</code></p>
+<pre><code class="language-objective-c">xcodebuild -scheme &lt;your_scheme_name&gt; build
+</code></pre>
+<p><code>&lt;your_scheme_name&gt;</code>是你选择特定的编译和执行的一个<code>scheme</code></p>
+<p>图6 编译<code>MyiOSApp</code>scheme</p>
+<pre><code class="language-objective-c">$ xcodebuild -scheme MyiOSApp build
+xcodebuild -scheme MyiOSApp
+=== BUILD TARGET MyiOSApp OF PROJECT MyApplication WITH CONFIGURATION Debug ===
+</code></pre>
+<p><code>xcodebuild</code>还有其他执行<code>scheme</code>的编译命令，比如<code>build</code>，<code>analyze</code>，<code>analyze</code>。如图7所示，没有任何的方法，<code>xcodebuild</code>将会使用默认的<code>build</code>命令。</p>
+<p>通过<code>configuration</code>文件编译你的工程，运行下面的命令。</p>
+<pre><code class="language-objective-c">xcodebuild -target &lt;your_target_name&gt; -xcconfig &lt;your_configuration_file&gt;.xcconfig
+</code></pre>
+<p><code>&lt;your_target_name&gt;</code>和<code>&lt;your_configuration_file&gt;</code>分别是你编译<code>Target</code>的名字和你配置文件的名字。</p>
+<p>图7 通过配置文件编译<code>MyiOSApp</code>的target</p>
+<pre><code class="language-objective-c">$ xcodebuild -target MyiOSApp -xcconfig configuration.xcconfig
+Build settings from configuration file 'configuration.xcconfig':
+    GCC_WARN_CHECK_SWITCH_STATEMENTS = YES
+    GCC_WARN_UNDECLARED_SELECTOR = YES
+    IPHONEOS_DEPLOYMENT_TARGET = 6.0
+    PRODUCT_NAME = MyApp
+ 
+=== BUILD TARGET MyiOSApp OF PROJECT MyApplication WITH THE DEFAULT CONFIGURATION (Debug) ===
+</code></pre>
+<p>改变你<code>xcodebuild</code>本地的输出命令，运用<code>SYMROOT</code>(编译你工程的命令)<code>DSTROOT</code>(安装编译本地目录)。分别指定<code>Debug</code>发布，<code>Release</code>发布和<code>.dSYM</code>的本地文件路径。想知道更多的编译设置<a href="xcdoc://?url=developer.apple.com/library/ios/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/">点击这里</a>。</p>
+<p>为<code>MyiOSApp's</code> 设置一个<code>Debug</code>版本的本地路径`</p>
+<pre><code class="language-objective-c">$ xcodebuild -scheme MyiOSApp SYMROOT=&quot;/Users/username/DebugLocation&quot;
+Build settings from command line:
+    SYMROOT = &quot;/Users/username/DebugLocation&quot;
+ 
+=== BUILD TARGET MyiOSApp OF PROJECT MyApplication WITH CONFIGURATION Debug ===
+</code></pre>
+<p>为<code>MyiOSApp's</code> 设置一个<code>Release</code>版本的本地路径</p>
+<pre><code class="language-objective-c">$ xcodebuild -scheme MyiOSApp  DSTROOT=&quot;/Users/username/ReleaseLocation&quot; archive
+Build settings from command line:
+    DSTROOT = /Users/username/ReleaseLocation
+ 
+=== BUILD TARGET MyiOSApp OF PROJECT MyApplication WITH CONFIGURATION Release ===
+</code></pre>
+<h3 id="app有很多的设置选项我怎么为xcodebuild设置一个默认的设置">App有很多的设置选项，我怎么为<code>xcodebuild</code>设置一个默认的设置</h3>
+<p>在<code>Xcode</code>的<code>Info</code>的面板设置一个弹出的菜单，当你编译<code>Target</code>这里设置<code>xcodebuild</code>编译的默认选项。通过下面可以知道怎么用弹出的菜单设置一个默认的<code>xcodebuild</code>选项</p>
+<p>给<code>xcodebuild</code>设置默认编译<code>Debug</code></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-4807ce554c89255f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<p>我怎么通过命令行运行<code>unit</code>测试的命令。</p>
+<p>为了执行<code>unit</code>测试，你可以通过下面的命令。</p>
+<pre><code class="language-objective-c">xcodebuild test -scheme &lt;your_scheme_name&gt; -destination destinationspecifier
+</code></pre>
+<p><code>xcodebuild运用</code>test<code>的编译命令去</code>执行<code>unit</code>测试。这个编译命令必须有一个<code>scheme</code>说明和明确的目的。<code>-destination</code>选项可以让你为<code>unit</code>测试做目的说明。最后<code>-destinationspecifier</code>的是<code>device</code>，<code>simulator</code>或者<code>Mac</code>的说明。它由一组用逗号分隔的key = value键值对，这都依赖于设备，所使用模拟器，或所使用Mac。</p>
+<blockquote>
+<p>可以通过<a href="xcdoc://?url=developer.apple.com/library/ios/featuredarticles/XcodeConcepts/Concept-Schemes.html">Xcode scheme</a>或者<a href="xcdoc://?url=developer.apple.com/library/ios/documentation/ToolsLanguages/Conceptual/Xcode_Overview/RunYourApp/RunYourApp.html">选择一个目标来运行你的应用程序</a>去知道<code>scheme</code>各自目的。</p>
+</blockquote>
+<p>对于<code>OS X</code>的应用<code>destinationspecifier</code>支持的<code>platform</code>和<code>arch</code>所有键值看下面的表格，如果是<code>OS X</code>进行<code>unit</code>测试必须包含这两个键值</p>
+<p><code>OS X</code>支持的键值</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">key</th>
+<th>描述</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">platform</td>
+<td><code>unit</code>测试支持的平台</td>
+<td>OS X</td>
+</tr>
+<tr>
+<td style="text-align:left">arch</td>
+<td><code>unit</code>测试的架构</td>
+<td>i386 or x86_64</td>
+</tr>
+</tbody>
+</table>
+<p>下面的一个例子是测试OSX APP的一个scheme。<code>-destinationspecifier</code>设置为<code>'platform=OS X, arch=x86_64'</code></p>
+<p>测试<code>OS X</code>64位<code>MyMacApp</code>scheme</p>
+<pre><code class="language-objective-c">xcodebuild test -scheme MyMacApp -destination 'platform=OS X, arch=x86_64'
+</code></pre>
+<p>对于IOS的APP，<code>-destinationspecifier</code>支持<code>platform</code>，<code>name</code>，<code>id</code>三种字段。</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>描述</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>platform</td>
+<td><code>unit</code>测试支持的平台</td>
+<td>iOS</td>
+</tr>
+<tr>
+<td>name</td>
+<td><code>unit</code>测试你设备全拼</td>
+<td>可以在<code>Xcode</code>的<code>Devices Organizer</code>找到你设备的名字</td>
+</tr>
+<tr>
+<td>id</td>
+<td><code>unit</code>测试你设备的<code>identifier</code></td>
+<td>查看你设备详细信息可以找到<code>identifier</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>name</code>和<code>id</code>可以<code>platform</code>分别组合，但是必须存在一个，可以看下面的例子</p>
+<p>用<code>id</code>测试<code>MyiOSApp scheme</code></p>
+<pre><code class="language-objective-c">xcodebuild test -scheme MyiOSApp -destination 'platform=iOS,id=998058a1c30d845d0dcec81cd6b901650a0d701c'
+</code></pre>
+<p>用<code>name</code>测试<code>MyiOSApp scheme</code></p>
+<pre><code class="language-objective-c">xcodebuild test -scheme MyiOSApp -destination 'platform=iOS,name=iPod touch'
+</code></pre>
+<p>对于iOS模拟器的APP，<code>-destinationspecifier</code>支持<code>platform</code>，<code>name</code>,<code>OS</code></p>
+<p>下表是iOS模拟器APP支持的所有key</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>描述</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>platform</td>
+<td><code>unit</code>测试支持的平台</td>
+<td>iOS模拟器</td>
+</tr>
+<tr>
+<td>name</td>
+<td><code>unit</code>测试模拟器的名字</td>
+<td>iPhone Retina (3.5-inch), iPhone Retina (4-inch), iPhone Retina (4-inch 64-bit), iPad, iPad Retina, or iPad Retina (64-bit.</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>iOS支持的版本</td>
+<td>一个IOS版本</td>
+</tr>
+</tbody>
+</table>
+<p><code>platform</code>和<code>name</code>是比选的，<code>OS</code>是可选的。</p>
+<p>测试<code>MyiOSApp scheme</code>用<code>iPad</code>模拟器</p>
+<p><code>xcodebuild test -scheme MyiOSApp -destination 'platform=iOS Simulator,name=iPad'</code></p>
+<p>测试<code>MyiOSApp</code>用7.1<code>iPhone Retina (4-inch 64-bit)</code>模拟器</p>
+<pre><code class="language-objective-c">xcodebuild test -scheme MyiOSApp -destination 'platform=iOS Simulator,name=iPhone Retina (4-inch 64-bit),OS=7.1'
+</code></pre>
+<p><code>-destination</code>允许你在多个平台运行同一个<code>unit</code>测试，下面是同时添加多个平台的测试。</p>
+<p>测试<code>MyiOSApp</code>用模拟器和<code>iPod touch</code></p>
+<pre><code class="language-objective-c">xcodebuild test -scheme MyiOSApp -destination 'platform=iOS Simulator,name=iPhone Retina (4-inch 64-bit),OS=7.1' -destination 'platform=iOS,name=iPod touch'
+</code></pre>
+<p><code>xcodebuild</code>会循序渐进的测试你的平台，对于上面会先测试模拟器在测试<code>iPod touch</code></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/xcode" class="tag">
+                    Xcode
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-25-最基本的调试是nslog及debug预处理器宏">
+                  <h3 class="post-title">
+                    最基本的调试是NSLog及DEBUG预处理器宏
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

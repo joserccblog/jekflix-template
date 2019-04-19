@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Swift | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <h2 class="current-tag">标签: Swift</h2>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://joserccblog.github.io/post/2017-11-27-hq移动20170127期周报">
+                  <h2 class="post-title">HQ移动20170127期周报</h2>
+                </a>
+                <div class="post-date">
+                  2017-11-27
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+                <a class="right" href="https://joserccblog.github.io/post/2017-11-27-hq移动20170127期周报">
+                  <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-025136.jpg')">
+                  </div>
+                </a>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://joserccblog.github.io/post/2017-11-27-关于数据进行排序小研究">
+                  <h2 class="post-title">关于数据进行排序小研究</h2>
+                </a>
+                <div class="post-date">
+                  2017-11-27
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+                <a class="right" href="https://joserccblog.github.io/post/2017-11-27-关于数据进行排序小研究">
+                  <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-015154.jpg')">
+                  </div>
+                </a>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://joserccblog.github.io/post/2017-11-27-开始一步一步学习message-app-extension">
+                  <h2 class="post-title">开始一步一步学习Message App Extension</h2>
+                </a>
+                <div class="post-date">
+                  2017-11-27
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+                <a class="right" href="https://joserccblog.github.io/post/2017-11-27-开始一步一步学习message-app-extension">
+                  <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-012032.jpg')">
+                  </div>
+                </a>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://joserccblog.github.io/post/2017-11-27-写了一个swift版本的提示hud-暂时没找到合适的可以用一下">
+                  <h2 class="post-title">写了一个Swift版本的提示HUD 暂时没找到合适的可以用一下</h2>
+                </a>
+                <div class="post-date">
+                  2017-11-27
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+                <a class="right" href="https://joserccblog.github.io/post/2017-11-27-写了一个swift版本的提示hud-暂时没找到合适的可以用一下">
+                  <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-010258.jpg')">
+                  </div>
+                </a>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://joserccblog.github.io/post/2017-11-25-hq移动20170317期周报">
+                  <h2 class="post-title">HQ移动20170317期周报</h2>
+                </a>
+                <div class="post-date">
+                  2017-11-25
+                </div>
+                <div class="post-abstract">
+                  <p>[TOC]</p>
+<h2 id="1-nsassert-和-nscassert的使用">1. <code>NSAssert()</code> 和 <code>NSCAssert()</code>的使用</h2>
+<blockquote>
+<p><code>NSAssert()</code>用于 OC 语法的断言</p>
+<p><code>NSCAssert()</code>用于 C语言语法的断言</p>
+</blockquote>
+<h2 id="2-swift30使用nsnotificationname">2. Swift3.0使用NSNotification.name</h2>
+<pre><code class="language-swift">let kOpenXcodePathNotification = &quot;kOpenXcodePathNotification&quot;
+NotificationCenter.default.post(name: NSNotification.name, object: url)
+</code></pre>
+<p>上面的代码错误 需要用NSNotification.name进行初始化字符串</p>
+<pre><code class="language-swift">let kOpenXcodePathNotification = NSNotification.Name(&quot;kOpenXcodePathNotification&quot;)
+</code></pre>
+
+                </div>
+              </div>
+              
+                <a class="right" href="https://joserccblog.github.io/post/2017-11-25-hq移动20170317期周报">
+                  <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-20.png')">
+                  </div>
+                </a>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://joserccblog.github.io/post/2017-11-25-jekyll-admin-mac-开发纪要-左侧菜单栏">
+                  <h2 class="post-title">Jekyll-Admin-Mac-开发纪要-左侧菜单栏</h2>
+                </a>
+                <div class="post-date">
+                  2017-11-25
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+                <a class="right" href="https://joserccblog.github.io/post/2017-11-25-jekyll-admin-mac-开发纪要-左侧菜单栏">
+                  <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-19.png')">
+                  </div>
+                </a>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://joserccblog.github.io/post/2017-11-25-jekyll-admin-mac-列表">
+                  <h2 class="post-title">Jekyll-Admin-Mac-列表</h2>
+                </a>
+                <div class="post-date">
+                  2017-11-25
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+                <a class="right" href="https://joserccblog.github.io/post/2017-11-25-jekyll-admin-mac-列表">
+                  <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-18.png')">
+                  </div>
+                </a>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://joserccblog.github.io/post/2017-11-25-jekyll-admin-mac-模板处理">
+                  <h2 class="post-title">Jekyll-Admin-Mac-模板处理</h2>
+                </a>
+                <div class="post-date">
+                  2017-11-25
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+                <a class="right" href="https://joserccblog.github.io/post/2017-11-25-jekyll-admin-mac-模板处理">
+                  <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-17.png')">
+                  </div>
+                </a>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://joserccblog.github.io/post/2017-11-25-swift3-0即将强势到来之际,让我们用swift来写接口和web">
+                  <h2 class="post-title">Swift3-0即将强势到来之际,让我们用Swift来写接口和web</h2>
+                </a>
+                <div class="post-date">
+                  2017-11-25
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+                <a class="right" href="https://joserccblog.github.io/post/2017-11-25-swift3-0即将强势到来之际,让我们用swift来写接口和web">
+                  <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-vapor.png')">
+                  </div>
+                </a>
+              
+            </article>
+          
+
+          <div class="pagination-container">
+  
+    <a href="https://joserccblog.github.io/tag/swift/" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
+  
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>GB代码规范 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">GB代码规范</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-023812.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p>GB代码规范</p>
+<h2 id="头文件import的顺序商量">头文件#import的顺序(商量)</h2>
+<blockquote>
+<p>写法模板</p>
+<p>#import &lt;系统库&gt;</p>
+<p>#import &lt;第三方库&gt;</p>
+<p>#import &quot;其他类&quot;</p>
+<p>尽量按照先系统类 第三方类 自己写的类顺序导入 中间不能有空格</p>
+</blockquote>
+<p>建议的写法</p>
+<pre><code class="language-objc">#import &lt;UIKit/UIKit.h&gt;
+#import &lt;Google/Analytics.h&gt;
+#import &quot;GBOrderEmptyView.h&quot;
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">#import &quot;GBOrderEmptyView.h&quot;
+
+#import &lt;UIKit/UIKit.h&gt;
+
+#import &lt;Google/Analytics.h&gt;
+</code></pre>
+<h2 id="class的写法">@Class的写法</h2>
+<blockquote>
+<p>写法模板</p>
+<p>@class class1,class2;</p>
+</blockquote>
+<p>建议的写法</p>
+<pre><code class="language-objc">@class UIView,UIImage;
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">@class UIPress;
+@class UIPressesEvent;
+</code></pre>
+<h2 id="interface的写法">@Interface的写法</h2>
+<blockquote>
+<p>写法模板</p>
+<p>@interface 类名 : 父类  &lt;协议1, 协议2&gt;</p>
+<p>@interface和类名中间一个空格</p>
+<p>类名后紧跟:之后空格加上父类协议之间用,空格分割</p>
+</blockquote>
+<p>建议的写法</p>
+<pre><code class="language-objc">@interface AppDelegate : UIResponder &lt;UIApplicationDelegate, UITableViewDataSource&gt;
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">@interface AppDelegate:UIResponder&lt;UIApplicationDelegate,UITableViewDataSource&gt;
+</code></pre>
+<h2 id="protocol的写法">@protocol的写法</h2>
+<blockquote>
+<p>写法的模板</p>
+<p>@protocol 协议的名称 &lt;协议1, 协议2&gt;</p>
+<p>@potocol和协议的名称有空格 协议的名称和其他协议有空格  其他协议之间有空格</p>
+</blockquote>
+<p>建议的写法</p>
+<pre><code class="language-objc">@protocol UIResponderStandardEditActions &lt;NSObject&gt;
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">@protocol UIResponderStandardEditActions&lt;NSObject&gt;
+</code></pre>
+<h2 id="property的写法">@property的写法</h2>
+<blockquote>
+<p>@property(关键词, 关键词) 类 *变量名称;</p>
+<p>关键词用,空格分割 类前后空格</p>
+</blockquote>
+<p>正确写法</p>
+<pre><code class="language-objc">@property(strong, nonatomic) UIWindow *window;
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">@property (strong, nonatomic) UIWindow * window;
+</code></pre>
+<h2 id="property关键词的使用">@property关键词的使用</h2>
+<blockquote>
+<p>对象 strong</p>
+<p>基本变量assign</p>
+<p>XIB控件 代理 weak</p>
+<p>字符串和block使用 copy</p>
+<p>对于一些弱引用对象使用weak</p>
+<p>对于需要赋值内存对象 copy</p>
+</blockquote>
+<h2 id="h头文件方法写法">h头文件方法写法</h2>
+<blockquote>
+<p>写法模板</p>
+<p>@interface</p>
+<p>方法的参数在一排显示</p>
+<p>方法之间保留一行</p>
+<p>第一个方法和@interface保留空行</p>
+<p>最后一个方法和@end保留空行</p>
+</blockquote>
+<p>建议的写法</p>
+<pre><code class="language-objc">@interface Text : NSObject
+
+- (void)testFunction;
+
+@end
+</code></pre>
+<p>错误写法</p>
+<pre><code class="language-objc">@interface Text : NSObject
+- (void)testFunction;
+@end
+</code></pre>
+<h2 id="声明const的字符串">声明const的字符串</h2>
+<blockquote>
+<p>开头用k标识</p>
+<p>推荐k+模板名字首字母大写+作用名称 防止和其他的重复</p>
+<p>比如:CartViewModel类需要声明更新购物车列表的通知</p>
+<p>kCVMNoticationUpdateCartList</p>
+<p>如果是声明Cell的重用字符</p>
+<p>k+cell的名称+identifier</p>
+<p>比如: GBHomeItemTableViewCell的标识符</p>
+<p>kGBHomeItemTableViewCellIdentifier</p>
+</blockquote>
+<h2 id="const声明字符串位置">Const声明字符串位置</h2>
+<p>如果是需要声明在h里面让其他的类用到需要在h声明m实现</p>
+<p>声明</p>
+<pre><code class="language-objc">UIKIT_EXTERN NSString *const kNoticationUpdateCartList;
+</code></pre>
+<p>实现</p>
+<pre><code class="language-objc">NSString *const kNoticationUpdateCartList = @&quot;kNoticationUpdateCartList&quot;;
+</code></pre>
+<p>对于如果导入是UIKit类就使用UIKIT_EXTERN 如果是Founction使用关键词FOUNDATION_EXTERN</p>
+<p>如果只在本类使用只用写实现 不用写声明。</p>
+<h2 id="方法尽量控制最多五十行">方法尽量控制最多五十行</h2>
+<p>一个方法内部最多五十行 如果超过就精简代码 就分开方法写</p>
+<p>方便之后进行热修复 代码重构</p>
+<h2 id="注释一定要写">注释一定要写</h2>
+<p>自己管理的类一定注释属性用途  方法的用途 参数的说明</p>
+<p>属性如果设置默认值 一定注明默认值是什么</p>
+<p>如果方法内部存在逻辑判断 方法跳转 一定注释判断用法  方法跳转用法</p>
+<p>除了初始化操作</p>
+<p>其他声明变量 赋值 判断 应该注明注释用途</p>
+<h2 id="不允许外接修改的属性要设置readonly">不允许外接修改的属性要设置readonly</h2>
+<p>大家平时设置属性默认是可读可写 但是这样容易对于别人造成误解 以为可以赋值</p>
+<p>对于只能获取的属性 一定写readonly</p>
+<h2 id="头文件引入的其他类-要使用class">头文件引入的其他类 要使用@class</h2>
+<p>头文件引入的类使用@class声明不实用#import引入</p>
+<p>可以防止互相引入 编译失败 不容易查找的BUG</p>
+<p>造成的缺点</p>
+<p>m文件还要#import 其他类调用这个类属性也要#import对应的类</p>
+<p>综合来说宁愿自己多操作 也要防止这种循环引入的BUG的出现</p>
+<h2 id="pragma-mark的使用">pragma mark的使用</h2>
+<p>对于属性的不同作用 比如设置颜色的 设置字体的 设置其他样式 的可以进行分组</p>
+<p>对于方法的作用分类  比如添加功能  删除功能的</p>
+<p>对于其他的代理方法 Get Set方法 Init初始化方法</p>
+<h2 id="bool类型属性的声明">BOOL类型属性的声明</h2>
+<p>属性set不要带is get要带is</p>
+<pre><code class="language-objc">@property(nonatomic, assign, getter=isUserLogin) BOOL userLogin;
+</code></pre>
+<h2 id="方法命名的规范">方法命名的规范</h2>
+<p>不能用init set 开头进行命名</p>
+<p>如果不是写初始化方法不要用init进行开头</p>
+<p>如果不是属性的set方法不要用set作为方法的前缀</p>
+<h2 id="的写法">{}的写法</h2>
+<p>建议的写法</p>
+<pre><code class="language-objc">if(YES) {
+  doing something
+}
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">if(YES)
+{
+  doing something
+}
+</code></pre>
+<h2 id="计算符号两边要有空格">计算符号两边要有空格</h2>
+<p>比如 + - * / =等运算符左右有空格</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">x = 1 + 2;
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">x=1+2;
+</code></pre>
+<h2 id="控件命名的规范">控件命名的规范</h2>
+<p>对于命名一定不要简写 那篇很长的单词 但是一些单词就是简写的除外 比如WTO RMB</p>
+<p>UILabel结尾加上Label;</p>
+<p>UIImageView结尾记上ImageView</p>
+<p>等等让其他的编程人员看名字就知道变量的用法 和属于什么控件</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">@property(nonatomic, strong) UILabel *userNameLabel;
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">@property(nonatomic, strong) UILabel *name;
+</code></pre>
+<h2 id="if判断里面的条件要提取出来">if判断里面的条件要提取出来</h2>
+<p>对于if里面很多的判断条件 要提取出来 方便之后进行断点测试</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">BOOL isTrue = 5 &gt; 3;
+if(isTrue) {
+}
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">if(5 &gt; 3){
+}
+</code></pre>
+<h2 id="enum的定义">enum的定义</h2>
+<p>对于归属所在的enum 要写在对应的类</p>
+<p>我们现在就全部enum放在一个文件 觉得和苹果的编码规范违背 并且分离代码有点麻烦</p>
+<p>使用NS_ENUM进行定义</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">typedef NS_ENUM(NSUInteger, GBAppRunDeveloperMode) {
+    GBAppRunDeveloperModeDebug,
+    GBAppRunDeveloperModePreRelease,
+    GBAppRunDeveloperModeRelease
+};
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">typedef enum {
+    GBAppRunDeveloperModeDebug,
+    GBAppRunDeveloperModePreRelease,
+    GBAppRunDeveloperModeRelease
+}GBAppRunDeveloperMode;
+</code></pre>
+<h2 id="对于初始化一定要使用类对应的初始化方法">对于初始化一定要使用类对应的初始化方法</h2>
+<p>比如UIView的对应初始化方法为</p>
+<pre><code class="language-objc">- (instancetype)initWithFrame:(CGRect)frame
+</code></pre>
+<p>UIViewController对应的为</p>
+<pre><code class="language-objc">- (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil
+</code></pre>
+<p>防止初始化用init new等没经过系统进行设置一些默认的属性 造成bug</p>
+<h2 id="对于声明nsstring-const要对适应对应的模块">对于声明NSString const要对适应对应的模块</h2>
+<p>比如系统的 NSNotificationName</p>
+<pre><code class="language-objc">typedef NSString *NSNotificationName NS_EXTENSIBLE_STRING_ENUM;
+</code></pre>
+<p>建议的写法</p>
+<pre><code class="language-objc">typedef NSString *NSStringConfigProjectName;
+FOUNDATION_EXPORT NSStringConfigProjectName const kConfigProjectPluginDebugBaseUrlString;
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">FOUNDATION_EXPORT NSString *const kConfigProjectPluginDebugBaseUrlString;
+</code></pre>
+<h2 id="命名的一些推荐关键词">命名的一些推荐关键词</h2>
+<p>steup with cart buy等等待完善</p>
+<h2 id="对于define宏命名">对于#define宏命名</h2>
+<p>单词全部的大写 单词之间用_分割</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">#define NS_AVAILABLE_IOS(_ios) CF_AVAILABLE_IOS(_ios)
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">#define NSAvailableIos(_ios) CF_AVAILABLE_IOS(_ios)
+</code></pre>
+<h2 id="对象调用方法要留空格">对象调用方法要留空格</h2>
+<p>建议的写法</p>
+<pre><code class="language-objc">[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds]
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">[[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds]
+</code></pre>
+<h2 id="对于只在m内部声明的const-需要添加static">对于只在m内部声明的const 需要添加static</h2>
+<p>这个我觉得可以不加 但是无法看到苹果的实现 所以不知道苹果的规范怎么写的</p>
+<p>建议写法</p>
+<pre><code class="language-objc">static NSStringInitCheckManger const KGoogleServerTestKey = @&quot;&quot;
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">NSStringInitCheckManger const KGoogleServerTestKey = @&quot;&quot;
+</code></pre>
+<h2 id="对于局部的变量尽量的初始化">对于局部的变量尽量的初始化</h2>
+<p>局部的变量要初始化 属性有默认的值 所以我们不必须对于属性进行初始化</p>
+<p>我之前遇到的一个BUG就是int类型没有初始化给我默认Nan造成崩溃</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">int index = 0;
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">int index;
+</code></pre>
+<blockquote>
+<p>对于一些对象判断是否赋值可以不进行初始化  但是对于一定不会为nil要进行初始化</p>
+</blockquote>
+<h2 id="变量名的规范">变量名的规范</h2>
+<p>一定要使用驼峰的命名</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">UNUserNotificationCenter *unCenter = [UNUserNotificationCenter currentNotificationCenter];
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">UNUserNotificationCenter *uncenter = [UNUserNotificationCenter currentNotificationCenter];
+</code></pre>
+<h2 id="对于属性的赋值">对于属性的赋值</h2>
+<p>不要直接调用set方法</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">unCenter.delegate = self;
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">[unCenter setDelegate:self];
+</code></pre>
+<h2 id="对于ns_options类型多个值用连接不能用">对于NS_OPTIONS类型多个值用|连接不能用+</h2>
+<p>建议的写法</p>
+<pre><code class="language-objc">UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">UNAuthorizationOptionAlert+UNAuthorizationOptionBadge+UNAuthorizationOptionSound
+</code></pre>
+<h2 id="block的命名规范">block的命名规范</h2>
+<p>之前研究过很多的第三方的命名 对于苹果官方的没找到</p>
+<p>有CallBack结尾 Complete结尾 Block结尾 还有CompletionHandle结尾的</p>
+<p>我看到苹果很多的结尾都是用CompletionHandle结尾</p>
+<p>大部分命名是Block我们按照Block命名</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">typedef void(DidUpdateViewCompletionHandle)(void)
+</code></pre>
+<p>错误写法</p>
+<pre><code class="language-objc">typedef void(DidUpdateViewCallBack)
+</code></pre>
+<h2 id="使用nsuserdefaults要先创建">使用NSUserDefaults要先创建</h2>
+<p>因为我们用到NSUserDefaults无非是保存和读取 事先的创建一个对象 可以精简代码</p>
+<p>当执行方法很多 用变量替换</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+[userDefault setDouble:CFAbsoluteTimeGetCurrent() forKey:@&quot;AppStartTime&quot;];
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">[[NSUserDefaults standardUserDefaults] setDouble:CFAbsoluteTimeGetCurrent() forKey:@&quot;AppStartTime&quot;]
+</code></pre>
+<h2 id="尽量少在initialize-load方法做一些初始化的事情">尽量少在initialize load方法做一些初始化的事情</h2>
+<p>影响程序的启动</p>
+<p>建议的做法</p>
+<pre><code class="language-objc">- (void)viewDidLoad {
+    [super viewDidLoad];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : GBCOLOR(153, 153, 153, 1.0)} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:                                                         @{NSForegroundColorAttributeName : GBCOLOR(255, 129, 55, 1.0)} forState:UIControlStateSelected];
+ }
+</code></pre>
+<p>不建议的做法</p>
+<pre><code class="language-objc">+ (void)initialize {
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : GBCOLOR(153, 153, 153, 1.0)} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:                                                         @{NSForegroundColorAttributeName : GBCOLOR(255, 129, 55, 1.0)} forState:UIControlStateSelected];
+}
+</code></pre>
+<h2 id="通知的移除">通知的移除</h2>
+<p>通知在dealloc要使用移除对象监听的方法</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:name1 object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:name2 object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:name3 object:nil];
+}
+</code></pre>
+<h2 id="判断不要放在一行">判断不要放在一行</h2>
+<p>判断放在一行也是可以的 但是我们还是要求正规一些 毕竟注明Apple的goto BUG</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">if (!self.startPagesListInfo) {
+  return ;
+}
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">if (!self.startPagesListInfo) return ;
+</code></pre>
+<h2 id="对于我们取值和存值的key要定义一下">对于我们取值和存值的key要定义一下</h2>
+<p>定义一下key 方便我们使用 并且方便之后改名字</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">NSString startLoadString = @&quot;startLoad&quot;;
+NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+[userDefault objectForKey:startLoadString]
+[userDefault setObject:@() forKey:startLoadString]
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+[userDefault objectForKey:@&quot;startLoad&quot;]
+[userDefault setObject:@() forKey:@&quot;startLoad&quot;]
+</code></pre>
+<h2 id="方法的参数连接不能有空格">方法的参数连接不能有空格</h2>
+<p>建议的写法</p>
+<pre><code class="language-objc">- (BOOL)judgeStartLoadPageInTimeCurrentWithModel:(StartPageModel *)obj
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">- (BOOL)judgeStartLoadPageInTimeCurrentWithModel : (StartPageModel *)obj;
+</code></pre>
+<h2 id="对于block的循环引用使用weakify-和strongify">对于block的循环引用使用weakify 和strongify</h2>
+<p>建议的写法</p>
+<pre><code class="language-objc">@weakify(self);
+[@[] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+  @strongify(self);
+}];
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">__weak typeof(self) weakSelf = self;
+[@[] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    __strong typeof(weakSelf) strongSelf = weakSelf;
+}];
+</code></pre>
+<h2 id="布局和设置约束的方法选择">布局和设置约束的方法选择</h2>
+<p>可以实现GBInitViewProtocol协议 执行对应的方法</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">#pragma mark - &lt;GBInitViewProtocol&gt;
+- (void)gbInitView {
+    self.backgroundColor = GBCOLOR_WHITE;
+    [self addSubview:self.loadImageView];
+}
+
+- (void)gbAutoLayoutView {
+    [self.loadImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self).insets(UIEdgeInsetsZero);
+    }];
+}
+</code></pre>
+<p>有利于其他人很方便查找当前界面布局和添加试图的位置</p>
+<h2 id="属性要尽量使用懒加载">属性要尽量使用懒加载</h2>
+<p>我们一个界面有很多控件 利用懒加载可以美化代码</p>
+<p>所有的懒加载放在Getter的mark的下面</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">#pragma mark - getter
+- (UIImageView *)loadImageView {
+    if (!_loadImageView) {
+        _loadImageView = [[UIImageView alloc] init];
+        _loadImageView.image = [self imageWithScreen];
+        _loadImageView.contentMode = UIViewContentModeScaleAspectFill;
+        _loadImageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loadImageTouchAction)];
+        [_loadImageView addGestureRecognizer:tap];
+    }
+    return _loadImageView;
+}
+</code></pre>
+<h2 id="推荐的界面框架">推荐的界面框架</h2>
+<p>所有界面的控件元素独立到另外的UIView</p>
+<p>UIViewController只负责跳转界面</p>
+<p>新建UIView负责界面的显示</p>
+<p>VIewModel负责数据的请求和解析</p>
+<p>APi负责请求</p>
+<p>model负责后台数据解析</p>
+<p>other 负责样式和其他处理</p>
+<h2 id="多使用字面量">多使用字面量</h2>
+<p>字符串 @&quot;&quot;</p>
+<pre><code class="language-objc">NSString *string = @&quot;string&quot;;
+</code></pre>
+<p>NSNumber @()</p>
+<pre><code class="language-objc">NSNumber *number = @(1);
+</code></pre>
+<p>字典 @{}</p>
+<pre><code class="language-objc">NSDictionary *dictionary = @{@&quot;name&quot;:@&quot;123&quot;};
+</code></pre>
+<p>数组 @[]</p>
+<pre><code class="language-objc">NSArray *array = @[@&quot;321231&quot;,@&quot;123&quot;];
+</code></pre>
+<p>字典和数组的取值和存值</p>
+<h2 id="多用类型常量-少用define">多用类型常量 少用#define</h2>
+<p>建议的写法</p>
+<pre><code class="language-objc">static const NSTimeInterval kAnimationDuration = 0.3;
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">#define ANIMATION_DURATION 0.3
+</code></pre>
+<h2 id="对于一些状态-选项的使用枚举">对于一些状态 选项的使用枚举</h2>
+<p>尽量少用根据数字判断状态少用字符串 数字判断状态</p>
+<blockquote>
+<p>建议的写法</p>
+</blockquote>
+<pre><code class="language-objc">typedef NS_ENUM(NSUInteger, HomeViewState) {
+  	HomeViewStateNoData,
+  	HomeViewStateFailure,
+  	HomeViewStateItemList,
+  	HomeViewStateBannerList
+};
+if(state == HomeViewStateNoData){
+  // 显示没数据
+}else if(state == HomeViewStateFailure) {
+  // 显示请求错误
+}else if(state == HomeViewStateItemList) {
+  // 显示商品的列表
+}else if(state == HomeViewStateBannerList) {
+  // 显示banner列表
+}
+</code></pre>
+<blockquote>
+<p>不建议的写法</p>
+</blockquote>
+<pre><code class="language-objc">if(state == 0){
+  // 显示没数据
+}else if(state == 1) {
+  // 显示请求错误
+}else if(state == 2) {
+  // 显示商品的列表
+}else if(state == 3) {
+  // 显示banner列表
+}
+</code></pre>
+<h2 id="多使用类族">多使用类族</h2>
+<p>比如我们需要创建一个类 有多个样式</p>
+<pre><code class="language-objc">typedef NS_ENUM(NSUInteger, ZHCustomViewStyle) {
+    ZHCustomViewStyleRed,
+    ZHCustomViewStyleWhite
+};
+
+@interface ZHCustomView : UIView
+
++ (instancetype)customWithStyle:(ZHCustomViewStyle)style;
+
+@end
+  
+#import &quot;ZHCustomView.h&quot;
+#import &quot;ZHCustomRedView.h&quot;
+#import &quot;ZHCustomWhiteView.h&quot;
+
+@implementation ZHCustomView
+
++ (instancetype)customWithStyle:(ZHCustomViewStyle)style {
+    switch (style) {
+        case ZHCustomViewStyleRed: {
+            return [[ZHCustomRedView alloc] initWithFrame:CGRectZero];
+        }
+            break;
+        case ZHCustomViewStyleWhite:{
+            return [[ZHCustomWhiteView alloc] initWithFrame:CGRectZero];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+@end
+</code></pre>
+<p>ZHCustomRedView</p>
+<pre><code class="language-objc">#import &quot;ZHCustomView.h&quot;
+
+@interface ZHCustomRedView : ZHCustomView
+
+@end
+
+#import &quot;ZHCustomRedView.h&quot;
+
+@implementation ZHCustomRedView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor redColor];
+    }
+    return self;
+}
+
+@end
+</code></pre>
+<p>ZHCustomWhiteView</p>
+<pre><code class="language-objc">#import &quot;ZHCustomView.h&quot;
+
+@interface ZHCustomWhiteView : ZHCustomView
+
+@end
+
+#import &quot;ZHCustomWhiteView.h&quot;
+
+@implementation ZHCustomWhiteView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor whiteColor];
+    }
+    return self;
+}
+
+@end
+</code></pre>
+<h2 id="类名加上前缀避免冲突">类名加上前缀避免冲突</h2>
+<p>因为团队的合作 可能会出现大家想到一样的名字或者添加第三方库引入和第三方库名字一样</p>
+<p>尽量加上前缀。</p>
+<p>如果只针对工程就使用工程的缩写</p>
+<p>比如自己个人的第三方库就加上自己名字或者昵称的缩写</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">@interface GBHomeViewController : NSObject
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">@interface HomeViewController : NSObject
+</code></pre>
+<h2 id="提供全能的初始化方法">提供全能的初始化方法</h2>
+<p>对于初始化参数有很多 但是不是一定全部使用的可以提供多个初始化方法</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">- (instancetype)initWithFrame:(CGRect)frame;
+- (instancetype)initWithPerson:(GBPersonModel *)person;
+- (instancetype)initWithFrame:(CGRect)frame person:(GBPersonModel *)person;
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">- (instancetype)initWithFrame:(CGRect)frame person:(GBPersonModel *)person;
+</code></pre>
+<h2 id="实现description方便调试">实现Description方便调试</h2>
+<p>这个不推荐自己手写 可以使用Xcode插件自动生成 属性越多会加重手写代码的长度</p>
+<h2 id="尽可能使用不可变的对象">尽可能使用不可变的对象</h2>
+<p>对于OC存在很多可变的对象 比如NSMutableString NSMutableArray NSMutableDictionary等等</p>
+<p>对于一些不允许改变的直接使用不可变对象</p>
+<p>可以节省对象开支 还可以防止别人修改数据造成bug</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">NSArray *sexList = @[@&quot;男&quot;,@&quot;女&quot;];
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">NSMutableArray *sexList = [NSMutableArray arrayWithArray:@[@&quot;男&quot;,@&quot;女&quot;]]
+</code></pre>
+<h2 id="如果建议的使用block和代理">如果建议的使用Block和代理</h2>
+<p>我觉得代理可以用在写控件需要数据源赋值 和一些事件回调的时候使用</p>
+<p>我查阅了苹果的block基本上都是执行一个时间 需要异步回调就使用block</p>
+<p>如果没有主动执行动作 而是监听异步的回调 建议用代理</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">TestName *name = [[TestName alloc] init];
+name.delegate = self;
+[name searchText:text completionHandle:^(BOOL isExit) {
+  
+};
+
+- (void)name:(TestName)name resultTextHaveChanged:(NSString *)text {
+  
+}
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">TestName *name = [[TestName alloc] init];
+[name searchText:text completionHandle:^(BOOL isExit) {
+  
+};
+name.resultTextHaveChanged = ^(NSString *text) {
+  
+};
+</code></pre>
+<h2 id="记得dealloc记得释放">记得Dealloc记得释放</h2>
+<p>记得在Dealloc释放注册的通知和KVO的监听</p>
+<p>不释放容易造成内存释放崩溃</p>
+<h2 id="养成习惯把按照方法功能到分类里面">养成习惯把按照方法功能到分类里面</h2>
+<p>对于一些有按照功能类型的方法划分在一个分类里面 分类和之前类写在同一个文件</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">@interface GBPerson : NSObject
+@end
+  
+@interface GBPerson (Friend)
+// 朋友
+- (void)addFriend:(GBPenson *)friend;
+- (void)deleteFriend:(GBPenson *)friend;
+@end
+@interface GBPerson (Play)
+  // 娱乐
+- (void)playSound;
+- (void)playGame;
+@end
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">@interface GBPerson : NSObject
+
+// 朋友
+- (void)addFriend:(GBPenson *)friend;
+- (void)deleteFriend:(GBPenson *)friend;
+
+// 娱乐
+- (void)playSound;
+- (void)playGame;
+</code></pre>
+<h2 id="为第三方类添加分类添加前缀">为第三方类添加分类添加前缀</h2>
+<p>比如为系统UIView添加分类Add的添加前缀</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">@interface UIView (GB_Add) 
+- (void)gb_addCustomView:(CustomView *)customView;
+@end
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">@interface UIView (Add)
+- (void)addCustomView:(CustomView *)customView;
+@end
+</code></pre>
+<h2 id="尽量少在分类里面使用属性">尽量少在分类里面使用属性</h2>
+<p>假设我们分类有一个只读的字段 我们可以不使用属性 可以使用方法</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">@interface UIView (Add)
+- (NSArray *)customViews;
+@end
+  
+@implementation UIView (Add) 
+- (NSArray *)customViews {
+  return @[customView1,customView2];
+}
+@end
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">@interface UIView (Add)
+@property(nonatomic, strong, readonly) NSArray *customViews;
+@end
+  
+@implementation UIView (Add) 
+- (NSArray *)customViews {
+  return @[customView1,customView2];
+}
+@end
+</code></pre>
+<h2 id="非要在自己类的分类添加读写的属性-可以用语法糖">非要在自己类的分类添加读写的属性 可以用语法糖</h2>
+<p>可以利用主类的私有变量</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">@interface ZHCustomView : UIView
+
+@end
+@interface ZHCustomView (Add)
+
+@property(nonatomic, copy) NSString *name;
+
+@end
+</code></pre>
+<pre><code class="language-objc">#import &quot;ZHCustomView.h&quot;
+@implementation ZHCustomView {
+    NSString *_name;
+}
+@end
+
+@implementation ZHCustomView (Add)
+
+- (void)setName:(NSString *)name {
+    _name = name;
+}
+- (NSString *)name {
+    return _name;
+}
+
+@end
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">- (void)setName:(NSString *)name {
+    objc_setAssociatedObject(self, &quot;name&quot;, name, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+- (NSString *)name {
+    return objc_getAssociatedObject(self, &quot;name&quot;);
+}
+</code></pre>
+<p>对于给第三方和系统的类非要添加属性 可以使用runtime。</p>
+<h2 id="对于一些自己不确定的可以使用try-catch">对于一些自己不确定的可以使用try catch</h2>
+<p>对于不知道后台返回什么类型的 可以使用try catch</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">int index = 0;
+@try {
+  NSArray *array = obj[@&quot;list&quot;];
+  index = [array.firstObject intValue];
+}
+@catch {}
+</code></pre>
+<p>因为OC是运行时语法 可能array不一定是NSArray类型的</p>
+<p>不建议的写法</p>
+<pre><code class="language-objc">int index = 0;
+NSArray *array = obj[@&quot;list&quot;];
+if(array.count &gt; 0) {
+  index = [array.firstObject intValue];
+}
+</code></pre>
+<p>如果后台返回list为字段 这段代码就崩溃了 可以使用try catch也可以用Model库 或者自己添加判断</p>
+<h2 id="使用dispatch_once来创建单例">使用dispatch_once来创建单例</h2>
+<p>建议的写法</p>
+<pre><code class="language-objc">+ (instancetype)sharedInstance {
+    static ZHCustomView* instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&amp;onceToken, ^{
+        instance = [ZHCustomView new];
+    });
+
+    return instance;
+}
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">+ (instancetype)sharedInstance {
+    static ZHCustomView* instance = nil;
+    if(!instance) {
+      instance = [[ZHCustomView alloc] initWithFrame:CGRectZero];
+    }
+    return instance;
+}
+</code></pre>
+<h2 id="便利的写法">便利的写法</h2>
+<p>如果只需要便利数组和字典的写法用for in</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">for(NSString *name in names) {
+  //
+}
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">for(int i = 0; i &lt; names.lenght ; i ++) {
+  NSString *name = names[i];
+}
+</code></pre>
+<p>需要便利字典和数组的内容 并且需要索引用enumerator</p>
+<p>建议的写法</p>
+<pre><code class="language-objc">[names enumerateObjectsUsingBlock:^(NSString * _Nonnull name, NSUInteger idx, BOOL * _Nonnull stop) {
+
+}];
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">for(int i = 0; i &lt; names.lenght ; i ++) {
+  NSString *name = names[i];
+}
+</code></pre>
+<h2 id="如果想进行缓存使用nscache不要使用nsdictionary进行缓存">如果想进行缓存使用NSCache不要使用NSDictionary进行缓存</h2>
+<p>建议的写法</p>
+<pre><code class="language-objc">NSCache *cache = [[NSCache alloc] init];
+[cache setObject:object forKey:key];
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+[dictionary setObject:object forKey:key];
+</code></pre>
+<h2 id="尤达表达式">尤达表达式</h2>
+<p><strong>推荐:</strong></p>
+<pre><code>if ([myValue isEqual:@42]) { ...
+</code></pre>
+<p><strong>不推荐:</strong></p>
+<pre><code>if ([@42 isEqual:myValue]) { ...
+</code></pre>
+<h2 id="nil-和-bool-检查">nil 和 BOOL 检查</h2>
+<p>推荐</p>
+<pre><code class="language-objc">if(name) {
+  
+}
+if (isMyFriend) {
+  
+}
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">if(name != nil) {
+  
+}
+if(isMyFriend == YES) {
+  
+}
+</code></pre>
+<h2 id="黄金大道">黄金大道</h2>
+<p>建议的写法</p>
+<pre><code class="language-objc">if(name.lenght &lt;= 0) {
+  return;
+}
+if(![name isEqualToString:@&quot;zhanghang&quot;]) {
+  return;
+}
+.....
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">if(name.lenght &gt; 0) {
+  if([name isEqualToString:@&quot;zhanghang&quot;]) {
+    ....
+  }
+}
+</code></pre>
+<h2 id="复杂的表达式">复杂的表达式</h2>
+<p>建议的写法</p>
+<pre><code class="language-objc">BOOL nameContainsSwift  = [sessionName containsString:@&quot;Swift&quot;];
+BOOL isCurrentYear      = [sessionDateCompontents year] == 2014;
+BOOL isSwiftSession     = nameContainsSwift &amp;&amp; isCurrentYear;
+
+if (isSwiftSession) {
+    // Do something very cool
+}
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">if ([sessionName containsString:@&quot;Swift&quot;] &amp;&amp; [sessionDateCompontents year] == 2014) {
+    // Do something very cool
+}
+</code></pre>
+<h2 id="三元运算符">三元运算符</h2>
+<p><strong>推荐:</strong></p>
+<pre><code class="language-objc">result = a &gt; b ? x : y;
+</code></pre>
+<p><strong>不推荐:</strong></p>
+<pre><code class="language-objc">result = a &gt; b ? x = c &gt; d ? c : d : y;
+</code></pre>
+<p>当三元运算符的第二个参数（if 分支）返回和条件语句中已经检查的对象一样的对象的时候，下面的表达方式更灵巧：</p>
+<p><strong>推荐:</strong></p>
+<pre><code class="language-objc">result = object ? : [self createObject];
+</code></pre>
+<p><strong>不推荐:</strong></p>
+<pre><code class="language-objc">result = object ? object : [self createObject];
+</code></pre>
+<h2 id="错误处理">错误处理</h2>
+<p>有些方法通通过参数返回 error 的引用，使用这样的方法时应当检查方法的返回值，而非 error 的引用。</p>
+<p><strong>推荐:</strong></p>
+<pre><code class="language-objc">NSError *error = nil;
+if (![self trySomethingWithError:&amp;error]) {
+    // Handle Error
+}
+</code></pre>
+<p>此外，一些苹果的 API 在成功的情况下会对 error 参数（如果它非 NULL）写入垃圾值（garbage values），所以如果检查 error 的值可能导致错误 （甚至崩溃）。</p>
+<h2 id="数组和字典最好指定元素的类型">数组和字典最好指定元素的类型</h2>
+<p>建议的写法</p>
+<pre><code class="language-objc">NSArray&lt;NSString *&gt; *names = [NSArray array];
+</code></pre>
+<p>不建议的写法</p>
+<pre><code class="language-objc">NSArray *names = [NSArray array];
+</code></pre>
+<h2 id="数组和字典的元素垂直写">数组和字典的元素垂直写</h2>
+<p>建议的写法</p>
+<pre><code class="language-objc">NSArray *array = @[
+  					@&quot;a&quot;,
+  					@&quot;b&quot;,
+  					@&quot;b&quot;
+					];
+NSDictionary *dictionary = @{
+							@&quot;a&quot;:@&quot;&quot;,
+							@&quot;b&quot;:@&quot;&quot;,
+							@&quot;c&quot;:@&quot;&quot;
+                            };
+</code></pre>
+<p>不建议写法</p>
+<pre><code class="language-objc">NSArray *array = @[@&quot;a&quot;,@&quot;b&quot;,@&quot;b&quot;];
+NSDictionary *dictionary = @{@&quot;a&quot;:@&quot;&quot;,@&quot;b&quot;:@&quot;&quot;,@&quot;c&quot;:@&quot;&quot;};
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-关于搜索出来的内容根据权重进行排序">
+                  <h3 class="post-title">
+                    关于搜索出来的内容根据权重进行排序
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>我和flow.ci的第一次亲密接触 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">我和flow.ci的第一次亲密接触</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-054900.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <h2 id="我和flowci的第一次亲密接触">我和flow.ci的第一次亲密接触</h2>
+<p>这不是第一次听说**<a href="https://flow.ci">flow.ci</a>**,记得当时<a href="https://fir.im/"><strong>fir.im</strong></a>新出这个服务的时候，我也是心情十分激动的去尝试，结果是只支持安卓，我可以iOS的程序员呀！</p>
+<p>这次flow.ci已经支持iOS，并且支持Objective-C和Swift语言了，我已经迫不及待的想要尝试了。</p>
+<p>让我们开始吧！</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-c7479a1da5061e4a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这是我们登录之后看到的界面，还是fir.im一贯的设计风格。</p>
+<p>我们点击创建项目按钮来新建一个项目。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-7dbf90d403d2dfef.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-722ef316f87ae650.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>没想到flow.ci支持这么多的仓库，我平时用的都是github，我们就绑定我自己的github。绑定这一步略过。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-d10e7525fd90baf6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>授权之后我们就可以在右侧看到我们的工程列表了。</p>
+<p>我们新建一个工程 <code>FlowCiDemo</code>存放在github上面用于我们进行学习。</p>
+<blockquote>
+<p>搜索按钮是存在的就在仓库最上面</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-2be2729567aad368.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</blockquote>
+<p>找到我们的工程点击就可以开始创建了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-9f3bb72347fd1861.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们选择Xcode8进行创建，我平时现在都是用着Xcode8.3了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-ae41f61973c11e8f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>构建我们可以选择当push代码的时候进行构建还可以定时去构建，我们选择默认的。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-891d0fa8167a4638.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>对于初始化，看到这些参数一脸蒙蔽，我们也是选择默认的。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-25b93dafb1e2dad1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>Git克隆我们依然选择默认的参数。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-4b64aeb371d12880.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>缓存我们还没有用到cocoapods，我们还是选择默认。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-d8e179e65a1319c8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>安装也是使用默认的。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-51799147296a1885.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>编译条件既然是选填，应该系统选择是默认的。我们也不填写。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-84bfd024896f8c5b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>打包参数我们暂时也不理会。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-d99c718accfeebe6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>完成后的参数我们可以填写服务通知测试等。我们就让默认通知我们刚才的邮箱地址。</p>
+<p>我们返回到构建列表。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-d7e0375f47b3eea3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们点击手动构建。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-34f9a6a576bde400.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>显示0个分之，点击按钮会失败。不知道怎么回事？</p>
+<p>我们前往github。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-d156074c6ca88a89.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>原来是我们没有把代码推上去，我们推上去再试一次。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-dd16469e3b0cacc4.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们再次刷新，已经有数据了，我们点击构建按钮。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-f6833e5425ee6be8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>点击我们可以看到详细的进度。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-b80ab44525b980c2.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>很可惜我们第一次就编译失败了，但是提示很好说让我们把开启分享。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-580bb1dceea3050b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-4c279225c194d12f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-a9c43a0a08c7f978.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们把本地的代码再次推送到github再次试一下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-032bad41f9a5092d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们刚推上去，就看到就构建了，为fir.im的服务点赞。</p>
+<p>我们点击了初始化才展开构建，不知道是设计这样还是BUG。</p>
+<blockquote>
+<p>需要启动 Mac 机器 所以导致有点慢。</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-7c423070bec7040e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>很不幸，这次又编译失败了。表示很尴尬，这次的报错信息找不到证书。</p>
+<p>毕竟我们打包是需要发给测试人员的，我们新建一个我们的证书，上传一下看看行不行。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-e4ba9642ce2255d1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们前往设置，别问我为什么知道在设置，猜的。</p>
+<p>我们需要上传描述文件和p12密匙，如果不知道还可前往这一片教程<a href="https://docs.flow.ci/zh/upload_certificate_and_provisioning_profiles.html">查看</a></p>
+<p>这个十分人性化，不错。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-bc9a7e1d03ec521d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>选择我们刚才新生成的描述文件。</p>
+<p>我们上传描述文件和P12之后再次进行编译。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-0bc427e8a3e1be69.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>到这一步我们终于全部可以通过了。</p>
+<p>我们前往我们的邮箱看看收到安装包没有。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-49eaec859b8ae926.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们收到编译失败的，竟然没有成功的。原来是我们没有设置编译成功结果。</p>
+<p>我们设置一下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-e55f95d1cc18a019.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>再次编译我们已经可以正常收到邮件了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-e7cf55d716d07364.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="cocoapods">Cocoapods</h2>
+<p>我们集成我们自己库 <a href="https://github.com/josercc/ZHTableViewGroup">ZHTableViewGroup</a>尝试一下。</p>
+<pre><code class="language-ruby">project 'FlowCiDemo.xcodeproj'
+platform :ios, '8.0'
+target 'FlowCiDemo' do
+  pod 'ZHTableViewGroupObjc'
+end
+</code></pre>
+<p>我们更新一下上传到 github 。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-1430e57f702e607f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>自动化构建的时候 会提示安装。</p>
+<p>对于指定版本号，不希望升级的可以参考下面文章</p>
+<p><a href="https://guides.cocoapods.org/using/pod-install-vs-update.html">pod install vs. pod update</a></p>
+<h2 id="flow-ci-插件的安装">Flow Ci 插件的安装</h2>
+<p>点击下面图片中加号按钮可以安装 <strong>Flow Ci</strong> 的插件</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-4d31e534bbbd1649.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>点击任何的加号都可以添加插件。</p>
+<p>但是点击加号的位置就是把服务添加到对应的位置。我们选择在完成之后添加 Fir.im 的发布服务。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-c6135ee4bd635482.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-cdddddf945a7d62f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>可惜只能插入在完成之前。</p>
+<p>我们配置一下 fir.im 插件</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-476de8b9e00ade21.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们再次构建一次</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-76a87f9288781c6b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>显示已经上传成功到 fir.im。</p>
+<p>下面我们就可以打开上面的连接进行下载了。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/zi-dong-hua" class="tag">
+                    自动化
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-关于首页倒计时处理一些细节">
+                  <h3 class="post-title">
+                    关于首页倒计时处理一些细节
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

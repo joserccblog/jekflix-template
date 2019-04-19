@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Jekyll-Admin-Mac-列表 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Jekyll-Admin-Mac-列表</h2>
+            <div class="post-date">2017-11-25</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-18.png')">
+              </div>
+            
+            <div class="post-content">
+              <p>[TOC]</p>
+<h3 id="关于-nstableview的使用">关于 <code>NSTableView</code>的使用</h3>
+<p>接下来我们需要就是做出这个列表数据，我们可以使用 <code>NSTableView</code>来做出这个效果。</p>
+<p>我们拖拽一个 <code>NSTableView</code>放在 <code>BaseListView.xib</code>的试图上面。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-47806461019232f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="DFDA8143-EEE0-43A3-A863-CFCDDCF41B14"></p>
+<p>设置布局如下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-b73a551be372c558.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="C99F8039-E33D-47D0-98EA-459D0AF3E336"></p>
+<h3 id="解决-nstableview的-header在-xib无法正常显示">解决 <code>NSTableView</code>的 <code>Header</code>在 <code>Xib</code>无法正常显示</h3>
+<p>有的时候我们发现 <code>NSTableView</code>在 <code>Xib</code>被隐藏了，但是我们显示 <code>Header</code>的选项是开启的。</p>
+<blockquote>
+<p>我们只要重新勾选 <code>Hader</code>选项即可显示出来。</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-b7fe64c78732c57c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2A43EA90-E3FB-400F-A286-11F990C01A24"></p>
+<p>我们可以看出来我们的列表分为三部分 <code>标题</code> <code>时间</code> <code>操作</code>，我们就设置 <code>NSTableView</code>有 <code>3</code>个 <code>Column</code>。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-9c233a0224b77a52.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="6E7EFC46-9753-4F4A-B497-1CE2C5FCBCD2"></p>
+<p>因为名字的长度是不固定的，我们就设置 <code>NSTableView</code>的第一个 <code>Column</code>的宽度随着 <code>NSTableView</code>的宽度变化。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-748ce37cdd25774c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="69975981-2F29-4E1B-BCD8-165C1D033148"></p>
+<p>我们设置其余的 <code>Column</code>的宽度固定为 <code>100</code>。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-b12e4b5d92163932.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="FE8BFBD3-51D7-42C9-92F1-749290356794"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-be8a3de538a67af3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1804A265-0CAF-40DE-8F1B-7711A4F3E340"></p>
+<p>我们的基本结构已经出现了，现在我们要设置 <code>Header</code>的背景颜色为黑色。</p>
+<p>我们关联一下 <code>Xib</code>上面的 <code>NSTableView</code>控件。</p>
+<h3 id="设置-nstableview的-header背景颜色">设置 <code>NSTableView</code>的 <code>Header</code>背景颜色。</h3>
+<p>参考资料:</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/32666795/how-do-i-override-layout-of-nstableheaderview">How do I override layout of NSTableHeaderView?</a></li>
+</ul>
+<blockquote>
+<p>⛔️这里遇到了一个棘手的问题，如果使用 <code>NSTableHeaderView</code>的子类，在 <code>Draw</code>绘制虽然颜色是设置了，但是标题已经被覆盖掉了。</p>
+<p>如果我们使用下面的方法进行设置的话</p>
+<pre><code class="language-swift">public func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -&gt; NSView? {
+    if let headerCell = tableColumn?.headerCell {
+        headerCell.drawsBackground = true
+        headerCell.backgroundColor = NSColor.black
+    }
+    return nil
+}
+</code></pre>
+<p>如果数据源为0就无法设置,并且还有下面的问题。</p>
+<p>如果就算有数据也是这样的状态。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-31a4273656aa518b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="76FE2C1F-AA2D-4335-AB34-B0236959D216"></p>
+<p>中间有间隙并没有完全的黑掉。</p>
+<p>我们暂时没有找到合适设置背景颜色的方案，我们暂时使用系统自带的。</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-77d3f399abc92708.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1F191849-C907-46C8-B64C-E96BB867D78F"></p>
+<p>展示列表分为三种样式。</p>
+<ul>
+<li>第一种是图标加上文字并且是可以点击的</li>
+<li>第二种是文字只做展示</li>
+<li>第三种是两个按钮</li>
+</ul>
+<p>我们设置 <code>NSTableView</code>的 <code>Cell</code>的高度为 <code>83</code>。</p>
+<p>我们新建一个类 <code>IconTitleTableCellView</code>继承与 <code>NSTableCellView</code>。我们在 <code>IconTitleTableCellView.xib</code>上面拖拽一个 <code>NSView</code>继承于 <code>SideMenuItemView</code>。</p>
+<p>布局如下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-d1b1f247b19a7592.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="E0C1A309-B229-41B0-990B-E4ECED5D0988"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-9fbfcb996deb0c7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="9E630761-F95A-4122-BBA0-6196F851AEA1"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-69e02605f892a1f5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="FC3C5113-C10B-42FD-8554-AF842A147602"></p>
+<p>我们先暂时设置宽度为 <code>100</code>，因为标题不知道长度，所以我们需要动态改变长度。</p>
+<p>为了设置默认的字体颜色，我们设置<code>normalColor</code>为 <code>var</code>的变量。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-c01f79b2a1641bda.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="30CFC0BB-A3E7-4599-A0D5-02F9B82C36BF"></p>
+<h3 id="nsview如何-sizethatfits"><code>NSView</code>如何 <code>sizeThatFits:</code></h3>
+<p>为了让标题显示完全，我们绑定一下设定宽度的约束。</p>
+<pre><code class="language-swift">@IBOutlet weak var itemViewWidthConstraint: NSLayoutConstraint!
+</code></pre>
+<p>我们发现 <code>sizeThatFits</code>并不是 <code>NSView</code>只有 <code>NSControl</code>或者子类才可以使用。但是对于我们的需求已经够了。</p>
+<p>我们给 <code>SideMenuItemView</code>写一个 <code>sizeThatFits</code>方法。</p>
+<pre><code class="language-swift">func sizeThatFits(_ size: NSSize) -&gt; NSSize {
+    let labelSize = self.itemTitle.sizeThatFits(size)
+    let sizeWidth = size.height + 10 + labelSize.width + 10
+    return NSSize(width: sizeWidth, height: size.height)
+}
+</code></pre>
+<p>我们通过计算出 <code>SideMenuItemView</code>的宽度。</p>
+<pre><code class="language-swift">func configurationView() {
+    let configuration = SideMenuItemConfiguration(title: &quot;这是测试标题&quot;, iconHex: &quot;F0F6&quot;, hidden: true, selected: false, normalColor: NSColor(red:0.267, green:0.267, blue:0.267, alpha:1.000))
+    self.itemView.menuItemConfiguration = configuration
+    let size = self.itemView.sizeThatFits(NSSize(width: Int.max, height: 20))
+    self.itemViewWidthConstraint.constant = CGFloat(size.width)
+}
+</code></pre>
+<p>此时我们已经正常可以显示标题了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-5caaa36468c861f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="F1BB28D0-A970-4CC5-BCDA-FD302A0A1E21"></p>
+<h3 id="再次激活-app">再次激活 <code>App</code></h3>
+<p>我们现在的 <code>App</code>运行，假设一个应用遮挡着我们的应用，我们点击 <code>App</code>图标是无法再次显示出来 <code>App</code>面板的。</p>
+<pre><code class="language-swift">class AppDelegate: NSObject, NSApplicationDelegate {
+    
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -&gt; Bool {
+        for window in sender.windows {
+            window.makeKeyAndOrderFront(self)
+        }
+        return true
+    }
+
+}
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-4118109a4a8859d7.gif?imageMogr2/auto-orient/strip" alt="13"></p>
+<p>此时我们已经可以再次点击 <code>App</code>图标让界面显示最前面了。</p>
+<p>我们再创建一个 <code>DateTableCellView</code>继承与 <code>NSTableCellView</code>。</p>
+<p>我们拖拽一个 <code>Label</code>到 <code>DateTableCellView.xib</code>布局设置如下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-67ff3cbddf4dd177.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="D82D8855-6B02-4B37-A27A-FB329FE29B4E"></p>
+<p>我们让 <code>cloumn</code>第二个使用 <code>DateTableCellView</code>。</p>
+<p>我们新建一个类 <code>ActionTableCellView</code>继承于 <code>NSTableCellView</code>。</p>
+<p>我们在 <code>ActionTableCellView.xib</code>上面拖拽一个 <code>NSView</code>继承与 <code>SideMenuItemView</code>。布局设置如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-54ec52519cd0d675.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="8872C43C-B65D-42A2-A6F5-220CE643BECE"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-9f5dc4fdf8686102.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="22DC95EE-D8B2-405F-819A-5158E4D0E592"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-add129e8d451af9f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1CF68D9F-647B-4F5A-94F0-11794CEE3002"></p>
+<p>我们再在右边放置一个按钮，布局如下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-c3e328b364e16f73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="B2AE1F40-E784-4A65-AAE9-EAC2DA474681"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-e6948783918e0b09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="25950EC1-D246-42F1-844C-0D21B62A24A5"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-c8a40e42b343ea77.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="AF0179FB-FFBE-4C2F-9FAE-546C5C017044"></p>
+<p>我们 <code>Column</code>第三个为 <code>ActionTableCellView</code>。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-30639b3e06ae68d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="676001A0-FB2F-4A91-9AD6-57B5120C0F9C"></p>
+<p>我们设置按钮的 <code>Cloumn</code>的宽度为 <code>200</code>。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-d677e2f527af3efe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5353EFD4-E07D-4053-BADB-68D761AB8A43"></p>
+<p>显示效果似乎还是不足，原因是 80的宽度不足以正常的显示出来。</p>
+<p>设置 <code>ActionTableCellView</code>中按钮的宽度都为 <code>100</code>。</p>
+<p>我们给 <code>DateTableCellView</code>连接 <code>label</code>的属性用于设置时间。</p>
+<pre><code class="language-swift">@IBOutlet weak var dateLabel: NSTextField!
+</code></pre>
+<p>我们分别给 <code>ActionTableCellView</code>两个自定义控件设置圆角和背景颜色。</p>
+<pre><code class="language-swift">@IBOutlet weak var deleteItemView: SideMenuItemView!
+@IBOutlet weak var lookItemView: SideMenuItemView!
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-cce11e37c8d746b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="02DC506D-3B0A-49A7-BAF1-4AC5ED6137DC"></p>
+<p>我们的列表的样式已经基本上搭建完毕了。</p>
+<h3 id="请求-jekyll的-post文章的列表">请求 <code>Jekyll</code>的 <code>Post</code>文章的列表。</h3>
+<p><a href="http://sbdoc.cn/share/share.html#594348153c82962eab2af2a3">获取 Post 文章列表请求详情</a>。</p>
+<p>我们新建一个 <code>GetPostListApi</code>类用于获取文章页列表。</p>
+<p>我们新建一个类 <code>PostDetail</code>用于显示文章的信息详情。</p>
+<pre><code class="language-swift">class PostDetail: Mappable {
+  var path:String?
+  var url:String?
+  var id:String?
+  var collection:String?
+  var relativePath:String?
+  var draft:Bool = false
+  var categories:[String] = []
+  var title:String?
+  var date:String?
+  var slug:String?
+  var ext:String?
+  var tags:[String] = []
+  var layout:String?
+  var httpURL:String?
+  var apiURL:String?
+  var name:String?
+  required init?(map: Map) {
+
+  }
+  func mapping(map: Map) {
+      path &lt;- map[&quot;path&quot;]
+      url &lt;- map[&quot;url&quot;]
+      id &lt;- map[&quot;id&quot;]
+      collection &lt;- map[&quot;collection&quot;]
+      relativePath &lt;- map[&quot;relative_path&quot;]
+      draft &lt;- map[&quot;draft&quot;]
+      categories &lt;- map[&quot;categories&quot;]
+      title &lt;- map[&quot;title&quot;]
+      date &lt;- map[&quot;date&quot;]
+      slug &lt;- map[&quot;slug&quot;]
+      ext &lt;- map[&quot;ext&quot;]
+      tags &lt;- map[&quot;tags&quot;]
+      layout &lt;- map[&quot;layout&quot;]
+      httpURL &lt;- map[&quot;http_url&quot;]
+      apiURL &lt;- map[&quot;api_url&quot;]
+      name &lt;- map[&quot;name&quot;]
+  }
+
+}
+</code></pre>
+<p>我没有找到 <a href="https://github.com/Hearst-DD/ObjectMapper/">ObjectMapper</a>直接转成 模型数组的，应该需要自己单独封装添加数组里面，但是却无意发现了这个。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-532f3c1725156800.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="30C53E57-9AE4-43C3-B8E3-E29F9349F8A9"></p>
+<p>官方建议我们使用 <code>AlamofireObjectMapper</code>这个库，看了文档确实比较简单，我们就用这个库替换掉 <code>Alamofire</code>和 <code>ObjectMapper</code>。</p>
+<pre><code class="language-swift">class GetPostListApi {
+    func loadRequest(success:GetPostListApiSuccessCompletionHandle?, failure:GetPostListApiFailureCompletionHandle?) {
+        let URL = &quot;http://localhost:4000/_api/collections/posts/entries&quot;
+        Alamofire.request(URL).responseArray { (response:DataResponse&lt;[PostDetail]&gt;) in
+            if let list = response.value {
+                self.completionHandle(success: success, failure: nil, postList: list, error: nil)
+            } else {
+                self.completionHandle(success: nil, failure: failure, postList: nil, error: response.error)
+            }
+        }
+    }
+    
+    func completionHandle(success:GetPostListApiSuccessCompletionHandle?, failure:GetPostListApiFailureCompletionHandle?, postList:[PostDetail]?, error:Error?) {
+        if let success = success , let postList = postList {
+            success(postList)
+        } else if let failure = failure {
+            failure(error)
+        }
+    }
+
+}
+</code></pre>
+<p>写到这里，我们会发现 <code>GetPostListApi</code>这个类和 <code>GetConfigurationApi</code>有太多的相似代码。我们不妨创建一个 <code>BaseRequestApi</code>的请求子类去掉一些多余的代码。</p>
+<p>我们现在请求的地址是基于 <code>http://localhost:4000/_api/</code>这个地址，大部分的 <code>Jekyll</code>本地都是 <code>4000</code>端口也可能是其他的。</p>
+<p>我们就在 <code>BaseRequestApi</code>定义一个 <code>URL</code>的变量默认为 <code>http://localhost:4000/_api/</code>。</p>
+<p>为了能够请求到数据，我们创建一个发起请求的方法。</p>
+<p>我们发起请求需要完整的请求地址我们新建一个方法传递 <code>http://localhost:4000/_api/</code>的后缀。</p>
+<pre><code class="language-swift">func URLPath() -&gt; String {
+    return &quot;&quot;
+}
+</code></pre>
+<p>我们新建一个方法用于拼接完整的请求地址。</p>
+<pre><code class="language-swift">func URLFullPath() -&gt; String {
+    guard self.URLPath().characters.count &gt; 0 else {
+        return self.URL
+    }
+    return &quot;\(self.URL)/\(self.URLPath())&quot;
+}
+</code></pre>
+<p>当后缀是空字符串的时候我们不拼接。</p>
+<h3 id="关于泛型参数">关于泛型参数</h3>
+<p>对于 <code>泛型参数</code>在 <code>OC</code>和 <code>Swift</code>一直没有明白过来，也一直掌握精髓，到现在都不会用。</p>
+<p>现在要封装请求，对于代理回调应该需要用上 <code>泛型参数</code>,研究一下。</p>
+<p>参考资料:</p>
+<ul>
+<li><a href="http://www.swift51.com/swift3.0/chapter3/08_Generic_Parameters_and_Arguments.html">泛型参数（Generic Parameters and Arguments)</a>。</li>
+<li><a href="http://www.jianshu.com/p/935c6bdbab5e">swift3.0：associatedtype</a>。</li>
+</ul>
+<p>我们获取数据主要分为两种，一种是对象类型，一种是数组对象类型。</p>
+<p>我们新建一个请求协议。</p>
+<pre><code class="language-swift">protocol BaseRequestProtocol {
+    associatedtype R:BaseMappable
+    func loadObjectRequest(success:BaseRequestResponseObjectCompletionHandle&lt;R&gt;, failure:BaseRequestFailureCompletionHandle)
+    func loadArrayRequest(success:BaseRequestResponseArrayCompletionHandle&lt;R&gt;, failure:BaseRequestFailureCompletionHandle)
+}
+</code></pre>
+<pre><code class="language-swift">typealias BaseRequestResponseObjectCompletionHandle&lt;T:BaseMappable&gt; = (_ model:T) -&gt; Void
+typealias BaseRequestResponseArrayCompletionHandle&lt;T:BaseMappable&gt; = (_ models:[T]) -&gt; Void
+typealias BaseRequestFailureCompletionHandle = (_ error:Error) -&gt; Void
+</code></pre>
+<p>我们让请求的基类 <code>BaseRequestApi</code>实现 <code>BaseRequestProtocol</code>的协议。</p>
+<pre><code class="language-swift">class BaseRequestApi&lt;T:BaseMappable&gt;: BaseRequestProtocol
+</code></pre>
+<p>我们实现一下 <code>BaseRequestProtocol</code>的方法。</p>
+<pre><code class="language-swift">func loadObjectRequest(success: @escaping (T) -&gt; Void, failure: @escaping (Error?) -&gt; Void) {
+    Alamofire.request(self.URLFullPath()).responseObject { (response:DataResponse&lt;R&gt;) in
+        guard let value = response.value else {
+            failure(response.error)
+        }
+        success(value)
+    }
+}
+</code></pre>
+<p>我们返回确保返回的对象存在，当不存在就返回错误信息。</p>
+<pre><code class="language-swift">public var error: Error? { return result.error }
+</code></pre>
+<p>因为 <code>error</code>可能不存在，我们就回调 <code>BaseRequestFailureCompletionHandle</code>设置可选型。</p>
+<h3 id="关于-escaping">关于 <code>@escaping</code></h3>
+<p>我们在网络请求完成之后进行回调编译器会提示我们加上 <code>@escaping</code>。关于 <code>@escaping</code>我们可以参考下面资料。</p>
+<p>参考资料: <a href="http://www.jianshu.com/p/73bd0633ab00">swift3.0中@escaping 和 @noescape 的含义</a>。</p>
+<p>看过资料我们可以知道，系统默认是 <code>@noescape</code>。只要被 <code>@noescape</code>标记的 <code>闭包</code>我们都是不需要关心内存管理的。</p>
+<p>但是如果在方法执行完毕才执行 <code>闭包</code>我们就需要用 <code>@escaping</code>标识，这样系统自动在调用时候提示用户对于直接使用 <code>self</code>进行内存管理。</p>
+<pre><code class="language-swift">func loadArrayRequest(success: @escaping ([T]) -&gt; Void, failure: @escaping BaseRequestFailureCompletionHandle) {
+    Alamofire.request(self.URLFullPath()).responseArray { (response:DataResponse&lt;[R]&gt;) in
+        guard let value = response.value else {
+            failure(response.error)
+            return
+        }
+        success(value)
+    }
+}
+
+func loadObjectRequest(success: @escaping (T) -&gt; Void, failure: @escaping (Error?) -&gt; Void) {
+    Alamofire.request(self.URLFullPath()).responseObject { (response:DataResponse&lt;R&gt;) in
+        guard let value = response.value else {
+            failure(response.error)
+            return
+        }
+        success(value)
+    }
+}
+</code></pre>
+<p>我们现在的请求基类基本上已经可以正常的运行了,我们已经迫不及待的准备尝试一下。</p>
+<h3 id="精简请求子类">精简请求子类</h3>
+<p>我们设置 <code>GetConfigurationApi</code>父类为 <code>BaseRequestApi</code>。</p>
+<pre><code class="language-swift">class GetConfigurationApi: BaseRequestApi&lt;JekyllConfiguration&gt; {
+    override func URLPath() -&gt; String {
+        return &quot;configuration&quot;
+    }
+}
+</code></pre>
+<p>我们此时子类的代码就变成这么的简单。但是现在有一个问题就是我们配置的数据在子数据里面。</p>
+<p>我们需要使用 <code>Path</code>进行获取，我们就为 <code>BaseRequestApi</code>设置一个属性可以让外接设置 <code>Path</code>。</p>
+<pre><code class="language-swift">var responseKeyPath:String?
+</code></pre>
+<pre><code class="language-swift">class GetConfigurationApi: BaseRequestApi&lt;JekyllConfiguration&gt; {
+    override func URLPath() -&gt; String {
+        return &quot;configuration&quot;
+    }
+    
+    var responseKeyPath: String? = &quot;content&quot;
+}
+</code></pre>
+<p>此时我们会受到编译器通知我们的错误。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-044ef315c3eed9e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="795C05DA-D33F-4B3E-96E1-7661DE196969"></p>
+<h3 id="cannot-override-with-a-stored-property">cannot override with a stored property</h3>
+<p>参考资料:</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/37405351/how-can-i-override-this-swift-property">How can I override this Swift property?</a></li>
+</ul>
+<pre><code class="language-swift">override var responseKeyPath: String? {
+    get {
+        return &quot;content&quot;
+    }
+    set {
+        self.responseKeyPath = newValue
+    }
+}
+</code></pre>
+<p>我们此时在 <code>ViewController</code>的请求代码可以设置如下。</p>
+<pre><code class="language-swift">let getConfigurationApi = GetConfigurationApi()
+getConfigurationApi.loadObjectRequest(success: { [weak self] (configuration) in
+    guard let title = configuration.title else {
+        return
+    }
+    self?.navigationBar.blogMenuItem.itemTitle.stringValue = title
+}, failure: { (error) in })
+</code></pre>
+<p>我们就可以请求到数据了，是不是代码更加的简洁了呢？</p>
+<h3 id="请求文章列表">请求文章列表</h3>
+<p>我们配置 <code>GetPostListApi</code>类的代码如下。</p>
+<pre><code class="language-swift">class GetPostListApi: BaseRequestApi&lt;PostDetail&gt; {
+    override func URLPath() -&gt; String {
+        return &quot;collections/posts/entries&quot;
+    }
+}
+</code></pre>
+<p>我们在 <code>PostsView</code>新写一个方法用于获取文章列表。</p>
+<pre><code class="language-swift">func loadData() {
+    let api = GetPostListApi()
+    api.loadArrayRequest(success: { (list:[PostDetail]) in
+
+    }) { (error) in }
+}
+</code></pre>
+<p>有了数据我们需要在列表里面展示出来。</p>
+<p><code>BaseListView</code>作为列表的基类，我们的数据源的结构可能不太一样，我们不可能让我们自定义的数据源传入 <code>BaseListView</code>。</p>
+<p>这个时候我们的 <code>泛型参数</code>又可以登场了。</p>
+<p>我们给 <code>BaseListView</code>新建一个泛型参数，必须是 <code>BaseMappable</code>的子类。</p>
+<pre><code class="language-swift">class BaseListView&lt;M:BaseMappable&gt;
+</code></pre>
+<p>我们新建一个属性存储 <code>M</code>数组，当用户重新设置就刷新表格。</p>
+<pre><code class="language-swift">var models:[M] = [] {
+    didSet {
+        self.tableView.reloadData()
+    }
+}
+</code></pre>
+<h3 id="iboutlet-property-cannot-have-non-objc-class-type">@IBOutlet Property cannot have non-‘@objc’ class type</h3>
+<p>此时我们已经收到了一个错误信息。</p>
+<p>参考资料:</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/32836343/generic-controller-in-swift-2-0-using-storyboards">Generic controller in swift 2.0 using storyboards</a>。</li>
+</ul>
+<p>查了很多的资料，这个技术难点倒是没有找到合适的方法解决。是因为 <code>@IBOutlet</code>在 <code>OC</code>里面使用的运行时，但是运行时不允许 <code>@IBOutlet</code>绑定一个泛型的对象。</p>
+<p>我还尝试过在 <code>BaseListView</code>使用其他的泛型类间接代理，但是依然无法解决我们的问题。</p>
+<p>我现在唯一能够想到的方案就是所谓的协议，用协议声明泛型参数。</p>
+<p>我们希望别人继承我们的协议可以把数据转换成我们想要的数据。</p>
+<pre><code class="language-swift">protocol BaseListViewDataSource {
+    associatedtype M:BaseMappable ///&lt; 泛型类型
+    static func converModels(models:[M]) -&gt; [BaseListViewDataModel] ///&lt; 将其他类型对象数组转换成BaseListViewDataModel对象数组
+    static func converModel(model:M) -&gt; BaseListViewDataModel ///&lt; 将其他类型转换成BaseListViewDataModel对象
+}
+
+extension BaseListViewDataSource {
+    static func converModels(models:[M]) -&gt; [BaseListViewDataModel] {
+        var datas:[BaseListViewDataModel] = []
+        for model in models {
+            let data = self.converModel(model: model)
+            datas.append(data)
+        }
+        return datas
+    }
+}
+
+class BaseListViewDataModel {
+    var title:String? ///&lt; 显示标题
+    var date:String? ///&lt; 显示时间
+}
+</code></pre>
+<p>我们 <code>PostDetail</code>实现我们刚才的协议 <code>BaseListViewDataSource</code>。</p>
+<pre><code class="language-swift">static func converModel(model: PostDetail) -&gt; BaseListViewDataModel {
+    let data = BaseListViewDataModel()
+    data.title = model.title
+    data.date = model.date
+    return data
+}
+
+typealias M = PostDetail
+</code></pre>
+<p>我们在 <code>loadData</code>方法实现我们刚才的方法。</p>
+<pre><code class="language-swift">func loadData() {
+    let api = GetPostListApi()
+    api.loadArrayRequest(success: { (list:[PostDetail]) in
+        self.listView.models = PostDetail.converModels(models: list)
+    }) { (error) in }
+}
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-c2af09200d7e6ceb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="36426B52-B1F6-4C1F-BE2E-77806B868657"></p>
+<p>我们已经可以发现我们的界面已经可以正常的显示我们数据条数，现在剩下做的就是给我们界面正确的赋值了。</p>
+<pre><code class="language-swift">public func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -&gt; NSView? {
+    guard let identifier = tableColumn?.identifier else {
+        return nil
+    }
+    let model = self.models[row]
+    let view = tableView.make(withIdentifier: identifier, owner: self)
+    if let iconTitle = view as? IconTitleTableCellView, let title = model.title {
+
+    }
+    return view
+}
+</code></pre>
+<p>我们将  <code>IconTitleTableCellView</code>中 <code>configurationView</code>方法修改如下。</p>
+<pre><code class="language-swift">func configurationView(title:String) {
+    let configuration = SideMenuItemConfiguration(title: title, iconHex: &quot;F0F6&quot;, hidden: true, selected: false, normalColor: NSColor(red:0.267, green:0.267, blue:0.267, alpha:1.000))
+    self.itemView.menuItemConfiguration = configuration
+    let size = self.itemView.sizeThatFits(NSSize(width: Int.max, height: 20))
+    self.itemViewWidthConstraint.constant = CGFloat(size.width)
+}
+</code></pre>
+<pre><code class="language-swift">public func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -&gt; NSView? {
+    guard let identifier = tableColumn?.identifier else {
+        return nil
+    }
+    let model = self.models[row]
+    let view = tableView.make(withIdentifier: identifier, owner: self)
+    if let iconTitle = view as? IconTitleTableCellView, let title = model.title {
+        iconTitle.configurationView(title: title)
+    }
+    return view
+}
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-7a858dd177d19a36.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="E7D6285D-3D63-4C92-9BFF-B8DE754E48C3"></p>
+<p>我们的界面就可以正常的显示标题了。同样我们我们赋值一下时间。</p>
+<pre><code class="language-swift">if let dateView = view as? DateTableCellView, let date = model.date {
+    dateView.dateLabel.stringValue = date
+}
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-074a435a0a6085a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="97394D1F-3DFC-4939-9111-283A3A18A7CB"></p>
+<p>我们发现时间显示的格式不正确。我们给 <code>DateTableCellView</code>写一个转换时间格式的方法。</p>
+<pre><code class="language-swift">func configuration(dateString:String) {
+    let formatter = DateFormatter()
+    formatter.dateFormat = &quot;yyyy-MM-dd hh:mm:ss zzzz&quot;
+    guard let date = formatter.date(from: dateString) else {
+        return
+    }
+    formatter.dateFormat = &quot;MMM dd,yyyy&quot;
+    self.dateLabel.stringValue = formatter.string(from: date)
+}
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-511f0ec90bf527d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2D3D00B6-EC09-4A1B-9FFA-57298DBCDDBD"></p>
+<p>我们看到显示竟然是中文<code>六月</code>，不是我们希望看到的 <code>Jun</code>。</p>
+<h3 id="中文系统格式化时间显示英文字符">中文系统格式化时间显示英文字符</h3>
+<pre><code class="language-swift">formatter.locale = Locale(identifier: &quot;en_US&quot;)
+</code></pre>
+<p>我们还是按照默认的比较好，我们中文用起来比较方便。</p>
+<p>现在要做的就是 <code>删除</code>  <code>查看</code>两个方法了。我们封装的 <code>SideMenuItemView</code>控件是无法响应我们的事件的。</p>
+<h3 id="给-nsview添加-nsgesturerecognizer事件">给 <code>NSView</code>添加 <code>NSGestureRecognizer</code>事件</h3>
+<p>参考资料:</p>
+<ul>
+<li><a href="https://developer.apple.com/documentation/appkit/nsgesturerecognizer">NSGestureRecognizer</a>。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-6861c654b3f7b625.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="15D2ADAE-B1B7-495C-AA6A-E7C9677CFE0D"></p>
+<p>一共有五个 <code>NSGestureRecognizer</code>的子类可以使用。我们使用 <code>NSClickGestureRecognizer</code>来处理点击。</p>
+<pre><code class="language-swift">func addClick() {
+    let click = NSClickGestureRecognizer(target: self, action:#selector(self.clickAction))
+    self.addGestureRecognizer(click)
+}
+
+func clickAction() {
+}
+</code></pre>
+<p>我们的方法无法告诉外接什么时候点击了，如果有一个回调就好了。</p>
+<pre><code class="language-swift">typealias SideMenuItemViewClickCompletionHandle = (_ view:SideMenuItemView) -&gt; Void
+
+func addClick(completionHandle:@escaping SideMenuItemViewClickCompletionHandle) {
+        self.clickCompletionHandle = completionHandle
+        let click = NSClickGestureRecognizer(target: self, action:#selector(self.clickAction))
+        self.addGestureRecognizer(click)
+    }
+    
+func clickAction() {
+    guard let completionHandle = self.clickCompletionHandle else {
+        return
+    }
+    completionHandle(self)
+}
+
+var clickCompletionHandle:SideMenuItemViewClickCompletionHandle?
+</code></pre>
+<h3 id="删除文章">删除文章</h3>
+<p>参考资料:</p>
+<ul>
+<li><a href="http://www.sbdoc.cn/share/share.html#594899063c82962eab2af3a7">删除文章接口</a>。</li>
+</ul>
+<p>我们新建一个类 <code>DeletePostDetail</code>继承与我们 <code>BaseRequestApi</code>。</p>
+<pre><code class="language-swift">class DeletePostDetail: BaseRequestApi&lt;DeletePostDetailResponse&gt; {
+    override func URLPath() -&gt; String {
+        return &quot;collections/posts/{name}&quot;
+    }
+}
+
+class DeletePostDetailResponse: BaseMappable  {
+    func mapping(map: Map) {
+        
+    }
+}
+</code></pre>
+<p>这样是不符合我们请求的标准的，我们的地址需要一个真实的 <code>name</code>。</p>
+<p>我们就给 <code>DeletePostDetail</code>初始化带一个 <code>name</code>的参数。</p>
+<pre><code class="language-swift">override func URLPath() -&gt; String {
+    return &quot;collections/posts/\(self.name)&quot;
+}
+
+let name:String
+
+init(name:String) {
+    self.name = name
+}
+</code></pre>
+<p>我们删除的请求是 <code>delete</code>请求,我们底层封装的默认为 <code>Get</code>请求，我们还需要稍微的修改一下。</p>
+<pre><code class="language-swift">func requestMethod() -&gt; HTTPMethod {
+    return HTTPMethod.get
+}
+Alamofire.request(self.URLFullPath(), method:self.requestMethod())
+</code></pre>
+<p>这样我们父类默认是 <code>Get</code>请求，子类如果需要 <code>delete</code>请求，我们只需要重写这个方法即可。</p>
+<p>我们需要点击删除的按钮提示用户是否要删除这个文章，所以我们需要传入一个文章的文件名称。</p>
+<pre><code class="language-swift">///BaseListViewDataModel类
+var fileName:String? ///&lt; Markdown 的文件名称
+</code></pre>
+<pre><code class="language-swift">///PostDetail类
+static func converModel(model: PostDetail) -&gt; BaseListViewDataModel {
+    let data = BaseListViewDataModel()
+    data.title = model.title
+    data.date = model.date
+    data.fileName = model.name
+    return data
+}
+</code></pre>
+<pre><code class="language-swift">///ActionTableCellView
+var fileName:String? ///&lt; 用来知道要删除那个文件
+</code></pre>
+<h3 id="关于-nsalert">关于 <code>NSAlert</code></h3>
+<p>对于弹出框我们可以使用 <code>NSAlert</code>控件</p>
+<p>参考资料:</p>
+<ul>
+<li><a href="http://blog.sina.com.cn/s/blog_705998560101vo1y.html">苹果小白的学习之路--NSAlert的两种使用方法</a>。</li>
+</ul>
+<blockquote>
+<p>在 <code>ActionTableCellView</code>类增加代码如下</p>
+</blockquote>
+<pre><code class="language-swift">self.deleteItemView.addClick { (view) in
+    guard let fileName = self.fileName, let window = NSApplication.shared().keyWindow else {
+        return
+    }
+    let alert = NSAlert()
+    alert.messageText = &quot;确定要删除\(fileName)&quot;
+    alert.beginSheetModal(for: window, completionHandler: { (response) in
+
+    })
+}
+</code></pre>
+<blockquote>
+<p>在 <code>BaseListView</code>的 <code>public func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -&gt; NSView?</code>方法 增加代码如下</p>
+<pre><code class="language-swift">if let actionView = view as? ActionTableCellView {
+    actionView.fileName = model.fileName
+}
+</code></pre>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-b822166c6369a14a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2C2B5648-FEF8-4467-B32B-121AE71C5ABF"></p>
+<p>此时只有一个确定，没有取消按钮，到时候误删就 GG 了。</p>
+<pre><code class="language-swift">self.deleteItemView.addClick { (view) in
+    guard let fileName = self.fileName, let window = NSApplication.shared().keyWindow else {
+        return
+    }
+    let alert = NSAlert()
+    alert.messageText = &quot;确定要删除\(fileName)&quot;
+    alert.addButton(withTitle: &quot;删除&quot;)
+    alert.addButton(withTitle: &quot;取消&quot;)
+    alert.beginSheetModal(for: window, completionHandler: { (response) in
+
+    })
+}
+</code></pre>
+<p>当我们点击删除按钮我们需要执行删除的请求。</p>
+<pre><code class="language-swift">if response == NSAlertFirstButtonReturn {
+    self.deletePost(fileName: fileName)
+}
+</code></pre>
+<pre><code class="language-swift">func deletePost(fileName:String) {
+    let api = DeletePostDetail(name: fileName)
+    api.loadObjectRequest(success: { (response) in
+    }) { (error) in
+    }
+}
+</code></pre>
+<p>当我们删除完毕我们需要刷新我们的表格，我就给 <code>ActionTableCellView</code>新写一个回调用于删除完毕更新表格的内容。</p>
+<pre><code class="language-swift">typealias ActionTableCellViewDeleteSuccessCompletionHandle = (_ view:ActionTableCellView) -&gt; Void
+</code></pre>
+<pre><code class="language-swift">var deleteSuccessCompletionHandle:ActionTableCellViewDeleteSuccessCompletionHandle?
+</code></pre>
+<pre><code class="language-swift">func deletePost(fileName:String) {
+  let api = DeletePostDetail(name: fileName)
+  api.loadObjectRequest(success: { (response) in
+      guard let completionHandle = self.deleteSuccessCompletionHandle else {
+          return
+      }
+      completionHandle(self)
+  }) { (error) in
+
+  }
+}
+</code></pre>
+<p>我们发现我们的表格并没有刷新，因为对于 <code>Delete</code>请求是没有任何信息回调的。我们只用知道状态吗是<code>200</code>就可以知道成功了。</p>
+<pre><code class="language-swift">func loadObjectRequest(success: @escaping (T?) -&gt; Void, failure: @escaping (Error?) -&gt; Void) {
+    Alamofire.request(self.URLFullPath(),method:self.requestMethod()).responseObject(keyPath:self.responseKeyPath) { (response:DataResponse&lt;R&gt;) in
+        guard let code = response.response?.statusCode, code == 200 else {
+            failure(response.error)
+            return
+        }
+        success(response.value)
+    }
+}
+</code></pre>
+<p>当我们当识别状态吗为 <code>200</code>果然成功了。</p>
+<h3 id="osx平台代码打开一个地址"><code>OSX</code>平台代码打开一个地址</h3>
+<p>我们做完 <code>删除</code>功能，还剩下一个 <code>查看</code>功能，当用户点击 <code>查看</code>按钮。</p>
+<p>我们给 <code>ActionTableCellView</code>新增一个方法用于配置 <code>查看</code>按钮的点击方法。</p>
+<pre><code class="language-swift">func addLookView() {
+    self.lookItemView.addClick { (view) in
+        guard let urlString = self.httpURL, let url = URL(string: urlString)  else {
+            return
+        }
+        NSWorkspace.shared().open(url)
+    }
+}
+</code></pre>
+<p>界面上面的搜索功能，说简单不简单，说复杂不复杂。那要你需要实现的搜索到什么程度。</p>
+<p>参考资料:</p>
+<ul>
+<li><a href="http://junshang.me/9-37-12-%E5%85%B3%E4%BA%8E%E6%90%9C%E7%B4%A2%E5%87%BA%E6%9D%A5%E7%9A%84%E5%86%85%E5%AE%B9%E6%A0%B9%E6%8D%AE%E6%9D%83%E9%87%8D%E8%BF%9B%E8%A1%8C%E6%8E%92%E5%BA%8F/">关于搜索出来的内容根据权重进行排序</a>。</li>
+</ul>
+<p>我们做先做一个简单版本的，就直接匹配就好了。</p>
+<p>我们给 <code>BaseListView</code>增加一个搜索过滤之后的数组。</p>
+<pre><code class="language-swift">private var filterModels:[BaseListViewDataModel] = []
+</code></pre>
+<p>我们用 <code>filterModels</code>来作为我们暂时数据的数据源。</p>
+<p>我们给 <code>ContentHeaderValue1</code>关联一下搜索输入框。</p>
+<pre><code class="language-swift">@IBOutlet weak var searchFiled: NSTextField!
+</code></pre>
+<p>我们设置一下 <code>searchFiled</code>代理对象为 <code>BaseListView</code>。</p>
+<pre><code class="language-swift">@IBOutlet weak var header: ContentHeader! {
+    didSet {
+        guard let headerValue1 = self.header.headerContent as? ContentHeaderValue1 else {
+            return
+        }
+        headerValue1.searchFiled.delegate = self
+    }
+}
+</code></pre>
+<p>经过研究如果要监听输入框文字变化需要用通知。我们声明一个方法监听输入框通知变化。</p>
+<pre><code class="language-swift">func searchFiledTextChanged(notification:Notification) {
+    guard let filed = notification.object as? NSTextField else {
+        return
+    }
+
+    guard let headerValue1 = self.header.headerContent as? ContentHeaderValue1 else {
+        return
+    }
+
+    guard filed == headerValue1.searchFiled else {
+        return
+    }
+
+}
+</code></pre>
+<p>我们新建一个方法处理字符串改变过滤数据源。</p>
+<pre><code class="language-swift">func filterDataModels(filter:String) {
+    self.filterModels.removeAll()
+    if filter.characters.count == 0 {
+        self.filterModels.append(contentsOf: self.models)
+    } else {
+        for model in self.models {
+            if let _ = model.title?.range(of: filter) {
+                self.filterModels.append(model)
+            }
+        }
+    }
+    self.tableView.reloadData()
+}
+</code></pre>
+<p>我们在 <code>searchFiledTextChanged</code>方法里面调用我们刚才的过滤的方法。</p>
+<pre><code class="language-swift">func searchFiledTextChanged(notification:Notification) {
+    guard let filed = notification.object as? NSTextField else {
+        return
+    }
+
+    guard let headerValue1 = self.header.headerContent as? ContentHeaderValue1 else {
+        return
+    }
+
+    guard filed == headerValue1.searchFiled else {
+        return
+    }
+    self.filterDataModels(filter: filed.stringValue)
+}
+</code></pre>
+<p>因为我们初始化的时候，我们还没有输入任何的搜索字符串，设置 <code>models</code>我们要初始化我们的 <code>filterDataModels</code>数组。</p>
+<p>我们新建一个方法用于初始化 <code>filterDataModels</code>。</p>
+<pre><code class="language-swift">func settingFilterModels() {
+    guard let headerValue1 = self.header.headerContent as? ContentHeaderValue1 else {
+        return
+    }
+    let filterText = headerValue1.searchFiled.stringValue
+    self.filterDataModels(filter: filterText)
+}
+</code></pre>
+<p>我们在设置 <code>models</code>时候进行重新设置 <code>filterModels</code>。</p>
+<p>我们在 <code>header</code>的方法 <code>didSet</code>进行注册通知。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-3bd9de09862d9ee2.gif?imageMogr2/auto-orient/strip" alt="201706201728"></p>
+<p>我们的搜索功能已经可以用了。</p>
+<h3 id="deinit方法"><code>deinit</code>方法</h3>
+<p>我们在 <code>Objective-C</code>开发里面经常在 <code>dealloc</code>注销通知，减少资源消耗。我们在 <code>Swift</code>里面可以使用 <code>deinit</code>函数。</p>
+<p>参考资料:</p>
+<ul>
+<li><a href="http://swifter.tips/retain-cycle/">内存管理，WEAK 和 UNOWNED</a></li>
+</ul>
+<pre><code class="language-objc">    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+</code></pre>
+<p>刚才无意间发现下面系统自带的方法</p>
+<pre><code class="language-swift">extension NSObject {
+
+    open func controlTextDidBeginEditing(_ obj: Notification)
+
+    open func controlTextDidEndEditing(_ obj: Notification)
+
+    open func controlTextDidChange(_ obj: Notification)
+}
+</code></pre>
+<p>这是 <code>NSObject</code>的扩展，我们去掉我们注册的通知，用 <code>controlTextDidChange</code>方法试一下。</p>
+<p>参考资料：</p>
+<ul>
+<li><a href="http://www.baiyuxiong.com/?p=1212">swift os x 响应 NSTextField 的controlTextDidChange事件</a></li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/swift" class="tag">
+                    Swift
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/mac" class="tag">
+                    Mac
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/jekyll" class="tag">
+                    Jekyll
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-25-jekyll-admin-mac-模板处理">
+                  <h3 class="post-title">
+                    Jekyll-Admin-Mac-模板处理
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

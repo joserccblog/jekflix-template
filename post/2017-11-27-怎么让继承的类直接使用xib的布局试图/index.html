@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>怎么让继承的类直接使用XIB的布局试图 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">怎么让继承的类直接使用XIB的布局试图</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-013206.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <h2 id="怎么让继承的类直接使用xib的布局试图">怎么让继承的类直接使用XIB的布局试图</h2>
+<p>最近做的一个小工具，一键替换key，就是为了解放双手，不然每次运行测试和正式的版本都要手动的替换key。</p>
+<p>自从2013年三月进入一家外企之后，就再也没有用过xib.虽然现在苹果已经建议大家用<code>Storyboard</code>但是一些地方还是要用到<code>xib</code>.</p>
+<p>自己几乎所有的项目都是用的全代码，但是平时demo和一些小工具还是用上可视化试图和最新语言<code>Swift</code>.</p>
+<p>做到是一个mac程序，几个界面基本上的功能按钮都是一样的。就封装了一个类，用上了xib。但是拖拽一个<code>NSView</code>,继承与我们刚才的自定义试图，运行发现出不来我们XIB界面。</p>
+<p>我自己分析了一下原因，虽然我们让XIB的类指向我们自己自定义试图，但是关联不起来试图。应该没有加载，我最初想到的解决在</p>
+<pre><code class="language-swift">override init(frame frameRect: NSRect)
+required init?(coder: NSCoder) 
+</code></pre>
+<p>这两个方法里面读取<code>Nib</code>里面的试图获取到设置为自定义试图的大小。</p>
+<p>最后对于<code>Xib</code>这一块不是很熟悉就没走通，后来经过搜索，解决了我的问题。大体上解决方法和我想的是一样的。</p>
+<blockquote>
+<p>解决问题的视频地址https://www.youtube.com/watch?v=Wx7qk2oOV48</p>
+</blockquote>
+<p>下面是怎么实现的，看不了视频的可以看我的。</p>
+<p>新建一个<code>OToolBarView</code>类继承于<code>NSView</code>.</p>
+<pre><code class="language-swift">class OToolBarView: NSView {
+}
+</code></pre>
+<p>因为<code>Storyboard</code>不允许直接拖拽<code>NSView</code>，允许我们拖拽<code>NSViewController</code>。但是我们的是自定义试图，用不上<code>NSViewController</code>。就新建一个xib来做了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-4638fa3d57f54fec.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>名字命名为<code>OToolBarView.xib</code>我们在<code>xib</code>里面关联刚才创建的类。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-ff47a7c411e32256.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们设置里面的View关联为<code>OToolBarView</code>的一个属性</p>
+<pre><code class="language-swift">@IBOutlet var view: OToolBarView!
+</code></pre>
+<p>新增一个方法来加载自定义试图</p>
+<pre><code class="language-swift">func loadNibView() {
+    Bundle.main.loadNibNamed(&quot;OToolBarView&quot;, owner: self, topLevelObjects: nil)
+    self.view.frame = self.bounds
+    self.addSubview(self.view)
+}
+</code></pre>
+<p>我有点不理解为什么执行了<code>Bundle.main.loadNibNamed(&quot;OToolBarView&quot;, owner: self, topLevelObjects: nil)</code>这个方法之前设置的属性<code>View</code>就存在值了，有点不理解。</p>
+<p>还有这个类型<code>AutoreleasingUnsafeMutablePointer</code>应该像<code>Object-C</code>的自定义释放的类型。以后研究一下这个类型。</p>
+<p>我们在我们必要的的两个初始化方法里面进行调用<code>loadNibView</code></p>
+<pre><code class="language-swift">override init(frame frameRect: NSRect) {
+    super.init(frame: frameRect)
+    self.loadNibView()
+}
+required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    self.loadNibView()
+}
+</code></pre>
+<p>我们运行之后就可以显示出来了。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/xib" class="tag">
+                    Xib
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-建议大型项目用上try-catch">
+                  <h3 class="post-title">
+                    建议大型项目用上Try Catch
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

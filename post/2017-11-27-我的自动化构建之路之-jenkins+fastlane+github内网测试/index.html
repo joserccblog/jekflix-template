@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>我的自动化构建之路之 Jenkins+Fastlane+Github内网测试 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">我的自动化构建之路之 Jenkins+Fastlane+Github内网测试</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-062922.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <blockquote>
+<p>很久没写文章了，确实觉得也没什么可写的，最近一直研究自动化打包，遇到了一些问题也解决了一些，就准备写一下这个心得吧。</p>
+</blockquote>
+<h2 id="为什么要采用这一种自动化打包方式呢">为什么要采用这一种自动化打包方式呢？</h2>
+<p>可能看到这一篇文章很多人认为 <code>Jenkins</code>就可以实现自动化打包，并且 <code>Fastlane</code>配置 完毕之后打包更加的轻松。干嘛还搞在一起，这不是重复了吗。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-fede5341588d81c7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>可能 <code>Jenkins</code> 对于一般的工程，可能配置不太复杂十分的可行，并且一些打包完毕上传到 <a href="https://fir.im">Fir.im</a>进行 App 的托管的确十分的方便。</p>
+<p>我在之前的公司的确是把所有的 App 的都托管在 <a href="https://fir.im">Fir.im</a>上面，让测试人员自己进行打包下载安装。</p>
+<p>但是，但是，这已经不符合我们现在 App 打包和不满足测试人员进行安装的需求了。</p>
+<p>之前在我们公司不用的 <code>Mac mini</code>上面搭建了 <code>Jenkins</code>环境，确实当时还用了一段时间。</p>
+<p>最后随着工程每次打包或者运行都需要更改 <code>谷歌统计</code> 和 <code>Branch</code>统计的 <strong>Key</strong>，因为是配置在打包的 <strong>Plist</strong>文件里面的，所以在代码无法进行修改。</p>
+<p>我为了防止打包的环境出现测试和正式配置错乱，就做了初始化环境配置的判断。 如果判断出来环境配置不符合运行的规则就直接提示用户配置错误，无法继续的运行。</p>
+<p>虽然这个功能是好的，但是为此每次打包和运行都引来很多的麻烦。稍微不注意打包的环境可能没改过来，就直接不能运行。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-2bd97b0bc8df83e2.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>辛辛苦苦编译之后打包安装，花费了多少心血，浪费我多少时间，竟然配置错误了。</p>
+<p>为此我做了一款更改环境配置的软件，之前的文章有说起过。问我为什么不写脚本写 <code>Mac 软件</code>。因为我除了熟悉 <code>Objective-C</code>和了解 <code>Swift</code>对于其他的语言完全不会呀，我只想静静。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-a352319cd2c9ad74.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>环境配置切换的软件做出来了，配置好了。前期确实很好用，最后缺点还是一点点的暴露出来了。</p>
+<p>在测试阶段还好，测试人员顶多过来让你打最新的测试包。但是到了后台上线的时候，为了测一下不影响 <code>iOS</code> 现在线上的版本。</p>
+<p>测试人员就过来跑到我们的面前。</p>
+<p>给我打一个 <strong>1.5.1</strong>版本的 <strong>c</strong>分支的包！</p>
+<p>给我打一个 <strong>1.5.1</strong>版本的 <strong>trunk</strong>分支的包！</p>
+<p>给我打一个 <strong>1.5.1</strong>版本的 <strong>预发布</strong>包！</p>
+<p>……！</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-f281554c5ea69285.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>测试，你烦人不，烦人不，别跑呀！看我不打断你的腿！</p>
+<p>为了不因为分支频繁的打包，我做了可以在程序内部进行 <strong>切换分支</strong>和 <strong>测试切换到预发布</strong>的功能。</p>
+<p>其实这个功能早在去年十月份我请假回家那一天上午就做好了，但是最近又优化了功能。</p>
+<p>做好之后再也没听到测试要打那个 <strong>分支</strong>，要打 <strong>预发布</strong>的包的话了。</p>
+<p>虽然现在的打包需求变成了只用打 <strong>测试</strong>和 <strong>预发布</strong>环境的安装包，但是我觉得还是很烦，毕竟每次打包都需要几分钟，那还是在我 这个 拥有下面配置的机器上面。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-879214f322851113.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我觉得还是很烦，觉得还是很影响我安静的敲代码，因为我是一个懒人，能用工具做的绝不自己弄。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-b2e967612da43989.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>当时想着利用 <code>Jenkins</code>进行打包之前写一个 <code>Shell</code>脚本替换环境的配置，为此我那段时间还专门看了 <code>Shell</code>的入门教程，最后我放弃了。</p>
+<p>为了这么小的需求还要专门学一下 <code>Shell</code>，我觉得代价有些大，就只看了简单的语法就到此结束了。</p>
+<p>看来 <code>Jenkins</code>这条路已经在我这边行不通了，难道就没有其他的方案可以解决掉我们现在的问题吗？</p>
+<p>之前还想把 <code>Fir-Ci</code>打包的命令和我需要打包一套功能做成一个客户端，方便我进行打包。</p>
+<p>但是因为我竟然没找到怎么在 <code>NSTask</code>执行 <strong>Sudo</strong>命令和自动输入密码，最后这个方案也是结束了。</p>
+<p>在我准备放弃自动化打包这个念头的时候，这个时候不知道从什么地方听到了 <code>Fastlane</code>这个自动化打包的名词。</p>
+<p>我看了 <code>Fastlane</code>是上万星的时候，我仿佛看到了希望之光。上万星，这说明主要的公司和大部分的开发者都在用这个进行打包。</p>
+<p>以后用 <code>Fastlane</code>进行打包成为主流的打包方式，我觉得学习一下。最后还真的找到了插件可以在打包之前修改我们的配置 <strong>Key</strong>。</p>
+<p>但是 <code>Fastlane</code>的安装和配置真实一路的血和泪，因为我安装的是 <code>zsh</code>的脚本命令替换掉了 <code>bash</code>系统自带的命令，导致 <code>Fastlane</code>会打包失败。那是之后的事情了。</p>
+<p>因为使用 <code>Fastlane</code>我才又一次接触 <code>Fabric</code>这个软件的。之前我还仅以为这只是用来统计崩溃和发布 APP 的软件。</p>
+<p>没想到 <code>Fastlane</code>竟然是也是这个公司出的，棒棒的！我把打好的包托管上了 <code>Fabric</code>这个平台上面，但是测试反应下载 APP 是特级慢，特级慢！</p>
+<p>我之前经常搭建企业安装的环境，无非就是 点击安装转接到 <strong>Plist</strong> 的地址，从 <strong>Plist</strong>读取 <strong>Ipa</strong>的安装路径进行安装。</p>
+<p>不过从 <code>iOS7</code>开始必须让 <strong>Plist</strong>是正规的地址，不然无法进行安装。</p>
+<h2 id="搭建本地安装-ipa-的环境">搭建本地安装 ipa 的环境</h2>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-938cfe53709f9522.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>我们前往 <code>MAMP</code>的官方网址: <a href="https://www.mamp.info/en/">MAMP</a></li>
+<li>我们下载免费版本 <code>MAMP</code>: <a href="https://www.mamp.info/en/downloads/">免费版本 MAMP 下载地址</a></li>
+<li>点击 <code>MAMP</code>软件运行</li>
+</ul>
+<h4 id="还可能需要修改的地方">还可能需要修改的地方</h4>
+<p>为了防止不和其他的服务端口进行冲突，我们修改一下端口。</p>
+<ol>
+<li>点击 <code>MAMP</code>的配置功能</li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-e673b648f061a3df.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ol start="2">
+<li>
+<p>点击配置的端口界面</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-d5ec4df389a32cd0.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+</ol>
+<blockquote>
+<p>我这边设置上面的端口，其实端口你们可以随便的定义，只要不进行冲突就可以了。</p>
+</blockquote>
+<h2 id="搭建-jenkins-服务">搭建 Jenkins 服务</h2>
+<p>使用如下的命令进行安装</p>
+<pre><code class="language-shell">brew install jenkins
+</code></pre>
+<p>启动</p>
+<pre><code class="language-shell">jenkins
+</code></pre>
+<blockquote>
+<p>现在有个问题当执行 <code>Jenkins</code>的终端关闭之后 <strong>Jenkins 服务</strong>也就停止了，我也没去研究怎么让服务开机启动不随着中断关闭。</p>
+</blockquote>
+<p>对于 <code>Jenkins</code>安装我也不多说了，可以自己去 <code>谷歌</code> 和 <code>百度</code>也可以参考下面一位简书大神的文章 <a href="http://www.jianshu.com/p/49706b350a14">Mac 安装 Jenkins</a></p>
+<h2 id="安装-fastlane">安装 Fastlane</h2>
+<ol>
+<li>
+<p>前往 <code>Fastlane</code>的项目地址</p>
+<p><a href="https://github.com/fastlane/fastlane">FastlaneGithub 地址</a></p>
+</li>
+<li>
+<p>按照下面的教程进行安装</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-4b7e583c8d5ac163.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+</ol>
+<h2 id="配置fastlane参考我公司项目">配置Fastlane(参考我公司项目)</h2>
+<ol>
+<li>
+<p>在终端 <code>cd</code>到项目的主目录</p>
+<pre><code class="language-shell">cd xxx
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-4ac495adc223f92c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+<li>
+<p>执行 <code>fastlane init</code></p>
+</li>
+</ol>
+<blockquote>
+<p>安装安装的步骤配置完毕之后就自动在工程的目录生成 <code>fastlane</code>的文件夹了。</p>
+</blockquote>
+<p>对于 <code>Fastlane</code>安装不太了解的，也可以去百度和谷歌。</p>
+<ol start="3">
+<li>
+<p>打开 <code>Fastlane</code>目录下面的 <strong>Fastfile</strong>文件，可以用记事本打开，也可以用其他的编辑软件，这里我推荐 <code>Github</code>出的 <code>Atom</code>编辑器。</p>
+</li>
+<li>
+<p>删除自动生成的代码</p>
+</li>
+<li>
+<p>配置测试和线上两种环境</p>
+<pre><code class="language-ruby">lane :beta do |values|
+  increment_build_number
+  test_key
+  archiveipa &quot;Debug&quot;
+end
+
+lane :applive do |values|
+  increment_build_number
+  kive_key
+  archiveipa &quot;Release&quot;
+end
+</code></pre>
+</li>
+</ol>
+<blockquote>
+<p>对于还有其他环境的可以自动的进行配置 其实语法应该还是挺简单的，对于我这个没学过 <strong>Ruby</strong>的都写出来了，不相信你写不出来。</p>
+</blockquote>
+<p><strong>increment_build_number</strong>这个是让每次打包让编译号自动的+1.</p>
+<ol start="6">
+<li>
+<p>配置<code>CURRENT_PROJECT_VERSION</code> 字段</p>
+<p>前往 Target-&gt;Build Setting-&gt;current project version字段设置为当前的 Build 号我设置是正整数简单。</p>
+</li>
+<li>
+<p>设置环境配置的环境</p>
+<pre><code class="language-ruby">def test_key
+  set_info_plist_value(key:&quot;branch_key&quot;, value:&quot;xxxxxx&quot;, path: &quot;./GearBest/Info.plist&quot;)
+  set_info_plist_value(key:&quot;TRACKING_ID&quot;, value:&quot;xxxxxx&quot;, path: &quot;./GearBest/Others/GoogleService-Info.plist&quot;)
+end
+
+def kive_key
+  set_info_plist_value(key:&quot;branch_key&quot;, value:&quot;xxxxxx&quot;, path: &quot;./GearBest/Info.plist&quot;)
+  set_info_plist_value(key:&quot;TRACKING_ID&quot;, value:&quot;xxxxxx&quot;, path: &quot;./GearBest/Others/GoogleService-Info.plist&quot;)
+end
+</code></pre>
+<blockquote>
+<p>我们设置 <code>test_key</code>和 <code>kive_key</code>两个方法用于每次打包进行正确的配置，解决了我们每次打错环境包的问题。</p>
+<p>一定要配置好 <code>path</code>的路径，不然无法配置正确。</p>
+</blockquote>
+</li>
+<li>
+<p>设置快速切换配置的环境</p>
+<pre><code class="language-ruby">lane :test_key_configuration do |values|
+  test_key
+end
+
+lane :live_key_configuration do |values|
+  kive_key
+end
+</code></pre>
+<blockquote>
+<p>这样方便我们开发自己撸代码的时候十分切换配置环境 还十分快速。</p>
+</blockquote>
+</li>
+<li>
+<p>配置打包</p>
+<pre><code class="language-ruby">def archiveipa(configuration)
+  build_number = get_build_number(xcodeproj: &quot;GearBest.xcodeproj&quot;) #获取当前的 Build 号码
+  version = get_version_number(xcodeproj: &quot;GearBest.xcodeproj&quot;) #获取当前的版本号
+  output_directory = &quot;/Applications/MAMP/htdocs/ipa/&quot;+configuration+&quot;/GearBest_&quot; + version + &quot;_&quot; + build_number #导出打包文件和 ipa 的目录
+  output_name = &quot;GearBest_temp&quot; #导出的ipa 的名字
+  gym(scheme: 'GearBest', export_method: 'ad-hoc', configuration: configuration, output_directory: output_directory, output_name:output_name, clean:true) # 进行打包
+end
+</code></pre>
+<blockquote>
+<p>导出到我们 <code>MAMP</code>服务的地址和生成对应版本和 <strong>Build</strong>目录是为了方便进行自动发布</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="新建jenkins-项目">新建Jenkins 项目</h2>
+<ol>
+<li>
+<p>新建一个项目</p>
+<blockquote>
+<p>名字不要包含%%特殊的字符串，防止影响我们自动上传软件的使用。</p>
+</blockquote>
+</li>
+<li>
+<p>配置项目</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-8eeb090e7e41c6ac.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>配置好我们的 <strong>SVN</strong>地址这个其实很简单的。</p>
+</blockquote>
+</li>
+<li>
+<p>新建一个构建 <code>Shell</code>脚本</p>
+<pre><code class="language-shell">#!/bin/bash
+
+#rm -rf  /Users/zhangxing/Library/Developer/Xcode/DerivedData/* #这个本来是想打包之前清理 DerivedData 数据的但是清理会影响我本地其他项目 就屏蔽了
+fastlane beta #执行打测试包 需要打其他环境请复制一份修改这里即可。
+cd /Applications/MAMP/htdocs #前往 MAMP服务的文件夹
+touch &quot;jenkins%%${JOB_NAME}%%${BUILD_NUMBER}&quot; #生成最新打包的配置文件
+open /Applications/IPIPA.app #打包自动上传的 APP
+sleep 60 #休眠60秒等待 APP 执行完毕
+</code></pre>
+</li>
+</ol>
+<p>保存等待全部配置完毕执行即可。</p>
+<h2 id="在-github-新建一个存放-plist-文件的项目">在 Github 新建一个存放 Plist 文件的项目。</h2>
+<p>在 <code>Github</code>项目新建项目我就不多说了。</p>
+<ol>
+<li>
+<p><code>Clone</code> 项目到 <code>MAMP</code>的主目录</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-f681bd40ad17591e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+</ol>
+<h2 id="配置-mamp目录">配置 MAMP目录</h2>
+<ol>
+<li>
+<p>存放 <code>Icon</code>图片</p>
+<p>把 <strong>57x57</strong>和 <strong>512x512</strong>的图片保存在 <code>MAMP</code>服务的主目录 <strong>/Applications/MAMP/htdocs</strong></p>
+</li>
+<li>
+<p>新建 <code>ipa</code>目录存放在 <strong>/Applications/MAMP/htdocs</strong>目录</p>
+</li>
+<li>
+<p>保存 <code>mainfest.plist</code>文件到主目录</p>
+<p><a href="https://raw.githubusercontent.com/HQMoble/iPiPa/master/manifest.plist">模板 Plist 配置文件下载地址</a></p>
+</li>
+</ol>
+<h2 id="写自动化上传软件">写自动化上传软件</h2>
+<blockquote>
+<p>软件源代码不小心删除了。</p>
+<p>唉！</p>
+<p>唉！</p>
+<p>唉！</p>
+</blockquote>
+<p>下面说一下软件逻辑的实现吧。</p>
+<p>当时考虑怎么让打包完毕之后让自动生成 <strong>Plist</strong> 上传最新的 <strong>Plist</strong>到 <strong>github</strong> 目录之后生成最新的下载地址。</p>
+<p>我当时考虑用 <code>php</code>或者用 <code>Swift</code>的第三方库做一个接口，打包完毕发送一个请求服务器做处理。</p>
+<p>考虑到自己 <code>php</code>是菜鸟， <code>Vapor</code>自己又不精通就放弃了，准备再次写一个 <code>Mac 的应用程序</code>。</p>
+<p>当我们执行 <code>open /Applications/IPIPA.app</code>会打开我们写的应用程序 我们就可以写一些处理的逻辑了。</p>
+<p>根据刚才的创建文件的命令</p>
+<pre><code class="language-shell">touch &quot;jenkins%%${JOB_NAME}%%${BUILD_NUMBER}&quot;
+</code></pre>
+<p>我们查询 <code>/Applications/MAMP/htdocs</code>目录下面是否存在 **jenkins%%**开头的文件，没有说明不存在最新的打包 我们直接重新生成本地现有即可。</p>
+<p>我们利用字符串分割 <code>%%</code>分割为三部分，读取出最近打包的 <code>项目名称</code> 和 <code>打包的编译号</code>删除 <code>jenkins%%</code>文件。</p>
+<p>我们查找 <code>/Applications/MAMP/htdocs/ipa</code>目录是否存在 <code>GearBest_temp.ipa</code>的文件如果存在就是最新打包的 <code>ipa</code>.</p>
+<p>我们在 <code>GearBest_temp.ipa</code>上层文件夹 <code>/Applications/MAMP/htdocs/ipa/Debug/GearBest_1.5.1_244</code>找到是 <code>Debug</code>还是 <code>Release</code>的包。并且解析安装包的 <code>版本</code>和 <code>编译号</code>。</p>
+<p>我们使用 <code>Copy</code>命令用 <code>NSTask</code>执行一个简单的 <code>Shell</code>脚本把 <code>/Applications/MAMP/htdocs/mainfest.plist</code>的文件复制到 <code>GearBest_temp.ipa</code>的同级目录。</p>
+<pre><code class="language-shell">copy $1 $2
+</code></pre>
+<p>利用查找出来的信息 替换到 <code>mainfest.plist</code>里面的 <code>{version}</code>和 <code>{ipa}</code>字段。重新命名 <code>Plist</code> 为 <code>GearBest_版本号_编译号.plist</code></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-c0e246e8d43e3692.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在 <code>GearBest_temp.ipa</code>复制一份 <code>ipa</code>命名为 <code>GearBest.ipa</code>删除 <code>GearBest_temp.ipa文件</code></p>
+<p>复制我们的配置 <code>Plist</code>到 <code>/Applications/MAMP/htdocs/iPiPa/plist</code>目录。</p>
+<p>执行上传脚本</p>
+<pre><code class="language-shell"> cd /Applications/MAMP/htdocs/iPiPa
+ git add .
+ git commit -m &quot;change&quot;
+ git push
+</code></pre>
+<blockquote>
+<p>请一定要用 <code>SSH</code> 进行 <code>Clone</code>并且配置你的 <code>SSH key</code></p>
+</blockquote>
+<p>我们上传完毕 用同步获取最新的 Log 信息。</p>
+<p>获取 Log 的地址 [http://ip 地址:端口/job/项目名称/ Build 号/api/json?pretty=true](http://ip 地址:端口/job/项目名称/ Build 号/api/json?pretty=true)</p>
+<blockquote>
+<p>如果项目名称有中文一定要 <code>URL Encode</code></p>
+</blockquote>
+<p>我们把当前打包的 APP 下面信息 存放在 类里面用于保存</p>
+<ul>
+<li><code>App</code> 名称</li>
+<li>版本号</li>
+<li><code>Build</code> 号</li>
+<li><code>Jenkins</code> 对应项目名称</li>
+<li><code>Jenkins</code> 对应的 <code>Build</code> 号</li>
+<li><code>Plist</code>的 <code>Raw</code> 地址</li>
+<li>打包的 <code>Log</code> 信息。</li>
+</ul>
+<p>我们可以利用 <code>Model</code> 转 <code>Json</code>存在本地 每次重新生成安装界面从本地读取之后生成安装的 <code>Html</code>存在到我们 <code>MAMP</code>的主目录即可。</p>
+<blockquote>
+<p>sleep 60 #休眠60秒等待 APP 执行完毕 让 <code>Jenkins</code>强行的休眠60秒是等待我们的软件执行完毕。</p>
+<p>之前没注意  发现我们的软件没走完就停止了。</p>
+</blockquote>
+<p>可能大家看完听得云里雾里，不止所云。我之后有时间把自动化上传软件再次写一遍 开源，这样大家就可以部署一下。</p>
+<p>说一下这样部署的优点吧。</p>
+<ul>
+<li>使用 <code>Jenkins</code> 服务可以让测试人员自己打包 想什么时间打什么时间打</li>
+<li>使用 <code>Fastlane</code> 可以让其他的版本公用一套 配置</li>
+<li>使用 <code>MAMP+Github</code>可以让测试人员通过内网瞬间安装。</li>
+</ul>
+<p>我们现在 <code>Fastlane</code>在自己电脑，导致每次打包都会很卡。希望公司贡献一台测试机出来就好了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-9d3bdeea843a096b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/zi-dong-hua" class="tag">
+                    自动化
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-你是否变成了你自己">
+                  <h3 class="post-title">
+                    你是否变成了你自己
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

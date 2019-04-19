@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>一次一知半解的学习UIStackView | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">一次一知半解的学习UIStackView</h2>
+            <div class="post-date">2017-12-01</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-01-074214.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p>[TOC]</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-29-025249.jpg" alt=""></p>
+<h2 id="arrangedsubviews">arrangedSubviews</h2>
+<p>图中的四个子试图可以通过 <code>arrangedSubviews</code>属性进行设置。</p>
+<p>我们可以通过初始化方法进行设置 <code>arrangedSubviews</code>。</p>
+<pre><code class="language-swift">let arrangedSubviews = [UIView()]
+let stackView = UIStackView(arrangedSubviews: arrangedSubviews)
+</code></pre>
+<p>添加一个试图到 <code>arrangedSubviews</code>数组最后。</p>
+<pre><code class="language-swift">let addNewView = UIView()
+stackView.addArrangedSubview(addNewView)
+</code></pre>
+<p>从 <code>arrangedSubviews</code>移除指定的试图。</p>
+<pre><code class="language-Swift">stackView.removeArrangedSubview(addNewView)
+</code></pre>
+<p>我们还可以交换一个试图所在的位置到0</p>
+<pre><code class="language-swift">stackView.insertArrangedSubview(addNewView, at: 0)
+</code></pre>
+<h2 id="axis">axis</h2>
+<p>我们想怎么知道试图是按照横向排列还是纵向排列的呢？我们有一个枚举可以使用。</p>
+<pre><code class="language-swift">open var axis: UILayoutConstraintAxis
+</code></pre>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-29-063859.jpg" alt=""></p>
+<p>我们可以通过设置 <code>axis</code>为 <code>.horizontal</code>为横向布局</p>
+<pre><code class="language-swift">stackView.axis = .horizontal
+</code></pre>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-29-064622.jpg" alt=""></p>
+<p>我们可以设置 <code>axis</code>为 <code>.vertical</code>为纵向布局</p>
+<pre><code class="language-swift">stackView.axis = .vertical
+</code></pre>
+<p>现在我们知道怎么设置横向布局还有纵向布局，我们想做下面的试图结构该如何做呢。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-29-070602.png" alt=""></p>
+<p>红色的试图大小为 <code>375x50</code>,中间的间距是 <code>20</code>。白色的试图大小为 <code>51x33</code>;</p>
+<pre><code class="language-swift">import UIKit
+import PlaygroundSupport
+
+class MyViewController : UIViewController {
+    override func loadView() {
+        let view = UIView()
+		view.frame = CGRect(x: 0, y: 0, width: 375, height: 676)
+        view.backgroundColor = .white
+
+		let backgroundView = UIView()
+		backgroundView.backgroundColor = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
+		backgroundView.bounds = CGRect(x: 0, y: 0, width: 375, height: 50)
+		backgroundView.center = view.center
+		view.addSubview(backgroundView)
+
+		var arrangedSubViews:[UIView] = []
+
+		for _ in 0 ..&lt; 5 {
+			let subView = UIView()
+			subView.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+			arrangedSubViews.append(subView)
+		}
+
+		let stackView = UIStackView(arrangedSubviews: arrangedSubViews)
+		stackView.frame = CGRect(x: 20, y: 9, width: 375 - 40, height: 50 - 18)
+		stackView.axis = .horizontal
+		stackView.alignment = .fill
+		stackView.distribution = .fillEqually
+		stackView.spacing = 20
+		backgroundView.addSubview(stackView)
+
+        self.view = view
+    }
+}
+// Present the view controller in the Live View window
+PlaygroundPage.current.liveView = MyViewController()
+</code></pre>
+<p>上面的代码可以放在 <code>Playground</code> 看运行的效果。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-29-5441F16D-7ADB-47A9-A422-41132955C892.png" alt="5441F16D-7ADB-47A9-A422-41132955C892"></p>
+<p>我们可以在上面的代码中发现了三个起到决定作用的属性分别是 <code>alignment</code> <code>distribution</code></p>
+<p><code>spacing</code>。</p>
+<h2 id="alignment">alignment</h2>
+<p>关于 <code>alignment</code>是一个枚举。</p>
+<h3 id="fill">fill</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-29-074402.png" alt=""></p>
+<p><code>fill</code>是铺满的样式。在保证最小间距的情况下，铺满整个 <code>UIStackView</code>。这个模式之下，并不是均等的分割平铺，除非设置下面的属性。</p>
+<pre><code class="language-swift">stackView.distribution = .fillEqually
+</code></pre>
+<h3 id="top">top</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-29-9852AED3-1E0A-4CB7-810E-0E7009488FF3.png" alt="9852AED3-1E0A-4CB7-810E-0E7009488FF3"></p>
+<p><code>top</code>是基于顶部对其，下面根据再自动约束。</p>
+<h3 id="bottom">bottom</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-29-091447.png" alt=""></p>
+<p><code>bottom</code>是基于底部对其，上面再进行自动约束。</p>
+<p>对于横向布局来说</p>
+<pre><code class="language-swift">leading = top
+trailing = bottom
+</code></pre>
+<p>横向布局设置左对齐和右对齐无法生效。</p>
+<h3 id="center">Center</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-29-092108.png" alt=""></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-29-988F0286-3A9B-4A1A-A06A-73E5BFBA4198.png" alt="988F0286-3A9B-4A1A-A06A-73E5BFBA4198"></p>
+<p><code>center</code>当为横向布局的时候，约束像上下两端延伸。如果是纵向约束的时候，约束像左右两端延伸。</p>
+<h3 id="leading">leading</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-29-092608.png" alt=""></p>
+<p><code>leading</code>当布局方式为纵向排列时候，按照左侧对其。</p>
+<h3 id="trailing">trailing</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-29-094240.png" alt=""></p>
+<p><code>trailing</code>是在纵向布局情况下，按照右侧进行布局。</p>
+<h3 id="firstbaseline">firstBaseLine</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-30-020705.png" alt=""></p>
+<p><code>firstBaseLine</code>只针对于横向排列布局有效，是针对数组第一个试图,如果不是文本就按照顶端开始对其，是文本按照文本下端对其。</p>
+<h3 id="lastbaseline">lastBaseLine</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-30-510A083F-F423-4558-B970-4BEEC02F904F.png" alt="510A083F-F423-4558-B970-4BEEC02F904F"></p>
+<p><code>lastBaseLine</code>也是针对于横向排列布局有效，是针对数组第一个试图,如果不是文本就按照底部开始对其，是文本按照文本底部对其。</p>
+<h2 id="distribution">distribution</h2>
+<p><code>distribution</code>这个属性是决定子试图布局的最关键因素。</p>
+<h3 id="fill-2">fill</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-30-0AF4AB7D-ED07-4631-99EB-969FB5F77876.png" alt="0AF4AB7D-ED07-4631-99EB-969FB5F77876"></p>
+<p><code>fill</code>模式是按照设置的间距，之后根据子试图全部铺满整个 <code>UIStackView</code>。在这里我们要提到一个方法那就是 <code>intrinsicContentSize</code>。</p>
+<p><code>intrinsicContentSize</code>指代一个试图最适合的大小，对于 <code>UIImageView</code> <code>UILabel</code> <code>UIButton</code>都是可以系统计算 <code>intrinsicContentSize</code>大小的。</p>
+<p>但是对于 <code>UIView</code>是系统无法知道 <code>intrinsicContentSize</code>大小。我们就需要子类重写 <code>intrinsicContentSize</code>这个方法让系统知道最适合的试图大小是多少。</p>
+<p>我们为什么要知道 <code>intrinsicContentSize</code>的大小，首先我们研究 <code>fill</code>形式试图布局的计算公式。</p>
+<p>我们按照上图所以计算</p>
+<pre><code class="language-swift">let width = View1.intrinsicContentSize.width + spance + View2.intrinsicContentSize.width + spance + View3.intrinsicContentSize.width + spance + View4.intrinsicContentSize.width
+</code></pre>
+<p>当我们计算出的 <code>Width</code>已经超过我们 <code>UIStackView</code>的宽度的时候，我们会按照优先级，压缩优先级比较低的试图。</p>
+<p>如果优先级都一样，那么我们会先保证 <code>arrangedSubviews</code>数组里面排序在前面的试图展示，之后压缩排序在后面的试图。</p>
+<p>当我们计算出的 <code>width</code>不足以铺满我们 <code>UIStackView</code>宽度的时候，我们会让优先级别叫高的试图优先按照正确的试图显示，当优先级一样的时候，我们会优先让 <code>arrangedSubviews</code>索引在后面试图优先按照正常尺寸显示，最前面进行拉伸。</p>
+<p>这里先讲解一下优先级，优先级分为抗压缩(<code>Content Compression Resistance Priority</code>)还有抗拉伸(<code>Content Hugging Priority</code>)。</p>
+<h4 id="content-compression-resistance-priority">Content Compression Resistance Priority</h4>
+<p>抗压缩的优先级: <code>750</code> 优先级越高越不容易被压缩。</p>
+<h4 id="content-hugging-priority">Content Hugging Priority</h4>
+<p>抗拉伸的优先级: <code>250(251)</code> 优先级越高越不容易被拉伸。</p>
+<blockquote>
+<p>这里有个奇怪的问题 代码创建优先级默认为<code>250</code> 但是 <code>XIB</code> 创建的优先级别为<code>251</code>。</p>
+</blockquote>
+<p>我们往 <code>UIStackView</code>添加三个 <code>UIView</code>，分别是红蓝黄。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-01-030535.png" alt=""></p>
+<p>我们发现能可见的试图只有 <code>蓝色</code>的试图，这到底是怎么的回事呢？</p>
+<p>因为对于 <code>UIView</code>来说，系统无法计算试图的大小，会返回默认为<code>(-1,-1)</code>。</p>
+<p>对于显示来说，<code>(-1,-1)</code>是按照 <code>（0，0）</code>计算的。为什么出现蓝色，我也是猜测，但是经过几次实验来说，大概得出来这个结论。</p>
+<blockquote>
+<p>对于 <code>UIStackView</code>布局的数组来说，</p>
+<p>如果数组只有一个试图的时候是铺满整个 <code>UIStackView</code>.</p>
+<p>如果数组试图大于一个的时候，左侧的边距是最后第二试图和第一个试图间隙想加。显示最后第二个试图。</p>
+<p>就按照上面的例子来说。</p>
+<p>最后第二个元素是 <code>蓝色</code>的，所以显示出来的是蓝色试图的。和第一个试图只有一个间隙，我们设置间隙最小 <code>10</code>。那么蓝色试图左侧的间隙是是 <code>1*10</code>间距，右侧就是和最后一个的间隙 <code>10</code>。</p>
+<p>如果只有一个试图的时候。</p>
+<p>因为不存在倒数第二个试图，直接显示唯一的一个。一个试图的左侧和右侧也没有试图，那就是没有间距，全部铺满。</p>
+</blockquote>
+<p>为了证明我们 <code>intrinsicContentSize</code>这个值决定 <code>UIView</code>在 <code>UIStackView</code>的布局，我们就用自定义 <code>UIView</code>一个类，重写 <code>intrinsicContentSize</code>方法，控制 <code>红</code>，<code>黄</code>，<code>蓝</code>的大小为<code>(100,0)</code></p>
+<p>为什么我们不设置<code>高度</code>，因为对于横向布局铺满来说。设置高度已经没有什么意义了，布局只关系宽度。</p>
+<p>我们设置 <code>UIStackView</code>的宽度为<code>320</code>，间距为<code>10</code>。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-01-032856.png" alt=""></p>
+<p>我们发现我们的三个试图竟然全部的展示出来，因为 <code>100 + 10 + 100 +10 + 100 = 320</code></p>
+<p>我们设置的大小和间距正好等于我们设置 <code>UIStackView</code>的宽度。</p>
+<p>我们设置一下 <code>UiStackView</code>小于我们计算的宽度，设置为 <code>280</code>。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-01-033133.png" alt=""></p>
+<p>当我们设置<code>UIStackView</code> 宽度不够的时候，我们的小黄被压缩了。因为要优先的保证间距，三个试图的优先级是一样的，所以小黄的只能委屈的被压缩了。</p>
+<p>小黄再想凭什么我就被欺负，小红和小蓝说因为你来的比我们晚。后来小黄因为关系，一下子级别比小红和小蓝都高。没法再欺负了，怎么提升级别，看下面。</p>
+<p>因为小黄默认抗压缩级别是<code>750</code>，小黄通过关系提升到<code>1000</code>，让你们还欺负我。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-01-034402.png" alt=""></p>
+<p>我们从结果来看，我们的小黄自从提升级别之后再也不被欺负，但是小蓝成为下一个挤压。</p>
+<p>我们再把小黄的级别降下来，现在让容器变大，宽度变成<code>375</code>。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-01-054752.png" alt=""></p>
+<blockquote>
+<p>因为 <code>Playground</code> 里面的预览模拟器屏幕的宽度就是375</p>
+</blockquote>
+<p>我们发现小蓝和小黄已经恢复正常了，但是红色竟然被拉长了。这是什么原因呢？</p>
+<p>我们想让小蓝拉伸，因为抗拉伸优先级越高越被拉伸，我们设置小蓝如下。</p>
+<pre><code class="language-swift">view2.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
+</code></pre>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-01-2ADD4DC7-004C-42FC-A244-FCA611D65B66.png" alt="2ADD4DC7-004C-42FC-A244-FCA611D65B66"></p>
+<p>我们可怜的小蓝果然变得臃肿了起来，因为 <code>fittingSizeLevel</code> 的优先级为<code>50</code>，是最先考虑被拉伸的。</p>
+<p>从上面我们得出一个结论如下：</p>
+<blockquote>
+<p>当我们设置为 <code>fill</code> 模式填充的时候</p>
+<p>如果全是 <code>UIView</code> 计算不出来实际大小，就展示倒数第二个试图，如果只有一个就全部铺满</p>
+<p>如果宽度不够，就优先压缩优先级比较低的试图，其次从最后一个试图进行压缩。</p>
+<p>如果宽度足够，就优先拉伸优先级比较低的试图，其次从最前面的试图进行拉伸。</p>
+</blockquote>
+<h3 id="fillequally">fillEqually</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-01-060625.png" alt=""></p>
+<p>这个模式是让所有的试图进行平分,如果宽度只够显示最小的间隙就只显示间隙。</p>
+<p>这个模式不用计算实际大小，也不用设置优先级。</p>
+<h3 id="fillproportionally">fillProportionally</h3>
+<p>这个是按照实际大小按照比例进行分配大小，暂时没找到分配到底有什么规律。</p>
+<h3 id="equalspacing">equalSpacing</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-01-2F931DF6-A6B3-42DE-A30F-DA0DD851809B.png" alt="2F931DF6-A6B3-42DE-A30F-DA0DD851809B"></p>
+<p>这个模式是按照实际大小布局，如果宽度足够就平均拉伸间距。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-01-064156.png" alt=""></p>
+<p>如果宽度不足，就按照优先级之后试图顺序进行压缩。</p>
+<h3 id="equalcenter">equalCenter</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-01-812EFFAE-09C6-4B64-90E1-685051F7B5A6.png" alt="812EFFAE-09C6-4B64-90E1-685051F7B5A6"></p>
+<p>保证最小间距情况下，按照最适合的大小，之后按照中心点距离相等进行排列。排列出来的间距不一定相等，但是最小必须等于设置的最小间距。</p>
+<p>如果宽度小于设置的宽度，那么按照优先级之后按照试图顺序压缩试图。</p>
+<p>如果宽度不够，就优先排列宽度最小的一边。如果最小在左侧就从左侧布局</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-01-071842.png" alt=""></p>
+<p>如果最小的在右侧就从右侧布局</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-01-071700.png" alt=""></p>
+<h2 id="islayoutmarginsrelativearrangement">isLayoutMarginsRelativeArrangement</h2>
+<p>是否允许启用边缘布局，默认是 <code>false</code> 全部铺满。</p>
+<p>假设我们设置<code>isLayoutMarginsRelativeArrangement</code>为 <code>true</code>,边距都为10。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-01-072349.png" alt=""></p>
+<h2 id="setcustomspacing">setCustomSpacing</h2>
+<p>可以设置某个试图后的间距，这个设置优先级比默认间距优先级高。比如我们设置红色和蓝色中间的间距为<code>5</code>。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-01-073125.png" alt=""></p>
+<p>关于 <code>UIStackView</code> 今天算是研究完，但是文章中有很多不正确的地方，大家发现不正确的地方及时提醒我纠正。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/swift" class="tag">
+                    Swift
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-livechat-的填坑之行">
+                  <h3 class="post-title">
+                    LiveChat 的填坑之行
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

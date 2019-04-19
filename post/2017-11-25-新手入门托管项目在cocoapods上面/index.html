@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>新手入门托管项目在Cocoapods上面 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">新手入门托管项目在Cocoapods上面</h2>
+            <div class="post-date">2017-11-25</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-074201.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <blockquote>
+<p>看到别人托管项目在<code>cocoapods</code>上面是不是也想托管自己的项目 我们这就开始吧</p>
+</blockquote>
+<p><strong>2016年12月16日更新知识点:</strong></p>
+<blockquote>
+<p><code>source_files</code>我把所有都放在这个参数 但是一致提示我没有包含任何的文件 验证失败</p>
+<p>后来我看了一下验证的<code>log</code>发现<code>clone</code>的缓存目录只有<code>LICENSE</code>和<code>README</code>的文件没有任何的文件。</p>
+<p>但是我的<code>podspec</code>文件是在和<code>LICENSE</code>同级目录<code>Objective-C</code>下面的并且文件包也是在<code>podspec</code>同级</p>
+<pre><code class="language-ruby">s.source_files  = 'ZHAddressTextFiled/**/*.{h,m,png}'
+</code></pre>
+<p>这是我之前写的,<code>podspec</code>和<code>ZHAddressTextFiled</code>文件包都在一个目录下面，应该是没问题的为啥就不行呢</p>
+<p>我想既然下载出来<code>LICENSE</code>没有任何文件 是不是查找从<code>LICENSE</code>目录开始的我就从上面的写</p>
+<pre><code class="language-ruby">s.source_files  = 'Objective-C/ZHAddressTextFiled/**/*.{h,m,png}'
+</code></pre>
+<p>果然成功了。</p>
+<p>之前自己写过很多，都成功了，所以昨天十分纠结。昨天也看了MJ刷新的也是那样写的也可以。</p>
+<p>原来他们的<code>podspec</code>文件包和<code>LICENSE</code>都在一个目录下面。</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79gw1fasbzpeu8wj30xe08vta8.jpg" alt=""></p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79gw1fasc0cg7hnj30rb08igmz.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79gw1fasc1b5mloj30ns040dg0.jpg" alt=""></p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79gw1fasc1rtnpsj30hh04jdg6.jpg" alt=""></p>
+</blockquote>
+<h2 id="1安装cocoa-pods环境">1.安装cocoa pods环境</h2>
+<blockquote>
+<p>接下来的命令要用到POD 所以需要安装 安装指南我就不多说了</p>
+</blockquote>
+<p><a href="http://code4app.com/article/cocoapods-install-usage">安装cocoapods</a></p>
+<h2 id="2制作自己的库或者framework托管到cocoapods">2.制作自己的库或者framework托管到cocoapods</h2>
+<blockquote>
+<p>发布的库名字一定要和<code>github</code>创建的一样</p>
+</blockquote>
+<h2 id="在github上面创建工程-我们选择一定要选择license协议-因为这是cocoapods强调的">在github上面创建工程 我们选择一定要选择LICENSE协议 因为这是cocoapods强调的</h2>
+<p>我们下载<code>github</code>客户端 <code>clone</code>我们新建的工程</p>
+<p>我们安装制作<code>framework</code>模板 这样方便我们制作<code>framework</code></p>
+<blockquote>
+<p>首次创建运行就会报错 是因为必须有一个<code>public</code>的文件 我们把创建的一个头文件添加到<code>public</code>区域即可</p>
+</blockquote>
+<p>我们编写代码完毕 设置指令集 之后进行编译</p>
+<blockquote>
+<p>关于指令集说明请参考下面地址</p>
+</blockquote>
+<p><a href="http://www.cocoachina.com/ios/20140915/9620.html">指令集</a></p>
+<p>指令集最好包含 <code>armv7</code> <code>armv7s</code> <code>arm64</code> <code>x86-64</code> <code>i386</code>
+如果真机最少可以 <code>armv7</code> <code>arm64</code></p>
+<blockquote>
+<p>其中 <code>arm64</code>是必须存在的 这是苹果声明的</p>
+</blockquote>
+<p>如果是模拟器 我们要包含 <code>i386</code> <code>x86-64</code></p>
+<blockquote>
+<p>如果我们不包含<code>x86-64</code>，使用5S以上的模拟器就会报错</p>
+</blockquote>
+<h2 id="查看支持的指令集">查看支持的指令集</h2>
+<p>我们分别运行设备 和模拟器 就会生成对应的<code>framework</code></p>
+<p>输入</p>
+<pre><code class="language-shell">lipo -info -包文件
+</code></pre>
+<p>就可以查看指令集。</p>
+<h2 id="合并framework">合并framework</h2>
+<p>我们可以使用下面命令</p>
+<pre><code class="language-shell">lipo -create 包1 包2 -output 包3
+</code></pre>
+<blockquote>
+<p>有的机器可能使用lipo命令会报错 是因为没有安装<code>developer tool</code>或者没有加到路径里面
+如果安装了<code>Xcode</code>就有了<code>developer tools</code></p>
+</blockquote>
+<p>可以在终端输入以下命令</p>
+<pre><code class="language-shell">sudo xcode-select -switch /Library/Developer/CommandLineTools 
+</code></pre>
+<h2 id="创建pod-spec文件">创建pod spec文件</h2>
+<p>在终端输入命令</p>
+<pre><code class="language-shell">pod spec create 名字
+</code></pre>
+<p>关于<code>podspec</code>的语法可以参考这里</p>
+<p><a href="https://guides.cocoapods.org/syntax/podspec.html">语法参考</a></p>
+<h2 id="上传github工程">上传github工程</h2>
+<p>我们上传完毕创建<code>tag</code></p>
+<p>##创建tag</p>
+<p>打开<code>git</code>工程路径的终端</p>
+<pre><code class="language-shell">git tag 版本
+</code></pre>
+<p>推送版本</p>
+<pre><code class="language-shell">git push --tags
+</code></pre>
+<h2 id="配置trunk">配置trunk</h2>
+<p>如果配置请参考下面资料</p>
+<p><a href="https://guides.cocoapods.org/making/getting-setup-with-trunk.html">trunk入门</a></p>
+<p>之后我们输入下面命令上传</p>
+<pre><code class="language-shell">pod trunk push 你的pod spec文件的路径
+</code></pre>
+<p>如果没出问题就推送成功 你就可以开始使用了</p>
+<p>如果有甚么问题请留言或者发邮件到josercc@163.com</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/cocoapods" class="tag">
+                    CocoaPods
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-25-关于对类别-延展-协议-一些属性声明词的用法">
+                  <h3 class="post-title">
+                    关于对类别 延展 协议 一些属性声明词的用法
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

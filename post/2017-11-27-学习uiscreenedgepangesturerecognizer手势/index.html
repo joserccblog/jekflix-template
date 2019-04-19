@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>学习UIScreenEdgePanGestureRecognizer手势 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">学习UIScreenEdgePanGestureRecognizer手势</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-014817.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <h2 id="学习uiscreenedgepangesturerecognizer手势">学习UIScreenEdgePanGestureRecognizer手势</h2>
+<p>最近几天一直搞首页的框架,看了一些轮子，发现和我们的首页不一样。但是却发现<code>UIScreenEdgePanGestureRecognizer</code>这个类，就研究一下。</p>
+<p><strong>禁止在TVOS上面使用这个手势</strong></p>
+<blockquote>
+<p>UIScreenEdgePanGestureRecognizer寻找在屏幕边缘附近开始平移（拖动）手势。 在一些情况下，系统使用屏幕边缘手势来启动视图控制器转换。 您可以使用此类为您自己的操作复制相同的手势行为。</p>
+</blockquote>
+<p>看苹果官方文档的意识就是 我们平时使用<code>UINavigationController</code>可以从屏幕的左边移动返回POP到上一个界面的哪一个手势。</p>
+<blockquote>
+<p>在创建屏幕边缘平移手势识别器之后，在将手势识别器附加到视图之前，向edge属性分配适当的值。 您可以使用此属性来指定手势可以从哪些边缘开始。 该手势识别器忽略第一触摸之外的任何触摸。</p>
+</blockquote>
+<h2 id="设置的属性">设置的属性</h2>
+<pre><code class="language-swift">var edges: UIRectEdge { get set }
+</code></pre>
+<blockquote>
+<p>手势的可接受的起始边缘。</p>
+<p>top: 从上面开始拖动</p>
+<p>left: 从左边开始拖动</p>
+<p>right: 从右边开始拖动</p>
+<p>bottom：从下面开始拖动</p>
+<p>all: 可以识别四个方向</p>
+<p>您指定的边缘总是相对于应用程序的当前界面方向。 此行为确保手势始终出现在用户界面中的相同位置，而不考虑设备的当前方向。</p>
+</blockquote>
+<p>我们新建一个例子试一下。</p>
+<p>添加手势到试图上面</p>
+<pre><code class="language-swift">let screenEdgePanGesture = UIScreenEdgePanGestureRecognizer(target: self, action:#selector(ViewController.screenEdgePanGestureClick(gesture:)))
+screenEdgePanGesture.edges = UIRectEdge.left
+self.view.addGestureRecognizer(screenEdgePanGesture)
+</code></pre>
+<pre><code class="language-swift">func screenEdgePanGestureClick(gesture:UIScreenEdgePanGestureRecognizer)  {
+    print(&quot;screenEdgePanGestureClick&quot;)
+}
+</code></pre>
+<p>这样我们从屏幕的边缘从左向右移动就会执行我们的事件了。我们可以根据我们的实际情况设置对应的方向。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-e7df82852f626e75.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><a href="https://github.com/15038777234/Simple-UIScreenEdgePanGestureRecognizer-Demo">Demo下载</a></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-开发获取nsurl字符串的参数">
+                  <h3 class="post-title">
+                    开发获取NSURL字符串的参数
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

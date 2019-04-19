@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>听了2017年 Swift 开发者大会一些感想 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">听了2017年 Swift 开发者大会一些感想</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-061951.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p>特别感谢<a href="https://flow.ci">@Flow.ci</a>提供门票支持。
+2017Swift 开发者大会在深圳举办了两天，第一天是外国嘉宾。因为需要上班，加上全天都是英文，去了也是听不懂，星期六就在公司安心的上班了。
+星期天很多都是国内的大神，心想总算可以听明白了吧。之前从来没有参加过这种技术分享会议，星期六下班的时刻就十分的激动，期待明天参加。
+星期六激动的都放弃了平时的加班，直接回家了。为了不错过，特意在星期天定了一个6:40的闹钟，怕迟到，毕竟到后海地铁站需要大概20个地铁站距离。
+星期天出发的时候，特意带上充电宝，iPad,一个最喜欢古风本子，一直圆珠笔。
+带上充电宝是需要给手机和 iPad 充电，带上iPad 是为了方便写 Swift 代码进行测试，毕竟 iPad 带有 Playground 软件。
+带上本子和笔是因为我觉得听这种分享的讲座一定有一些心得，就带上本子和笔随时的记下来。
+但是果然带去的东西都是没啥用的。
+上午的第一场是巧哥关于 分析 Swift 的性能分析的。当巧哥说全程尝试用英文讲解的时候，我一脸懵逼。
+坐在我后面的两个人也在讨论，他们说昨天听了一天的英文，幸亏身边有一个伙伴给他们翻译。今天准备轻松一些，但是没想到 第一场还是英文讲解。
+是呀很多人的英语还除了可以马马虎虎的看懂英文文档，但是真实的听别人说时候，估计都会听不懂吧。
+掏出笔记本本来想听巧哥分享记一下笔记，但是听到巧哥全程英语完全听不懂就又装进书包里面了。
+虽然巧哥全程英文讲，但是看了巧哥的文档和一些示例代码。倒是理解的也听懂了一些。
+Swift 利用 Struct 和类不同的存储方式，从而优化了储存控件，提高了速度。
+当然还有一些其他的优化，不过我就听懂和记得这些了。
+不过有一些遗憾就是文档也是英文的，如果加上中文的备注，这样就更完美了，说不定我学到的更多。
+第二张是滴滴大神戴铭，前面放了他精心绘制的图片，大家前期的注意力都集中在他绘制的图片上了。
+他讲一些编译器远离，编译器如何把高级语言转换成中间代码到低级语言再到汇编语言。怎样把汇编语言一步步的转换成高级语言。
+前面讲解他们如果将前段的 CSS 和 JS 转换成 Swift 代码在 iOS 平台运行，听着觉得还有意思，觉得大神们研究的确实不一样，有深度。
+但是后面讲解编译器远离的时候，我听懵逼了。大学的时候就学计算机远离和编译机。
+当时觉得很枯燥就讨厌的逃课，因为对于那时的我们完全没有没有游戏更加的有趣。
+我不清楚技术的发展是不是基础-复杂-基础。可能是基础了解-复杂深入-再到基础深入的过程。
+但是我承认大学对于编译器远离厌恶，现在更是。所以后面基本上没有听进去了。
+中途休息的时候，原本打算和大神交流一下。但是看着不是全程英文和高深的听不懂的内容。
+觉得大神真的是神一般的存在，高高在上，高的都没办法走进去交流，怕被嘲笑自己的无知和弱小。
+我本来想问一下戴铭滴滴对于模块化是如何打造的，还有一些关于滴滴之前做的修复框架是怎样的思想，怎么解决遇到难题的。
+最后也没敢去问，感觉自己就是一个菜鸟，怕问出来被嘲笑。就好像别人都在研究1+1怎么等于2时候，我们还在问别人别人高数的问题。
+第三场是腾讯柯灵杰分享打造一个易扩展高性能的图片框架。他分析是如何一步步将最简易的图片加载框架升级到一个扩展性更高，性能最优的图片加载框架。
+我看完 PPT，觉得这种技术分享才是我希望看到的。不仅亲民，而且听完十分好理解。
+看完他分享图片加载框架和现如今加载框架基本上逻辑是一样的，和我自己心里面能想到如出一辙。但是他们做的一些图片的处理渲染，和一些查询的优化。
+如果我也写一个这样的图片加载框架，觉得最大的区别就是图片渲染和查询的优化了。
+可能技术越到最后，可能最难突破的就是这些所谓的优化了。
+下午第一节是王文槿分享的MVVM 框架，我觉得他分享的MVVM 框架和很多公司的都是不一样的。
+比如在我的脑海里面所认识的 MVVM 框架是这个样子的。
+<a href="http://www.jianshu.com/p/351ac4ce5a59">模块化架构你为什么这么火，让我如此亲睐你？</a>
+这一篇文章讲述我对于模块化架构的研究和对于 MVVM 的一些研究。</p>
+<p>但是听到他用 KVO 做中转框架来分离View 和 Model 层的分离，觉得这个对于我影响比较大。
+虽然现如今的 RXSwift 和 RAC 都可以做监听值的变化。我觉得这种框架学习成本比较大，每个项目所需要的可能只是一个微型框架。
+回去的时候一直想用 OC 利用 KVO 写一个复杂的 Demo出来，完善一下轻量行的框架。
+下午的第二节是赵恩生讲述美团模块化+团建。我估计如何在意听的这一场课估计就是这一场了。
+但是我听完有点失望，虽然收获比较大。我主要想听完揭开我对于模块化的一些谜团的，想听一下大公司都是如何去做模块化的。
+但是对于模块化是一笔带过，就讲了 Pod 进行继承。但是我们的工程包含模块也很多，毕竟也是电商应用。
+就自己创建的文件都一千多个，如果用 Pod 分离。嵌套的子 Pod 库不知道多少，每次分析 Spec 文件不知道分析多久。
+我主要想听大公司有没有更好的模块化，但是主要的讲述如何进行自动化测试打包的。
+我之前也搭建过 Jenkins+fir.im 的平台，当时放在了一个很卡的电脑上面。
+最后因为我们工程打包需要根据要打包的环境切换 Plist 文件的值，不止在 info.plist 配置还有Google.plist 的配置。
+Jenkins+fir.im已经不能满足我们的需要了，除非写 Shell 脚本。我觉得因为这个去学 Shell 脚本成本比较大。
+后来看到了 FastLane,觉得可以解决我们的问题。但是现在还没有研究透彻，不知道可以不。
+对于 Xcode Server Bot 是可以打包，但是因为是自定义证书，打包出来不能直接的进行安装。
+我在自己电脑搭建一个供我们公司内部测试的网站，这样下载很快。配置的 plist 放在了 Github 上面。
+最后想开发一个软件，提前配置好打包的参数。选择环境打包，将会自动同步最新的代码，替换参数，之后自动上传 plist 文件到 github，最后生成下载页面。
+美团说他们有九台 iMac 服务器，三台垃圾桶。这样的配置让他们进行自动化打包测试。
+但是对于我们公司来说，没有人力专门做模块化。更没有机器去跑测试代码。
+前两天研究 XCTest 代码，挺好的就是跑测试需要很久，还是在很少测试用例。
+所以低于我们这样的中小型公司，模块化根本没有那么大的人力去搞，做了影响其他同事开发。
+再说平时忙的根本没时间去研究新技术，更别说深入的研究了。
+昨天美团说做这些才对得起四五十 K 的工资，之后群里面炸了。都说美团还招人吗？
+毕竟对于我们这些四五年的也就十几 K，并且十五 K 左右也属于很高的了。更别说四五十 K。
+我们拿着十几 K 的薪资，不但要忙着平时需求，自测，打包分发，新技术突破，还希望我们模块化。
+我们没有人力单独分出做自动化，没有空闲的机器做服务器，没有空闲的时间研究新技术和难点，而且更没有统一技术水平的开发人员实践推行模块化。
+如果用 RAC 或者简单的 KVO，加上利用 DeepLink 做模块化跳转，对于团队的新人来说，根本无法下手做开发。
+第三节和第四节是合在一起的，讲解了机器学习。这节课完全听不进去，也不准备以后学习。
+当时看了后面觉得自己也听不懂，加上一周都没有好好睡觉了。就和小伙伴提前走了。
+听完感悟是没有和大神交流模块化和一些其他疑惑，讲解内容太高大上，没有平民化。
+我希望下一届的分享可以像腾讯的柯灵杰和UC王文槿 可以平民化，因为大部分人因为公司大小，个人能力都打不到研究编译器，机器语言，内存机制的底部。
+写的不好，喷轻点，😄！</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/gan-xiang" class="tag">
+                    感想
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-共享经济到来了，共产还远吗?">
+                  <h3 class="post-title">
+                    共享经济到来了，共产还远吗?
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

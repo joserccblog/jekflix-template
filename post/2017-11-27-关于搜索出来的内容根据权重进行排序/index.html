@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>关于搜索出来的内容根据权重进行排序 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">关于搜索出来的内容根据权重进行排序</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-023346.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p><img src="http://upload-images.jianshu.io/upload_images/545662-0d26d729ac9bb914.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这是整个功能的流程。</p>
+<p>对于这需求要做到百度搜索我呸，谷歌搜索的权重排序，我接到这个需求是拒绝的。后来经过和小伙伴的研究，觉得这个按照权重排序是可以实现的。</p>
+<p>下面说一下具体思路。</p>
+<pre><code class="language-objective-c">@[@&quot;abcd&quot;,@&quot;1abcd&quot;,@&quot;abcd1&quot;,@&quot;ab1cd&quot;,@&quot;1ab2cd&quot;,@&quot;abdc&quot;]
+</code></pre>
+<p>上面是一个数组的字符串，就当是我们查找出来的字符串数组，但是我们要按照我们搜索出来的关键词的相似度进行排序。</p>
+<p>假设我们需要搜索的字符串是<strong>abcd</strong>，对于人眼来说直接包含<strong>abcd</strong>的是排在最前面的。</p>
+<p>但是包含<strong>abcd</strong>的有<strong>abcd</strong>,<strong>1abcd</strong>,<strong>abcd1</strong>。很明显这三个顺序<strong>abcd</strong>,<strong>abcd1,1abcd</strong>.</p>
+<p>我们肉眼是可以看出来的但是程序不知道，这就涉及到权重的问题了。</p>
+<p>我们按照字母所在的位置进行权重的计算，权重越低的排在最前面。</p>
+<p><strong>abcd</strong>权重是<strong>0+1+2+3 = 6</strong></p>
+<p><strong>abcd1</strong>权重是<strong>0+1+2+3 = 6</strong></p>
+<p><strong>1abcd</strong>的权重是<strong>1+2+3+4 = 10</strong></p>
+<p>现在出现了两个权重为<strong>6</strong>的，但是<strong>abcd</strong>这个完全和我们输入的一样。<strong>abcd1</strong>多了一个<strong>1</strong>,我们按照同样的权重，字符串长度越短越排在前面。</p>
+<p>那么这三个字符串排序变成了<strong>abcd</strong> <strong>abcd1</strong> <strong>1abcd</strong></p>
+<p>剩下的字符串<strong>ab1cd</strong> <strong>1ab2cd</strong> <strong>abdc</strong>了。</p>
+<p>我们进行模糊搜索，但是怎么进行模糊搜索呢?小伙伴说进行输入的文字一个一个的进行查找，找到就超找剩下的。</p>
+<p>我们按照这个方法查找<strong>ab1cd</strong> <strong>1ab2cd</strong>两个。</p>
+<p>但是这两个怎么排序呢 还是进行权重排序。</p>
+<p><strong>ab1cd</strong>的权重 <strong>0+1+3+4 = 8</strong></p>
+<p><strong>1ab2cd</strong>的权重是 <strong>1+2+4+5 = 12</strong></p>
+<p>那么这两个进行权重排序是<strong>ab1cd</strong> <strong>1ab2cd</strong></p>
+<p>剩下的不满足精确搜索和模糊搜索，应该直接过滤掉的但是考虑到可能这个算法有问题就暂时按照字符串的长度进行排序 全部放在最后。</p>
+<p>下面是实现的代码。</p>
+<pre><code class="language-objective-c">GBSortSearchCountryManger
+</code></pre>
+<p>对搜索出来的结果进行排序的管理类。</p>
+<pre><code class="language-objective-c">/**
+ 需要进行排序的数组字符串
+ */
+@property (nonatomic, strong) NSArray&lt;NSString *&gt; *searchResult;
+</code></pre>
+<p>进行过滤的数据源</p>
+<pre><code class="language-objective-c">/**
+ 对数据源进行按照权重排序之后的数组
+
+ @param searchText 搜索的字符串
+ @return 按照权重排序数组
+ */
+- (NSArray&lt;NSString *&gt; *)sortSearchResultWithSearchText:(NSString *)searchText;
+</code></pre>
+<p>进行过滤的方法</p>
+<pre><code class="language-objective-c">- (NSArray&lt;NSString *&gt; *)sortSearchResultWithSearchText:(NSString *)searchText {
+    _currentSortLevelType = SSCSortLevelTypeExactMatch; // 开始设置精确的搜索
+    _currentSearchText = searchText;
+    NSMutableArray&lt;GBSortSearchCountryItem *&gt; *sortItems = [NSMutableArray array];
+    NSMutableArray&lt;NSString *&gt; *sortTempList = [NSMutableArray array];
+    [self.searchResult enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        // 组装数据源
+        GBSortSearchCountryItem *item = [[GBSortSearchCountryItem alloc] init];
+        item.text = obj;
+        [sortItems addObject:item];
+    }];
+    while (_currentSortLevelType &lt;= SSCSortLevelTypeOther) {
+        // 当查询的状态大于其他查询就退出
+        NSArray *sortItemList = [self sortItemWithLevelType:_currentSortLevelType sortResultItems:sortItems];
+        [sortItemList enumerateObjectsUsingBlock:^(GBSortSearchCountryItem *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [sortTempList addObject:obj.text];
+        }];
+        [sortItems removeObjectsInArray:sortItemList];
+        _currentSortLevelType ++;
+    }
+    return sortTempList;
+}
+
+</code></pre>
+<p>实现方法</p>
+<pre><code class="language-objective-c">/**
+ 查询当前查询的数据
+
+ @param levelType 查询的类型
+ @param items 剩余的数据源
+ @return 返回查询出来的对象
+ */
+- (NSArray&lt;GBSortSearchCountryItem *&gt; *)sortItemWithLevelType:(SSCSortLevelType)levelType
+                                              sortResultItems:(NSArray&lt;GBSortSearchCountryItem *&gt; *)items {
+    NSMutableArray&lt;GBSortSearchCountryItem *&gt; *sortItems = [NSMutableArray array]; // 保存查询出来的数据源
+    switch (levelType) {
+        case SSCSortLevelTypeExactMatch: {
+            // 精确搜索
+            [items enumerateObjectsUsingBlock:^(GBSortSearchCountryItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSRange range = [obj.text rangeOfString:_currentSearchText]; // 查询查询的字符串是否在查找的字符串存在
+                if (range.location != NSNotFound) {
+                    // 如果存在就符合精确查找的结果
+                    obj.levelTag = [self exactMatchCountWithRange:range]; // 查找权重
+                    [sortItems addObject:obj];
+                }
+            }];
+            sortItems = [NSMutableArray arrayWithArray:[self sortWithList:sortItems]]; // 根据权重进行排序
+        }
+            break;
+        case SSCSortLevelTypeFuzzySearch: {
+            // 按照顺序模糊搜索
+            [items enumerateObjectsUsingBlock:^(GBSortSearchCountryItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSInteger count = [self fuzzySearchLevelTagWithItem:obj]; // 查询模糊搜索的权重 如果是0代表没找到
+                if (count != NSNotFound) {
+                    obj.levelTag = count;
+                    [sortItems addObject:obj];
+                }
+            }];
+            sortItems = [NSMutableArray arrayWithArray:[self sortWithList:sortItems]];
+        }
+            break;
+        case SSCSortLevelTypeOther: {
+            [items sortedArrayUsingComparator:^NSComparisonResult(GBSortSearchCountryItem *  _Nonnull obj1, GBSortSearchCountryItem *  _Nonnull obj2) {
+                if (obj1.text.length &gt; obj2.text.length) {
+                    return NSOrderedDescending;
+                }else if(obj1.text.length &lt; obj2.text.length) {
+                    return NSOrderedAscending;
+                }else {
+                    return NSOrderedSame;
+                }
+            }];
+            // 剩余的结果 防止算法有问题 造成数据帅选的bug
+            [sortItems  addObjectsFromArray:items];
+        }
+            break;
+        default:
+            break;
+    }
+    return sortItems;
+}
+</code></pre>
+<p>根据需要过滤的类型进行过滤</p>
+<pre><code class="language-objective-c">/**
+ 计算精确搜索出来的权重
+
+ @param range 搜索字符串的位置
+ @return 权重
+ */
+- (NSUInteger)exactMatchCountWithRange:(NSRange)range {
+    NSUInteger currentIndex = range.location;
+    NSUInteger count = 0;
+    while (currentIndex &lt; range.location + range.length) {
+        count += currentIndex;
+        currentIndex ++;
+    }
+    return count;
+}
+</code></pre>
+<p>计算精确搜索的权重</p>
+<pre><code class="language-objective-c">/**
+ 查询模糊搜索的权重
+
+ @param item 模糊搜索的字符串
+ @return 权重
+ */
+- (NSUInteger)fuzzySearchLevelTagWithItem:(GBSortSearchCountryItem *)item {
+    NSUInteger count = 0; // 权重
+    NSUInteger quertCharactersLocation = 0; // 查询字符串所在的位置
+    NSString *itemText = item.text; // 需要查找的字符串
+    while (quertCharactersLocation &lt; item.text.length) {
+        // 当字符串查找完毕跳出循环
+        NSString *character = [item.text substringWithRange:NSMakeRange(quertCharactersLocation, 1)]; // 截取查找的字符
+        NSRange range = [itemText rangeOfString:character]; // 查找字符所在字符串的位置
+        if (range.location == NSNotFound) {
+            // 如果没有找到跳出方法
+            return NSNotFound;
+        }
+        count += range.location; // 计算权重
+        quertCharactersLocation ++; // 进行下一个字符查找
+        itemText = [itemText substringFromIndex:quertCharactersLocation]; // 过滤剩下的字符串 可以根据输入顺序查找
+    }
+    return count;
+}
+</code></pre>
+<p>模糊搜索的权重</p>
+<pre><code class="language-objective-c">/**
+ 对搜索出来的结果进行排序
+
+ @param list 列表
+ @return 根据权重排序之后的列表
+ */
+- (NSArray&lt;GBSortSearchCountryItem *&gt; *)sortWithList:(NSArray&lt;GBSortSearchCountryItem *&gt; *)list {
+    NSMutableArray *sortList = [NSMutableArray arrayWithArray:list];
+    [sortList sortUsingComparator:^NSComparisonResult(GBSortSearchCountryItem *  _Nonnull obj1, GBSortSearchCountryItem * _Nonnull obj2) {
+        if (obj1.levelTag &gt; obj2.levelTag) {
+            // 如果权重高就排在最后
+            return NSOrderedDescending;
+        }else if (obj1.levelTag &lt; obj2.levelTag) {
+            // 权重低就排在最前面
+            return NSOrderedAscending;
+        }else {
+            // 权重一样
+            if (obj1.text.length &gt; obj2.text.length) {
+                // 字符串长的排在后面
+                return NSOrderedDescending;
+            }else if (obj1.text.length &lt; obj2.text.length) {
+                // 字符串短的排在前面
+                return NSOrderedAscending;
+            }else {
+                // 一样就相等
+                return NSOrderedSame;
+            }
+        }
+    }];
+    return sortList;
+}
+
+</code></pre>
+<p>根据权重进行排序</p>
+<p>我们进行测试。</p>
+<pre><code class="language-objective-c">    NSArray *array = @[@&quot;abcd&quot;,@&quot;1abcd&quot;,@&quot;abcd1&quot;,@&quot;ab1cd&quot;,@&quot;1ab2cd&quot;,@&quot;abdc&quot;];
+    GBSortSearchCountryManger *manger = [[GBSortSearchCountryManger alloc] init];
+    manger.searchResult = array;
+    NSArray *sortList =  [manger sortSearchResultWithSearchText:@&quot;abcd&quot;];
+    [sortList enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSLog(@&quot;-&gt;&gt;&gt;%@&quot;,obj);
+    }];
+</code></pre>
+<pre><code class="language-c">2016-12-19 13:44:11.578 GearBest[5812:189459] -&gt;&gt;&gt;abcd
+2016-12-19 13:44:11.579 GearBest[5812:189459] -&gt;&gt;&gt;abcd1
+2016-12-19 13:44:11.579 GearBest[5812:189459] -&gt;&gt;&gt;1abcd
+2016-12-19 13:44:11.579 GearBest[5812:189459] -&gt;&gt;&gt;ab1cd
+2016-12-19 13:44:11.580 GearBest[5812:189459] -&gt;&gt;&gt;1ab2cd
+2016-12-19 13:44:11.580 GearBest[5812:189459] -&gt;&gt;&gt;abdc
+</code></pre>
+<p>上面就是权重排序算法的实现。这个算法有点笨拙，如果搜索范围大一定卡的要命，但是对于我们需求只有两百个国家还可以。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-自定义输入框造轮子大法">
+                  <h3 class="post-title">
+                    自定义输入框造轮子大法
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

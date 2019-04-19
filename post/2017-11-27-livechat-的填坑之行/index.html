@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>LiveChat 的填坑之行 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">LiveChat 的填坑之行</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-075133.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p>今天的这一篇文章还是起源于盘古开天辟地之后不知道多少年的某一天，我正坐在深圳南山的一家上市公司里面开启了一天平凡的工作。</p>
+<p>那是天气不太好，阴暗并且潮湿的南方独有的气候。因为上午刚来，总想看看有没有新的技术文章可以看，就很无聊的翻看着大家经常去的技术网站。</p>
+<p>那天正看的入神，就好像没电的电池充上了电，就好像多年离家的孩子突然坐上了回家的列车，就好像菜鸟的我突然找到了一篇自己觉得还感兴趣的文章一般。</p>
+<p>突然，天空中一声炸雷，外面猝不及防的下起了雨来了。我虽然带上眼镜还是看不清外面雨到底有多大，但是从哗啦啦从屋顶流水的急促声，从外面轰隆隆的雷声，从外面随风摆动的树叶的沙沙声，我能感觉这雨十分的大。</p>
+<p>叮咚的一声，电脑弹出来一个消息，通知我们去开一个需求评审会议。看了一眼会议标题，我呸的一声之后叹了一声气。</p>
+<p>上一个需求刚刚加紧的做完，就是为了赶紧查一下模块化的资料。前几天看别人的模块化，一直想尝试的分离我们的 <code>APP</code>，但是总是遇到分离不开的问题。</p>
+<p>真是一点时间充电都没有，做完一个来一个，无休无止。</p>
+<p>庞大的会议室里面，冷冷清清的坐着几个人，盏白的节能灯在屋子里面提供恰能看清的灯亮，外面的雨声越来越大，穿着短袖在会议室里面感觉一丝丝的凉意。</p>
+<p>那天 <code>PM</code> 在会议室里面讲了什么，我都没去注意。当时坐在那里只是关心今天没有带伞，我中午该怎样去吃饭。</p>
+<p>那天需求评审，因为觉得烦就没听下去，就主要听到我们的 <code>APP</code> 要接入客服系统，使用目前网站已经接入的 <code>LiveChat</code>。</p>
+<p>当时觉得没什么，觉得只要是第三方服务，只要看一下文档，就可以很随意的添加进来，没有什么技术难度的。</p>
+<p>但是我想错了，我以为 <code>LiveChat</code> 的文档如国内的一些大型的服务商一样，就差手把手的教你了。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-16-38BAF0CA-727A-4628-94E5-8431649B3803.png" alt="38BAF0CA-727A-4628-94E5-8431649B3803"></p>
+<p>开完会议之后，我差点的蹦起来，按照我之前的脾气，我早就找 <code>PM</code> 骂娘去了，这是什么鬼服务商，这就是所谓的技术文档吗。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-16-B3D38D8B-0AA1-439F-85C7-A2BD8F006C30.png" alt="B3D38D8B-0AA1-439F-85C7-A2BD8F006C30"></p>
+<p><code>PM</code> 做事真是雷厉风行，说干就干，上午还正在开需求评审，下午就已经把任务分下来了。真是赶着懒驴上磨。</p>
+<p>既然需求任务都下来了，做就做吧。</p>
+<p>对于我来说我最喜欢就是第三方平台能用 <code>Cocoapods</code> 集成就用 <code>Cocoapods</code>，真的用不了再文件集成，傻蛋才不用 <code>Cocoapods</code> 呢。</p>
+<h3 id="使用-cocoapods-集成-livechat">使用 Cocoapods 集成 LiveChat</h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-16-F26413F0-A7F6-441B-A977-8A1C6FC60B04.png" alt="F26413F0-A7F6-441B-A977-8A1C6FC60B04"></p>
+<p>从上图来看，看来 <code>LiveChat</code> 还是用的自己的私有库，并且还要执行一个 <code>Shell</code> 脚本。</p>
+<p>看起来集成还不太多难，马上就从主干拉去了一个分支开始做这个需求了。</p>
+<p>说到这里，顺便提一下我们的代理管理。我们只有一个主干代码用于打包发布，不同的需求就从主干拉去不同的分支，之后做完需求合并到主干提交进行测试。</p>
+<p>但是.....</p>
+<p>竟然在更新 <code>LiveChat</code> 到 <code>Pods</code> 库之后，之前工程的代码竟然无缘无故的抱错。虽然跟随着 <strong>更加智能</strong> 的 <code>Xcode9</code>修复之后，但是遇到了自己再也解决不了的问题。</p>
+<ul>
+<li><strong>Lipo xxxxx error</strong></li>
+<li><strong>Lxxxx not found</strong></li>
+</ul>
+<p>第一个错误应该是合并模拟器和真机库的命令出错了，这个错误自己之前没有遇到过。下面的是少了某个库的.a 文件，可是这些库都是我用 <code>Cocoapods</code> 进行托管的呀，为啥就开始找不到了。</p>
+<p>自己实在找不到解决办法，只好试了一下第二种方式，直接把代码添加到我们工程里面。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-16-9F2C4C3C-BAEA-44F0-83E2-607F2EE9B032.png" alt="9F2C4C3C-BAEA-44F0-83E2-607F2EE9B032"></p>
+<p>第二种的看起来比 <code>Cocoapods</code> 进行集成要复杂的多，但是谁让使用 <code>Cocoapods</code> 无法进行编译，这也不怪我，我也想省劲省事的。</p>
+<p>第二种虽然麻烦，但是至少也没有其他添加第三方库要复杂的多，毕竟没有设置 <code>Header Path</code> 或者其他变量的设置。</p>
+<p>跟着文档一步步的设置成功之后，竟然可以编译了。看到这里我竟然欣喜起来了，这是一个跨时代的进步。</p>
+<p>随后我想都没想写下了测试的例子，用于测试 <code>LiveChat</code>。</p>
+<h3 id="初始化-livechat">初始化 LiveChat</h3>
+<pre><code class="language-objective-c">+ (void)setupLiveChat {
+    NSError *error;
+    NSString *appID;
+    if ([GBAppRunEnvironmentManager gb_shareManager].currentAppRunMode == GBAppRunDeveloperModeDebug) {
+        appID = kGBLiveChatDebugAppID;
+    } else {
+        appID = kGBLiveChatReleaseAppID;
+    }
+    if (![[LPMessagingSDK instance] initialize:appID error:&amp;error]) {
+        GBLogError(error.description);
+    }
+}
+</code></pre>
+<h3 id="连接-livechat">连接 LiveChat</h3>
+<pre><code class="language-objective-c">+ (void)connectLiveChat {
+    NSString *account;
+    if ([GBAppRunEnvironmentManager gb_shareManager].currentAppRunMode == GBAppRunDeveloperModeDebug) {
+        account = kGBLiveChatDebugAccountID;
+    } else {
+        account = kGBLiveChatReleaseAccountID;
+    }
+    id &lt;ConversationParamProtocol&gt; conversationQuery = [[LPMessagingSDK instance] getConversationBrandQuery:account];
+    
+    GBLiveChatViewController *liveChatController = [[GBLiveChatViewController alloc] initWithNibName:nil bundle:nil];
+    liveChatController.account = account;
+    liveChatController.conversationQuery = conversationQuery;
+    LPConversationViewParams *conversationViewParams = [[LPConversationViewParams alloc] initWithConversationQuery:conversationQuery containerViewController:liveChatController isViewOnly:NO];
+    [[LPMessagingSDK instance] showConversation:conversationViewParams authenticationParams:nil];
+    [GBCurrentViewController().navigationController pushViewController:liveChatController animated:YES];
+}
+</code></pre>
+<p>用真机和模拟器我都测试了一下果然都可以了。虽然自己在测试的时候，还是出现了一点问题。</p>
+<p><code>LiveChat</code> 在使用的过程中，当点击输入框进行编辑文本的时候。<code>LiveChat</code> 为了不让键盘遮挡住输入框，直接把界面上移。</p>
+<p>你们没有听错，直接把界面全部上移。我们 <code>APP</code> 那么庄重而不是身份的导航条也被推上去了。</p>
+<p>被<code>LiveChat</code> 设置聊天的洁白的背景颜色闪瞎了眼睛，你能想象一个界面除了下面可以看到输入框，上面一片白是怎样的心情吗。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-16-0A0378E9-8126-47A2-BB0D-3E02E1991F50.png" alt="0A0378E9-8126-47A2-BB0D-3E02E1991F50"></p>
+<p>就是上图所示的心情。</p>
+<p>不过既然这是 <code>LiveChat</code> 第三方库自己的问题，关键我也试了可以正常的进行通信，那么这个需求是不是完成了。</p>
+<p>想一想真的有一点小激动呢，这 <code>TM</code> 就完成了需求，我还以为多大的挑战呢。</p>
+<p>于是我果断的进行提交测试，把结果给测试验收，让刚才闪瞎我眼睛的背景颜色也闪瞎他们测试眼睛吧！</p>
+<p>最后，测试跑过来说，打包错误，打包成功，无法打出新包。</p>
+<p>我这么乐于助人，急忙打开了 <code>Jenkins</code> 当前打包的日志看了看，在 <code>Xcode8.3</code>进行打包失败了。</p>
+<p>我拍了拍测试的小肩膀，一会就好。</p>
+<p>我看了日志让更新 <code>Fastlane</code>,就果断的更新到最新版本的 <code>Fastlane</code>.之前是因为 <code>Xcode9</code>自动化打包因为证书的问题一直有问题，并且使用 <code>Xcode9</code>打包必须要进行兼容 <code>iOS11</code>了，比如导航条的 <code>UISearchBar</code> 竟然会无缘无故的变大，我也不知道那个货给搞大的，可能是 <code>Xcode9</code>吧。</p>
+<p>为了能让 <code>APP</code> 健壮，不敢在上线期限内出现任何问题，就果断的使用 <code>Xcode8.3</code>进行打包上传。</p>
+<p>为此，我还下了一晚上才下载完毕出来 <code>Xcode8.3</code>。</p>
+<p>对此我们已经在别人都支持 <code>iOS11</code>的时候，我们还在使用 <code>Xcode8.3</code>连续发了两个版本，在 <code>iOS11</code>表现十分的正常，我们内部开心的开了花，认为用了 <code>Xcode8.3</code>还兼容毛线的 <code>iOS11</code>。</p>
+<p>升级 <code>Fastlane</code> 很快就升级完毕了，我让测试等着，继续打包完毕，给他装最新版本的测试 <code>APP</code>。</p>
+<p>在测试站在我旁边足足的等待了17分钟 之后，终于再次的打包失败了！</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-16-923EC97C-807C-4A2D-93F5-84DBC46AB41A.png" alt="923EC97C-807C-4A2D-93F5-84DBC46AB41A"></p>
+<p>我在纳闷为什么突然就不能在 <code>Xcode8.3</code>上面好好的玩耍了呢？我想到了我添加的 <code>LiveChat</code>，会不会和这个有关系。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-16-DF275E74-91AD-40A7-B8A9-FC3B3A8E3E43.png" alt="DF275E74-91AD-40A7-B8A9-FC3B3A8E3E43"></p>
+<p>我猜测的确有关系，的确和我添加的 <code>LiveChat</code> 有关系。他们竟然使用是最新出的 <code>Swift4.0</code>出的，这当然必须使用 <code>Xcode9.1</code>进行编译了。</p>
+<p>我没办法让 <code>Xcode</code> 的命令行指向了我们的 <code>Xcode9.1</code>,但是又抱错了。我打开工程亲自的打包跑了一次。</p>
+<p>显示下面的命令找不到 <code>file not exit</code></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-16-13437880-EC52-4C3A-A234-3C865C0F7039.png" alt="13437880-EC52-4C3A-A234-3C865C0F7039"></p>
+<p>我赋值打印出上面地址进行 <code>open</code> 命令打开，是可以打开的，我还可以看到这个 <code>shell</code> 的源码呢。</p>
+<p><code>LiveChat</code> 就是这样说的呀，我再次看了 <code>LiveChat</code> 的文档。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-16-17C27E9F-4608-409D-BA53-209A36B611F0.png" alt="17C27E9F-4608-409D-BA53-209A36B611F0"></p>
+<p>大概的意思就是上线前要移除模拟器的库，这个命令就是干这个的。这个应该是为了优化包的体积大小吧。我不执行这个命令试一下。</p>
+<p>我说干就干，马上屏蔽了这个命令进行再次打包的尝试。</p>
+<p>果然是可以正常的打包了，我得意的对着测试伸手要测试机，就好像神父对子民进行神圣的洗礼一般。</p>
+<p>使用电脑版本的 <code>iFunbox</code> 进行安装刚才 <code>iPA</code> 包之后，满意的交给了测试同学。测试同学感谢了我一番就拿着手机回到自己的工位进行测试了。</p>
+<p>我的 <code>Xcode</code> 还没来得及进行关闭，那个测试同学再次的来了。说运行闪退，我有点不相信测试同学的话。</p>
+<p>因为之前我们 <code>APP</code> 进入首页之前都有一个参数进行校验，不通过就闪退，防止线上的包打包错误的一些第三方平台的参数。</p>
+<p>现在都用 <code>Fastlane</code> 进行全部自动的设置，我刚才也是用 <code>Fastlane</code> 进行打包的，应该不会出任何的问题的。</p>
+<p>我自己测试的点开，果然还没看到我们的启动图，<code>TM</code> 的就闪退了。我意识到事情的严重性，赶紧打开 <code>Xcode</code>，连上手机，看刚才的崩溃记录。</p>
+<p>从崩溃的记录上面看到下面类似的信息。</p>
+<pre><code>(private) xxxx.framework xxxxx
+</code></pre>
+<p>我看到了私有，又看到了集成 <code>LiveChat</code> 他们的库，第一想到的就是刚才去掉那个命令，导致没有移除模拟器包的问题。</p>
+<p>看了那个命令必须要加上了，但是怎么加是一个问题。</p>
+<p>如果不做判断，任何时候都走。模拟器就运行不起来，不设置，真机又运行不起来。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-16-1CA9B68F-968C-4F74-B7E8-E1A59C6B02AB.png" alt="1CA9B68F-968C-4F74-B7E8-E1A59C6B02AB"></p>
+<p>我想到了我们之前做 <code>Setting.bundle</code> 的时候，是在 <code>Release</code> 的时候执行一个脚本移除。</p>
+<pre><code class="language-Shell">#当 Release 去掉设置
+if [ ${CONFIGURATION} == &quot;Release&quot; ]; then
+rm -rf ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/Settings.bundle
+fi
+</code></pre>
+<p>我可以学上面写一下类似的代码呀。</p>
+<pre><code class="language-shell">if [ ${CONFIGURATION} == &quot;Release&quot; ]; then
+bash &quot;${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/LPInfra.framework/frameworks-strip.sh&quot;
+fi
+</code></pre>
+<p>但是貌似还是不行，我们也是可以 <code>Debug</code> 打包的。而且我们也支持 <code>Release</code> 运行在模拟器的。</p>
+<p>上面的判断要改一下，有没有可以判断是模拟器或者是真机的宏。这应该是我的一个突破口，我开始了谷歌之旅。</p>
+<p>https://stackoverflow.com/questions/6910901/how-do-i-print-a-list-of-build-settings-in-xcode-project</p>
+<p>上面的连接中我找到了答案，改成下面就可以了。</p>
+<pre><code class="language-shell">if [ ${PLATFORM_NAME} != &quot;iphonesimulator&quot; ]; then
+bash &quot;${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/LPInfra.framework/frameworks-strip.sh&quot;
+fi
+</code></pre>
+<p>我们使用了<code>PLATFORM_NAME</code>这个变量来判断。</p>
+<p>这个判断是正确的，但是在真机打包，还是出现找不到这个 <code>SHELL</code> 脚本。</p>
+<p>到了这个地步，我感觉我的心态已经崩塌了，我不想再做这样的需求了，这个需求到底是啥，还给一天的时间完成。</p>
+<p>关键出问题我的水平也解决不了呀。</p>
+<p>为了我谷歌了整整两三天，终于在一个人的回答找到了类似的答案。</p>
+<p>https://stackoverflow.com/questions/33377027/xcode-unable-to-find-strip-frameworks-sh-directory</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-16-287C5CCD-58EB-4B2B-9786-726689508437.png" alt="287C5CCD-58EB-4B2B-9786-726689508437"></p>
+<p>稳重提到的构建的顺序至关的重要，我马上看了一下。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-16-19D691FD-7887-42D8-8BBC-8BB56AB18998.png" alt="19D691FD-7887-42D8-8BBC-8BB56AB18998"></p>
+<p>果然</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-16-B430FD4B-3DEE-44F1-B46D-417BDC7E743E.png" alt="B430FD4B-3DEE-44F1-B46D-417BDC7E743E"></p>
+<p>在最后了，我转移到自定义的上面。</p>
+<p>之后再次的打包，果然可以找到文件之后进行打包了。</p>
+<p>我再想这样总不会出现任何的问题了吧，谁知道再次的运行崩溃。我查看显示的崩溃信息类似下面的信息。</p>
+<pre><code class="language-shell">xxx @Framework  image not fount
+</code></pre>
+<p>http://www.cnblogs.com/LeeYZ/p/5127450.html</p>
+<p>解决方案就是吧对应的库的状态改成<code>Optional</code>。我就把 <code>LiveChat</code> 三个库都改成了<code>Optional</code>。</p>
+<p>我当时还真机调试，发现提示一个 <code>SwiftFunction</code> 的动态库没有找到，需要设置</p>
+<p><strong>Always Embed Swift Standard Libraries</strong>为 <strong>YES</strong></p>
+<p>我之前是设置过了，应该什么时候还原了。</p>
+<p>搞好之后可以正常的打包，也可以正常的在线调试，而且测试也满意的走了。谁知道后面一个测试安装，发现还是闪退。</p>
+<p>看了一下竟然提示 <code>LIveChat</code> 的一个库竟然只支持 <code>iOS9</code>以上。</p>
+<p>我很遗憾的告诉那个拿着 <code>iOS8.4</code>版本的 <code>iPhone 5c</code>，遗憾的告诉她出局了。无法支持安装了，她只好走了。</p>
+<p>到底结束之前，我还要吐槽一下这个 <code>LiveChat</code>.</p>
+<ul>
+<li><strong>很渣的入门指南和文档</strong></li>
+<li><strong>使用最新的 Swift4.0完全不考虑客户是否还在使用 Xcode8.3</strong></li>
+<li><strong>竟然不支持8.3，让我们损失8.0-9.0的客户资源</strong></li>
+<li><strong>做的聊天界面使用上移的垃圾手法导致白屏</strong></li>
+<li><strong>支持太差 提交在 Github 他们库的问题六天才回复</strong></li>
+<li><strong>及时聊天的 Skype 基本上都没人响应</strong></li>
+</ul>
+<p>这是我做的最扎心的一次第三方服务集成了，不过终于要结束了，我长舒了一口气准备抽根烟放心一下。</p>
+<p>一个消息传来，发过来了 <code>LiveChat</code> 的配色指南和界面改动。我看了看欲哭无泪，他们自带不是很好吗？</p>
+<p>不就是为了聊天，蓝色的发送按钮改成黄色有意思吗？换个默认头像有意思吗，人工评分的星星从黄色改成红色有意思吗？</p>
+<p>关于改 <code>UI</code> 会发生怎样的故事呢，关注我专题下次继续。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/di-san-fang-ku" class="tag">
+                    第三方库
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-想要漂亮的蒙版指引吗？跟着我手把手的教你写出来">
+                  <h3 class="post-title">
+                    想要漂亮的蒙版指引吗？跟着我手把手的教你写出来
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

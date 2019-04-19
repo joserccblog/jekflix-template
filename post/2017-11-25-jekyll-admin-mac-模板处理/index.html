@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Jekyll-Admin-Mac-模板处理 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Jekyll-Admin-Mac-模板处理</h2>
+            <div class="post-date">2017-11-25</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-17.png')">
+              </div>
+            
+            <div class="post-content">
+              <p>本文<code>5600</code>字大约需要花费15分钟阅读，文章图片过多，建议 <code>wifi</code>环境阅读。</p>
+<p>[TOC]</p>
+<h3 id="制作导航条">制作导航条</h3>
+<p>在上一篇文章所说，我们已经做出了侧边栏的效果了。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061211.png" alt="CA8ACEBA-C382-47CB-8897-61B6393AA27E"></p>
+<p>上图是右侧的导航条，虽然内容很少，但是确实一直悬浮在最上层的。</p>
+<p>我们新建一个类 <code>NavigationBar</code>类继承于我们的 <code>BaseView</code>，我们再创建一个 <code>NavigationBar.xib</code>。</p>
+<p>因为 <code>NavigationBar</code>高度为 <code>75</code>是固定的，所以布局要让宽度进行自适应。</p>
+<p>我们拖拽一个 <code>NSView</code>继承与 <code>SideMenuItemView</code>,右侧显示当前的版本号。我们先拖拽一个 <code>Label</code>入局如下：</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061212.png" alt="BF5D2639-591A-4372-98B8-699FDB785508"></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061214.png" alt="349254E0-3BE6-4FC5-BEE8-265CDB9F67C5"></p>
+<p>我们设置文本颜色为 <code>9ea1a3</code>，字体<code>20</code>，版本我们就设置为 <code>v0.5.1</code></p>
+<p>我们将刚才的 <code>SideMenuItemView</code>的布局设置如下。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061215.png" alt="C1A8F496-8180-43ED-8A43-96D96B808E24"></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061218.png" alt="1EC16AEA-AA72-44E9-9A4D-A602737C855F"></p>
+<p>我们拖拽一个 <code>NSView</code>试图继承与 <code>NavigationBar</code>放置在 <code>ViewController</code>的试图上面，布局设置如下。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061219.png" alt="F2E08528-38E1-4595-8BDC-38738CADE656"></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061221.png" alt="7DC5BD13-B9A2-45C0-9519-5B08FCE4047A"></p>
+<p>我们设置背景颜色为白色。</p>
+<p>我们在 <code>NavigationBar</code>关联试图上面的 <code>SideMenuItemView</code>控件。</p>
+<pre><code class="language-swift">@IBOutlet weak var blogMenuItem: SideMenuItemView!
+</code></pre>
+<p>我们设置一下 <code>blogMenuItem</code>的基本参数。</p>
+<pre><code class="language-swift">required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    self.loadXibView()
+    self.blogMenuItem.iconImageView.iconHex = &quot;F015&quot;
+    self.blogMenuItem.itemTitle.stringValue = &quot;我的博客&quot;
+}
+</code></pre>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-61222.png" alt="6A3B9BB3-BB39-4183-BFF2-12D0208ADDB9"></p>
+<p>我们运行起来可以看到这样的效果图了。</p>
+<blockquote>
+<p>⚠️因为之前我们的 <code>SideMenuItemView</code>设置了背景颜色，所以我们在 <code>SideMenuItemView.xib</code>设置默认透明即可。</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-59f73f32947f244a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="B4798919-7E76-43FB-9D13-C66FC0D3F420"></p>
+<p>下面还有一条线，默认情况是不允许出现的，我们设置 <code>SideMenuItemView</code>默认不显示下面的线。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-6e17cce313c98d85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="BE160EC2-93EC-4C8F-82D2-E48B63CF3AB2"></p>
+<p>字体颜色我们设置默认为 <code>444444</code>。我们设置 <code>SideMenuItemView</code>图标颜色为 <code>444444</code>。</p>
+<pre><code class="language-swift">self.blogMenuItem.iconImageView.color = NSColor(red:0.267, green:0.267, blue:0.267, alpha:1.000)
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-a4924ce94dfc6a9b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="535BA904-0C09-4B08-9720-A57003D7030B"></p>
+<p>现在我们的界面已经做出来了。</p>
+<p>但是我们的博客名字一般都是自己配置的，我们想获取我们自己配置的博客名称怎么办呢？</p>
+<p>我们利用获取配置的请求。</p>
+<p><a href="http://localhost:4000/_api/configuration">http://localhost:4000/_api/configuration</a></p>
+<p>我们既然有接口了，自然需要网络请求框架了，难道我们是请求系统的 <code>API</code>?</p>
+<p><code>NO!NO!NO!</code></p>
+<h3 id="使用网络框架alamofire">使用网络框架<code>Alamofire</code></h3>
+<p>我们使用 <code>Swift</code>最大的请求框架 <code>Alamofire</code>。</p>
+<p><a href="https://github.com/Alamofire/Alamofire">Alamofire(Objective-C 中的 AFNetWorking)</a></p>
+<p>我们在我们的 <code>podfile</code>文件里面添加如下的代码。</p>
+<pre><code class="language-ruby">pod 'Alamofire', '~&gt; 4.4'
+</code></pre>
+<p>运行安装命令</p>
+<pre><code class="language-shell">pod install
+</code></pre>
+<p>既然有数据接口，我们自然需要有统一接口管理。我们新建一个 <code>Api</code>文件夹。</p>
+<p>我们新建一个类 <code>GetConfigurationApi</code>用于获取系统的配置。</p>
+<p>我们导入 <code>Alamofire</code>库。</p>
+<pre><code class="language-swift">import Alamofire
+</code></pre>
+<p>我们写一个 <code>loadRequest</code>方法用于发起请求。</p>
+<pre><code class="language-swift">func loadRequest() {
+    Alamofire.request(&quot;http://localhost:4000/_api/configuration&quot;, method: .get).responseJSON { (response) in
+    }
+}
+</code></pre>
+<blockquote>
+<p>⚠️我也是刚刚才看的 <code>Alamofire API</code>的文档。</p>
+</blockquote>
+<h3 id="使用-swiftyjson">使用 <code>SwiftyJSON</code></h3>
+<p>对于 <code>Model</code>模型库我们使用 <a href="https://github.com/SwiftyJSON/SwiftyJSON">SwiftyJSON</a>。</p>
+<pre><code class="language-ruby">pod 'SwiftyJSON', '~&gt;3.1.4'l
+</code></pre>
+<p>参考资料: [<a href="http://tangplin.github.io/swiftyjson/">SwiftyJSON介绍</a>](http://tangplin.github.io/swiftyjson/)</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-dc441629cfe333b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ECAAD073-4B09-419D-829A-E86FD2C3468B"></p>
+<p>我们在官方的文档里面发现了 怎么在 <code>Alamofire</code>使用 <code>SwiftyJSON</code>的代码，我们添加到我们代码里面。</p>
+<pre><code class="language-swift">func loadRequest() {
+    Alamofire.request(&quot;http://localhost:4000/_api/configuration&quot;, method: .get).responseJSON { (response) in
+        switch response.result {
+            case .success(let value):
+            let json = JSON(value)
+            print(json)
+            case .failure(let error):
+            print(error)
+        }
+    }
+}
+</code></pre>
+<p>我们在 <code>ViewController</code>测试一下我们的请求。</p>
+<pre><code class="language-swift">override func viewDidLoad() {
+    super.viewDidLoad()
+    let getConfigurationApi = GetConfigurationApi()
+    getConfigurationApi.loadRequest()
+}
+</code></pre>
+<p>但是我们在输出看到下面一段信息。</p>
+<pre><code class="language-shell">2017-06-10 11:40:28.476420+0800 Jekyll-Admin-Mac[42248:987400] App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app's Info.plist file.
+Error Domain=NSURLErrorDomain Code=-1022 &quot;The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.&quot; UserInfo={NSUnderlyingError=0x60000004e1f0 {Error Domain=kCFErrorDomainCFNetwork Code=-1022 &quot;(null)&quot;}, NSErrorFailingURLStringKey=http://localhost:4000/_api/configuration, NSErrorFailingURLKey=http://localhost:4000/_api/configuration, NSLocalizedDescription=The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.}
+</code></pre>
+<blockquote>
+<p>✅因为从 <code>iOS10开始苹果在默认新建工程里面默认关闭了</code>HTTP`的支持，我们开启一下。</p>
+<p>参考资料: <a href="https://onevcat.com/2016/06/ios-10-ats/">关于 iOS 10 中 ATS 的问题</a>。</p>
+</blockquote>
+<h3 id="ios10开启启用-http-请求"><code>iOS10开启启用 HTTP 请求</code></h3>
+<p>我们打开工程的 <code>info.plist</code>。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-7938cb9b9ee17444.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5584329D-3C64-4BA0-B067-C892A5035F64"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-cc8c25f1d932b1a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="81486772-5A9B-4B75-B129-8615C28A3919"></p>
+<p>此时我们再次的运行发现已经打印出来数据了。</p>
+<p>到目前为止，我们并没有发现 <code>SwiftyJSON</code>可以转 <code>Model</code>模型的功能。这个时候我们考虑换成可以转换模型的库 <code>ObjectMapper</code>。</p>
+<h3 id="使用-objectmapper">使用 <code>ObjectMapper</code></h3>
+<p>参考资料: <a href="http://www.hmttommy.com/2015/11/29/swiftjson/">SwiftyJson + ObjectMapper + Argo</a>。</p>
+<p>我们在 <code>GetConfigurationApi.swift</code>文件里面声明 <code>JekyllConfiguration</code>类。</p>
+<pre><code class="language-swift">class JekyllConfiguration: Mappable {
+    var title:String?
+    required init?(map: Map) {
+        
+    }
+    func mapping(map: Map) {
+        title &lt;- map[&quot;title&quot;]
+    }
+}
+</code></pre>
+<p>我们暂时先获取配置里面的 <code>title</code>用于我们显示博客的名字。</p>
+<pre><code class="language-swift">func loadRequest() {
+    Alamofire.request(&quot;http://localhost:4000/_api/configuration&quot;, method: .get).responseJSON { (response) in
+        switch response.result {
+            case .success(let value):
+                guard let valueDic = value as? [String:Any] else {
+                    return
+                }
+                guard let content = valueDic[&quot;content&quot;] as? [String:Any] else {
+                    return
+                }
+                guard let configuration = JekyllConfiguration(JSON: content) else {
+                    return
+                }
+                guard let titlt = configuration.title else {
+                    return
+                }
+                print(titlt)
+            case .failure(let error):
+                print(error)
+        }
+    }
+}
+</code></pre>
+<p>因为我们的数据是在 <code>Content</code>层次的所以需要剥丝抽茧才可以拿到数据。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-4f7df82c61316148.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="591FBE71-862E-427A-BBE2-193AF0E2EF62"></p>
+<p>由此可以我们已经可以拿到数据了。</p>
+<p>我们已经拿到了数据，但是我们究竟如何才能让外接知道数据呢。那就用到了回调，在 <code>Swift</code>我们叫做闭包。</p>
+<pre><code class="language-swift">typealias GetConfigurationApiSuccessCompletionHandle = (_ configuration:JekyllConfiguration) -&gt; Void
+typealias GetConfigurationApiFailureCompletionHandle = (_ error:Error?) -&gt; Void
+</code></pre>
+<p>给 <code>loadRequest</code>增加两个回调的属性。</p>
+<pre><code class="language-swift">func loadRequest(success:GetConfigurationApiSuccessCompletionHandle?, failure:GetConfigurationApiFailureCompletionHandle?) {
+    Alamofire.request(&quot;http://localhost:4000/_api/configuration&quot;, method: .get).responseJSON { (response) in
+        switch response.result {
+            case .success(let value):
+                guard let valueDic = value as? [String:Any] else {
+                    self.completionHandle(success: nil, failure: failure, configuration: nil, error: nil);
+                    return
+                }
+                guard let content = valueDic[&quot;content&quot;] as? [String:Any] else {
+                    self.completionHandle(success: nil, failure: failure, configuration: nil, error: nil);
+                    return
+                }
+                guard let configuration = JekyllConfiguration(JSON: content) else {
+                    self.completionHandle(success: nil, failure: failure, configuration: nil, error: nil);
+                    return
+                }
+                self.completionHandle(success: success, failure: nil, configuration: configuration, error: nil)
+            case .failure(let error):
+                self.completionHandle(success: nil, failure: failure, configuration: nil, error: error)
+        }
+    }
+}
+
+func completionHandle(success:GetConfigurationApiSuccessCompletionHandle?, failure:GetConfigurationApiFailureCompletionHandle?, configuration:JekyllConfiguration?, error:Error?) {
+    if let success = success , let configuration = configuration{
+        success(configuration)
+    } else if let failure = failure {
+        failure(error)
+    }
+}
+
+</code></pre>
+<p>有了数据了，我们把 <code>NavigationBar</code>绑定到 <code>ViewController</code>的类里面。</p>
+<pre><code class="language-swift">@IBOutlet weak var navigationBar: NavigationBar!
+</code></pre>
+<p>我们在回调的时候设置一下标题。</p>
+<pre><code class="language-swift">override func viewDidLoad() {
+    super.viewDidLoad()
+    let getConfigurationApi = GetConfigurationApi()
+    getConfigurationApi.loadRequest(success: { (configuration) in
+        guard let title = configuration.title else {
+            return
+        }
+        self.navigationBar.blogMenuItem.itemTitle.stringValue = title
+    }) { (error) in
+
+    }
+}
+</code></pre>
+<blockquote>
+<p>⚠️写到这里我们可能回想，我们在 <code>Objective-C</code>里面的 <code>Block</code>里面我们需要解决循环引用。</p>
+<p>这里的闭包是否也需要解决循环引用，但是这个方法是属于方法闭包，理论上不存在循环引用的，我也不是很清楚。</p>
+<p><a href="http://www.jianshu.com/p/cbd0b7390bcf">解析Swift中闭包的循环引用</a></p>
+</blockquote>
+<h3 id="关于-swift闭包里面循环引用">关于 <code>Swift</code>闭包里面循环引用</h3>
+<p>我们修改请求的代码如下:</p>
+<pre><code class="language-swift">override func viewDidLoad() {
+    super.viewDidLoad()
+    let getConfigurationApi = GetConfigurationApi()
+    getConfigurationApi.loadRequest(success: { [weak self] (configuration) in
+        guard let title = configuration.title else {
+            return
+        }
+        self?.navigationBar.blogMenuItem.itemTitle.stringValue = title
+    }) { (error) in
+
+    }
+}
+</code></pre>
+<p>导航条做完之后，我们剩下要做的就是内容区域了。因为 <code>文章</code> <code>页面</code> <code>数据</code>界面可以使用同一个模板，我们就封装成一个模板。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-919c7a4a1a955d1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="073F87F3-FFEE-43C4-B7C4-3B4DEFDB8030"></p>
+<h3 id="封装模块">封装模块</h3>
+<p>这一块区域大部分都是相同的，我们也封装成父类，实现用子类。</p>
+<p>我们新建一个类名字叫做 <code>ContentHeader</code>，高度我们设置为 <code>44</code>。</p>
+<p>我们拖拽一个 <code>Label</code>布局设置如下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-91fc98288e22661f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="B52017E2-6F68-4B7B-A54A-93342866BAC8"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-6ce0269ee86de073.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="37C089C3-15F8-4FF2-A787-0FCD9770323C"></p>
+<p>我们设置字体颜色为 <code>444444</code>，字体大小为 <code>30</code>。</p>
+<p>我们发现有的视频大致分为两类。</p>
+<ul>
+<li><img src="http://upload-images.jianshu.io/upload_images/545662-392bdb28be37515b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="30E92ED8-5264-4E52-9FA5-6999631CCA56">
+<ul>
+<li>文章</li>
+<li>页面</li>
+<li>数据</li>
+<li>文件</li>
+</ul>
+</li>
+<li><img src="http://upload-images.jianshu.io/upload_images/545662-4c3e1f54862ce7dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="D527DD48-7D96-41BE-958C-980D5FDABD17">
+<ul>
+<li>配置</li>
+</ul>
+</li>
+</ul>
+<p>我们放置一个<code>NSView</code>试图用于托管这两种的子试图，布局如下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-63281f4c88ceb313.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="8E9AEEC5-4B4F-4FB4-91CE-C5169D4D366B"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-6982862bbe46462c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="371F1282-C1BE-41A2-8C1B-ADDCA487CB08"></p>
+<p>我们新建一个类 <code>ContentHeaderValue1</code>展示下面界面。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-392bdb28be37515b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="30E92ED8-5264-4E52-9FA5-6999631CCA56"></p>
+<p>我们设置 <code>ContentHeaderValue1.xib</code>的 <code>View</code>的高度为 <code>40</code>。</p>
+<p>我们在 <code>ContentHeaderValue1.xib</code>拖拽一个 <code>NSView</code>继承与 <code>SideMenuItemView</code>。</p>
+<p>布局如下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-f26539c359788599.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2A0D64EC-0F35-4B60-985E-55E9E1607F45"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-4b25fab0b144bd12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="E7F69C94-2040-45A8-94A6-D5496FD0A237"></p>
+<p>我们在右侧拖拽一个 <code>NSTextFiled</code>，布局如下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-0b351b1a51c67813.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="AD11A2AF-7869-4702-9FA4-A493CE9C9D70"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-0378c56ebb680580.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="584D9E79-B199-42F9-B611-82ED0C0C806B"></p>
+<p>我们设置 <code>SideMenuItemView</code>的背景颜色为 <code>ff6e00</code>。</p>
+<h3 id="设置-nsview的圆角">设置 <code>NSView</code>的圆角</h3>
+<p>我们可以发现界面很多都用到了圆角，这对于 <code>iOS</code>里面是很常见的。我们新建一个 <code>NSView</code>的分类<code>NSView+CornerRadius</code>用于画圆角。</p>
+<pre><code class="language-swift">@IBDesignable extension NSView {
+    @IBInspectable var cornerRadius:Float? {
+        get {
+            guard let cornerRadius = self.layer?.cornerRadius else {
+                return nil
+            }
+            return Float(cornerRadius)
+        } set {
+            guard let newValue = newValue else {
+                return
+            }
+            self.layer?.masksToBounds = true
+            self.layer?.cornerRadius = CGFloat(newValue)
+        }
+    }
+}
+</code></pre>
+<h3 id="解决-xib无法显示自定义控件从-xib加载的问题">解决 <code>Xib</code>无法显示自定义控件从 <code>Xib</code>加载的问题。</h3>
+<p>之前自定义控件是加载 <code>Xib</code>的，运行的时候是可以出现的。但是在 <code>Xib</code>是无法进行预览的，我以为这应该属于正常的情况，毕竟程序还没有进行运行。</p>
+<p>前两天看到一位大神写的 <a href="http://blog.csdn.net/daiyibo123/article/details/49072963">iOS-Storyboad动态刷新</a>。我才发现原来在 <code>Xib</code>里面是可以进行实时看到的。</p>
+<p>原来我们当时进行加载 <code>Xib</code>的路径不正确，加载的路径属于运行时候路径和 <code>Xib</code>显示加载的路径不是一样的。</p>
+<p>我们修改加载 <code>Xib</code>获取 <code>Bundle</code>的方法如下:</p>
+<pre><code class="language-swift">Bundle(for: type(of: self)).loadNibNamed(nibName, owner: self, topLevelObjects: &amp;views)
+</code></pre>
+<h3 id="objective-c-中的-self-class-用-swift怎么表示"><code>Objective-C</code> 中的 <code>[self class]</code> 用 <code>Swift</code>怎么表示</h3>
+<p>我们之前用 <code>Objective-C</code>进行经常这样写 <code>self.class</code>或者 <code>[self class]</code>但是我们想在 <code>Swift</code>怎么获取 <code>anyClass</code>的对象呢。</p>
+<p>比如 <code>UIViewController</code>我们直接可以 这样获取 <code>UIViewController.type</code>。但是 <code>self</code>这个关键字我们根本不知道是哪一个类，我们最后查询可以利用下面代码获取。</p>
+<pre><code class="language-swift">let anyClass = type(of:self)
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-97e2030b0fcd8eb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5EDB0FDC-1A94-4AC3-BAE4-3901381A2C1E"></p>
+<p>此时我们在 <code>Xib</code>里面已经可以在里面预览到 <code>SideMenuItemView</code>的样子了。</p>
+<h3 id="关于-prepareforinterfacebuilder方法">关于 <code>prepareForInterfaceBuilder()</code>方法</h3>
+<p>这个方法可以只在预览 <code>Xib</code>的时候起作用可以做一些 <code>Moke</code>数据。</p>
+<p>参考资料: <a href="http://zhangbuhuai.com/ibinspectable-and-ibdesignable/">IBInspectable和IBDesignable</a>。</p>
+<p>我们在 <code>SideMenuItemView</code>写一下这个方法。</p>
+<pre><code class="language-swift">override func prepareForInterfaceBuilder() {
+    super.prepareForInterfaceBuilder()
+    self.itemTitle.stringValue = &quot;测试&quot;
+    self.iconImageView.iconHex = &quot;F15C&quot;
+}
+</code></pre>
+<p>我们在 <code>SideMenuView.xib</code>已经可以看到我们写的测试数据了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-7065e0d1e2ab5cf6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="A64D5D7F-18BE-48D6-BE00-CC15682E6A79"></p>
+<h3 id="解决-nsview不能显示圆角的问题">解决 <code>NSView</code>不能显示圆角的问题。</h3>
+<p>我们刚才 <code>NSView+CornerRadius.swift</code>文件给 <code>NSView</code>做了一个分类用于设置圆角，我们发现并不成功。</p>
+<p>我们需要设置 <code>wantsLayer</code>属性。</p>
+<pre><code class="language-swift">self.wantsLayer = true
+</code></pre>
+<p>参考资料 : <a href="http://blog.csdn.net/u014600626/article/details/53006110">Mac开发</a>。 <a href="https://objccn.io/issue-14-5/">从 UIKit 到 AppKit</a>。</p>
+<blockquote>
+<p>设置此属性的值以<a href="https://developer.apple.com/documentation/swift/true"><code>true</code></a>将视图转换为层次支持的视图，即视图使用<a href="https://developer.apple.com/documentation/quartzcore/calayer"><code>CALayer</code></a>对象来管理其渲染的内容。创建层支持的视图隐式地导致该视图下的整个视图层次结构成为层支持。因此，视图及其所有子视图（包括子视图的子视图）都将被层叠支持。此属性的默认值为<a href="https://developer.apple.com/documentation/swift/false"><code>false</code></a>。</p>
+<p>在层次支持的视图中，视图完成的任何绘图都将缓存到底层图层对象。然后，可以以比显式显示视图内容更有效的方式来操纵缓存的内容。AppKit会自动创建底层图层对象（使用该方法）并处理视图内容的缓存。如果该方法返回，则不应直接与底层对象进行交互。相反，使用此类的方法对视图及其图层进行任何更改。如果返回，则在视图方法中修改图层是合适的（并且适当）。<a href="https://developer.apple.com/documentation/appkit/nsview/1483687-makebackinglayer"><code>makeBackingLayer()</code></a><a href="https://developer.apple.com/documentation/appkit/nsview/1483461-wantsupdatelayer"><code>wantsUpdateLayer</code></a><a href="https://developer.apple.com/documentation/swift/false"><code>false</code></a><code>wantsUpdateLayer</code><a href="https://developer.apple.com/documentation/swift/true"><code>true</code></a><a href="https://developer.apple.com/documentation/appkit/nsview/1483580-updatelayer"><code>updateLayer()</code></a></p>
+<p>对于层次支持的视图，您可以通过将属性设置为平坦化层次结构。为了防止子视图将其内容放大到此视图的图层中，请将子视图的属性值显式设置为。 <a href="https://developer.apple.com/documentation/appkit/nsview/1483347-candrawsubviewsintolayer"><code>canDrawSubviewsIntoLayer</code></a><a href="https://developer.apple.com/documentation/swift/true"><code>true</code></a><code>wantsLayer</code><a href="https://developer.apple.com/documentation/swift/true"><code>true</code></a></p>
+<p>除了创建层支持的视图，您还可以通过将图层直接分配给视图的<a href="https://developer.apple.com/documentation/appkit/nsview/1483298-layer"><code>layer</code></a>属性来创建层托管视图。在层托管视图中，您负责管理视图的图层。要创建层托管视图，您必须首先设置<code>layer</code>属性，然后将此属性设置为<a href="https://developer.apple.com/documentation/swift/true"><code>true</code></a>。设置这些属性的值的顺序至关重要。</p>
+<p>在图层托管视图中，不要依赖视图进行绘图。同样，不要在分层托管视图中添加子视图。根层（即使用<code>layer</code>属性设置的层）成为层树的根层。必须使用Core Animation界面对该图层树进行任何操作。您仍然使用该视图来处理鼠标和键盘事件，但绘图必须由Core Animation处理。</p>
+</blockquote>
+<h3 id="使用-calayer设置背景颜色">使用 <code>CALayer</code>设置背景颜色</h3>
+<p>我们修改 <code>BaseView</code>的方法如下：</p>
+<pre><code class="language-swift">@IBInspectable var backgroundColor:NSColor! = NSColor.clear {
+    didSet {
+        self.wantsLayer = true
+        self.layer?.backgroundColor = self.backgroundColor.cgColor
+    }
+}
+</code></pre>
+<p>这样我们为何不通过分类设置基于 <code>NSView</code>的背景颜色。</p>
+<pre><code class="language-swift">import AppKit
+
+extension NSView {
+    @IBInspectable var backgroundColor:NSColor! {
+        get {
+            guard let backgroundColor = NSColor(cgColor: (self.layer?.backgroundColor)!) else {
+                return NSColor.clear
+            }
+            return backgroundColor
+        }
+        set {
+            self.wantsLayer = true
+            self.layer?.backgroundColor = newValue.cgColor
+        }
+    }
+}
+</code></pre>
+<h3 id="设置-contentheader右侧试图">设置 <code>ContentHeader</code>右侧试图</h3>
+<p>因为我们只有两种显示情况，我们用 <code>enum</code>创建一个枚举用于区分类型。</p>
+<pre><code class="language-swift">enum ContentHeaderStyle {
+    case value1
+    case value2
+}
+</code></pre>
+<p>我们创建一个可以 <code>Xib</code>设置样式的属性。</p>
+<pre><code class="language-swift">@IBInspectable var style:ContentHeaderStyle = ContentHeaderStyle.value1 {
+    didSet {
+    }
+}
+</code></pre>
+<p>我们每次设置需要重新移除右侧试图，所以我们需要关联一下右侧的父试图。</p>
+<pre><code class="language-swift">@IBOutlet weak var rightContentView: NSView!
+</code></pre>
+<p>我们写一个方法用于加载 <code>ContentHeaderValue1</code>。</p>
+<p>我们重写 <code>ContentHeaderValue1</code>的 <code>override init(frame frameRect: NSRect)</code>方法可以让外部通过 <code>frame</code>初始化。</p>
+<pre><code class="language-swift">override init(frame frameRect: NSRect) {
+    super.init(frame: frameRect)
+    self.loadXibView()
+}
+</code></pre>
+<pre><code class="language-swift">func loadStyle1() {
+    let style1View = ContentHeaderValue1(frame: self.rightContentView.bounds)
+    style1View.autoresizingMask = [.viewWidthSizable,.viewHeightSizable]
+    self.rightContentView.addSubview(style1View)
+}
+</code></pre>
+<p>我们在 <code>ContentHeader</code>的属性 <code>style</code>用于加载我们刚才写的方法</p>
+<pre><code class="language-swift">@IBInspectable var style:ContentHeaderStyle = ContentHeaderStyle.value1 {
+    didSet {
+        switch style {
+        case .value1:
+            self.loadStyle1()
+        case .value2:
+            break
+        }
+    }
+}
+</code></pre>
+<p>我们在 <code>ViewController</code>拖拽一个 <code>NSView</code>继承与 <code>ContentHeader</code>。布局设置如下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-b052012df3b3479a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="7BFCA732-CD1F-416F-BFF7-C4AAF3BB2FE4"></p>
+<p>我们发现右侧样式 <code>1</code>并没有出现，那是因为 <code>@IBInspectable</code>可以设置的类型受限。</p>
+<p>参考资料： <a href="http://rdd7.com/2015/11/%E4%BD%BF%E7%94%A8IBDesignable%E5%92%8CIBInspectable%E6%9E%84%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89UI%E6%8E%A7%E4%BB%B6/">使用IBDesignable和IBInspectable构建自定义UI控件</a>。</p>
+<blockquote>
+<p>⚠️ <code>Xib</code>是走的 <code>init(frame:NSFrame)</code>方法的</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-3f6168519816dac5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="56052464-EEF9-406E-803E-69F4127D3EC3"></p>
+<p><code>@IBInspectable</code>并不支持我们 <code>enum</code>的类型，我们只能设置 <code>Int</code>类型进行设置了。</p>
+<p>修改 <code>style</code>为 <code>Int</code>类型。</p>
+<pre><code class="language-swift">@IBInspectable var style:Int = 0 {
+    didSet {
+        guard let headerStyle = ContentHeaderStyle(rawValue: self.style) else {
+            return
+        }
+        switch headerStyle {
+        case .value1:
+            self.loadStyle1()
+        case .value2:
+            break
+        }
+    }
+}
+</code></pre>
+<blockquote>
+<p>⚠️我们需要设置<code>ContentHeaderStyle</code>继承与 <code>Int</code>类型不然没有初始化方法。</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-92f85111ec53cc34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5893978C-0384-4AA7-9CC5-FB8B8FA39733"></p>
+<p>此时我们的 <code>Xib</code>已经可以看出来效果了。</p>
+<p>我们运行发现，程序已经崩溃了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-be982fd268d95f85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="D9D4E892-7584-4328-82C5-C7391A2349A1"></p>
+<p>看来是因为什么值为 <code>nil</code>导致的。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-9e8cb65e74eea026.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="185EB7F6-2A31-4A8E-8D36-B65BA0F4C16D"></p>
+<p>我们发现是因为我们写的方法 <code>loadStyle1()</code>初始化 <code>ContentHeaderValue1</code>传入 <code>nil</code>值导致的。</p>
+<blockquote>
+<p>⚠️ 不清楚为什么经常 <code>Xib</code>显示失败，暂时没找到解决的原因。</p>
+<p>暂时可能是 <code>Cocoapods</code>库导致，导入 <code>Cocoapods</code>库。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-7112b7d1ec0b4d2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="D8D16786-5657-464C-A993-F87DBA95C693"></p>
+</blockquote>
+<p>因为我们 <code>文章</code> <code>页面</code> <code>数据</code>的页面比较相似我们就 写一个类做一个模板。</p>
+<h3 id="制作-文章-页面-数据的模板">制作 <code>文章</code> <code>页面</code> <code>数据</code>的模板</h3>
+<p>新建一个类 <code>BaseListView</code>继承于 <code>NSView</code>。</p>
+<pre><code class="language-swift">class BaseListView: NSView {
+override init(frame frameRect: NSRect) {
+    super.init(frame: frameRect)
+    self.loadXibView()
+}
+
+required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    self.loadXibView()
+}
+</code></pre>
+<h3 id="prepareforinterfacebuilder只能设置属性在所属的类里面"><code>prepareForInterfaceBuilder()</code>只能设置属性在所属的类里面。</h3>
+<p>我们设置 <code>SideMenuView</code>类里面。</p>
+<pre><code class="language-swift">override func prepareForInterfaceBuilder() {
+    self.menuItems = [
+        SideMenuItemConfiguration(title: &quot;文章&quot;, iconHex: &quot;F02D&quot;, hidden: true, selected: false),
+        SideMenuItemConfiguration(title: &quot;页面&quot;, iconHex: &quot;F15C&quot;, hidden: false, selected: false),
+        SideMenuItemConfiguration(title: &quot;数据&quot;, iconHex: &quot;F1C0&quot;, hidden: true, selected: false),
+        SideMenuItemConfiguration(title: &quot;文件&quot;, iconHex: &quot;F15B&quot;, hidden: false, selected: false),
+        SideMenuItemConfiguration(title: &quot;配置&quot;, iconHex: &quot;F013&quot;, hidden: true, selected: false),
+        ]
+}
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-66fc767bbe0be226.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="17195911-89F8-4653-A385-D51DD45B6089"></p>
+<p>这样我们就可以在 <code>Xib</code>实时的看到效果了。</p>
+<p>我们之前封装的 <code>SideMenuItemView</code>似乎不太适合我们这里的按钮，如果只是显示文字我们还需要还需要隐藏前面的 <code>NSImageView</code>，我们按钮直接用系统的 <code>NSButton</code>。</p>
+<p>我们替换成 <code>NSButton</code>之后似乎又遇到了另外的棘手的问题，那就是 <code>NSButton</code>竟然没有地方可以设置 <code>title</code>的颜色。</p>
+<h3 id="如何设置-nsbutton标题的颜色">如何设置 <code>NSButton</code>标题的颜色</h3>
+<p><a href="https://stackoverflow.com/questions/13109964/nsbutton-how-to-color-the-text">NSButton how to color the text</a>。</p>
+<p>纵观网上的教程大都是设置按钮的富文本或者是 <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/">NSMutableParagraphStyle</a>。但是 <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/">NSMutableParagraphStyle</a>这个不太靠谱，我觉得我们设置富文本比较好一些。</p>
+<p>设置 <code>NSButton</code>的分类用于设置分文本字体的颜色。</p>
+<pre><code class="language-swift">extension NSButton {
+    @IBInspectable var titleColor:NSColor? {
+        get {
+            return self.attributedTitle.attribute(NSForegroundColorAttributeName, at: 0, longestEffectiveRange: nil, in: NSMakeRange(0, self.title.characters.count)) as? NSColor
+        }
+        set {
+            guard let color = newValue else {
+                return
+            }
+            let mutableAttributeString = NSMutableAttributedString(string: self.title)
+            mutableAttributeString.addAttribute(NSForegroundColorAttributeName, value: color, range: NSMakeRange(0, self.title.characters.count))
+            self.attributedTitle = mutableAttributeString
+        }
+    }
+}
+</code></pre>
+<h3 id="使用-module名称解决名字冲突问题">使用 <code>Module</code>名称解决名字冲突问题</h3>
+<p>在<code>set</code>方法里面我们为了我们<code>get</code>方法获取是正确的，我们使用 <code>print</code>函数输出。发现竟然弹出打印界面。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-3b14faa1bd0e00ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="458CB6F0-458D-4BA4-BF45-E32642105894"></p>
+<p>我查看一下原来是 <code>NSView</code>重写了 <code>print</code>导致我们调用直接走 <code>NSView</code>的方法。</p>
+<p>感谢 <code>@2017Swift</code>群里面的 <code>Sin</code>大神帮忙解决了这个问题。遇到命名冲突的可以在前面添加 <code>Module</code>名字。</p>
+<pre><code class="language-swift">Swift.Print(self.titleColor)
+</code></pre>
+<p>这样就可以正常的打印了。</p>
+<h3 id="nsbutton设置-attributedtitle之前的对齐方式失效"><code>NSButton</code>设置 <code>attributedTitle</code>之前的对齐方式失效</h3>
+<p>还有一个问题出现了，那就是 <code>Xib</code>设置文字居中，竟然运行在左边。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-ff9502b40d3b920a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="304B23CD-056C-4D8C-A4AA-62BB60E75B22"></p>
+<p>经过查证是下面代码导致的。</p>
+<pre><code class="language-swift">self.attributedTitle = mutableAttributeString
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-a1e06c7499d00968.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="FD25269A-1E28-4AE6-A6D1-59BE41C72062"></p>
+<p>这个是在 <a href="https://stackoverflow.com/questions/7514157/nsbutton-setalignment-does-not-work">NSButton setAlignment不起作用</a>搜到的解释。意思是我们用 <code>NSAttributedString</code>之前设置对齐方式已经失效了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-6212343f3c7b8292.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="0BF19AD0-F5EC-4B8E-A6D7-057AD5F7D83B"></p>
+<p>我们在 <code>NSMutableAttributedString</code>也看到了说明。我们需要采用 <code>NSMutableParagraphStyle</code>进行设置字体对齐方式了。</p>
+<h3 id="关于-nsmutableparagraphstyle">关于 <code>NSMutableParagraphStyle</code></h3>
+<pre><code class="language-swift">let style = NSMutableParagraphStyle()
+style.alignment = self.alignment
+let dict = [
+    NSForegroundColorAttributeName:color,
+    NSParagraphStyleAttributeName:style
+]
+let mutableAttributeString = NSMutableAttributedString(string: self.title, attributes: dict)
+</code></pre>
+<p>这样我们就可以看到对其按照我们 <code>Xib</code>设置的了。</p>
+<blockquote>
+<p>⚠️ 我们设置字体的颜色也需要在 <code>dict</code>进行富文本设置。</p>
+<p><code>NSFontAttributeName</code>设置字体大小。</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-b06951aa46db03c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="63D1CFAC-56B9-4C9E-9290-2ED27F4D7496"></p>
+<p>我们 <code>Header</code>的框架大体已经做出来了。但是还需要进一步的封装一下。</p>
+<ul>
+<li><code>文章</code>这两个字可以自定义。</li>
+<li><code>新建文章</code>的标题可以自定义</li>
+<li><code>搜索标题</code>可以自定义</li>
+<li>按钮的事件可以自定义</li>
+<li>搜索事件可以自定义</li>
+</ul>
+<p>我们在 <code>ContentHeaderValue1</code>关联一下 <code>Label</code>可以让外接设置 <code>Label</code>的文字。</p>
+<pre><code class="language-swift">@IBOutlet weak var titleLabel: NSTextField!
+</code></pre>
+<p>为了可以获取到我们 <code>Header</code>的元素，我们需要新增一个方法用于获取 <code>ContentHeader</code>上面自定义控件。</p>
+<pre><code class="language-swift">var headerContent:NSView? {
+    get {
+        let views = self.rightContentView.subviews
+        guard views.count &gt; 0 else {
+            return nil
+        }
+        return views.first
+    }
+}
+</code></pre>
+<p>我们给 <code>BaseListView</code>新增一个属性用于设置 <code>Label</code>的文字。</p>
+<pre><code class="language-swift">var title:String? {
+    get {
+        return self.header.titleLabel.stringValue
+    }
+    set {
+        guard let title = newValue else {
+            return
+        }
+        self.header.titleLabel.stringValue = title
+    }
+}
+</code></pre>
+<p>我们新建一个类 <code>PostsView</code>用户展示 <code>文章列表界面</code>。</p>
+<p>我们在 <code>PostsView</code>新增一个 <code>BaseListView</code>布局如下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-d187ee3cdd86aaab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="DEC6484F-944D-4D00-B81E-B9A624D8A0A4"></p>
+<p>为了让 <code>ViewController</code>在右侧可以显示正确的界面，我们在 <code>ViewController</code>的右侧新增一个 <code>NSView</code>作为父试图，布局如下。</p>
+<pre><code class="language-swift">@IBOutlet weak var rightContentView: NSView!
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-0d28b40fdeb8d529.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="37E8D7A5-DA7D-4A92-86EA-E3C39AB36E8A"></p>
+<p>我们新建一个数组存放我们右侧页面。</p>
+<pre><code class="language-swift">var views:[NSView] = []
+</code></pre>
+<p>我们新增一个方法把需要展示的试图添加进去。</p>
+<pre><code class="language-swift">func addViews(viewType:NSView.Type) {
+    let posts = viewType.init(frame: self.rightContentView.bounds)
+    posts.autoresizingMask = [.viewWidthSizable,.viewHeightSizable]
+    self.views.append(posts)
+}
+</code></pre>
+<p>我们需要获取左侧功能按钮的点击回调来展示对应的界面。</p>
+<p>我们在 <code>SideMenuView.swift</code>新增一个闭包回调用于告诉外部当前点击的索引。</p>
+<pre><code class="language-swift">typealias SideMenuViewSelectMenuIndexCompletionHandle = (_ index:Int) -&gt; Void
+</code></pre>
+<p>我们新增一个 <code>SideMenuViewSelectMenuIndexCompletionHandle</code>的属性用来回调我们点击的索引。</p>
+<pre><code class="language-swift">    var selectMenuCompletionHandle:SideMenuViewSelectMenuIndexCompletionHandle?
+</code></pre>
+<p>我们在 <code>didClickRow</code>方法把当前的索引回调回去。</p>
+<pre><code class="language-swift">if let completionHandle = self.selectMenuCompletionHandle {
+    completionHandle(row)
+}
+</code></pre>
+<p>我们关联一下 <code>ViewController</code>界面上面的 <code>SideMenuView</code>。</p>
+<pre><code class="language-swift">@IBOutlet weak var sideMenu: SideMenuView! {
+    didSet {
+        self.sideMenu.selectMenuCompletionHandle = { [weak self] index in
+            self?.changeContentView(index: index)
+        }
+    }
+}
+</code></pre>
+<pre><code class="language-swift">func changeContentView(index:Int) {
+    for view in self.rightContentView.subviews {
+        view.removeFromSuperview()
+    }
+    guard self.views.count &gt; index else {
+        return
+    }
+    let addView = self.views[index]
+    self.rightContentView.addSubview(addView)
+}
+</code></pre>
+<p>我们在 <code>viewDidLoad</code>方法里面注册我们的类。</p>
+<pre><code class="language-swift">self.addViews(viewType: PostsView.self)
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-a810e4feae784a6c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5881C5F2-BE46-442E-8EAE-F27E9C0467FC"></p>
+<p>我们发现我们并没有出现我们的文章页面。</p>
+<p>因为我们初始化的时候，我们回调的属性还没有初始化，索引我们要在属性 <code>set</code>方法进行一次回调。</p>
+<pre><code class="language-swift">var selectMenuCompletionHandle:SideMenuViewSelectMenuIndexCompletionHandle? {
+    didSet {
+        guard let selectMenuCompletionHandle = self.selectMenuCompletionHandle else {
+            return
+        }
+        selectMenuCompletionHandle(currentMenuIndex)
+    }
+}
+</code></pre>
+<pre><code class="language-swift">private var currentMenuIndex:Int = 0
+</code></pre>
+<pre><code class="language-swift">func changeTabeleViewState(row:Int, tableView:NSTableView) {
+  currentMenuIndex = row
+  ....
+ }
+</code></pre>
+<p>但是奇怪的是我们的界面还是没有出现，是因为当默认回调之后我们的试图数组还没有初始化。</p>
+<p>我们可以在回调的时候保留一下我们的索引，在 <code>ViewDidLoad</code>可以刷新对应的索引。</p>
+<pre><code class="language-swift">var sideMenuIndex:Int = -1
+</code></pre>
+<pre><code class="language-swift">self?.sideMenuIndex = index
+</code></pre>
+<pre><code class="language-swift">self.changeContentView(index: self.sideMenuIndex)
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-8f73a13fec6e0225.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="B2E036CF-433D-42AE-8D63-91ACC6527355"></p>
+<p>貌似只是文章显示出来了，我们的按钮和搜索框并没有出现。</p>
+<p>原来是我们并没有设置右侧 <code>Header</code>的样式，我们在 <code>PostsView</code>声明一下变量。</p>
+<pre><code class="language-swift">@IBOutlet weak var listView: BaseListView! {
+    didSet {
+        self.listView.header.style = 0
+    }
+}
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-49d257b051b29745.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="B4496E6F-C9BD-469F-B888-BCB02B182993"></p>
+<p>此时我们右侧的界面已经出现了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-009b65ed3ece524e.gif?imageMogr2/auto-orient/strip" alt="12"></p>
+<p>我们的界面最小宽度有些不够，我们设置最小为 <code>900x600</code>。</p>
+<p>第二部教程到此结束。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/swift" class="tag">
+                    Swift
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/mac" class="tag">
+                    Mac
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/jekyll" class="tag">
+                    Jekyll
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-25-object-c中的黑魔法">
+                  <h3 class="post-title">
+                    Object-C中的黑魔法
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

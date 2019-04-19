@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>HQ移动20170218期周报 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">HQ移动20170218期周报</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-030029.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p><strong>1. Duplicate interface definition for class 错误</strong></p>
+<p>本来以为是文件重复导入，就全部搜了一下没有找到。找到</p>
+<p><img src="https://ww3.sinaimg.cn/large/006y8lVagy1fc0llfa22gj30xt04dq4b.jpg" alt="0981C875-E24E-41BA-A03C-4DBCBB40F41B"></p>
+<p>搜索工程文件</p>
+<p><img src="https://ww3.sinaimg.cn/large/006y8lVagy1fc0lm2q7rxj30bm0nq400.jpg" alt="49E356AB-E6B1-4A46-A781-F264E14D655E"></p>
+<p>没有找到多余的文件。</p>
+<p>搜索代码看一下</p>
+<p><img src="https://ww3.sinaimg.cn/large/006y8lVagy1fc0lneax82j30bs0nktfa.jpg" alt="5C227C99-D3DB-458E-8127-18B2874B11C5"></p>
+<p>也没有发现多次@interface定义的。</p>
+<p>搜索Build Phases</p>
+<p><img src="https://ww1.sinaimg.cn/large/006y8lVagy1fc0lo79zv9j30to05v0te.jpg" alt="9B9AA661-20E5-42F7-ABC0-151B4EB19BCC"></p>
+<p>还是没发现异常。</p>
+<p>最后就删除工程的 重新导入还是抱错。</p>
+<p>没办法用全能搜索。</p>
+<p><img src="https://ww4.sinaimg.cn/large/006y8lVagy1fc0lpbq742j30ci0bq0vb.jpg" alt="3C341AA6-3CB5-470A-BDDC-8E083B23D2F0"></p>
+<p>果然发现两处 因为我今天我用 AppCode 挪动了代码 估计是之前源文件没有删除的缘故</p>
+<p>删除源文件 错误消除</p>
+<blockquote>
+<p>从上面的错误可以看出 编译的过程不是取决于工程引入的文件 而是相对于工程目录下面的所有文件进行编译的。</p>
+</blockquote>
+<h3 id="2-怎么让试图最顶端从状态栏开始">2 怎么让试图最顶端从状态栏开始</h3>
+<blockquote>
+<pre><code class="language-objc">@property(nonatomic,assign) UIRectEdge edgesForExtendedLayout NS_AVAILABLE_IOS(7_0); // Defaults to UIRectEdgeAll
+</code></pre>
+</blockquote>
+<blockquote>
+<p>设置edgesForExtendedLayout 为UIRectEdgeNone</p>
+<p>参考资料:<a href="https://segmentfault.com/q/1010000006108206">ios 当把导航栏隐藏的时候，视图不能到达最上方怎么解决</a></p>
+</blockquote>
+<h3 id="3-怎么剪切-mac-上面的文件">3 怎么剪切 Mac 上面的文件</h3>
+<ol>
+<li><code>Command+C</code>复制文件</li>
+<li><code>Command＋Option＋V</code>就可以剪切刚才的文件了</li>
+</ol>
+<blockquote>
+<p>参考资料：<a href="http://bbs.feng.com/read-htm-tid-5861420.html">终于知道mac下剪切文件的快捷键了</a></p>
+</blockquote>
+<h3 id="4设置-uitableviewcell-自带-imageview-的位置">4.设置 UITableViewCell 自带 ImageView 的位置</h3>
+<blockquote>
+<p>网上说只可以用过 - (void)layoutSubViews 设置</p>
+</blockquote>
+<pre><code class="language-objc">- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.imageView.frame = CGRectMake(320 - 44, 0, 44, 44);
+    self.imageView.backgroundColor = [UIColor blackColor];
+}
+</code></pre>
+<p>我们应用出现的界面</p>
+<p><img src="https://s3.amazonaws.com/drp.io/files/w7/EJczqh3dM/QQ20170215-112607.png" alt=""></p>
+<p>Demo 的界面</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-94dbf0cb99d120a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="http://i1.piimg.com/4851/4614201bc44514f6.png"></p>
+<p>我们工程的界面位置整体偏移了 暂时没找到问题所在</p>
+<p>暂时解决方法两种</p>
+<ol>
+<li>自己新加一个 UIImageView 布局</li>
+<li>重新设置文字 线 图片位置</li>
+</ol>
+<h3 id="4-关于-uiviewcontroller-是先执行属性赋值-还是先走-viewdidload-的方法">4 关于 UIViewController 是先执行属性赋值 还是先走 ViewDidLoad 的方法</h3>
+<p>今天做了一个界面 加了一个属性 在 ViewDidLoad 使用属性发现竟然为nil</p>
+<p>断点发现 ViewDidLoad 比属性先走。</p>
+<p>对于之前做的都是先走属性 再走 ViewDidLoad</p>
+<p>对比之前的代码 发现我之前布局都是写在 ViewDidLoad 现在写在初始化方法</p>
+<p>我就屏蔽了初始化的代码</p>
+<p>运行先走属性赋值 再走 ViewDidLoad</p>
+<p>设置属性和 ViewDidLoad 的顺序决定设置界面代码的顺序</p>
+<h3 id="5-关于-https-加密-开启还是可以请求-http-的数据问题">5 关于 HTTPS 加密 开启还是可以请求 http 的数据问题</h3>
+<p>设置NSAllowsArbitraryLoads为 NO</p>
+<p>发现模拟器对于 HTTP 的请求还是可以请求到数据</p>
+<p>最后发现在真机会提示&quot;The resource could not be loaded because the App Transport Security policy requires the use of a secure connection&quot;</p>
+<p>关于 HTTPS 加密限制流程图</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-4e12095dd3ff7768.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>参考资料：<a href="http://www.jianshu.com/p/36ddc5b009a7">iOS 10 适配 ATS（app支持https通过App Store审核）</a></p>
+<h4 id="6-注意-某些方法的-执行顺序">6、注意 某些方法的 执行顺序</h4>
+<pre><code class="language-objc"> if (self.testBlock) {
+      self.testBlock();
+ }
+ [self dismissViewControllerAnimated:YES completion:^{}];
+</code></pre>
+<pre><code class="language-objc">[self dismissViewControllerAnimated:YES completion:^{
+      if (self.testBlock) {
+          self.testBlock();
+      }
+}];
+</code></pre>
+<pre><code class="language-objc">[self dismissViewControllerAnimated:YES completion:^{}];
+if (self.testBlock) {
+      self.testBlock();
+}
+</code></pre>
+<p>上述三者在执行某个问题时，也许效果一样，第二种会有点卡顿，第一种和第三种基本一样，但是一定<strong>注意第一种的执行顺序</strong>，有时这样写会遇到某种意想不到的BUG，可能外部调用时也会写 <code>[self dismissViewControllerAnimated:YES completion:^{}];</code>, 但是实际上可能的是 那个 self 还没有被释放掉，而导致问题啦。</p>
+<p>另外注意 第二种和第三种的方法不一样，至于使用哪一种看具体需求情况。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/784630-9a69f31bba585f20.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="dismissViewControllerAnimated:"></p>
+<p>毕竟这个Block 里面的执行时间是在 viewDidDisappear 之后的。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/swift" class="tag">
+                    Swift
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-我是怎样一步步加入程序员大军">
+                  <h3 class="post-title">
+                    我是怎样一步步加入程序员大军
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

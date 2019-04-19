@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>开始一步一步学习Message App Extension | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">开始一步一步学习Message App Extension</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-012032.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <h1 id="开始一步一步学习message-app-extension">开始一步一步学习Message App Extension</h1>
+<p>可以支持发送的类型</p>
+<ul>
+<li>文本</li>
+<li>贴纸(表情包)</li>
+<li>视频文件</li>
+<li>交互式的消息</li>
+</ul>
+<h3 id="扩展支持两种类型">扩展支持两种类型</h3>
+<ul>
+<li>贴纸(表情包)</li>
+<li>iMessage的app</li>
+</ul>
+<p>这两种类型可以通过独立的应用和扩展创建。</p>
+<h3 id="1-贴纸表情包">1. 贴纸(表情包)</h3>
+<p>满足的条件类型</p>
+<ul>
+<li>必须是PNG APNG GIF JPEG的一种</li>
+<li>文件大小小于500KB</li>
+<li>图片的尺寸应该大于100px x 100px 小于206px x 206px</li>
+</ul>
+<blockquote>
+<p>支持允许使用@3x的图片 300px x 300px 到 618px x 618px 系统会自动生成@2x,@1x的图片</p>
+</blockquote>
+<p>消息支持三种贴纸大小</p>
+<ul>
+<li>小图 100px x 100px @3x(300px x 300px)</li>
+<li>中等 136px x 136px @3x(408px x 408px)</li>
+<li>大图 206px x 206px @3x(618px x 618px)</li>
+</ul>
+<h2 id="创建贴纸类型">创建贴纸类型</h2>
+<p>系统要求</p>
+<ul>
+<li>mac10.10.4之后</li>
+<li>Motion5.2.3之后 -&gt; <a href="http://bbs.pcbeta.com/forum.php?mod=viewthread&amp;tid=1680298">下载地址</a></li>
+</ul>
+<p>创建Motion的工程</p>
+<p>下载<a href="https://developer.apple.com/support/stickers/motion/sticker-project-templates.zip">模板工程</a></p>
+<ul>
+<li>
+<p>启动Motion软件</p>
+</li>
+<li>
+<p>创建新的Motion工程 File-&gt;New</p>
+</li>
+<li>
+<p>选择Motion Project</p>
+</li>
+<li>
+<p>在右边可选项</p>
+<ul>
+<li>Preset-&gt;Custom</li>
+<li>Field Order -&gt; None</li>
+<li>Aspect Ratio -&gt; Square</li>
+<li>Duration-&gt;2 seconds</li>
+<li>输入合适的图片尺寸</li>
+</ul>
+<p>点击右下角打开</p>
+<table>
+<thead>
+<tr>
+<th>Size</th>
+<th>Frame Dimensions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>小图</td>
+<td>300x300</td>
+</tr>
+<tr>
+<td>中图</td>
+<td>408x408</td>
+</tr>
+<tr>
+<td>大图</td>
+<td>618x618</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h4 id="添加图片">添加图片</h4>
+<ul>
+<li>单击左边File选项</li>
+<li>选择剪辑 图形 图像 序列选择导入</li>
+<li>导入之后 你可以选择内置的动画效果</li>
+</ul>
+<h4 id="添加行为">添加行为</h4>
+<ul>
+<li>选择左上角Library的选项</li>
+<li>选择Behaviors category选择可用的分类</li>
+<li>点击基本的动作选择放大和缩小</li>
+<li>拖动行为到对象层应用</li>
+</ul>
+<h4 id="添加文本">添加文本</h4>
+<ul>
+<li>在ToolBar 选择Text工具或者按下T快捷键</li>
+<li>选择Canvas</li>
+<li>输入你的文本按下Escape</li>
+<li>点击Text的Inspector标签 选择字体类型 大小 对其方式 其他</li>
+</ul>
+<h4 id="导出贴纸">导出贴纸</h4>
+<ul>
+<li>选择Share-&gt;Export Image Sequence</li>
+<li>点击Export选择PNG图片</li>
+<li>点击Duration菜单选择整个工程</li>
+<li>点击下一步 会保存在你的驱动器。</li>
+</ul>
+<h2 id="imessage-apps">iMessage Apps</h2>
+<ul>
+<li>在用户插入一个Message App可以参考<code>MSMessageAppViewController</code></li>
+<li>创建一个自定义或者动态的贴纸浏览框可以参考<code>MSStickerBrowserViewController</code></li>
+<li>插入文本 贴纸 视频文件到Message App 输入框查看 <code>MSConversation</code></li>
+<li>创建带有特定的应用数据交互的消息 查看<code>MSMessage</code></li>
+<li>更新交互式信息（例如，创建游戏或应用程序协作 查看 <code>MSSession</code></li>
+</ul>
+<h3 id="msmessageappviewcontroller">MSMessageAppViewController</h3>
+<pre><code class="language-objective-c">@property(nonatomic, strong, readonly) MSConversation *activeConversation;
+
+</code></pre>
+<p>获取当前聊天的对象</p>
+<ul>
+<li>发送简单的文本</li>
+</ul>
+<pre><code class="language-objective-c">[self.activeConversation insertText:@&quot;Text Message&quot; completionHandler:nil];
+</code></pre>
+<p>此方法异步执行</p>
+<ul>
+<li>发送消息对象</li>
+</ul>
+<blockquote>
+<p>必须设置URL属性和Layout属性</p>
+</blockquote>
+<pre><code class="language-objective-c">@property (nonatomic, copy, nullable) NSURL *URL;
+</code></pre>
+<p>使用<code>NSURLComponents</code>创建生成<code>URL</code>属性</p>
+<pre><code class="language-objective-c">@property(nonatomic, copy) MSMessageLayout *layout;
+</code></pre>
+<p>使用<code>MSMessageTemplateLayout</code>创建生成<code>layout</code>属性</p>
+<h4 id="msmessagetemplatelayout">MSMessageTemplateLayout</h4>
+<p>下面是这个layout的界面模板</p>
+<p><img src="https://docs-assets.developer.apple.com/published/af521ba258/MSMessageTemplateLayout_2x_93d9e9b7-b99c-4def-a8e1-2df50a710a52.png" alt=""></p>
+<p>怎么使用模板？</p>
+<ul>
+<li>实例化一个<code>MSMessageTemplatelayout</code>的对象</li>
+<li>设置属性 根据布局的需要设置不同的类型</li>
+<li>把创建的<code>MSMessageTemplateLayout</code>的对象赋值给<code>MSMessage</code>的<code>layout</code>的属性</li>
+<li>不允许继承<code>MSMessageTemplateLayout</code>类</li>
+</ul>
+<p>1 发送简单的图片</p>
+<pre><code class="language-objective-c">MSMessageTemplateLayout *layout = [[MSMessageTemplateLayout alloc]init];
+UIImage *image = [UIImage imageNamed:@&quot;gb_simple_icon&quot;];
+layout.image = image;
+</code></pre>
+<p>2 发送文本和图片</p>
+<p>在上面的代码上面添加</p>
+<pre><code class="language-objective-c"> layout.imageTitle = @&quot;Image Title&quot;;
+</code></pre>
+<p>3 发送文本图片 图片副标题</p>
+<pre><code class="language-objective-c">layout.imageSubtitle = @&quot;Image SubTitle&quot;
+</code></pre>
+<p>这样我们根据<code>MSMessageTemplateLayout</code>类里面的属性控制模板的内容现在，大家可以自行设置查看样式</p>
+<h2 id="发送图片">发送图片</h2>
+<p>图片一定要满足下面</p>
+<ul>
+<li>图片在工程里面</li>
+<li>图片类型为 GIF PNG JPG JPEG任一</li>
+<li>图片大小不大于500KB</li>
+<li>图片尺寸在300px x 300px - 618px x 618px</li>
+</ul>
+<pre><code class="language-objective-c">NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@&quot;eat&quot; ofType:@&quot;gif&quot;]];
+    MSSticker *sticker = [[MSSticker alloc] initWithContentsOfFileURL:url localizedDescription:@&quot;Localized&quot; error:nil];
+    [self.activeConversation insertSticker:sticker completionHandler:nil];
+</code></pre>
+<h2 id="发送视频">发送视频</h2>
+<p>视频也要保存在工程里面</p>
+<pre><code class="language-objective-c">NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@&quot;video&quot; ofType:@&quot;mov&quot;]];
+    [self.activeConversation insertAttachment:url withAlternateFilename:nil completionHandler:nil];
+</code></pre>
+<h2 id="设置样式">设置样式</h2>
+<pre><code class="language-objective-c">MSMessagesAppPresentationStyleCompact
+</code></pre>
+<p>设置界面大小和键盘大小一致</p>
+<pre><code class="language-objective-c">MSMessagesAppPresentationStyleExpanded
+</code></pre>
+<p>设置界面的大小和iMessage的界面大小</p>
+<p><a href="https://github.com/15038777234/LearniMessageAppSimple">Demo的下载地址</a></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/swift" class="tag">
+                    Swift
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-托管uitableview多样式cell的第三方库zhtableviewgroup">
+                  <h3 class="post-title">
+                    托管UITableView多样式cell的第三方库ZHTableViewGroup
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

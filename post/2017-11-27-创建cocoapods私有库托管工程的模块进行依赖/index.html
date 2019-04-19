@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>创建Cocoapods私有库托管工程的模块进行依赖 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">创建Cocoapods私有库托管工程的模块进行依赖</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-024249.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p>创建Cocoapods私有库托管工程的模块进行依赖</p>
+<blockquote>
+<p>业务需求:</p>
+<p>明年可能做一个新的项目但是大部分的功能模块是一样的</p>
+<p>如果使用不同的Target可能代码里面不同的判断 这是十分痛苦的</p>
+<p>有没有好的办法集成模块 并且十分容易的修改扩展</p>
+<p>我想到了Cocoapod进行依赖 但是之前全部托管到GITHUB上面 属于共有的库</p>
+<p>今天就百度了一下资料 做了一下私有库 分享一下经验</p>
+</blockquote>
+<p>我们按照一个软件<strong>MAMP</strong></p>
+<p><img src="https://ww1.sinaimg.cn/large/006tNc79gw1fbgyb5eajaj304e055jr6.jpg" alt=""></p>
+<p>下载免费版本就可以了，我们只是当做PHP服务器就好了。</p>
+<p>我们前往下面的目录</p>
+<pre><code class="language-ruby">/Applications/MAMP/htdocs
+</code></pre>
+<p>新建一个文件夹</p>
+<pre><code class="language-ruby">GBRepoGits
+</code></pre>
+<p>存放我们工程的不同模块</p>
+<p>比如我们先新建一个存放ENUM的模块</p>
+<pre><code class="language-ruby">GBDefineENUM
+</code></pre>
+<p>我们考虑可能有不同的版本 因为可能需要自定义并且 可能其他模块的改动 我们新增1.0版本</p>
+<pre><code class="language-ruby">1.0
+</code></pre>
+<p>我们在1.0的目录新增文件夹 存放我们的文件</p>
+<pre><code class="language-ruby">DefineEnums
+</code></pre>
+<p>我们现在的目录就是</p>
+<pre><code class="language-ruby">/Applications/MAMP/htdocs/GBRepoGits/GBDefineENUM/1.0/DefineEnums
+</code></pre>
+<p>在本目录的终端执行下面的命令</p>
+<pre><code class="language-ruby">pod spec create GBDefineENUM1.0
+</code></pre>
+<p>配置<strong>GBDefineENUM1.0.podspec</strong>文件</p>
+<pre><code class="language-ruby">Pod::Spec.new do |s|
+  s.name         = &quot;GBDefineENUM1.0&quot;
+  s.version      = &quot;1.0&quot;
+  s.summary      = &quot;测试&quot;
+  s.homepage     = &quot;http://localhost:8989/GBRepoGits/GBDefineENUM/1.0/&quot;
+  s.license = { :type =&gt; 'MIT', :text =&gt; &lt;&lt;-LICENSE
+                   Copyright 2012
+                   Permission is granted to...
+                 LICENSE
+               }
+  s.author             = { &quot;15038777234&quot; =&gt; &quot;15038777234@163.com&quot; }
+  s.platform     = :ios, &quot;8.0&quot;
+  s.source       = { :http =&gt; 'http://localhost:8989/GBRepoGits/GBDefineENUM/1.0.zip' }
+  s.source_files  = &quot;1.0/DefineEnums/**/*.{h,m}&quot;
+  s.requires_arc = true
+end
+</code></pre>
+<p>其他的配置和创建共有的是一样的 只不过我们使用的是zip的文件包 zip就是我们1.0目录的打包</p>
+<p>我们在终端执行</p>
+<pre><code class="language-ruby">pod spec lint --verbose
+</code></pre>
+<p>我们在工程podfile添加下面代码执行正常的pod install 和 pod update就可以了</p>
+<pre><code class="language-ruby">pod 'GBDefineENUM1.0', :podspec =&gt; '/Applications/MAMP/htdocs/GBRepoGits/GBDefineENUM/1.0/GBDefineENUM1.0.podspec'
+</code></pre>
+<h2 id="注意事项">注意事项</h2>
+<p>之前podspec执行的路径是我本地PHP的spec路径提示我编码不正确 我觉得可能就是PHP自动帮我展示转码了</p>
+<p>就换成本地的文件路径是可以的</p>
+<h2 id="想说的话">想说的话</h2>
+<p>对于我们的项目想完全模块脱离 我觉得很大的工作量 我觉得应该可以  我这几天研究一下</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/cocoapods" class="tag">
+                    CocoaPods
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-如果免费使用reveal一些心得">
+                  <h3 class="post-title">
+                    如果免费使用Reveal一些心得
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

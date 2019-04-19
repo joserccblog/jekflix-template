@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>设置Xcode自动管理证书文件 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">设置Xcode自动管理证书文件</h2>
+            <div class="post-date">2017-11-25</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-093926.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <h2 id="我怎么配置xcode才能实现自动配置证书文件">我怎么配置Xcode才能实现自动配置证书文件</h2>
+<p>许多的开发者依然维护着旧的项目，他们也许需要选择一个证书签名去编译。这个问题讨论怎么在<code>Xcode</code>设置来自动化选择证书通过他们默认的设置,这个问题适用于<code>iOS</code>和<code>Mac</code>的开发人员</p>
+<p><code>Xcode</code>的自动化配置证书去开发和发布是令人喜欢的。换句话来说,无论是企业发布还是发布<code>AppStore</code>的账户我们都推荐这样设置你的工程。所有的开发者在本文档之前必须去研究和实践怎么设置签名的其他方式。此外，这是打包<code>App</code>唯一的指南文档。选择自动化配置证书意味着你不会在证书设置和编译的时候浪费更多的时间,并且你可以更好的设置适合你的<code>Xcode</code>.</p>
+<p>跟随下面的步骤去设置自动化证书配置</p>
+<ul>
+<li>
+<p>设置项目级别的代码签名为默认</p>
+</li>
+<li>
+<p>选中<code>Project</code>的<code>Build Setting</code></p>
+</li>
+<li>
+<p>设置<code>Provisioning Profile</code>为<code>Automatic</code></p>
+</li>
+<li>
+<p>设置<code>Code Signing Identity</code></p>
+<ul>
+<li>在<code>iOS</code>的工程设置所有的<code>Build</code>为<code>iOS Developer</code></li>
+<li>如果是<code>OS X</code>的工程设置<code>Mac Developer</code>或者<code>Developer ID</code></li>
+</ul>
+</li>
+<li>
+<p>设置所有的<code>Target</code>的<code>code signing</code>为下面的设置</p>
+<ul>
+<li>设置<code>Target-&gt;General-&gt;Team-&gt;None</code></li>
+</ul>
+<blockquote>
+<p>重要的提醒 如果是MAC的开发必须设置所有的<code>Target</code>的<code>Target-&gt;General-&gt;Team-&gt;None</code></p>
+</blockquote>
+<ul>
+<li>设置所有的<code>Provisioning Profile</code>为<code>Automatic</code></li>
+<li>设置所有的<code>Code Signing Identity</code>
+<ul>
+<li>在<code>iOS</code>的工程设置所有的<code>Build</code>为<code>iOS Developer</code></li>
+<li>如果是<code>OS X</code>的工程设置<code>Mac Developer</code>或者<code>Developer ID</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>返回你自己的<code>Target</code>的<code>Target &gt; General</code></p>
+<ol>
+<li>如果是MAC的应用设置<code>Target &gt; General &gt; &quot;Signing&quot;</code>为<code>Mac App Store</code></li>
+<li>设置<code>Target &gt; General &gt; Team</code>为你所有的<code>Team</code></li>
+</ol>
+<blockquote>
+<p>在代码签名设置之前设置<code>Target &gt; General &gt; Team</code>为<code>None</code>十分重要,因为这以后将设置成你团队的值。</p>
+</blockquote>
+</li>
+</ul>
+<p>下面的图形是对比你的工程如何设置自动化代码签名</p>
+<ol>
+<li>设置所有工程<code>Build settings</code>为<code>Automatic</code>
+<img src="http://upload-images.jianshu.io/upload_images/545662-34d4eeb2e3f4135a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></li>
+<li><code>Build settings</code>设置</li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-8287462f35f0512a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<ol start="3">
+<li>
+<p>设置iOS的工程<code>Target &gt; General &gt; Team</code>为你自己的<code>Team</code>
+<img src="http://upload-images.jianshu.io/upload_images/545662-a306b6e78a095241.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+</li>
+<li>
+<p>设置mac的工程<code>Target &gt; General &gt; Team</code></p>
+</li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-12b1c5b3ca06481b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<blockquote>
+<p>最后，作出上述改变后，Xcode的应重新启动。</p>
+</blockquote>
+<p>一旦你让<code>Xcode</code>管理你的配置完毕之后,你可以在以后的工程里面使用这个配置的模板。Xco<code>d</code>e将自动配置你工程所在的<code>Team</code>.<code>Xcode</code>编辑器会为你管理所有的属性列表文件,很优雅的为你添加所需要的<code>FrameWork</code>。</p>
+<p>为了让管理生效，<code>Xcode</code>会为你的团队的代码签名和描述文件添加管理，通过你的设置设置正确的签名。你可以让<code>Xcode</code>创建或者设置一个通配的标识符来让你选择<code>App</code>服务。</p>
+<p>你可以轻松地识别出用户中心使用明确的<code>App ID</code>的任何<code>Xcode</code>的管理调配配置文件，因为他们将与文本“<code>iOS Team Provisioning Profile:</code>”开头，后接分发包ID
+<code>Xcode5</code>需要你在<code>Member Center</code>创建自己的配置文件。Xcode6将会创建任何必要的分布证书或发行配置的配置文件.当Xcode创建一个发布的描述文件，名字开头是
+<code>XC:</code>其次是<code>App ID</code></p>
+<p>如果你使用的通配的<code>App Id</code>名字开头是<code>XC:*</code></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/xcode" class="tag">
+                    Xcode
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-25-clangformat语法1.0">
+                  <h3 class="post-title">
+                    ClangFormat语法1.0
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

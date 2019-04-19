@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>关于首页设计框架和一些细节处理分析 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">关于首页设计框架和一些细节处理分析</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-030613.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p>关于首页设计框架和一些细节处理分析</p>
+<p>下面是首页界面预览图</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-35b9c5e985e94474.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>第一部分</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-1e5ed1d695052a38.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>这个一个横向的 Banner</p>
+</blockquote>
+<ul>
+<li>高度随着后台返回尺寸自动自适应</li>
+<li>如果返回的 Banner 数组为空则隐藏</li>
+</ul>
+<p>第二部分</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-7dff50588810705e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>这是放置广告位的 设计说目前也就四个 我为了以后可以扩展 就做成如果超出四个就可以横向滚动</p>
+</blockquote>
+<ul>
+<li>按钮的高度随着后台返回尺寸自动自适应</li>
+<li>如果返回的元素都没有则隐藏这一栏</li>
+</ul>
+<p>第三部分</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-5d18fbab55ea0e7d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>推荐预售和限时限量的商品 可以横向滚动 出现 ViewMore 跳转到对应频道的页面</p>
+</blockquote>
+<ul>
+<li>切换频道可以切换对应栏目的内容</li>
+<li>如果两者都没有数据隐藏</li>
+</ul>
+<p>第四部分</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-6dda7681250d52e7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>四个广告位</p>
+</blockquote>
+<ul>
+<li>广告位宽度位屏幕一半</li>
+<li>如果四个都没有就隐藏</li>
+<li>如果只有两个就显示两个</li>
+</ul>
+<p>第五部分</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-e10a42cac36c311e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>显示促销的商品</p>
+</blockquote>
+<ul>
+<li>栏目可以左右滑动切换</li>
+<li>每一个栏目只有两个商品</li>
+<li>倒计时结束就不显示</li>
+</ul>
+<p>第六部分</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-10afb5580a16bbc6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>显示首页的推荐商品</p>
+</blockquote>
+<ul>
+<li>栏目可以左右切换</li>
+<li>下面栏目列表可以滑动切换</li>
+</ul>
+<p>下面是做这个界面的心酸经历：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-71025c767aa989da.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>开始觉得很简单，毕竟我也是对于 UITableView和 UICollectionView 很溜的码农。</p>
+<p>之前界面框架很简单</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-d637652fb6ddf794.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>整体是一个 UICollectionView</p>
+<p>上面是一个 Header</p>
+<p>我现在使用原来框架面临的问题是</p>
+<ul>
+<li>我的 Header 那么多元素 都超出两屏幕了 自然要滚动了 之前是商品列表和 Header 可以显示在一个屏幕</li>
+<li>我下面的商品列表可以切换频道  之前不可以切换</li>
+</ul>
+<p>自己当时尝试写了1.0的框架 后来无法满足我们设计这个界面需求 废弃了</p>
+<p>我就从 Github 找了几个开源库，看到他们的首页我们的很相似 开始我是这样的</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-6d1c15681999b28e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>后来我用这个库换成我们首页</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-a780e87b2b28ae33.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们的 Header 是很高的呀 完全行不通呀</p>
+<p>后来继续找了几个库 添加 删除</p>
+<p>那几天把我折腾的 差点要封掉</p>
+<p>后来终于找到了一个第三方 可以满足90%的需求 只是底部又是会多出40高度 滚动无法联动 bug</p>
+<p>后来觉得首页是 APP 的门户 这些小问题会影响我开发形象 遇到我决定</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-602f8f01a085d34e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>去他大爷的，就给了几天时间做，我都来来回回做了快三个星期了，找框架就用了很久。</p>
+<p>结果还是要自己写框架。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-3e0e67ea6b80fb5c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>首页用到了 N 个 UICollectionView 你说6不6</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-a6855b7f4561b86d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><strong>1 上面Header为啥用 UITableView？</strong></p>
+<p>因为显示内容不是固定的 就用自己写的一个库</p>
+<p><a href="https://github.com/josercc/ZHTableViewGroup">ZHTableViewGroup专门为复杂表格的解决方案</a></p>
+<p><strong>2 下面是用的 ZHSegmentTagView(还没有托管在 Github)不过大家可以找类似的。为什么不和上面的模块放在TableView 里面？</strong></p>
+<p>因为放在 TableView 随着滚动会刷新表格 对象会重新生成 很难和下面的频道页面联动</p>
+<p><strong>3 为什么整体不用 UICollectionView 上面是 Header?</strong></p>
+<p>因为下面的频道是横向滚动的 设置方向之后 UICollectionView 的 Header 就是在最左边 不是我们要的结果</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-e68267a8768b979b.gif?imageMogr2/auto-orient/strip" alt=""></p>
+<p>这是之前没做任何处理 显示的结果 导致下面的频道还没有在最上面时候 滚动下面 导致上面无法联动走了。</p>
+<p>最后就做了判断 如果频道栏目没有在最上面 则强行设置下面滚动试图 ContentOffSet为{0,0}</p>
+<p>把滑动的距离代理出去 让最外层的滚动试图做对应的滚动</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-1b13f3c7adece4e4.gif?imageMogr2/auto-orient/strip" alt=""></p>
+<p>现在自己做了处理 终于达到了联动的效果了</p>
+<p><strong>4 上拉剩下10个商品时候要做 预加载请求</strong></p>
+<p>发现因为每次 reloadData 都会让滚动的位置回到之前的位置。</p>
+<p>发现每次刷新对象改变了 所以每次刷新数据 会回到初始位置</p>
+<p>我就用字典保存对应频道 UICollectionView 的对象 每次刷新 取对象进行刷新</p>
+<p>发现左右切换频道之后 再次回来 位置再次不是之前位置</p>
+<p>发现 UICollectionView 重用机制 0和2位置公用同一个 导致0会记录2的位置 导致每次2到0频道0位置会变</p>
+<p>最后用变量记录对应频道位置 判断如果当前频道刷新数据位置和之前记录不一样 则滚动到对应位置</p>
+<blockquote>
+<p>以后有时间 把首页的框架封装出来 方便以后类似界面使用。</p>
+</blockquote>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-hq移动20170218期周报">
+                  <h3 class="post-title">
+                    HQ移动20170218期周报
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

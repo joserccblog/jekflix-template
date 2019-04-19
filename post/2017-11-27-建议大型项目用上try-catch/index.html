@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>建议大型项目用上Try Catch | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">建议大型项目用上Try Catch</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-012539.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <h1 id="建议大型项目用上try-catch">建议大型项目用上Try Catch</h1>
+<p>我们在平时项目做功能的时候，经常会遇到崩溃的情况。如果是我们在开发测试阶段，我们可以找到原因修复。但是遇到已经上线，出现这种问题。要么使用<code>JSPatch</code>进行热修复，但是使用热修复修复苦只有写的人知道。</p>
+<p>本来就是一个方法一个单词写错，一个值没做异常处理，就要重写整个方法。对于像我这样根本不懂<code>JS</code>语法和不精通<code>JSPatch</code>的人来说，真的是蓝瘦，香菇。</p>
+<p>最近写的项目用<code>Swift</code>语法进行编写的，对于之前我们在<code>Object-C</code>中<code>NSError**</code>类型的指针标识遇到了什么错误，现在转成<code>Swift</code>方法直接进行<code>throws</code>进行抛异常。</p>
+<p>这样我们就必须使用<code>Do Catch</code>进行捕获异常了，我觉得苹果这样做真的挺好的。</p>
+<p>比如我刚刚写的项目，就用上了，感觉用完顿时高大上了许多。</p>
+<pre><code class="language-swift">import Cocoa
+
+enum OFileMagerImportError:Error {
+  case cannel //点击了取消的按钮
+  case error(message:String)
+}
+
+class OFileManger: NSObject {
+  /*
+   * 导入配置文件
+   * return 返回一个数组对象 可能返回为空
+   */
+  class func importAction() throws -&gt; [Any] {
+      let openPannel = NSOpenPanel()
+      openPannel.allowedFileTypes = [&quot;ork&quot;]; // 只允许读取.ork的文件类型
+      openPannel.allowsMultipleSelection = false // 设置不允许多选
+      let buttonIndex = openPannel.runModal()
+      guard buttonIndex == NSFileHandlingPanelOKButton else {
+          throw OFileMagerImportError.cannel
+      }
+      guard openPannel.urls.count &gt; 0 else {
+          throw OFileMagerImportError.error(message:&quot;你还没有选择任何的配置文件!&quot;)
+      }
+      guard let fileName = openPannel.urls.first else {
+          throw OFileMagerImportError.error(message:&quot;你还没有选择任何的配置文件!&quot;)
+      }
+      guard let jsonData = try? Data(contentsOf: fileName) else {
+          throw OFileMagerImportError.error(message:&quot;读取文件内容失败!&quot;)
+      }
+      guard let jsonObj = try? JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) else {
+          throw OFileMagerImportError.error(message:&quot;配置文件内容不是一个JSON文本!&quot;)
+      }
+      guard let configList:[Any] = jsonObj as? [Any] else {
+          throw OFileMagerImportError.error(message:&quot;配置文件内容不是一个数组对象!&quot;)
+      }
+      return configList
+  }
+
+
+}
+
+</code></pre>
+<p>调用的时候我们可以这么写。</p>
+<pre><code class="language-swift">@IBAction func importAction(_ sender: Any) {
+        do {
+            let configList:[Any] = try OFileManger.importAction()
+            print(configList)
+        } catch OFileMagerImportError.error(let message) {
+            OAlertMessage.alert(message: message)
+        } catch {
+            print(&quot;抛出了其他不给用户看到的错误!&quot;)
+        }
+    }
+</code></pre>
+<p>我们就可以做一些错误的处理。但是只是这样，我心里面还不是十分强烈想用。</p>
+<p>后来线上的<code>App</code>在双11那天晚上突然出现打不开崩溃的情况，在外面准备吃饭庆祝的强行喊回去解决问题。</p>
+<p>回去觉得应该是那里崩溃了吧，应该也是十分的容易解决。</p>
+<p>后来发现因为接口因为最近上线的功能出问题了，就回滚了代码。导致之前一些接口的字段没有返回，恰好那个接口没有用<code>Model</code>进行映射，所以就出现崩溃了。</p>
+<p>经理一直问这个接口回滚好几天了为啥突然出问题了，原来是接口做了缓存，会根据后台返回是否需要更新才会重新的请求接口。</p>
+<p>双11那天正好运维更新了数据，导致接口重新请求，少了字段导致崩溃。最后让后台强行把拿两个字段返回，最快的解决问题。</p>
+<p>虽然让后台加上了字段，但是我觉得我们<code>App</code>这里没有做好兼容，才导致这一次事故。幸亏没影响多久，再说客户都是外国人，那个时间还没睡醒。</p>
+<h2 id="我们平时遇到的一些崩溃问题所在">我们平时遇到的一些崩溃问题所在</h2>
+<ul>
+<li>数组越界</li>
+<li>给一个可变数组强行赋值不可变，之后当做可变数组用</li>
+<li>字典值不存在</li>
+<li>后台返回的字段不统一，本来有值是字典，没值是字符串。</li>
+</ul>
+<p>导致的崩溃自然不止这些，但是这些占据了崩溃里面大部分，前三个我们可以做一下异常处理，最后一个最好还是让后台规范起来，这是长远之际。或者使用<code>Model</code>进行映射。</p>
+<h2 id="怎么做异常处理">怎么做异常处理</h2>
+<ul>
+<li>做很多<code>if else</code>判断</li>
+<li>使用<code>Try catch</code>进行处理</li>
+</ul>
+<p>虽然两个都要写很多的代码，<code>if else</code>的代码更加优美一点，但是就怕有一种情况你没写出来。觉得最好的办法还是用<code>try catch</code>进行。</p>
+<p><code>@try</code>，<code>@catch</code>，<code>@throw</code>，和 <code>@finally</code>。这四个关键词进行异常处理。</p>
+<p>我们看一下常见的一个数组越界的例子：</p>
+<pre><code class="language-objective-c">NSArray *tests = @[];
+NSNumber *num = tests[0];
+</code></pre>
+<p>我们不用运行就可以知道这个地方会崩溃，因为我们初始化的数组是空的。但是我们强行取一个元素，导致崩溃。</p>
+<p>假设我们现在用上了<code>try catch</code>的代码，会如何呢。</p>
+<pre><code class="language-objective-c">NSArray *tests = @[];
+@try {
+    NSNumber *num = tests[0];
+} @catch (NSException *exception) {
+    NSLog(@&quot;%@&quot;,exception.userInfo);
+} @finally {
+    NSLog(@&quot;我做一些必须的处理&quot;);
+}
+</code></pre>
+<p>经过测试，这个代码会在<code>Debug</code>的时候断点，但是强行运行还是可以运行的。但是在<code>Release</code>发布之后运行完全没有任何的影响。</p>
+<p>虽然我们平时写代码上面，不可能让所有出现异常的地方写上这样的代码。但是对着我们的经验，我们对于一眼就知道会出崩溃的地方加上，还是能让线上的应用少出很多问题的。</p>
+<p>关于<code>Try catch</code>的资料可以查看下面资料：</p>
+<p><a href="http://www.cnblogs.com/GarveyCalvin/p/4182861.html">iOS捕获异常，常用的异常处理方法</a></p>
+<p><a href="http://swifter.tips/error-handle/">Swift中错误和异常处理</a></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-开始一步一步学习message-app-extension">
+                  <h3 class="post-title">
+                    开始一步一步学习Message App Extension
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

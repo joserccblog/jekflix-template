@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>怎么在Framework支持@IBDesignable | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">怎么在Framework支持@IBDesignable</h2>
+            <div class="post-date">2017-12-22</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-23-021539.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <h2 id="对于-framework-不支持ibdesignable研究">对于 Framework 不支持@ibdesignable研究</h2>
+<p>写出这一篇文章之前，我搜索了很多的资料。牵扯出来的东西实在是太多，很多我没法理解其中的原理，可能我看的不详细，并且不需要去知道牵扯出来原理，我只是想解决办法而已。</p>
+<p>最近写了一个控件，是为了做<strong>共享车位</strong>项目的一个选择控件。在最后的版本我加了<code>@IBDesignable</code>和<code>@IBInspectable</code>两个关键词用于支持 <code>Xib</code> 的及时预览和设置。</p>
+<p>最近在想使用 <code>Carthage</code> 打包成 <code>Framework</code> 之后，放在 <code>Cocoapods</code> 进行依赖，会简单很多。</p>
+<p>但是我们的控件在 <code>Xib</code> 不能及时的预览，不能及时的渲染。我们的代码可是在自己的例子里面经过测试的！</p>
+<p>我们不但在 <code>Swift</code> 的例子里面测试通过，而且还在 <code>OC</code> 的例子里面测试通过。但是我们托管在 <code>Cocoapods</code> 之后，竟然无法通过了？</p>
+<p>当时一时不明白什么原因，恰巧看到群里面有人分享说 <code>Xcode9</code>之前 <code>Swift</code> 不支持静态库。</p>
+<blockquote>
+<p>https://zhuanlan.zhihu.com/p/32178522?group_id=926848741735350272</p>
+</blockquote>
+<p>当时就好奇的搜索一下什么是静态库和动态库。</p>
+<blockquote>
+<p>https://www.jianshu.com/p/42891fb90304</p>
+</blockquote>
+<p>下面我就说一下我的理解，简单说一下所谓的动态库是可以代码共享供其他程序使用的，比如系统的 <code>UIKit.framework</code> <code>Foundation.framework</code> 都是存在于 <code>iOS</code>系统里面。</p>
+<p>不同的 <code>APP</code> 都是依赖于 <code>iOS</code> 系统里面这些动态库，这就所谓我们的安装包会变小。</p>
+<p>所谓的静态库就是复制一份代码到我们的 <code>APP</code> 里面，比如其他第三方打包号的 <code>Framework</code>，比如 <code>Cocoapods</code> 托管的。</p>
+<p>说到这里，我们已经注意到为什么自己打包出来的<code>.Framework</code> 是赋值代码到我们 <code>APP</code> 是属于静态库，为什么系统的<code>.framework</code> 是属于共享代码属于动态库呢？</p>
+<p>我们自己口中所谓的创建动态库和静态库究竟是怎么的一回事呢？我们看一下下面的图。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-23-0E17A928-4701-464E-9DCF-67C76129E07B.png" alt="0E17A928-4701-464E-9DCF-67C76129E07B"></p>
+<p>这就是我理解的图，所以对于 <code>Framework</code> 有三种</p>
+<ol>
+<li>存在于 <code>iOS</code> 系统供其他 <code>APP</code> 共享代码使用的真正动态库</li>
+<li>存在于 <code>APP</code> 沙盒下面供扩展程序和主程序使用的伪动态库</li>
+<li>复制代码只供主程序使用的静态库</li>
+</ol>
+<p>搜索了静态库和动态库的区别之后，对比自己测试的 <code>Demo</code> 和自己真正用的例子发现。</p>
+<p>自己的 <code>Demo</code> 都在一个工程，属于伪动态的库。但是自己打包成 <code>Framework</code> 不管是拖拽还是使用 <code>Cocoapods</code> 都已经变成了静态库了。所以应该是这个原因导致的。</p>
+<p>后来，我就直接让代码使用 <code>Cocoapods</code> 进行托管。但是发现还是不行，当时就百度了</p>
+<pre><code class="language-She">Cocoapods not support @IBDesignable
+</code></pre>
+<p>虽然这个问题在 <code>Cocoapods</code> 的问题列表出现很多次，但是官方给的回复是我们的库有问题和 <code>Cocoapods</code> 没有什么关系。</p>
+<p>最后我再次修改了搜索的关键词</p>
+<pre><code class="language-shell">swift @IBDesignable framework not work in xib
+</code></pre>
+<p>这次搜索果然有收获，并且大概知道了解决的办法。</p>
+<blockquote>
+<p>https://github.com/Carthage/Carthage/issues/335</p>
+</blockquote>
+<blockquote>
+<p>http://stackoverflow.com/a/39999914/760435</p>
+</blockquote>
+<p>一个采纳的建议为使用者自己创建子类或者分类，重写<code>@IBDesignable</code>标识符。</p>
+<p>我试了一些，是可以正常的渲染出来，但是属性还是无法在 <code>Xib</code> 设置。</p>
+<p>此时此刻，我大概明白了出不来造成的原因是什么。是因为 <code>Swift</code> 文件会被自动 <code>Generated Interface</code> 头文件的时候</p>
+<p><code>@IBDesignable</code>和<code>@IBDesignable</code>关键词不会被自动转换为 <code>OC</code> 的宏<code>IB_DESIGNABLE</code>和<code>IBInspectable</code>。</p>
+<p>因为打包成 <code>Framework</code> 会被自动转换为 <code>OC</code> 里面的头文件，因此缺少标识的宏自然无法在 <code>Xib</code> 进行渲染和识别。</p>
+<h2 id="三种方法可以解决">三种方法可以解决</h2>
+<h3 id="1代码开源使用-cocoapods">1.代码开源使用 Cocoapods</h3>
+<p>使用 <code>Cocoapods</code> 直接托管我们的源文件，这样就形成了我们所说的伪动态库。</p>
+<p>只有在运行的时候才被编译成库，这样 <code>Xib</code> 就可以在编译的时候看到源文件，识别出<code>@IBDesignable</code>和<code>@IBDesignable</code>关键词。</p>
+<h3 id="2-打包成-framework">2. 打包成 Framework</h3>
+<p>如果想使用 <code>Framework</code> 的话，比如使用 <code>Carthage</code> 之类。自动生成的头文件自然是无法支持的。</p>
+<p>我们想要支持的话就必须是把我们声明<code>@IBDesignable</code>和<code>@IBDesignable</code>关键词的文件暴露在 <code>public header</code> 列表之下。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-23-34C8DA6D-B199-4B42-A5FD-7043D407BD8F.png" alt="34C8DA6D-B199-4B42-A5FD-7043D407BD8F"></p>
+<p>那么打包出来的 <code>Framework</code> ，程序也可以看到我们的源文件，自然而然的就支持 Xib 渲染了。</p>
+<h3 id="3-打包成-framework-不想让别人知道核心代码">3. 打包成 Framework 不想让别人知道核心代码</h3>
+<p>这个就有点难度了，毕竟你不想让别人知道核心代码。又要让自己的库支持<code>Xib</code>的话。</p>
+<p>你就必须参考上面2所说的，做一个可以暴露源码的文件，把<code>@IBDesignable</code>和<code>@IBDesignable</code>关键词写在这个文件里面。之后再把设置的属性赋值给核心库，这样核心的类会自动生成。</p>
+<p>类似下面</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-23-0095545E-CCE3-47D7-89BF-439A7003A8F3.png" alt="0095545E-CCE3-47D7-89BF-439A7003A8F3"></p>
+<p>这样只不过提供库作者麻烦一些，谁让自己不愿意开源呢？</p>
+<blockquote>
+<p>据说 Framework 不支持@IBDesignable是苹果的一个 BUG，至今还没有修复</p>
+<p>https://openradar.appspot.com/23114017</p>
+</blockquote>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/framework" class="tag">
+                    Framework
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/swift" class="tag">
+                    Swift
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/cocoapods" class="tag">
+                    Cocoapods
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-12-20-uistackview在ios11上可能会影响子试图的布局">
+                  <h3 class="post-title">
+                    UIStackView在iOS11上可能会影响子试图的布局
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

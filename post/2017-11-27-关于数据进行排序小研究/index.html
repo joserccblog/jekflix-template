@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>关于数据进行排序小研究 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">关于数据进行排序小研究</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-015154.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p>最近遇到一个问题就是把城市按照首字母进行排序并且首字母排序进行依次排序。</p>
+<p>我之前知道数组有排序的方法，但是没怎么用过，今天研究一下。</p>
+<p>下面是一个数组要进行字母排序。</p>
+<pre><code class="language-swift">let oldTitleList = [&quot;BCDA&quot;,&quot;ABCD&quot;,&quot;ADCB&quot;,&quot;ACDB&quot;,&quot;BDAC&quot;,&quot;DACB&quot;,&quot;CADB&quot;]
+</code></pre>
+<p>我们利用系统的方法进行排序</p>
+<blockquote>
+<p>官方的说明如下:</p>
+<pre><code>sorted(by:)
+</code></pre>
+<p>参数:<strong>areInIncreasingOrder</strong></p>
+<p>如果第一个参数应在第二个参数之前排序，则返回true否则是false。</p>
+<p>当您要对不符合Comparable协议的元素集合进行排序时，请将predicate传递给此方法，当第一个元素在第二个元素之前排序时，该方法返回true。 结果数组的元素根据给定的predicate排序。</p>
+<p>predicate必须是对元素的严格弱排序。 也就是说，对于任何元素a，b和c，必须满足以下条件：</p>
+<ul>
+<li><strong>areInIncreasingOrder（a，a）<strong>总是返回</strong>false</strong>。</li>
+<li>如果<strong>areInIncreasingOrder（a，b）<strong>和</strong>areInIncreasingOrder（b，c）<strong>都为</strong>true</strong>，那么<strong>areInIncreasingOrder（a，c）<strong>也为</strong>true</strong>。</li>
+<li>两个元素是不可比较的，如果两者都不根据<strong>predicate</strong>在另一个之前排序。 如果a和b是不可比较的，并且b和c是不可比的，则a和c也是不可比的。</li>
+</ul>
+<p>排序算法不稳定。 不稳定排序可以更改<strong>areInIncreasingOrder</strong>不建立顺序的元素的相对顺序。</p>
+<p>在以下示例中，<strong>predicate</strong>为自定义<strong>HTTPResponse</strong>类型的数组提供了排序。 <strong>predicate</strong>在成功之前对错误进行排序，并按错误代码对错误响应进行排序。</p>
+<pre><code class="language-swift">enum HTTPResponse {
+    case ok
+    case error(Int)
+}
+
+let responses: [HTTPResponse] = [.error(500), .ok, .ok, .error(404), .error(403)]
+let sortedResponses = responses.sorted {
+    switch ($0, $1) {
+    case let (.error(aCode), .error(bCode)):
+        return aCode &lt; bCode
+    case (.ok, .ok): return false
+    case (.error, .ok): return true
+    case (.ok, .error): return false
+    }
+}
+print(sortedResponses)
+// Prints &quot;[.error(403), .error(404), .error(500), .ok, .ok]&quot;
+</code></pre>
+<p>您还可以使用此方法按降序顺序对符合“可比较”协议的元素进行排序。 要按降序对集合进行排序，请将greater-than运算符（<code>&gt;</code>）作为<strong>areInIncreasingOrder</strong>参数传递。</p>
+<pre><code class="language-swift">let students: Set = [&quot;Kofi&quot;, &quot;Abena&quot;, &quot;Peter&quot;, &quot;Kweku&quot;, &quot;Akosua&quot;]
+let descendingStudents = students.sorted(by: &gt;)
+print(descendingStudents)
+// Prints &quot;[&quot;Peter&quot;, &quot;Kweku&quot;, &quot;Kofi&quot;, &quot;Akosua&quot;, &quot;Abena&quot;]&quot;
+</code></pre>
+<p>调用相关的<strong>sorted（）<strong>方法等效于调用此方法并传递小于操作符（</strong>&lt;</strong>）作为谓词。</p>
+<pre><code class="language-swift">print(students.sorted())
+// Prints &quot;[&quot;Abena&quot;, &quot;Akosua&quot;, &quot;Kofi&quot;, &quot;Kweku&quot;, &quot;Peter&quot;]&quot;
+print(students.sorted(by: &lt;))
+// Prints &quot;[&quot;Abena&quot;, &quot;Akosua&quot;, &quot;Kofi&quot;, &quot;Kweku&quot;, &quot;Peter&quot;]&quot;
+</code></pre>
+</blockquote>
+<pre><code class="language-swift">let sordArray = oldTitleList.sorted()
+</code></pre>
+<p>Log如下</p>
+<pre><code class="language-swift">  - 0 : &quot;ABCD&quot;
+  - 1 : &quot;ACDB&quot;
+  - 2 : &quot;ADCB&quot;
+  - 3 : &quot;BCDA&quot;
+  - 4 : &quot;BDAC&quot;
+  - 5 : &quot;CADB&quot;
+  - 6 : &quot;DACB&quot;
+</code></pre>
+<p>这是<code>Swift</code>数组<code>Array</code>排序的方法，以后仔细研究一下其他的排序。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/swift" class="tag">
+                    Swift
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-学习uiscreenedgepangesturerecognizer手势">
+                  <h3 class="post-title">
+                    学习UIScreenEdgePanGestureRecognizer手势
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>HQ移动20170127期周报 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">HQ移动20170127期周报</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-025136.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p><a href="http://hq.joser.cc/2017/01/21/%E7%8E%AF%E7%90%83%E6%98%93%E8%B4%AD%E7%A7%BB%E5%8A%A820170127%E6%9C%9F%E5%91%A8%E6%8A%A5/">博客原文地址</a></p>
+<h3 id="ios周报内容">iOS周报内容</h3>
+<ul>
+<li>
+<p><strong><code>swift3.0</code>获取字符串的方法改变了</strong></p>
+<p>之前直接输入对应的索引就可以 现在需要**<code>String.Index</code>**</p>
+<p>比如我要获取字符串从索引7开始</p>
+<pre><code class="language-swift">absoluteString.substring(from:absoluteString.index(absoluteString.startIndex, offsetBy: 7))
+</code></pre>
+</li>
+<li>
+<p><strong><code>whereis</code> 查询命令在什么路径</strong></p>
+<p>比如查询**<code>open</code>**命令在什么路径</p>
+<p>​</p>
+<pre><code class="language-ruby">whereis open
+</code></pre>
+</li>
+<li>
+<p><strong><code>NSTask</code>类在<code>Swift3.0</code>换成<code>Process</code>类</strong></p>
+<p>利用**<code>open</code>**命令打开一个程序</p>
+<pre><code class="language-swift">let process = Process()
+process.launchPath = &quot;/bin/bash&quot;
+process.arguments = [&quot;-c&quot;,&quot;open -a /Applications/Unarchiver.app \(ipaPath)&quot;]
+process.launch()
+process.waitUntilExit()
+</code></pre>
+</li>
+<li>
+<p><strong><code>open</code>命令打开<code>APP</code>一直提示不存在</strong></p>
+<p>因为名字有空格 我重新命名 问题解决 这应该不是长久之计</p>
+</li>
+<li>
+<p><strong><code>Swift3.0</code> <code>Array</code>类型转成<code>String</code></strong></p>
+<pre><code class="language-swift">list.joined(separator: &quot;/&quot;)
+</code></pre>
+</li>
+<li>
+<p><strong>执行<code>open</code>解压的命令 会获取不到数据</strong></p>
+<p>因为解压已经离开终端的范畴 所以需要休眠程序 等待解压完毕</p>
+<pre><code class="language-swift">sleep(0.25);
+</code></pre>
+</li>
+<li>
+<p>**终端删除一个文件夹 **</p>
+<pre><code class="language-ruby">rm -dPRrvW
+</code></pre>
+</li>
+<li>
+<p><strong>怎么正常执行Mac终端的命令在Mac程序代码</strong></p>
+<pre><code class="language-ruby">let process = Process()
+process.launchPath = &quot;/bin/bash&quot;
+process.arguments = [&quot;-c&quot;,&quot;终端的执行代码&quot;]
+process.launch()
+process.waitUntilExit()
+</code></pre>
+</li>
+<li>
+<p><strong>Swift3.0获取字符串长度</strong></p>
+<pre><code class="language-swift">String.characters.count
+</code></pre>
+</li>
+<li>
+<p><strong>synx 自动生成工程Group目录 到对应实际目录 如果直接执行synx projectPath 会让工程无法编译</strong></p>
+<p>只同步自己生成的类目录</p>
+<p>比如PCH 和一些第三方库文件索引都是按照实际目录来的 所以利用synx自动生成实际目录如果操作了PCH和第三方库 会抱错 需要在工程配置重新设置路径</p>
+<p>过完之后一些想法:</p>
+<p>因为之前生成测试的iPa都是托管在fir.im平台上面的，但是测试反应fir.im下载速度特别慢。经过我测试，果然是很慢，我们公司的网络是香港专线。为了提高工作效率，决定搭建一下本地托管。</p>
+<p>思路这样：</p>
+</li>
+</ul>
+<p><img src="https://ww4.sinaimg.cn/large/006y8lVagy1fby14e73bhj30xn0dy75s.jpg" alt=""></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
+                    iOS
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/swift" class="tag">
+                    Swift
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-模块化架构你为什么这么火，让我如此亲睐你">
+                  <h3 class="post-title">
+                    模块化架构你为什么这么火，让我如此亲睐你
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

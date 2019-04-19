@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>怎么让APP iTunes Connect名字和在设备上显示的名字是一致的 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">怎么让APP iTunes Connect名字和在设备上显示的名字是一致的</h2>
+            <div class="post-date">2017-11-27</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-005502.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p>怎么让<code>APP</code> <code>iTunes Connect</code>名字和在设备上显示的名字是一致的。</p>
+<p>在<code>iTunes Connect</code>和设备上显示的名字是一致的，因为避免混淆。对于<code>WatchKit</code>的<code>app</code>，这意味着在<code>iTunes Connect</code>应用程序名称应该是类似于<code>iPhone</code>主屏幕，在<code>AppWatch</code>和<code>iPhone</code>上面的<code>APP watch</code> 应用。你可以在<code>iOS app</code>和<code>WatchKit app</code>的<code>info.plist</code>设置一个合适一致的名字值。</p>
+<p><code>iPhone</code>现在在<code>Home</code>屏幕的名字由<code>CFBundleDisplayName</code>设置，可以在<code>Xcode</code>里面的<code>info.plist</code>的<code>Bundle display name</code>字段进行设置。</p>
+<p>一个APP包名字和显示的名字</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-e923ee5cbafe69dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<p>同样<code>WatchKit APP</code>屏幕的名字和通知的名字可以从<code>WatchKit APP</code>的<code>info.plist</code>的文件<code>CFBundleDisplayName</code>设置。</p>
+<p>一个<code>WatchKit APP</code>的显示</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-f38a3d703787ae4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<p>在你的<code>APP</code>上面的<code>Watchkit APP</code>如果没有设置显示名字将会用<code>bundle name</code>。<code>CFBundleName</code>在哪里设置可以参考上面图1</p>
+<blockquote>
+<p>在苹果应用程序表使用的iOS应用程序的包名称的行为可能会在未来被改变，但是如下所述，如果它确实不会造成任何伤害你的iOS应用设置一个合适的包名称。</p>
+</blockquote>
+<p>提交您的<code>WatchKit</code>的应用程序进行审查之前，请确保<code>iOS</code>应用的<code>CFBundleDisplayName</code>和<code>CFBundleName</code>条目以及您<code>WatchKit</code>应用程序的<code>CFBundleDisplayName</code>项，设置为匹配您在<code>iTunes Connect</code>使用的应用程序名称的值。</p>
+<p>为<code>iOS</code>应用指定包的显示名称的详细步骤将在QA1823（<a href="xcdoc://?url=developer.apple.com/library/ios/qa/qa1823/_index.html#//apple_ref/doc/uid/DTS40014218">更新您的应用程序的显示名称</a>），对于<code>WatchKit</code>应用程序，包显示名称为默认设置为它的容器应用程序的产品名称。如果名称不匹配，您可以通过以下步骤更改。</p>
+<ol>
+<li>
+<p>选择<code>Xcode</code>中<code>Project Navigator</code>中您<code>WatchKit</code>应用程序的<code>Info.plist</code>中以显示属性列表编辑器，如图2所示。</p>
+</li>
+<li>
+<p>选择编辑器中的“<code>Bundle display name</code>”项，并输入相应的名称。 （Xcode中默认情况下从随后弹出的菜单中创建该条目适合你。如果它不存在，你可以通过点击列表中的任何条目，然后点击“+”按钮，选择“<code>Bundle display name</code>”添加它。）</p>
+</li>
+</ol>
+<p>如果您的应用支持多种本地化，一定要本地化的软件包的名称和捆绑<code>iOS</code>应用的显示名称，您<code>WatchKit</code>应用的软件包显示名称，将它们添加到您的所有特定语言的<code>InfoPlist.strings</code>文件。请参阅<a href="xcdoc://?url=developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/LocalizingYourApp/LocalizingYourApp.html#//apple_ref/doc/uid/10000171i-CH5-SW21">本地化的信息属性列表文件的详细信息</a></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/xcode" class="tag">
+                    Xcode
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-27-我怎么在object-c中用swift">
+                  <h3 class="post-title">
+                    我怎么在Object-C中用Swift
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

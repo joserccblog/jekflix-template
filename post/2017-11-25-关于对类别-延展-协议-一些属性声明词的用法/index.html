@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>关于对类别 延展 协议 一些属性声明词的用法 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">关于对类别 延展 协议 一些属性声明词的用法</h2>
+            <div class="post-date">2017-11-25</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-073653.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <h2 id="什么是类别">什么是类别？</h2>
+<blockquote>
+<p>类别是在现有类基础上,不改动现有的代码,增加新的功能。但是不能增加新的实例变量，但是可以通过<code>runtime</code>增加属性。
+解释这么多，说的都有点累。</p>
+</blockquote>
+<h2 id="什么时候用类别呢">什么时候用类别呢？</h2>
+<p>如果想给已经封装好的类添加方法 比如给<code>UIButton</code>添加一个异步下载图片的方法可以使用分类。比如我们要增加的方法需要实例变量很多 里面要用到很多的实例变量来执行逻辑 那么我们做好的选择是选择继承</p>
+<blockquote>
+<p>下面是例子</p>
+</blockquote>
+<pre><code class="language-objc">#import &lt;UIKit/UIKit.h&gt;
+@interface UIButton (Add)
+{
+    //没有办法添加实例变量
+}
+@property (nonatomic, assign) BOOL isHasImage;//可以通过这样添加
+@end
+</code></pre>
+<pre><code class="language-objc">#import &quot;UIButton+Add.h&quot;
+#import &lt;objc/runtime.h&gt;
+@implementation UIButton (Add)
+static char isHasImageKey;
+-(void)setIsHasImage:(BOOL)isHasImage{
+     //因为必须传入一个ID 所以我们用NSNumber封装一下
+    objc_setAssociatedObject(self, &amp;isHasImage, [NSNumber numberWithBool:isHasImage], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+-(BOOL)isHasImage{
+    return  [objc_getAssociatedObject(self, &amp;isHasImageKey) boolValue];
+}
+@end
+</code></pre>
+<blockquote>
+<p>如果我们基类是自己写的 现在想要给基类扩展方法 我们都知道类别对基类所有类型的实例变量都有访问的权限 我们可以无限制的添加类别 我们只需要在之前基类添加所需要的实例变量</p>
+</blockquote>
+<pre><code class="language-objc">#import &lt;Foundation/Foundation.h&gt;
+@interface Class1 : NSObject{
+}
+
+@end
+  
+@interface Class1 (Class5)
+-(void)_init;
+@end
+  
+@interface Class1 (Class6)
+@end
+</code></pre>
+<pre><code class="language-objc">#import &lt;Foundation/Foundation.h&gt;
+@interface Class1 : NSObject{
+}
+@end
+
+@interface Class1 (Class5)
+-(void)_init;
+@end
+
+
+@interface Class1 (Class6)
+@end
+</code></pre>
+<blockquote>
+<p>我们可以在之前的类里面进行分类 这样的话和系统的看一起一样的。</p>
+</blockquote>
+<h2 id="延展">延展</h2>
+<p>我们可以直接把延展写在基类，但是有一些私有的方法和属性将不能被看到。如果我们希望声明的方法被看到，但是无法被调用 我们可以新建一个延展的<code>.h</code>文件</p>
+<pre><code class="language-objc">@public//可以在子类和本类,实例变量类调用 在子类和本类内部可以用直接调用 用实例变量需要用-&gt;
+@package//这个在制作frameWork的时候经常的用到 在framework他的作用于和@protected一样，在外部和@private一样的 比如UIButton用@package声明的变量只能在framework的自己类和子类用到 我们创建UIButton的子类无法调用 并且分类也没办法使用
+@protected//只能在自己类和子类内部使用 实例变量无法调用
+@private//只能自己类内部可以调用
+</code></pre>
+<h2 id="协议">协议</h2>
+<p>我们一般定义协议用于获取数据和代理出去方法</p>
+<p>用<code>DataSource</code>获取数据
+用<code>Delegate</code>代理出去方法(你也可以用这个获取数据)</p>
+<p>我们可以给基类添加类别 实现自己要实现代理的方法</p>
+<pre><code class="language-objc">@protocol Class1Delegate &lt;NSObject&gt;
+-(void)method;
+@end
+</code></pre>
+<p>我们在<code>class1</code>添加了一个代理 我们想让<code>UIButton</code>去实现</p>
+<p>我们可以添加一个类别</p>
+<pre><code class="language-objc">-(void)doDelegateMethod;
+</code></pre>
+<p>添加一个方法去执行代理</p>
+<pre><code class="language-objc">-(void)doDelegateMethod{
+    if (_delegate &amp;&amp; [_delegate respondsToSelector:@selector(method)]) {
+        [_delegate method];
+    }
+}
+</code></pre>
+<p>新增加一个<code>UIButton</code>的分类</p>
+<pre><code class="language-objc">#import &lt;UIKit/UIKit.h&gt;
+#import &quot;Class1.h&quot;
+@interface UIButton (Category)&lt;Class1Delegate&gt;
+@end
+</code></pre>
+<pre><code class="language-objc">#import &quot;UIButton+Category.h&quot;
+@implementation UIButton (Category)
+-(void)method{
+    NSLog(@&quot;这是Class1的代理方法&quot;);
+}
+@end
+</code></pre>
+<p>创建实例变量</p>
+<pre><code class="language-objc">UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
+class-&gt;_delegate=button;
+[class doDelegateMethod];
+</code></pre>
+<p>好了讲述了基本的关键字作用域还有分类 延展 协议三个用法 写的头都大了</p>
+<p>如果说的有错误 请及时的联系我</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/objetive-c" class="tag">
+                    Objetive-C
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-25-写一下mac不错的工具集">
+                  <h3 class="post-title">
+                    写一下MAC不错的工具集
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

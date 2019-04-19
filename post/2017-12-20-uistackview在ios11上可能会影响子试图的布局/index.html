@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>UIStackView在iOS11上可能会影响子试图的布局 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">UIStackView在iOS11上可能会影响子试图的布局</h2>
+            <div class="post-date">2017-12-20</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-20-080006.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p>我为什么要说<code>UIStackView在iOS11上可能会影响子试图的布局</code>呢？因为我大概找到了因为 <code>UIStackView</code> 而引发出来的问题，没有找到问题的关键所在，也没有找到解决方法。</p>
+<p>事情大概是这个样子的，我因为要做一款个人的 <code>APP</code>，就借鉴了一下滴滴出行的 <code>UI</code> 界面，设计成下面的样子。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-20-5D870329-235A-447B-81AE-0CE4C72CFCEE.png" alt="5D870329-235A-447B-81AE-0CE4C72CFCEE"></p>
+<p>当时就准备把下面的做成一个控件</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-20-5365C951-77C0-4A2B-886E-9A827CD183AA.png" alt="5365C951-77C0-4A2B-886E-9A827CD183AA"></p>
+<p>我说干就那就干，立马在 <code>Github</code> 立项，开始风风火火的制作起来。(这就是我的 <code>Github</code> 那么多废弃的坑了)</p>
+<p>https://github.com/Share-Parking/ShareParking-Swich</p>
+<p>大家可以前往 <code>developer</code> 分支查看此项目的进度，为了更加方便封装。我使用了 <code>Framework</code> 的方式来做这个控件。</p>
+<p>使用 <code>Framework</code> 这种方式其实有几个好处的，我慢慢的说一下究竟有哪些好处。</p>
+<ol>
+<li>可以支持 <code>Playground</code> 进行界面的边写边调试</li>
+<li>支持 <code>Swift</code> 转换成 <code>OC</code> 在 <code>OC</code> 工程运行</li>
+<li>可以使用 <code>Carthage</code> 很方便的打包成 <code>Framework</code> 接入 <code>Carthage</code>和 <code>Cocoapods</code></li>
+<li>可以一边练习 <code>Swift</code> 一边写轮子</li>
+</ol>
+<p>唯一的缺点是不支持 <code>iOS8</code>以下，没事我这个轮子还不支持 <code>iOS9</code>以下呢？</p>
+<p>起先在我 <code>Playground</code> 运行显示和交互十分的正常，但是在例子里面就表现的不正常了。</p>
+<p>我觉得这个不正常应该来源于我的习惯，如果不是因为我的习惯，绝对还发现不了。</p>
+<p>我的习惯测试控件都喜欢把初始的位置设置到<code>(0,0)</code>。</p>
+<p>下面是我测试代码</p>
+<pre><code class="language-swift">let swich = SPSwich(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+self.view.addSubview(swich)
+</code></pre>
+<p>这两句代码是我从 <code>Playground</code>直接拷贝过来的，<code>Playground</code> 表现的结果如下。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-20-073252.gif" alt="2017-12-20 15_32_36"></p>
+<p>但是同样的代码放在我的例子上面就表现成下面的样子了。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-20-073516.gif" alt="2017-12-20 15_34_34"></p>
+<p>我们可以看到当我们进行切换的时候，我们的试图明显的被挤压了。我们目测被挤压的高度应该是<code>20</code>高度。</p>
+<p>为什么会被<code>20</code>高度呢？<code>20</code>高度代表着什么呢？</p>
+<p>一个大胆的想法出现在我的脑海里面，那就是是不是<code>20</code>代表着<strong>状态栏的高度</strong>，如果我们设置的位置在导航栏的下面，就可以不偏移了。</p>
+<p>我带着半信半疑的态度，立马把代码设置成下面的样子。</p>
+<pre><code class="language-swift">let swich = SPSwich(frame: CGRect(x: 0, y: 20, width: 200, height: 100))
+self.view.addSubview(swich)
+</code></pre>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-20-073945.gif" alt="2017-12-20 15_39_30"></p>
+<p>果然验证了我的猜想，但是为什么突然就出现影响子试图的位置和大小了呢？</p>
+<p>我们之前如果想设置全屏的布局就需要设置一个属性，那就是下面的代码。</p>
+<pre><code class="language-swift">self.automaticallyAdjustsScrollViewInsets = false
+</code></pre>
+<p>但是不幸的是这个属性竟然在 <code>iOS11</code>以上被废弃了，改用了<code>UIScrollView</code> 一个新的属性进行代替。</p>
+<pre><code class="language-swift">@available(iOS 11.0, *)
+open var contentInsetAdjustmentBehavior: UIScrollViewContentInsetAdjustmentBehavior
+</code></pre>
+<p>虽然有替代的方案可以解决，但是我们这个例子当中并没有用到 <code>UIScrollView</code>。</p>
+<p>我们假如继续大胆的猜测，会不会我们使用 <code>UIStackView</code> 的影响导致的呢。</p>
+<p>我们为了验证这个猜想，立马去掉了我们使用 <code>UIStackView</code> 的布局，使用设置 <code>Frame</code>的方式设置我们里面的子试图。</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-20-074715.gif" alt="2017-12-20 15_47_06"></p>
+<p>我们换成常规的使用 <code>Frame</code> 进行布局的时候，果然发现表现正常了。</p>
+<p>到目前位置，暂没有找到因为 <code>UISatckView</code> 里面那个属性在 <code>iOS11</code>废弃了，导致这个问题的出现。</p>
+<p>现在的解决办法有两个:</p>
+<ul>
+<li><strong>使用手动计算的方式布局子试图</strong></li>
+<li><strong>使用设置约束设置子试图</strong></li>
+<li><strong>继续使用 UIStackView 但是布局在 y &gt;= 20</strong></li>
+</ul>
+<p>在开发的过程中，直接布局在 <code>y&lt;20</code>上面。并且使用 <code>UIStackView</code> 布局应该少之又少。</p>
+<p>这虽然是一个问题的存在，但是不影响大家平时开发。</p>
+<p>如果那个大神知道这个问题什么原因导致并知道解决办法的话，可以联系我帮助修正。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/uistackview" class="tag">
+                    UIStackView
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/ios11" class="tag">
+                    iOS11
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-12-13-我是为什么因为@饱醉豚离开简书">
+                  <h3 class="post-title">
+                    我是为什么因为@饱醉豚离开简书
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

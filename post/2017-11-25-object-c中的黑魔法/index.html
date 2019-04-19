@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Object-C中的黑魔法 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Object-C中的黑魔法</h2>
+            <div class="post-date">2017-11-25</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-objc_magic.png')">
+              </div>
+            
+            <div class="post-content">
+              <blockquote>
+<p>写在前面的话，很久没写技术文章了。自己一直对于系统的很多语法很好奇，就是系统的宏定义语法，不知道干什么的，今天研究一下，以后可以能继续的追加。错误的地方请大神指正留言，我会尽快的修改！</p>
+</blockquote>
+<h2 id="1ns_assume_nonnull_begin-ns_assume_nonnull_end">1.NS_ASSUME_NONNULL_BEGIN &amp;&amp; NS_ASSUME_NONNULL_END</h2>
+<p>在<code>Swift</code>中存在<code>Option</code>类型，也就是使用<code>？</code>和<code>！</code>声明的变量。但是<code>OC</code>里面没有这个特征,因为在<code>Xcode 6.3</code>之后出现新的关键词定义用于<code>OC</code>转<code>Swift</code>时候可以区分到底是什么类型</p>
+<h3 id="__nullable-___nonnull"><code>__nullable</code> &amp;&amp; <code>___nonnull</code></h3>
+<p><code>__nullable</code>指代对象可以为<code>NULL</code>或者为<code>NIL</code>
+<code>__nonnull</code>指代对象不能为<code>null</code>
+当我们不遵循这一规则时，编译器就会给出警告。</p>
+<p>我们来看看以下的实例，</p>
+<pre><code class="language-objc">@interface TestNullabilityClass ()
+@property (nonatomic, copy) NSArray * items;
+- (id)itemWithName:(NSString * __nonnull)name;
+@end
+@implementation TestNullabilityClass
+- (void)testNullability {
+    [self itemWithName:nil];    // 编译器警告：Null passed to a callee that requires a non-null argument
+}
+- (id)itemWithName:(NSString * __nonnull)name {
+    return nil;
+}
+@end
+</code></pre>
+<p>事实上，在任何可以使用<code>const</code>关键字的地方都可以使用<code>__nullable</code>和<code>__nonnull</code>，不过这两个关键字仅限于使用在指针类型上。而在方法的声明中，我们还可以使用不带下划线的<code>nullable</code>和<code>nonnull</code>，如下所示：</p>
+<pre><code class="language-objc">- (nullable id)itemWithName:(NSString * nonnull)name
+</code></pre>
+<p>在属性声明中，也增加了两个相应的特性，因此上例中的<code>items</code>属性可以如下声明：</p>
+<pre><code class="language-objc">@property (nonatomic, copy, nonnull) NSArray * items;
+</code></pre>
+<p>当然也可以用以下这种方式：</p>
+<pre><code class="language-objc">@property (nonatomic, copy) NSArray * __nonnull items;
+</code></pre>
+<p>推荐使用<code>nonnul</code>l这种方式，这样可以让属性声明看起来更清晰。</p>
+<p><code>Non null</code>区域设置(<code>Audited Regions</code>)</p>
+<p>如果需要每个属性或每个方法都去指定<code>nonnull</code>和<code>nullable</code>，是一件非常繁琐的事。苹果为了减轻我们的工作量，专门提供了两个宏：<code>NS_ASSUME_NONNULL_BEGIN</code>和<code>NS_ASSUME_NONNULL_END</code>。在这两个宏之间的代码，所有简单指针对象都被假定为<code>nonnull</code>，因此我们只需要去指定那些<code>nullable</code>的指针。如下代码所示：</p>
+<pre><code class="language-objc">NS_ASSUME_NONNULL_BEGIN
+@interface TestNullabilityClass ()
+@property (nonatomic, copy) NSArray * items;
+- (id)itemWithName:(nullable NSString *)name;
+@end
+NS_ASSUME_NONNULL_END
+</code></pre>
+<p>在上面的代码中，items属性默认是<code>non null</code>的，<code>itemWithName</code>:方法的返回值也是<code>non null</code>，而参数是指定为<code>nullable</code>的。</p>
+<p>不过，为了安全起见，苹果还制定了几条规则：</p>
+<p><code>typedef</code>定义的类型的<code>nullability</code>特性通常依赖于上下文，即使是在<code>Audited Regions</code>中，也不能假定它为<code>nonnulla</code>。
+复杂的指针类型(如id *)必须显示去指定是<code>nonnull</code>还是<code>nullable</code>。例如，指定一个指向<code>nullable</code>对象的<code>nonnull</code>指针，可以使用”</p>
+<pre><code>__nullable id * __nonnull
+</code></pre>
+<p>我们经常使用的<code>NSError **</code>通常是被假定为一个指向<code>nullable NSError</code>对象的<code>nullable</code>指针。
+兼容性</p>
+<p>因为<code>Nullability Annotations</code>是<code>Xcode 6.3</code>新加入的，所以我们需要考虑之前的老代码。实际上，苹果已以帮我们处理好了这种兼容问题，我们可以安全地使用它们：</p>
+<p>老代码仍然能正常工作，    即使对<code>nonnull</code>对象使用了<code>nil</code>也没有问题。
+老代码在需要和<code>swift</code>混编时，在新的<code>swift</code>编译器下会给出一个警告。
+<code>nonnull</code>不会影响性能。事实上，我们仍然可以在运行时去判断我们的对象是否为<code>nil</code>。
+事实上，我们可以将<code>nonnull/nullable</code>与我们的断言和异常一起看待，其需要处理的问题都是同一个：违反约定是一个程序员的错误。特别是，返回值是我们可控的东西，如果返回值是<code>nonnull</code>的，则我们不应该返回<code>nil</code>，除非是为了向后兼容。</p>
+<h2 id="ns_enum_available_ios">NS_ENUM_AVAILABLE_IOS</h2>
+<p>从单词的字面可以看出使用这个宏说明这个枚举开始IOS的版本</p>
+<blockquote>
+<p>IOS版本如下 7_0 代表7.0的版本.用_替换
+参数只有一个NS_ENUM_AVAILABLE_IOS(2_0) 代表&gt;=2.0开始</p>
+</blockquote>
+<h2 id="ns_enum_deprecated_ios">NS_ENUM_DEPRECATED_IOS</h2>
+<p>代表枚举类型已经过时的API 第一个参数是开始的时候，第二个参数是过时的时候</p>
+<blockquote>
+<p>NS_ENUM_DEPRECATED_IOS(2_0,7_0) 代表开始于IOS2.0废弃于IOS7.0 也就是&gt;=2.0 &lt;=7.0</p>
+</blockquote>
+<h2 id="__tvos_prohibited">__TVOS_PROHIBITED</h2>
+<blockquote>
+<p>代表这个枚举或者类，方法，参数在TVOS系统上面不能使用</p>
+</blockquote>
+<pre><code class="language-objc">typedef NS_ENUM(NSInteger, UIStatusBarStyle) {
+    UIStatusBarStyleDefault                                     = 0, // Dark content, for use on light backgrounds
+    UIStatusBarStyleLightContent     NS_ENUM_AVAILABLE_IOS(7_0) = 1, // Light content, for use on dark backgrounds
+    
+    UIStatusBarStyleBlackTranslucent NS_ENUM_DEPRECATED_IOS(2_0, 7_0, &quot;Use UIStatusBarStyleLightContent&quot;) = 1,
+    UIStatusBarStyleBlackOpaque      NS_ENUM_DEPRECATED_IOS(2_0, 7_0, &quot;Use UIStatusBarStyleLightContent&quot;) = 2,
+} __TVOS_PROHIBITED;
+</code></pre>
+<h2 id="uikit_extern">UIKIT_EXTERN</h2>
+<blockquote>
+<p><code>extern</code>这个是定义字符串 变量 比<code>#define</code>更加的高效 .但是<code>UIKIT_EXTERN</code>是根据是否是<code>C</code>语言宏定义，根据语言区分 ，比<code>extern</code>更加的高效</p>
+</blockquote>
+<p>######例子</p>
+<pre><code class="language-objc">UIKIT_EXTERN NSString *const UIApplicationInvalidInterfaceOrientationException NS_AVAILABLE_IOS(6_0) __TVOS_PROHIBITED;
+</code></pre>
+<blockquote>
+<p>上面的代码一般定义在<code>.h</code> 在<code>.m</code>实现 实现要去掉<code>UIKIT_EXTERN</code>.代表<code>iOS 6.0</code>之后可以用，在<code>TVOS</code>系统不可用。</p>
+</blockquote>
+<h2 id="ns_class_available_ios">NS_CLASS_AVAILABLE_IOS</h2>
+<blockquote>
+<p>代表类开始的API 和上面说的类似</p>
+</blockquote>
+<p>######例子</p>
+<pre><code class="language-objc">NS_CLASS_AVAILABLE_IOS(2_0) @interface UIApplication : UIResponder
+</code></pre>
+<h2 id="ns_extension_unavailable_ios">NS_EXTENSION_UNAVAILABLE_IOS</h2>
+<blockquote>
+<p>标记<code>iOS</code>插件不能使用这些<code>API</code>,后面有一个参数，可以作为提示，用什么<code>API</code>替换</p>
+</blockquote>
+<p>######例子</p>
+<pre><code class="language-objc">+ (UIApplication *)sharedApplication NS_EXTENSION_UNAVAILABLE_IOS(&quot;Use view controller based solutions where appropriate instead.&quot;);
+</code></pre>
+<h2 id="__kindof">__kindof</h2>
+<blockquote>
+<p>可以参考下面的连接 我就不多啰嗦了</p>
+</blockquote>
+<p><a href="http://blog.csdn.net/leikezhu1981/article/details/47418011">Xcode 7新的特性Lightweight Generics 轻量级泛型与__kindof修饰符</a></p>
+<h2 id="ns_requires_super">NS_REQUIRES_SUPER</h2>
+<blockquote>
+<p>字面上必须继承父类的方法(有待考证)</p>
+</blockquote>
+<h2 id="sdk_hide_tide">SDK_HIDE_TIDE</h2>
+<blockquote>
+<p>暂定 没查到干什么的 字面上是在SDK隐藏</p>
+</blockquote>
+<h2 id="ns_designated_initializer">NS_DESIGNATED_INITIALIZER</h2>
+<blockquote>
+<p>用来定义一些初始化方法只能过来这些标记的初始化</p>
+</blockquote>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/hei-mo-fa" class="tag">
+                    黑魔法
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/objetive-c" class="tag">
+                    Objetive-C
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-25-swift3-0即将强势到来之际,让我们用swift来写接口和web">
+                  <h3 class="post-title">
+                    Swift3-0即将强势到来之际,让我们用Swift来写接口和web
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

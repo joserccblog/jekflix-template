@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Jekyll-Admin-Mac-开发纪要-左侧菜单栏 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Jekyll-Admin-Mac-开发纪要-左侧菜单栏</h2>
+            <div class="post-date">2017-11-25</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-19.png')">
+              </div>
+            
+            <div class="post-content">
+              <p>[TOC]</p>
+<blockquote>
+<p>✅为什么要开发 <code>Jekyll-Admin-Mac</code>?</p>
+<p>因为接触到使用 <code>Jekyll</code>构建博客十分的方便，但是 <code>Jekyll-Admin</code>里面的功能又差强人意。</p>
+<p>如果修改 <code>Jekyll-Admin</code>里面的源码代价是巨大的，不如用自己擅长的语言来写，正好还有自动生成的 API 可以用。</p>
+<p>对于 <code>Jekyll-Admin-Mac</code>的 <code>UI</code>我们采用网页的配色即可。</p>
+</blockquote>
+<h3 id="获取-jekyll-admin的图标">获取 <code>Jekyll-Admin</code>的图标。</h3>
+<p>经过网络抓包，我们抓取到 <code>Jekyll-Admin</code>的图标是经过连接</p>
+<p><a href="../admin/847c038a8202754b465604459e16715d.png">../admin/847c038a8202754b465604459e16715d.png</a>来获取的。</p>
+<p>我们直接保存到本地，在工程里面使用。</p>
+<p>我们新建一个 <code>Mac</code>的工程保存到本地名字叫做- <code>Jekyll-Admin-Mac</code>。</p>
+<p>我们打开终端 <code>terminal.app</code></p>
+<pre><code class="language-shell">cd /Users/用户名称/Downloads
+curl -o jekyll-admin-logo.png ../admin/847c038a8202754b465604459e16715d.png
+</code></pre>
+<blockquote>
+<p>⚠️这里我们用到了 <code>curl</code>命令，更多的想知道 <code>curl</code>命令可以去谷歌和百度。</p>
+</blockquote>
+<h3 id="设置左侧的-logo">设置左侧的 <code>Logo</code></h3>
+<p>我们拖拽文件 <code>jekyll-admin-logo.png</code>到工程 <code>Assets.xcassets</code>。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-d9ba0d014ab02d93.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>左边功能菜单我们设置宽度为 <code>205</code>。</p>
+<p>我们新建一个 <code>SideMenuView</code>继承 <code>NSView</code>。</p>
+<p>现在 <code>NSView</code>创建的时候不允许使用 <code>XIB</code>，我们自己新建一个 <code>Xib</code>。</p>
+<p>名字叫做 <code>SideMenuView.xib</code>。</p>
+<p>我们设置 <code>SideMenuView</code>的大小为 <code>205x1000</code>。宽度是固定的，但是高度不固定，我们使用自动布局。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-d6d7273a4581a438.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>最上线显示 <code>Logo</code>的地方大小为 <code>205x75</code>。我们采用 <code>NSImageView</code>。我们采用如下的布局。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-ff11df37ad4a7fc2.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>左侧和父试图对其</li>
+<li>上侧和父试图对其</li>
+<li>宽度205</li>
+<li>高度75</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-21889922c2a8d82d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>⚠️我们发现我们的图片是正常的显示出来了，但是背景颜色无法显示。那是因为在 <code>OSX</code>开发和 <code>iOS</code>不太一样。对于正常的 <code>NSView</code>, <code>NSImageView</code>是无法进行设置背景颜色的。</p>
+</blockquote>
+<h3 id="ibdesignable和ibinspectable">@IBDesignable和@IBInspectable</h3>
+<p>为了可以自定义背景颜色，我们创建一个继承 <code>NSView</code>的子类 <code>BaseView</code>。</p>
+<pre><code class="language-swift">@IBDesignable class BaseView: NSView {
+}
+</code></pre>
+<p>我们在 <code>BaseView</code>新增一个属性。</p>
+<pre><code class="language-swift">@IBInspectable  var backgroundColor:NSColor! = NSColor.white {
+    didSet {
+        self.needsToDraw(self.bounds)
+    }
+}
+</code></pre>
+<h3 id="自定义draw">自定义<code>draw()</code></h3>
+<p>我们在 <code>func draw(_ dirtyRect: NSRect)</code>方法里面进行填充颜色。</p>
+<pre><code class="language-swift">override func draw(_ dirtyRect: NSRect) {
+  super.draw(dirtyRect)
+  self.backgroundColor.setFill()
+  NSRectFill(dirtyRect)
+}
+</code></pre>
+<p>关于怎么在 <code>XIB</code>及时预览界面可以参考下面的连接。</p>
+<p><a href="http://www.jianshu.com/p/18b10ed2acd5">在Xcode6中使用IBDesignable创建自定义控件(翻译)</a></p>
+<p><a href="https://stackoverflow.com/questions/2962790/best-way-to-change-the-background-color-for-an-nsview">关于如何 <code>NSView</code>自定义背景颜色参考下面的连接</a></p>
+<p>我们设置 <code>NSView</code>为继承与 <code>BaseView</code> 背景颜色试图。我们设置背景颜色为 <code>rgb343434</code>。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-0df6a430f0d27797.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-59699fa98bdbd0a9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>布局参考之前 <code>NSImageView</code>的布局。</p>
+<p>我们把刚才的 <code>NSImageView</code>作为子试图，布局设置下面。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-32a70643b26c0b4b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-fb6eb4dc037fe64c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们拖拽 <code>NSView</code>一个新的试图放置在 <code>Main.storyboard-ViewController-View</code>上面。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-812c3793ff8409a2.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们设置刚才新建的 <code>NSView</code>继承我们新建的类 <code>SideMenuView</code>。</p>
+<h3 id="使用-xib-加载试图">使用 Xib 加载试图</h3>
+<p>到这里，我们新建的 <code>NSView</code>无法正常的显示出来。那是因为我们在  <code>XIB</code>进行初始化的时候走的是方法是</p>
+<pre><code class="language-swift">public init?(coder: NSCoder)
+</code></pre>
+<p>并且 <code>SideMenuView</code>这个类不知道从哪里加载试图。关于如何进行加载自定义的 <code>XIB</code>可以参考这一篇文章。</p>
+<p><a href="http://junshang.me/2017/06/07/9-48-51-%E6%80%8E%E4%B9%88%E8%AE%A9%E7%BB%A7%E6%89%BF%E7%9A%84%E7%B1%BB%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8XIB%E7%9A%84%E5%B8%83%E5%B1%80%E8%AF%95%E5%9B%BE/">怎么让继承的类直接使用XIB的布局试图</a></p>
+<p>我们新增一个绑定的属性</p>
+<pre><code class="language-swift">@IBOutlet weak var view: BaseView!
+</code></pre>
+<p>设置 <code>Xib</code>的 <code>File's Owner</code>类为 <code>SideMenuView</code>，绑定 <code>view</code>。</p>
+<p>我们在 <code>SideMenuView</code>类里面新增一个方法,用来加载自定义的试图。</p>
+<pre><code class="language-swift">func loadXibView() {
+      Bundle.main.loadNibNamed(&quot;SideMenuView&quot;, owner: self, topLevelObjects: nil)
+      self.view.frame = self.bounds
+      self.addSubview(self.view)
+ }
+</code></pre>
+<p>我们重写 <code>init?(coder: NSCoder)</code>方法。</p>
+<pre><code class="language-swift">required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    self.loadXibView()
+}
+</code></pre>
+<p>当我们再次的运行，我们自定义 <code>Xib</code>的界面已经可以出现了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-118f2bf491af6c67.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>但是到目前来说我们几乎达到显示 <code>Logo</code>，但是我们的背景颜色设置白色不是我们所希望的，我们设置默认的为透明颜色。</p>
+<p>我们还发现我们我们的试图并没有达到我们设置约束的大小。</p>
+<p>我们可以点击 <code>Xcode</code>查看试图层次</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-29622b9df5f430ee.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们看出<code>SideMenuView</code>试图的 <code>View</code>并没有达到我们随着父试图变化而变化。</p>
+<h3 id="设置-autoresizingmask属性">设置 <code>autoresizingMask</code>属性</h3>
+<p>我们设置一下 <code>autoresizingMask</code>属性。关于 <code>autoresizingMask</code>一些用法可以看一下下面的资料。</p>
+<p><a href="http://www.cnblogs.com/GarveyCalvin/p/4165151.html">iOS开发－自动布局之autoresizingMask使用详解（Storyboard&amp;Code）</a></p>
+<p>我们设置高度自适应。</p>
+<pre><code class="language-swift">self.view.autoresizingMask = .viewHeightSizable
+</code></pre>
+<p>我们设置 <code>SideMenuView</code>的<code>view</code>的背景为rgb515151，方便我们进行查看。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-8c4542a9db7906c0.gif?imageMogr2/auto-orient/strip" alt=""></p>
+<p>我的试图已经能随着变化自动改变高度了。</p>
+<p>这个时候我们还发现了一个问题，我们的 <code>Window</code>可以压缩宽度最小，这样左边的侧栏已经挡着了。</p>
+<h3 id="修改-window的最小显示区域">修改 <code>Window</code>的最小显示区域</h3>
+<p>我们可以通过下面设置 <code>window</code>的最小值。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-99d00094acdd9f34.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这样我们可以让 <code>Window</code>可以保持最小的尺寸是 <code>600x500</code>。</p>
+<p>我们修改 <code>SideMenuView</code>的 <code>view</code>的试图背景颜色为 <code>RGB444444</code>。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-23fc02fac648f80a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>上面的图可以明显看出来是需要封装控件的，但是封装完毕是试图依次叠加还是使用 <code>NSTableView</code>。试图依次叠加不利于扩展，我们采用 <code>NSTableView</code>。</p>
+<p>我们拖拽一个 <code>NSTableView</code>的控件放置在 <code>SideMenuView</code>剩余的位置。布局如下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-d62bdadaf8be2bdd.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-2965a61cce57b7b3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>如图所示的版本还不能达到我们的要求，有了标题，而且多了一个 <code>Column</code>。</p>
+<p>我们取消显示 <code>Header</code>和设置只有一个 <code>Cloumn</code></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-79b23304cd440b1f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们发现我们剩下的只有一个 <code>Column</code>的宽度只有 <code>116</code>并不是全屏显示的。</p>
+<h3 id="去掉-nstableview的边框">去掉 <code>NSTableView</code>的边框</h3>
+<p>我们设置宽度为 <code>205</code>。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-698befcbee0d929c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们现在发现了一个问题，我们本来有<code>205</code>的宽度的。但是我们现在只能设置最大<code>200</code>，并且预览显示是全屏显示了。</p>
+<p>我们在 <code>NSTableView</code>的属性里面看到这个。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-4abbd59a0bd3366a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们的宽度留<code>3</code>大小。但是就算去掉了<code>3</code>还是只有 <code>203</code>,剩下的 <code>2</code>跑到那里去了。</p>
+<p>我们观察到 <code>NSTableView</code>的父试图已经是 <code>203</code>的宽度了，既然这样我们就默认使用 <code>200</code>；</p>
+<blockquote>
+<p>可以设置最外层 <code>Border</code>为没有即可。</p>
+</blockquote>
+<p>我们发现我们刚才创建的 <code>NSTableView</code>显示的背景颜色是白色的，我们可以关闭 <code>NSScrollView</code>的绘制背景颜色和设置 <code>NSTableView</code>的背景颜色为透明即可。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-75970e549db218f9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>虽然系统的 <code>NSButton</code>是符合图片加文字效果的，但是却无法修改文字的颜色。</p>
+<p>我们创建一个类继承与 <code>BaseView</code>名字叫做 <code>SideMenuItemView</code>。</p>
+<p>我们按照上文所描述的方法创建一个 <code>Xib</code>文件。</p>
+<p>我们设置 <code>Xib</code>里面的 <code>NSView</code>的宽度为 <code>205</code>，高度为 <code>49</code>。其实我们这个宽度和高度会随着改变的。</p>
+<p>我们在最左侧放置一个 <code>NSImageView</code>布局如下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-dde99b28c83313c3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们在 <code>NSImageView</code>的右侧放置一个 <code>NSTextFiled</code>的 <code>Label</code>，布局如下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-715e88e521112881.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-36c9e45347156a01.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们设置右侧 <code>Label</code>的字体颜色为 <code>ebdac1</code>，字体大小为 <code>17px</code>。</p>
+<p>我们利用 <code>Xib</code>创建下面的关联属性。</p>
+<pre><code class="language-swift">@IBOutlet weak var iconImageView: NSImageView!
+@IBOutlet weak var itemTitle: NSTextField!
+</code></pre>
+<p>我们按照之前写 <code>SideMenuView</code>试图的方法把 <code>Xib</code>的对象加载进来，具体的方法可以参考上面。</p>
+<p>我们设置 <code>View</code>的试图按照宽度和高度自动约束。</p>
+<pre><code class="language-swift">self.view.autoresizingMask = [.viewWidthSizable,.viewHeightSizable]
+</code></pre>
+<blockquote>
+<p>这里说明一点，可选型不是如<code>Objective-C</code> 那样一般用<code>|</code>连接，多个需要放在数组里面。</p>
+</blockquote>
+<p>我们需要的控件已经封装好了，我们现在要做的就是设置 <code>NSTableView</code>的样式为 <code>View Base</code>。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-9f0662ed0050cf77.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="B06B6F83-FBBC-4069-802B-AFCF62389B8F"></p>
+<p>我们删除自动生成的试图，拖拽一个 <code>NSView</code>到 到 <code>Column</code>下面。我们关联 <code>NSTableView</code>的数据源。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-ece8a0bb1f02f601.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="4758283F-C1DD-4C44-9C51-FEA669DADDA3"></p>
+<p>我们在 <code>SideMenuView</code>类里面实现 <code>NSTableView</code>的数据源方法。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-0ac153bccef0091f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="BC3FC205-DB67-4781-A977-FFC2DDFF1949"></p>
+<p>我们通过界面查看器可以看的出来，第一个 <code>Row</code>已经出来了，但是却因为没有设置无法显示。</p>
+<h3 id="在-osx使用-font-awesome">在 <code>OSX</code>使用 <code>font-awesome</code></h3>
+<p>左侧的图片网站采用 <code>font-awesome</code>框架。 <code>OSX</code>我们使用 <code>FontAwesomeIconFactory</code>框架。</p>
+<blockquote>
+<p>使用 <code>Cocoapods</code>我强烈的建议使用 官方的 <code>App</code>使用</p>
+</blockquote>
+<p>我们设置刚才我们封装的 <code>SideMenuItemView</code>的 <code>NSImageView</code>的子类为 <code>NIKFontAwesomeImageView</code></p>
+<h3 id="解决-cocoapods不能使用-ibdeisgnable">解决 <code>Cocoapods</code>不能使用 <code>IBDeisgnable</code></h3>
+<blockquote>
+<p>我们在使用 <code>Cocoapods</code>时候不能使用 <code>IBDeisgnable</code>的解决办法。</p>
+<pre><code class="language-ruby">post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['CONFIGURATION_BUILD_DIR'] = '$PODS_CONFIGURATION_BUILD_DIR'
+    end
+  end
+end
+</code></pre>
+</blockquote>
+<p>很不幸的是在另外的 <code>Xib</code>使用 <code>SideMenuItemView</code>报下面的错误。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-164a55ce555913e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="E6E2C7AD-960E-4B7E-B418-AB327F3144AC"></p>
+<p>我们在 <code>Debug IBDeisgnable</code>时候发现抱错下面的代码。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-9eff3d445037dfe7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="80C7068F-07EB-448D-BBBD-1B42358BEE81"></p>
+<p>因为我们绑定是对象属于 <code>!</code>类型，但是我们此时还不存在这个变量。故而强行当做存在的使用崩溃了。</p>
+<p>到目前为止，我不清楚这个对象没有初始化是为什么导致的。但是只是在 <code>Xib</code>进行初始化 <code>IBDeisgnable</code>抱错，但是可以正常运行的。</p>
+<p>但是这样可能不能满足我的要求，我们尽量解决就解决。我们之前的方法里面可以接受一个数组的指针。</p>
+<p>我们看看数组里面元素如何。</p>
+<pre><code class="language-swift">var views:NSArray = NSArray()
+Bundle.main.loadNibNamed(&quot;SideMenuItemView&quot;, owner: self, topLevelObjects: &amp;views)
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-f35ffadf73d6d544.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="96D49D78-164D-4735-80F5-A92558454117"></p>
+<p>数组里面是有元素的，我们尝试从这里面的元素获取试一下。</p>
+<pre><code class="language-swift">func loadXibView() {
+    guard let xibView = self.getXibView(nibName: &quot;SideMenuItemView&quot;) else {
+        return
+    }
+    xibView.autoresizingMask = [.viewWidthSizable,.viewHeightSizable]
+    xibView.frame = self.bounds
+    self.addSubview(xibView)
+}
+    
+func getXibView(nibName:String) -&gt; NSView? {
+    var views:NSArray = NSArray()
+    Bundle.main.loadNibNamed(nibName, owner: self, topLevelObjects: &amp;views)
+    var xibView:NSView?
+    for any in views {
+        guard let view = any as? NSView else {
+            continue
+        }
+        xibView = view
+    }
+    return xibView
+}
+</code></pre>
+<p>我们发现之前报的错误果然消失了。我们可以采用这一种方式来加载试图，我们可以封装一下，方便我们用。</p>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/24494784/get-class-name-of-object-as-string-in-swift">如何在 <code>Swift3</code>获取类名字符串。</a></p>
+<pre><code class="language-swift">NSStringFromClass(type(of:self))
+</code></pre>
+</blockquote>
+<pre><code class="language-swift">extension NSView {
+    func loadXibView() {
+        guard let xibView = self.getXibView(nibName: NSStringFromClass(type(of:self))) else {
+            return
+        }
+        xibView.autoresizingMask = [.viewWidthSizable,.viewHeightSizable]
+        xibView.frame = self.bounds
+        self.addSubview(xibView)
+    }
+    
+    func getXibView(nibName:String) -&gt; NSView? {
+        var views:NSArray = NSArray()
+        Bundle.main.loadNibNamed(nibName, owner: self, topLevelObjects: &amp;views)
+        var xibView:NSView?
+        for any in views {
+            guard let view = any as? NSView else {
+                continue
+            }
+            xibView = view
+        }
+        return xibView
+    }
+}
+</code></pre>
+<p>但是发现竟然加载不出来任何数据，原来我们发现自动生成的类名带有工程前缀。</p>
+<pre><code class="language-c">&quot;Jekyll_Admin_Mac.SideMenuView&quot;
+</code></pre>
+<p>我们可以采用分割字符串使用最后一个。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-267168f8fbfcdb8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="FE9DB89D-DB70-4F71-B280-8A65921752C2"></p>
+<p>我们将 <code>SideMenuItemView</code>改成继承与 <code>NIKFontAwesomeImageView</code>。</p>
+<blockquote>
+<p><code>NIKFontAwesomeImageView</code>的 <code>IBDeisgnable</code>不能在 <code>Xib</code>预览的。</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-84d4fb3f249c487c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们设置 <code>NIKFontAwesomeImageView</code>属性如下。</p>
+<ul>
+<li>
+<p><code>icon Hex</code> : <code>f02d</code></p>
+</li>
+<li>
+<p><code>Size</code> : <code>17</code></p>
+<blockquote>
+<p>生成的图片是正方形，并不能和网站的样式可以设置宽度和高度。</p>
+</blockquote>
+</li>
+<li>
+<p><code>Color</code> : <code>EBDAC1</code></p>
+</li>
+</ul>
+<p>我们运行一下发现已经可以正常的运行了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-b9709e99a82fcaa8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="D18987B2-B0A1-47F5-BBFB-682D44D61367"></p>
+<h3 id="面向对象设计">面向对象设计</h3>
+<p>我们配置一下 <code>NSTableView</code>的数据源如下：</p>
+<pre><code class="language-swift">let menuItemDict = [
+    &quot;文章&quot;:&quot;F02D&quot;,
+    &quot;页面&quot;:&quot;F15C&quot;,
+    &quot;数据&quot;:&quot;F1C0&quot;,
+    &quot;文件&quot;:&quot;F15B&quot;,
+    &quot;配置&quot;:&quot;F013&quot;,
+]
+</code></pre>
+<p>我们设置一下 <code>NSTableView</code>数据代理。</p>
+<pre><code class="language-swift">public func numberOfRows(in tableView: NSTableView) -&gt; Int {
+    return menuItemDict.keys.count
+}
+
+func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -&gt; NSView? {
+    guard let view = tableView.make(withIdentifier: &quot;SideMenuItemView&quot;, owner: self) as? SideMenuItemView else {
+        return nil
+    }
+    view.itemTitle.stringValue = Array(menuItemDict.keys)[row]
+    view.iconImageView.iconHex = Array(menuItemDict.values)[row] as NSString
+    return view
+}
+</code></pre>
+<blockquote>
+<p>⚠️对于 <code>Swift3</code>里面的 <code>Dictionary</code>的属性 <code>Keys</code>无法作为正常的 <code>Array</code>使用，我们需要用 <code>Array()</code>对其进行初始化。</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-d7961913b0f009fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="68A0CE15-89BA-4E79-A705-A431DCDF765C"></p>
+<p>上图是我们运行起来的效果。但是呢和我们网页的看起来还是有写差别的。</p>
+<p>我们在  <code>SideMenuItemView.xib</code>上面的底部添加一条线。布局如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-a9bc85029cd0c703.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="54D99DC5-BD43-44EC-8F37-83D156C2C01C"></p>
+<p>线继承与 <code>BaseView</code>，我们设置颜色为  <code>424242</code>。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-f0733230475f3944.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="777EFD44-93A6-4A80-BD5E-92FB76E8A426"></p>
+<p>虽然线是出来了，但是我们不想让全部出现。</p>
+<p>我们在 <code>SideMenuItemView</code>关联刚才的线。</p>
+<pre><code class="language-swift">@IBOutlet weak var lineView: BaseView!
+</code></pre>
+<p>我们修改配置如下。</p>
+<pre><code class="language-swift">func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -&gt; NSView? {
+    guard let view = tableView.make(withIdentifier: &quot;SideMenuItemView&quot;, owner: self) as? SideMenuItemView else {
+        return nil
+    }
+    view.itemTitle.stringValue = Array(menuItemDict.keys)[row]
+    let values = Array(menuItemDict.values)[row]
+    if let hexString = values[0] as? NSString {
+        view.iconImageView.iconHex = hexString
+    }
+    if let hidden = values[1] as? Bool {
+        view.lineView.isHidden = hidden
+    }
+    return view
+}
+</code></pre>
+<blockquote>
+<p>⚠️因为字典的取值是无序的，所以我们这样的写法会导致我们的显示出现问题。</p>
+</blockquote>
+<p>我们修改我们的数据源为一个 <code>Array</code>数组。</p>
+<pre><code class="language-swift">let menuItems = [
+    [&quot;文章&quot;, &quot;F02D&quot;, false],
+    [&quot;页面&quot;, &quot;F15C&quot;, true],
+    [&quot;数据&quot;, &quot;F1C0&quot;, false],
+    [&quot;文件&quot;, &quot;F15B&quot;, true],
+    [&quot;配置&quot;, &quot;F013&quot;, false],
+]
+</code></pre>
+<p>我们需要修改对应数据赋值。</p>
+<pre><code class="language-swift">func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -&gt; NSView? {
+    guard let view = tableView.make(withIdentifier: &quot;SideMenuItemView&quot;, owner: self) as? SideMenuItemView else {
+        return nil
+    }
+    let values = menuItems[row]
+    guard values.count == 3 else {
+        return nil
+    }
+    if let title = values[0] as? String {
+        view.itemTitle.stringValue = title
+    }
+    if let hexIcon = values[1] as? NSString {
+        view.iconImageView.iconHex = hexIcon
+    }
+    if let hidden = values[2] as? Bool {
+        view.lineView.isHidden = !hidden
+    }
+    return view
+}
+</code></pre>
+<p>我们运行此时显示如下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-1121180e1b655438.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="B97289BE-AD47-4616-BAF0-0A62F77DE986"></p>
+<p>我们给 <code>NSTableView</code>绑定一个方法事件。</p>
+<pre><code class="language-swift">@IBAction func didClickRow(_ sender: NSTableView) {
+}
+</code></pre>
+<p>我们给 <code>NSTableView</code>新增一个属性是否被选中。然而现在一个问题已经出现，现在这么多的配置需要配置岂不是很麻烦。</p>
+<p>这就涉及到<code>面向对象</code>思想，但是我们可以在 <code>Swift</code>中使用 <code>Struct</code>作为我们的配置数据源。</p>
+<pre><code class="language-swift">struct SideMenuItemConfiguration {
+    let title:String ///&lt; 标题
+    let iconHex:String ///&lt; icon 的十六进制字符串
+    let hidden:Bool ///&lt; 是否隐藏底部线
+    let selected:Bool ///&lt; 是否被选中
+}
+</code></pre>
+<p>我们修改我们的数据源：</p>
+<pre><code class="language-swift">let menuItems = [
+//        [&quot;文章&quot;, &quot;F02D&quot;, false],
+//        [&quot;页面&quot;, &quot;F15C&quot;, true],
+//        [&quot;数据&quot;, &quot;F1C0&quot;, false],
+//        [&quot;文件&quot;, &quot;F15B&quot;, true],
+//        [&quot;配置&quot;, &quot;F013&quot;, false],
+    SideMenuItemConfiguration(title: &quot;文章&quot;, iconHex: &quot;F02D&quot;, hidden: true, selected: false),
+    SideMenuItemConfiguration(title: &quot;页面&quot;, iconHex: &quot;F15C&quot;, hidden: false, selected: false),
+    SideMenuItemConfiguration(title: &quot;数据&quot;, iconHex: &quot;F1C0&quot;, hidden: true, selected: false),
+    SideMenuItemConfiguration(title: &quot;文件&quot;, iconHex: &quot;F15B&quot;, hidden: false, selected: false),
+    SideMenuItemConfiguration(title: &quot;配置&quot;, iconHex: &quot;F013&quot;, hidden: true, selected: false),
+]
+</code></pre>
+<p>再次修改我们的赋值代码。</p>
+<pre><code class="language-swift">func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -&gt; NSView? {
+    guard let view = tableView.make(withIdentifier: &quot;SideMenuItemView&quot;, owner: self) as? SideMenuItemView else {
+        return nil
+    }
+    let configuration = menuItems[row]
+    view.itemTitle.stringValue = configuration.title
+    view.iconImageView.iconHex = configuration.iconHex as NSString
+    view.lineView.isHidden = configuration.hidden
+    return view
+}
+</code></pre>
+<p>我们的代码比之前要精简一些。</p>
+<p>我们在点击 <code>NSTableView</code>点击方法获取选中的 <code>Row</code>，之后让选中数据源状态被选中，其他取消选中。</p>
+<pre><code class="language-swift">@IBAction func didClickRow(_ sender: NSTableView) {
+    let row = sender.selectedRow
+    for (index, configuration) in menuItems.enumerated() {
+        configuration.selected = index == row
+    }
+    sender.reloadData()
+}
+</code></pre>
+<blockquote>
+<p>‼️这段代码会被抱错，因为我们修改了被 <code>let</code>标记的常量，我们修改成 <code>var</code>即可。</p>
+<p>而且我们 <code>enumerated()</code>出来的竟然是也是 <code>Let</code>标记的,我们用 <code>var</code>标记。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-82f0131a4bb7cb55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="81D12FF2-A02E-496A-80D9-BC3994745199"></p>
+</blockquote>
+<p>我们设置选中的颜色为 <code>ff9900</code>。默认的颜色为 <code>EBDAC1</code>。</p>
+<p>我们在 <code>SideMenuItemConfiguration</code>新增默认颜色和选中颜色的属性。</p>
+<pre><code class="language-swift">let normalColor:NSColor = NSColor(red:1.000, green:0.600, blue:0.000, alpha:1.000) ///&lt; 默认状态颜色
+let selectedColor:NSColor = NSColor(red:0.922, green:0.855, blue:0.757, alpha:1.000) ///&lt; 选中的颜色
+</code></pre>
+<blockquote>
+<p>我们设置默认值这样 之前的代码也可以 正常的编译通过。</p>
+</blockquote>
+<p>我们需要根据选中状态设置图标的颜色还有文字的颜色，这样就要增加一下逻辑。这些都是修改 <code>SideMenuItemView</code>类的内容，为啥不采用赋值，让 <code>SideMenuItemView</code>内部处理呢？</p>
+<p>我们说做就做。</p>
+<pre><code class="language-swift">var menuItemConfiguration:SideMenuItemConfiguration? {
+    didSet {
+        guard let configuration = self.menuItemConfiguration else {
+            return
+        }
+        self.itemTitle.stringValue = configuration.title
+        self.iconImageView.iconHex = configuration.iconHex as NSString
+        self.lineView.isHidden = configuration.hidden
+        let color = configuration.selected ? configuration.selectedColor : configuration.normalColor
+        self.iconImageView.color = color
+        self.itemTitle.textColor = color
+    }
+}
+</code></pre>
+<p>我们给 <code>SideMenuItemView</code>类新增 <code>menuItemConfiguration</code>属性，当给这个属性设置值的时候我们做出对应处理。</p>
+<p>我们现在可以给我们 <code>NSTableView</code>的代码精简如下：</p>
+<pre><code class="language-swift">func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -&gt; NSView? {
+    guard let view = tableView.make(withIdentifier: &quot;SideMenuItemView&quot;, owner: self) as? SideMenuItemView else {
+        return nil
+    }
+    let configuration = menuItems[row]
+    view.menuItemConfiguration = configuration
+    return view
+}
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-0807ad49331d7b08.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="F042453B-FB43-481D-8CC0-07A50CD88F2B"></p>
+<p>但是我们运行起来，却发现全部都是选中的颜色，原来是我们默认颜色和选中颜色配置反了导致，我们修改过来即可。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-853abfcfc77c6296.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1F549B40-E8F1-4069-9B3A-7F0ADD6B87C3"></p>
+<p>此时我们的初始化配置恢复了正常，但是我们点击了没有任何的变化。让我们找一下出现这种现象原因是怎么导致的。</p>
+<blockquote>
+<p>⚠️因为结构体没有被引用，所以便利出来的临时变量属于一个新的地址。我们需要修改临时变量之后替换掉之前数组里面的。</p>
+</blockquote>
+<pre><code class="language-swift">@IBAction func didClickRow(_ sender: NSTableView) {
+    let row = sender.selectedRow
+    for (index, var configuration) in menuItems.enumerated() {
+        configuration.selected = index == row
+        menuItems[index] = configuration
+    }
+    sender.reloadData()
+}
+</code></pre>
+<blockquote>
+<p>‼️此时需要注意的是我们需要修改我们的 <code>menuItems</code>为 <code>var</code>类型。</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-53c83539d85427b8.gif?imageMogr2/auto-orient/strip" alt="11"></p>
+<p>此时我们的效果已经达到了，我们觉得默认启动显示的第一个界面是0元素。</p>
+<p>我们绑定界面的元素 <code>NSTableView</code>到 <code>SideMenuView</code> 。</p>
+<pre><code class="language-swift">@IBOutlet weak var tableView: NSTableView!
+</code></pre>
+<p>我们把 <code>didClickRow</code>逻辑封装成下面的对象。</p>
+<pre><code class="language-swift">func changeTabeleViewState(row:Int, tableView:NSTableView) {
+    for (index, var configuration) in menuItems.enumerated() {
+        configuration.selected = index == row
+        menuItems[index] = configuration
+    }
+    tableView.reloadData()
+}
+</code></pre>
+<p>我们修改 <code>didClickRow</code>的调用。</p>
+<pre><code class="language-swift">@IBAction func didClickRow(_ sender: NSTableView) {
+    let row = sender.selectedRow
+    changeTabeleViewState(row: row, tableView: sender)
+}
+</code></pre>
+<p>我们修改 <code>required init?(coder: NSCoder)</code>的代码如下:</p>
+<pre><code class="language-swift">required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    self.loadXibView()
+    changeTabeleViewState(row: 0, tableView: self.tableView)
+}
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/swift" class="tag">
+                    Swift
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/mac" class="tag">
+                    Mac
+                  </a>
+                
+                  <a href="https://joserccblog.github.io/tag/jekyll" class="tag">
+                    Jekyll
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/2017-11-25-jekyll-admin-mac-列表">
+                  <h3 class="post-title">
+                    Jekyll-Admin-Mac-列表
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

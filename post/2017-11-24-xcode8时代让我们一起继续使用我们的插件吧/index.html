@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Xcode8时代让我们一起继续使用我们的插件吧 | Gridea</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1555635713040">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1555635713040" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Xcode8时代让我们一起继续使用我们的插件吧</h2>
+            <div class="post-date">2017-11-24</div>
+            
+              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-24-16.png')">
+              </div>
+            
+            <div class="post-content">
+              <blockquote>
+<p>苹果出了<code>Xcode8</code>之后，就加了签名让之前的自定义插件无法继续的安装使用。苹果爸爸这一措施让我们措手不及。</p>
+</blockquote>
+<p>第一步复制一份你从<code>AppStore</code>下载最新<code>Xcode8</code>。正版授权的我们命名为<code>Xcode_Release</code>用于我们发版本使用。复制出来的一份我们改成<code>Xcode</code>.</p>
+<blockquote>
+<p>这是一个小技巧，因为我之前复制出来的命名叫做<code>Xcode8</code>，结果只要运行模拟器就会提示连接不上网络，模拟器无法启动。我就按照网络说的重启<code>Xcode</code>，还是出现。</p>
+<p>我发现运行正版的是可以的，我就互换了一下<code>Xcode</code>的名字，结果真的解决了。</p>
+</blockquote>
+<h2 id="重新签名xcode8">重新签名Xcode8</h2>
+<h3 id="1打开电脑里面钥匙串">1.打开电脑里面钥匙串</h3>
+<p><img src="http://upload-images.jianshu.io/upload_images/545662-b37af95bb0f6de0e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="2选择创建一个证书在钥匙串访问-证书助理">2.选择创建一个证书（在钥匙串访问 - &gt;证书助理）</h3>
+<p><img src="https://github.com/XVimProject/XVim/raw/master/Documents/Images/Keychain1.png" alt=""></p>
+<h3 id="3输入你的名字你喜欢的名字然后选择代码签名的证书类型-不是必需的但该名称在命令行以后使用因此可以更好地用在这里很容易区分的名称我在这里使用xcodesigner">3.输入你的名字（你喜欢的名字），然后选择“代码签名”的证书类型。不是必需的，但该名称在命令行以后使用，因此可以更好地用在这里很容易区分的名称（我在这里使用XcodeSigner）</h3>
+<p><img src="https://github.com/XVimProject/XVim/raw/master/Documents/Images/Keychain2.png" alt=""></p>
+<h3 id="4-重新签名的xcode">4. 重新签名的Xcode</h3>
+<pre><code class="language-ruby"> $ sudo codesign -f -s XcodeSigner /Applications/Xcode.app    (Replace the Xcode path if it is different.)
+
+</code></pre>
+<p>我们重新启动Xcode,选择Load Bundle就可以了，但是很多插件已经失效了，我们可以运行下面的命令解决。</p>
+<pre><code class="language-ruby">find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add `defaults read /Applications/Xcode.app/Contents/Info DVTPlugInCompatibilityUUID`
+</code></pre>
+<p>一些插件不兼容Xcode8甚至会导致Xcode崩溃，我们只能让引起崩溃的插件删除。</p>
+<h2 id="下面是xcode还能使用不错的插件">下面是Xcode还能使用不错的插件。</h2>
+<h3 id="1-ammethod2implement">1. <a href="https://github.com/MellongLau/AMMethod2Implement">AMMethod2Implement</a></h3>
+<p><img src="https://camo.githubusercontent.com/f22645bb84f9ddbdcca5cf9850eb7dc8f66f1ea3/68747470733a2f2f7261772e6769746875622e636f6d2f4d656c6c6f6e674c61752f414d4d6574686f6432496d706c656d656e742f6d61737465722f53637265656e73686f74732f757361676553637265656e73686f742e676966" alt=""></p>
+<h3 id="2-autocompletion">2. <a href="https://github.com/wzqcongcong/AtAutoCompletion">AutoCompletion</a></h3>
+<p><img src="https://github.com/wzqcongcong/AtAutoCompletion/raw/master/screenshot/screenshot.png" alt=""></p>
+<h3 id="3-auto-importer-for-xcode">3. <a href="https://github.com/citrusbyte/Auto-Importer-for-Xcode">Auto-Importer-for-Xcode</a></h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-24-B9985F1A-EDCD-41F8-9A67-821A2A4CFBD6.png" alt="B9985F1A-EDCD-41F8-9A67-821A2A4CFBD6"></p>
+<h3 id="4-autohighlightsymbol">4. <a href="https://github.com/chiahsien/AutoHighlightSymbol">AutoHighlightSymbol</a></h3>
+<p><img src="https://github.com/chiahsien/AutoHighlightSymbol/raw/master/screenshot.png" alt=""></p>
+<h3 id="5-cocoacontrolsplugin">5. <a href="https://github.com/yeahdongcn/CocoaControlsPlugin">CocoaControlsPlugin</a></h3>
+<p><img src="https://raw.githubusercontent.com/yeahdongcn/CocoaControlsPlugin/master/plugin_screenshot.png" alt=""></p>
+<h3 id="6-cocoapods-xcode-plugin">6. <a href="https://github.com/kattrali/cocoapods-xcode-plugin">cocoapods-xcode-plugin</a></h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-24-7E2EFEC0-587E-44D5-8D06-96850A4CF3DB.png" alt="7E2EFEC0-587E-44D5-8D06-96850A4CF3DB"></p>
+<h3 id="7-extract-localizable-string-plugin-xcode">7. <a href="https://github.com/viniciusmo/extract-localizable-string-plugin-xcode">extract-localizable-string-plugin-xcode</a></h3>
+<p><img src="https://raw.githubusercontent.com/viniciusmo/extract-localizable-string-plugin-xcode/master/Resources/tutorial.gif" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/viniciusmo/extract-localizable-string-plugin-xcode/master/Resources/02.png" alt=""></p>
+<h3 id="8-fastcoding-xcode-plugin">8. <a href="https://github.com/DevDu/FastCoding-Xcode-Plugin">FastCoding-Xcode-Plugin</a></h3>
+<p><img src="https://raw.githubusercontent.com/DevDu/FastCoding-Xcode-Plugin/master/screenshot/screenShot1.gif" alt=""></p>
+<h3 id="9-faststub-xcode">9. <a href="https://github.com/music4kid/FastStub-Xcode">FastStub-Xcode</a></h3>
+<p><img src="https://camo.githubusercontent.com/29d976d6d5991902d307b5afafa82dd8a7525eb9/687474703a2f2f6d727065616b2e636e2f696d616765732f66735f6865616465722e676966" alt=""></p>
+<p><img src="https://camo.githubusercontent.com/7e0f38b5583fb03947f6a0c5bc637da37d225c22/687474703a2f2f6d727065616b2e636e2f696d616765732f66735f64656c65676174652e676966" alt=""></p>
+<p><img src="https://camo.githubusercontent.com/fe195be5f3d0b662e70451afa2a1f5742c69ac57/687474703a2f2f6d727065616b2e636e2f696d616765732f66735f73696e676c65746f6e2e676966" alt=""></p>
+<p><img src="https://camo.githubusercontent.com/0fc4a3c1aab61e4c9571c5a4e6e79345d977aa33/687474703a2f2f6d727065616b2e636e2f696d616765732f66735f696e6974776974682e676966" alt=""></p>
+<p><img src="https://camo.githubusercontent.com/d8a927ec10ae0f9b6c5740362604da94e66897f1/687474703a2f2f6d727065616b2e636e2f696d616765732f66735f6765747365742e676966" alt=""></p>
+<p><img src="https://camo.githubusercontent.com/1855a55ead61221a477e3eb61f1df25db45b316d/687474703a2f2f6d727065616b2e636e2f696d616765732f66735f657874656e73696f6e2e676966" alt=""></p>
+<p><img src="https://camo.githubusercontent.com/5c50977f8e65fd3e7a69036e8117284f967b124e/687474703a2f2f6d727065616b2e636e2f696d616765732f66735f73656c6563746f722e676966" alt=""></p>
+<h3 id="10-findit-for-xcode">10. <a href="https://github.com/rogermolas/findit-for-xcode">findit-for-xcode</a></h3>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-24-5171D738-C760-4197-944E-063C1AE70D09.png" alt="5171D738-C760-4197-944E-063C1AE70D09"></p>
+<h3 id="11-fkrealgroup">11. <a href="https://github.com/Forkong/FKRealGroup">FKRealGroup</a></h3>
+<p><img src="https://raw.githubusercontent.com/Forkong/FKRealGroup/master/ScreenShots/fkrealgroup_1.jpg" alt=""></p>
+<h3 id="12-hctemplet">12. <a href="https://github.com/dongjiali/HCTemplet">HCTemplet</a></h3>
+<p><img src="https://github.com/dongjiali/HCTemplet/raw/master/Screenshots/templet.png" alt=""></p>
+<h3 id="13-hostringsense-for-xcode">13. <a href="https://github.com/duzexu/HOStringSense-for-Xcode">HOStringSense-for-Xcode</a></h3>
+<p><img src="https://github.com/holtwick/HOStringSense-for-Xcode/raw/master/StringDemoAnimation.gif" alt=""></p>
+<p><img src="https://github.com/holtwick/HOStringSense-for-Xcode/raw/master/Shortcut.png" alt=""></p>
+<h3 id="14-jspatchx">14. <a href="https://github.com/bang590/JSPatchX">JSPatchX</a></h3>
+<p><img src="https://camo.githubusercontent.com/ad17370a5e5ecf1e5196146405f57126eb649390/68747470733a2f2f7261772e6769746875622e636f6d2f62616e673539302f4a535061746368582f6d61737465722f5265736f757263652f53637265656e73686f742e676966" alt=""></p>
+<h3 id="15-mlautoreplace">15. <a href="https://github.com/molon/MLAutoReplace">MLAutoReplace</a></h3>
+<p><img src="https://raw.githubusercontent.com/molon/MLAutoReplace/master/replaceOther.gif" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/molon/MLAutoReplace/master/replaceTS.gif" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/molon/MLAutoReplace/master/pseudo-generic.gif" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/molon/MLAutoReplace/master/replaceGetter.gif" alt=""></p>
+<h3 id="16-xcode-quick-localization">16. <a href="https://github.com/tappollo/Xcode-Quick-Localization">Xcode-Quick-Localization</a></h3>
+<p><img src="https://github.com/tappollo/Xcode-Quick-Localization/raw/master/Xcode_Quick_Localization_Settings.png" alt=""></p>
+<h3 id="17-rttinypngwebapiplugin">17. <a href="https://github.com/rickytan/RTTinyPNGWebAPIPlugin">RTTinyPNGWebAPIPlugin</a></h3>
+<p><img src="https://github.com/rickytan/RTTinyPNGWebAPIPlugin/raw/master/ScreenShots/s0.png" alt=""></p>
+<p><img src="https://github.com/rickytan/RTTinyPNGWebAPIPlugin/raw/master/ScreenShots/s1.png" alt="https://github.com/rickytan/RTTinyPNGWebAPIPlugin/raw/master/ScreenShots/s1.png"></p>
+<p><img src="https://github.com/rickytan/RTTinyPNGWebAPIPlugin/raw/master/ScreenShots/s2.png" alt="https://github.com/rickytan/RTTinyPNGWebAPIPlugin/raw/master/ScreenShots/s2.png"></p>
+<p><img src="https://github.com/rickytan/RTTinyPNGWebAPIPlugin/raw/master/ScreenShots/s3.png" alt="https://github.com/rickytan/RTTinyPNGWebAPIPlugin/raw/master/ScreenShots/s3.png"></p>
+<p><img src="https://github.com/rickytan/RTTinyPNGWebAPIPlugin/raw/master/ScreenShots/sorting.png" alt=""></p>
+<h3 id="18-stringmanage">18. <a href="https://github.com/Loongwoo/StringManage">StringManage</a></h3>
+<p><img src="https://github.com/Loongwoo/StringManage/raw/master/screenshots/1.png" alt=""></p>
+<p>​</p>
+<p><img src="https://github.com/Loongwoo/StringManage/raw/master/screenshots/2.png" alt=""></p>
+<h3 id="18-stringsvalidator">18. <a href="https://github.com/wallora/StringsValidator">StringsValidator</a></h3>
+<p><img src="https://github.com/wallora/StringsValidator/raw/master/screenshots/screenshot1.png" alt="https://github.com/wallora/StringsValidator/raw/master/screenshots/screenshot1.png"></p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://joserccblog.github.io/tag/xcode" class="tag">
+                    Xcode
+                  </a>
+                
+              </div>
+            
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7bc8571d49515d486b11',
+        clientSecret: 'e31d89e8c7a0d900ee06e69b1f1103bf1bcbcea7',
+        repo: 'joserccblog.github.io',
+        owner: 'joserccblog',
+        admin: ['joserccblog'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

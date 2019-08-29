@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>关于Objective-C版本的SwiftUI库的自动生成布局的研究心得 | 君赏博客</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1567052486882">
+<link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
+
+
+  
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80371795-5');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://joserccblog.github.io">
+        <img src="https://joserccblog.github.io/images/avatar.png?v=1567052486882" class="site-logo">
+        <h1 class="site-title">君赏博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/contact/" class="site-nav">
+            联系作者
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/josercc" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">关于Objective-C版本的SwiftUI库的自动生成布局的研究心得</h2>
+            <div class="post-date">2019-08-29</div>
+            
+            <div class="post-content">
+              <h2 id="前言">前言</h2>
+<p>最新突然突发奇想先做 <code>Objective-C</code>版本的<code>SwiftUI</code>这个仿生库 <a href="https://github.com/swiftkitui/OCUI">OCUI</a>。发现其实困难还是很多的，比如基于<code>Swift</code>语法的语法特性可以让语法特别简洁，但是<code>OC</code>就显的十分的臃肿了。</p>
+<ul>
+<li>
+<p>一个简单的横向文本居中</p>
+<pre><code class="language-objc">HStack(^{
+    Text(@&quot;Hello World!&quot;);
+});
+</code></pre>
+</li>
+</ul>
+<p>虽然居中大家都知道，可以用<code>Masonry</code>直接设置<code>Center</code>居中即可，但是却不适合其他的场景。</p>
+<p>对于<code>SwiftUI</code>布局通常有下面四个</p>
+<ul>
+<li>
+<p><code>VStack</code></p>
+<p>纵向布局</p>
+</li>
+<li>
+<p><code>HStack</code></p>
+<p>横向布局</p>
+</li>
+<li>
+<p><code>ZStack</code></p>
+<p>垂直布局</p>
+</li>
+<li>
+<p><code>Spacer</code></p>
+<p>空隙填充</p>
+</li>
+</ul>
+<p>目前我做的是横向布局<code>HStack</code>和<code>Spacer</code>。</p>
+<h2 id="布局框架示意图">布局框架示意图</h2>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-08-29-013334.png" alt="image-20190829093331823"></p>
+<p>布局基本上是按照上面图所示进行填充的。<code>Spacer</code>只在框架存在，在页面上已经变成布局的约束了。</p>
+<p>这个布局思路，不知道从什么地方开始将，不如从 例子从简单到复杂的开始说起吧。</p>
+<h3 id="单个文本居中显示">单个文本居中显示</h3>
+<pre><code class="language-objc">HStack(^{
+    Text(@&quot;Hello World!&quot;);
+});
+</code></pre>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-08-29-013913.png" alt="image-20190829093912352"></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-08-29-014103.png" alt="image-20190829094101704"></p>
+<p>其实看我们的代码里面是没有出现任何的<code>Spacer</code>布局的，我们可以在内部布局的时候如果缺失左右填充时候，可以进行添加。</p>
+<p>我们此时生成布局方案的时候不能按照直接设置下面的伪代码</p>
+<pre><code class="language-objc">[label mas_makeConstraints:^(MASConstraintMaker *make) {
+	make.center(superView);
+}];
+</code></pre>
+<p>我们正常的会按照这样布局的，但是作为一个框架，不可能写无数个布局方案处理，应该有一个通用的布局方案。</p>
+<p>既然左侧和右侧的<code>Spacer</code>的长度是按照中间显示文本的宽度自动计算的，那么我们可以在布局之前优先的算出<code>Spacer</code>的具体宽度。</p>
+<pre><code class="language-objc">CGFloat spacerWidth = (HStackWidth - LabelWidth) / 2;
+</code></pre>
+<p>我们先拿到父试图的宽度，目前按照会自动充满屏幕，就是屏幕的宽度<code>ScreenWidth</code>。因为<code>UILabel</code>是可以自动计算出合适大小的。我们可以使用<code>UIView</code>的<code>intrinsicContentSize</code>属性得到适合的宽度。</p>
+<p>关于生成布局的思路可以把布局拆解出来</p>
+<ul>
+<li>布局上下的位置</li>
+<li>布局大小</li>
+<li>布局左侧或者右侧的位置</li>
+</ul>
+<h4 id="布局上下位置">布局上下位置</h4>
+<p>对于<code>HStack</code>支持三种布局分别是下面</p>
+<ul>
+<li>
+<p><code>Top</code></p>
+</li>
+<li>
+<p><code>Center</code></p>
+<p>默认布局类型</p>
+</li>
+<li>
+<p><code>Bottom</code></p>
+</li>
+</ul>
+<p>我们可以根据设置的三种类型进行上下布局</p>
+<pre><code class="language-objc">if (top) {
+	make.top.equal(superView);
+} else if (center) {
+	make.centerY.equal(superView);
+} else {
+	make.bottom.equal(superView);
+}
+</code></pre>
+<h4 id="关于大小布局">关于大小布局</h4>
+<p>我们对于<code>intrinsicContentSize</code>可以计算出大小的不进行布局，让系统自动约束。对于计算不出来的大小的<code>UIView</code>可以单独调用<code>renderSize</code>协议方法获取试图的大小。</p>
+<p>如果<code>renderView</code>的宽度为<code>0</code>，就引出了自动约束试图大小的布局，这个下面讲述。宽度不为<code>0</code>,我们可以设置下面约束</p>
+<pre><code class="language-objc">make.width.mas_equalTo(width);
+</code></pre>
+<p>如果<code>renderView</code>的高度不存在，我们就设置为父试图的全部高度。</p>
+<pre><code class="language-objc">if (renderViewHeight &gt; 0) {
+	make.height.mas_equalTo(renderViewHeight);
+} else {
+  make.height.equal(superView);
+}
+</code></pre>
+<h4 id="关于左侧和右侧布局">关于左侧和右侧布局。</h4>
+<p>我的思路是这样的</p>
+<ul>
+<li>如果和左侧的试图间距已知就按照左侧的进行布局</li>
+<li>如果和左侧的试图间距可变就按照右侧已知间距的进行布局</li>
+<li>如果和左侧的试图间距可变就按照右侧 如果右侧间距未知就按照右侧约束走</li>
+</ul>
+<pre><code class="language-objc">/// 是否存在左侧固定间距
+if (leftSpacerFlxedOffset) {
+	if (isSuperView) {
+		make.leading.equeal(superView).offset(leftSpacerFlxedOffset.value)
+	} else {
+		make.leading.equeal(superView.mas_trailing).offset(leftSpacerFlxedOffset.value)
+	}
+} else if (rightSpacerFlxedOffset) {
+	/// 是否存在右侧的固定间距
+	if (isSuperView) {
+		make.trailing.equeal(superView).offset(-leftSpacerFlxedOffset.value)
+	} else {
+		make.trailing.equeal(superView.mas_leading).offset(-leftSpacerFlxedOffset.value)
+	}
+} else {
+	if (isSuperView) {
+		make.trailing.lessThanOrEqualTo(superView).offset(-leftSpacerFlxedOffset.value)
+	} else {
+		make.trailing.lessThanOrEqualTo(superView.mas_leading).offset(-leftSpacerFlxedOffset.value)
+	}
+}
+</code></pre>
+<h3 id="两个文本横向居中对齐">两个文本横向居中对齐</h3>
+<pre><code class="language-objc">HStack(^{
+    Text(@&quot;Hello World!&quot;);
+    Text(@&quot;Hello 张行!&quot;);
+});
+</code></pre>
+<p><img src="images/image-20190829112454402.png" alt="image-20190829112454402"></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-08-29-032612.png" alt="image-20190829112611122"></p>
+<p>此时我们的代码仅仅是比上一个例子多了下面代码</p>
+<pre><code class="language-objc">Text(@&quot;Hello 张行!&quot;);
+</code></pre>
+<p>按照上面的布局思路，我们可以想象一下中间存在一个固定间隙为<code>0</code>的<code>Spacer</code>。按照这个思路，我们可以给<code>Spacer</code>新增一个固定间隙的属性。从而可以实现下面的效果。</p>
+<h3 id="两个文本间隙10并且居中显示">两个文本间隙10并且居中显示</h3>
+<pre><code class="language-objc">HStack(^{
+    Text(@&quot;Hello World!&quot;);
+    Spacer(@10);
+    Text(@&quot;Hello 张行!&quot;);
+});
+</code></pre>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-08-29-033257.png" alt="image-20190829113255984"></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-08-29-033321.png" alt="image-20190829113319194"></p>
+<h3 id="两个文本左右对齐">两个文本左右对齐</h3>
+<pre><code class="language-objc">HStack(^{
+    Text(@&quot;Hello World!&quot;);
+    Spacer(nil);
+    Text(@&quot;Hello 张行!&quot;);
+});
+</code></pre>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-08-29-033439.png" alt="image-20190829113437202"></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-08-29-033554.png" alt="image-20190829113553088"></p>
+<p>我们可以设置最左侧和做右侧的<code>Spacer</code>的固定间隙为0。</p>
+<h3 id="一个复杂一点的设置-cell-布局">一个复杂一点的设置 Cell 布局</h3>
+<pre><code class="language-objc">HStack(^{
+    Spacer(@15);
+    Image(nil)
+        .size(CGSizeMake(25, 25))
+        .backgroundColor([UIColor redColor]);
+    Spacer(@10);
+    Text(@&quot;WIFI&quot;);
+    Spacer(nil);
+    Text(@&quot;未连接&quot;);
+    Spacer(@15);
+});
+</code></pre>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-08-29-033850.png" alt="image-20190829113847342"></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-08-29-034341.png" alt="image-20190829114334862"></p>
+<p>可能此时也已经发现了问题，当我设置左侧文本的时候，应该中间的<code>Spacer</code>的间隙需要自动变小。但是其实事实上并没有。</p>
+<p>因为开始的时候我们计算出了浮动间隙的具体值，我们设置了最小值。</p>
+<p>目前的方案是做了<code>KVO</code>的监听文本<code>Text</code>的变化，从而重新计算间隙的大小，更新约束。</p>
+<p>对于重新计算间隙的大小，还有一个复杂的逻辑。</p>
+<h3 id="四个文本左右间距为0-怎么让中间的间隙一直保持不变">四个文本左右间距为0 怎么让中间的间隙一直保持不变。</h3>
+<pre><code class="language-objc">HStack(^{
+    Text(@&quot;文本1&quot;);
+    Spacer(nil);
+    Text(@&quot;文本2&quot;);
+    Spacer(nil);
+    Text(@&quot;文本3&quot;);
+    Spacer(nil);
+    Text(@&quot;文本4&quot;);
+});
+</code></pre>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-08-29-034912.png" alt="image-20190829114911218"></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-08-29-035047.png" alt="image-20190829115046184"></p>
+<p>我们还存在一种情况，就是可能两个文本之间有最小间隙。</p>
+<p>假设三个<code>Spacer</code>的最小间隙分别是<code>10</code> <code>20</code> <code>30</code>。</p>
+<p>我们获取可以浮动的宽度就等于</p>
+<pre><code class="language-objc">CGFloat floatWidth = width - text1Width - text2Width - text3Width - text4Width;
+</code></pre>
+<p>我们可以算出间隙最小承受的值</p>
+<pre><code class="language-objc">CGFloat minFloatWidth = 10 + 20 + 30;
+</code></pre>
+<p>我们可以算出间隙最大的值</p>
+<pre><code class="language-objc">CGFloat maxFloatWidth = 30 * 3; /// MAX(10,20,30..) * count;
+</code></pre>
+<p>这个最大的值其实就是大于或者等于就可以把浮动的间隙平分。</p>
+<pre><code class="language-objc">if (floatWidth &lt;= minFloatWidth) {
+	// 按照最小的间隙更新布局
+} else if (floatWidth &gt; minFloatWidth &amp;&amp; minFloatWidth &lt; maxFloatWidth) {
+	// 就按照优先级最低的按照最小间距布局 默认为最后一个优先级最小
+} else {
+	// 平分计算进行更新布局
+}
+</code></pre>
+<h3 id="一个全部充满的红色试图">一个全部充满的红色试图</h3>
+<pre><code class="language-objc">HStack(^{
+    View()
+    .backgroundColor([UIColor redColor]);
+});
+</code></pre>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-08-29-040238.png" alt="image-20190829120236761"></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-08-29-040326.png" alt="image-20190829120324371"></p>
+<p>这个布局其实和刚才<code>Spacer</code>的思路是一样的，但是存在不确定大小的试图，就不允许存在不确定间隙的<code>Spacer</code>存在。</p>
+<h3 id="三个试图平分">三个试图平分</h3>
+<pre><code class="language-objc">HStack(^{
+    View()
+        .backgroundColor([UIColor redColor]);
+    View()
+        .backgroundColor([UIColor blueColor]);
+    View()
+        .backgroundColor([UIColor grayColor]);
+});
+</code></pre>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-08-29-041301.png" alt="image-20190829121259682"></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-08-29-041338.png" alt="image-20190829121336235"></p>
+<h3 id="三个试图其中一个设置具体大小">三个试图其中一个设置具体大小</h3>
+<pre><code class="language-objc">HStack(^{
+    View()
+        .backgroundColor([UIColor redColor]);
+    View()
+        .backgroundColor([UIColor blueColor])
+        .size(CGSizeMake(40, 40));
+    View()
+        .backgroundColor([UIColor grayColor]);
+});
+</code></pre>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-08-29-041527.png" alt="image-20190829121526417"></p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-08-29-041607.png" alt="image-20190829121606143"></p>
+<blockquote>
+<p>OCUI 正在测试开发阶段，Api 会尽量和<code>SwiftUI</code>保持一致。但是最后的 Api 按照最后发布为准。欢迎有志之士加入这个项目。</p>
+</blockquote>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://joserccblog.github.io/post/swift-dui-yu-codable-xie-yi-guo-lu-yi-xie-shu-xing">
+                  <h3 class="post-title">
+                    Swift 对于 Codable 协议过滤一些属性
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+
+              
+                <div id="disqus_thread" data-aos="fade-in"></div>
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+
+  
+    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+    <script>
+
+    var options = {
+      shortname: 'josercc',
+      apikey: 'DBJHHPsqZBT5EUYFyQmorAozkwxTDoySOnd4bmdt9G29YFySUFhFE6SLZrSCHee4',
+    }
+    if ('') {
+      options.api = ''
+    }
+    var dsqjs = new DisqusJS(options)
+
+    </script>
+  
+
+
+
+
+  </body>
+</html>

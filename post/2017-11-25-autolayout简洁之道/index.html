@@ -1,134 +1,260 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
+      
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>AutoLayout简洁之道 | 君赏博客</title>
-<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+<!-- 百度验证 -->
+<meta name="baidu-site-verification" content="1IkquSGR9Z"/>
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>君赏博客</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1567052486882">
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率"/>
+<meta name="keywords" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率"/>
+
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico">
+
 <link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
 
+<!-- Modernizr JS -->
+<script src="https://joserccblog.github.io/media/scripts/_vendors/modernizr-2.6.2.min.js"></script>
+<!-- FOR IE9 below -->
+<!--[if lt IE 9]>
+<scripts src="https://joserccblog.github.io/media/scripts/_vendors/respond.min.js"></scripts>
+<![endif]-->
 
-  
+<!-- Comment -->
 
-  
-    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
-  
+    
 
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+        <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
+    
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
 
-  gtag('config', 'UA-80371795-5');
-</script>
-
+<link crossorigin="anonymous" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" href="https://lib.baomitu.com/font-awesome/5.8.1/css/all.min.css" rel="stylesheet">
 
   </head>
   <body>
-    <div id="app" class="main">
+  
+<div id="fh5co-offcanvas">
+    <a href="#!" class="fh5co-close-offcanvas js-fh5co-close-offcanvas">
+        <span><i class="icon-cross3"></i> <span>Close</span></span>
+    </a>
+    <div class="fh5co-bio">
+        <figure>
+            <img src="https://joserccblog.github.io/media/images/avatar.png" alt="君赏博客" class="img-responsive">
+        </figure>
+        <h3 class="heading">ABOUT ME</h3>
+        <h2>君赏博客</h2>
+        <p>2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率</p>
+        <ul class="fh5co-social">
+            
+                <li>
+                    
+                </li>
+            
+                <li>
+                    
+                </li>
+            
+                <li>
+                    
+                </li>
+            
+                <li>
+                    
+                </li>
+            
+                <li>
+                    
+                </li>
+            
+        </ul>
+    </div>
 
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://joserccblog.github.io">
-        <img src="https://joserccblog.github.io/images/avatar.png?v=1567052486882" class="site-logo">
-        <h1 class="site-title">君赏博客</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
+    <div class="fh5co-menu">
+        <div class="fh5co-box">
+            <h3 class="heading">搜索</h3>
+            <form action="#">
+                <div class="form-group">
+                    <input type="text" id="bdcsMain" class="form-control" placeholder="输入关键字">
+<!--                    <button type="submit" class="btn btn-sm btn-warning" style="margin-top: 6px; width: 100%">点击搜索</button>-->
+                </div>
+            </form>
+        </div>
+        <div class="fh5co-box">
+            <h3 class="heading">标签</h3>
+            <ul>
+                
+                    <li><a href="https://joserccblog.github.io/tag/ilTRbUeIh">OCUI</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/qFaqD3-EnQ">链式语法</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/swift">Swift</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/ios">iOS</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/framework">Framework</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/carthage">Carthage</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/cocoapods">Cocoapods</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/masonry">Masonry</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/yue-shu-chong-tu">约束冲突</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/uistackview">UIStackView</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/ios11">iOS11</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/sheng-huo">生活</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/zhi-shi-dian">知识点</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/testflight">TestFlight</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/guo-ji-hua">国际化</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/xcode9">Xcode9</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/zi-dong-hua">自动化</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/hei-mo-fa">黑魔法</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/ota">OTA</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/xctest">XCTest</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/appstore">AppStore</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/mac">Mac</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/gan-xiang">感想</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/xcode">Xcode</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/svn">SVN</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/xiang-fa">想法</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/di-san-fang-ku">第三方库</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/mo-kuai-hua">模块化</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/c">C</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/autolayout">AutoLayout</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/xib">Xib</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/clang-format">Clang Format</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/objetive-c">Objetive-C</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/zhou-bao">周报</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/jekyll">Jekyll</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/server">Server</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/uibarbuttonitem">UIBarButtonItem</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/uitextfiled">UITextFiled</a></li>
+                
+            </ul>
+        </div>
     </div>
-    <div>
-      
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-        
-          <a href="/post/contact/" class="site-nav">
-            联系作者
-          </a>
-        
-      
-    </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-          <a class="social-link" href="https://github.com/josercc" target="_blank">
-            <i class="fab fa-github"></i>
-          </a>
-        
-      
-        
-      
-        
-          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
-            <i class="fab fa-weibo"></i>
-          </a>
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-    </div>
-  </div>
 </div>
 
+<header id="fh5co-header">
+    <div class="container-fluid">
+        <div class="row">
+            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+            <ul class="fh5co-social">
+                
+                    <li>
+                        <a href="/"
+                         >
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"
+                         >
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"
+                         >
+                            标签
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/post/about"
+                         >
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/post/contact/"
+                         >
+                            联系作者
+                        </a>
+                    </li>
+                
+            </ul>
+            <div class="col-lg-12 col-md-12 text-center">
+                <h1 id="fh5co-logo">
+                    <a href="https://joserccblog.github.io">君赏博客 </a>
+                </h1>
+            </div>
+        </div>
+    </div>
+</header>
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">AutoLayout简洁之道</h2>
-            <div class="post-date">2017-11-25</div>
-            
-              <div class="feature-container" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-075030.jpg')">
-              </div>
-            
-            <div class="post-content">
-              <blockquote>
-<p>我也是前几天才有空了解了一下<code>AutoLyout</code>,虽然现在布局已经入门，但是道行尚浅，不足请之处，我会更新文档。
+
+<!--  <a href="#" class="fh5co-post-prev"><span>👈 Prev</span></a>-->
+<!--  <a href="#" class="fh5co-post-next"><span>Next 👉</span></a>-->
+
+  <div class="container-fluid">
+      <div class="row fh5co-post-entry single-entry">
+          <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+              <figure class="animate-box">
+                  
+                      <img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-075030.jpg" alt="AutoLayout简洁之道" class="img-responsive">
+                  
+              </figure>
+              <span class="fh5co-meta animate-box">
+                  
+                      <div class="tag-container">
+                          
+                              <a href="https://joserccblog.github.io/tag/ios" class="tag">iOS, </a>
+                          
+                              <a href="https://joserccblog.github.io/tag/autolayout" class="tag">AutoLayout, </a>
+                          
+                      </div>
+                  
+              </span>
+              <h2 class="fh5co-article-title animate-box">AutoLayout简洁之道</h2>
+              <span class="fh5co-meta fh5co-date animate-box">2017-11-25</span>
+
+              <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                  <div class="row">
+                      <div class="col-md-12 animate-box post-content">
+                          <p> <blockquote>
+<p>我也是前几天才有空了解了一下<code>AutoLyout</code>,虽然现在布局已经入门，但是道行尚浅，不足请之处，我会更新文档。<br>
 其实<code>Xib</code>和代码都可以用<code>AutoLayout</code>,现在代码自己不习惯，因为<code>Xib</code>可以一眼的看出来是什么约束。</p>
 </blockquote>
 <blockquote>
@@ -136,18 +262,18 @@
 </blockquote>
 <h2 id="需要用到的功能">需要用到的功能</h2>
 <p><img src="http://upload-images.jianshu.io/upload_images/545662-73ed2dd862a29cc7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20151126-0.png"></p>
-<p>1.是<code>iOS8</code>新出的，属于表格一样的布局，我们暂时不用多管。
-2.是进行两个试图进行约束的
-3.是对于单个试图进行约束的，默认相对于父试图。
+<p>1.是<code>iOS8</code>新出的，属于表格一样的布局，我们暂时不用多管。<br>
+2.是进行两个试图进行约束的<br>
+3.是对于单个试图进行约束的，默认相对于父试图。<br>
 4.是对于约束更新和擅长管理的。</p>
 <h2 id="1两个试图相对布局">1.两个试图相对布局</h2>
 <p><img src="http://upload-images.jianshu.io/upload_images/545662-9be7cd0e3e232a01.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20151126-1.png"></p>
-<p>红线圈着是我们常用的约束分别代表着
-1.左对齐<code>Leading Edges</code>
-2.右对齐<code>Tralling Edges</code>
-3.上对齐<code>Top Edges</code>
-4.下对齐<code>Buttom Edges</code>
-5.水平对齐<code>Horizontal Centers</code>
+<p>红线圈着是我们常用的约束分别代表着<br>
+1.左对齐<code>Leading Edges</code><br>
+2.右对齐<code>Tralling Edges</code><br>
+3.上对齐<code>Top Edges</code><br>
+4.下对齐<code>Buttom Edges</code><br>
+5.水平对齐<code>Horizontal Centers</code><br>
 6.竖直对齐<code>Vertical Centers</code></p>
 <blockquote>
 <p>勾选就是我们约束了这个条件 后面可以设置约束的距离大小 默认为0</p>
@@ -157,20 +283,20 @@
 <blockquote>
 <p>红线是我们单个布局最长用到的</p>
 </blockquote>
-<p>分别代表着：
-1，距离最近试图顶部
-2.  距离最近试图底部
-3.  距离最近试图左边
+<p>分别代表着：<br>
+1，距离最近试图顶部<br>
+2.  距离最近试图底部<br>
+3.  距离最近试图左边<br>
 4.  距离最近试图右边</p>
 <blockquote>
 <p><code>Constrain to margins</code>默认是勾选，会默认多8距离，因为苹果认为大屏幕的有点距离好看。你如果觉得定位试图不准，可以取消。</p>
 </blockquote>
-<p>1。设置宽度 <code>Width</code>
-2 . 设置高度 <code>Height</code>
-3.  设置宽度一样(只能选中多个试图布局才能用) <code>Equal Widths</code>
+<p>1。设置宽度 <code>Width</code><br>
+2 . 设置高度 <code>Height</code><br>
+3.  设置宽度一样(只能选中多个试图布局才能用) <code>Equal Widths</code><br>
 4.  设置高度一样(只能选中多个试图布局才能用) <code>Equal Heights</code></p>
 <h2 id="约束管理">约束管理</h2>
-<p>1.约束更新 ，删除
+<p>1.约束更新 ，删除<br>
 因为截图不了，就不上图了。</p>
 <h2 id="实例说明">实例说明：</h2>
 <blockquote>
@@ -178,38 +304,38 @@
 </blockquote>
 <p><img src="http://upload-images.jianshu.io/upload_images/545662-a028324ce22f5ef4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20151126-3.png"></p>
 <h2 id="方案1">方案1：</h2>
-<p>1.选中广告条试图。
+<p>1.选中广告条试图。<br>
 2.选择<img src="http://upload-images.jianshu.io/upload_images/545662-7c3367532139553a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20151126-4.png"></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/545662-ae6ec46da1c50d83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20151126-5.png"></p>
-<p>1.取消了<code>Constrain to margins</code>
-2.设置上对齐0
-3.设置左对齐0
-4.设置右对齐0
+<p>1.取消了<code>Constrain to margins</code><br>
+2.设置上对齐0<br>
+3.设置左对齐0<br>
+4.设置右对齐0<br>
 5.设置高度140</p>
 <blockquote>
-<p>怎么才能约束成功 其实原理就是用约束控制<code>Frame</code>.我们都知道<code>Frame</code>有坐标，大小控制。上面添加的约束为什么会成功呢。
-相对于父试图上对其和左对齐就确定了坐标。
-相对齐父试图左对齐和右对齐就确定了高度
-设置了高度就确定了高度。
+<p>怎么才能约束成功 其实原理就是用约束控制<code>Frame</code>.我们都知道<code>Frame</code>有坐标，大小控制。上面添加的约束为什么会成功呢。<br>
+相对于父试图上对其和左对齐就确定了坐标。<br>
+相对齐父试图左对齐和右对齐就确定了高度<br>
+设置了高度就确定了高度。<br>
 从而确定了这个试图的<code>Frame</code>。</p>
 </blockquote>
 <h3 id="方案二">方案二</h3>
-<p>1.选中父试图和广告图
+<p>1.选中父试图和广告图<br>
 2.选择</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/545662-f34234cc29106a52.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20151126-6.png"></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/545662-f2c35bcfbe484354.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20151126-7.png"></p>
-<p>1.设置了左对齐
-2.设置了右对齐
+<p>1.设置了左对齐<br>
+2.设置了右对齐<br>
 3.设置了顶部对齐。</p>
 <blockquote>
 <p>你们问了这个和上面不是一样的吗。上面的默认是相对于父试图。这个是相对于你选中的试图。现在选中的和父试图是一个，所以意义是一样的。</p>
 </blockquote>
-<p>我们虽然设置了左右对齐设置了宽度
-顶部对齐和左对齐确定了为了但是没有设置高度
-再次选择<code>pan</code>
+<p>我们虽然设置了左右对齐设置了宽度<br>
+顶部对齐和左对齐确定了为了但是没有设置高度<br>
+再次选择<code>pan</code><br>
 <img src="http://upload-images.jianshu.io/upload_images/545662-7c3367532139553a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20151126-4.png"></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/545662-c33926f802ea939e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20151126-8.png"></p>
-<p>我们选中广告条设置高度位140。
+<p>我们选中广告条设置高度位140。<br>
 我们确定了这个试图的<code>Frame</code>，从而也约束成功了。</p>
 <p>案例2：</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/545662-a028324ce22f5ef4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20151126-3.png"></p>
@@ -224,87 +350,89 @@
 <p>我们点击上图的红线位置。</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/545662-fb953df1fa1205c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="QQ20151126-11.png"></p>
 <p>修改高度参数如上。</p>
-<p>我们设置试图的高度等于父试图高度。<code>Mutiplier</code>设置位0.5。
+<p>我们设置试图的高度等于父试图高度。<code>Mutiplier</code>设置位0.5。<br>
 我们以为试图的高度位宽度的一半也就是0.5。我们试图的宽度等于父试图的宽度。因为我们参考父试图设置。</p>
 <blockquote>
 <p>我们没办法参考自己的高度和宽度的，因为还没确定下来具体的值。</p>
 </blockquote>
+ </p>
+                      </div>
+                  </div>
 
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://joserccblog.github.io/tag/ios" class="tag">
-                    iOS
-                  </a>
-                
-                  <a href="https://joserccblog.github.io/tag/autolayout" class="tag">
-                    AutoLayout
-                  </a>
-                
+                  <div class="row">
+                      <div class="col-md-12 animate-box">
+                          
+                              <div class="next-post">
+                                  <div class="next">下一篇</div>
+                                  <a href="https://joserccblog.github.io/post/2017-11-25-新手入门托管项目在cocoapods上面">
+                                      <h3 class="post-title">
+                                          新手入门托管项目在Cocoapods上面
+                                      </h3>
+                                  </a>
+                              </div>
+                          
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-12 animate-box">
+                          
+                              
+
+                              
+                                  <div id="disqus_thread"></div>
+                              
+                          
+                      </div>
+                  </div>
               </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://joserccblog.github.io/post/2017-11-25-新手入门托管项目在cocoapods上面">
-                  <h3 class="post-title">
-                    新手入门托管项目在Cocoapods上面
-                  </h3>
-                </a>
-              </div>
-            
 
-            
-              
-
-              
-                <div id="disqus_thread" data-aos="fade-in"></div>
-              
-            
-
-          </div>
-
-        </div>
+          </article>
       </div>
-    </div>
+  </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+<footer id="fh5co-footer">
+  <p>Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></p>
+</footer>
+
+
+    <!-- jQuery -->
+<script src="https://joserccblog.github.io/media/scripts/_vendors/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="https://joserccblog.github.io/media/scripts/_vendors/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="https://joserccblog.github.io/media/scripts/_vendors/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="https://joserccblog.github.io/media/scripts/_vendors/jquery.waypoints.min.js"></script>
+<!-- Main JS -->
+<script src="https://joserccblog.github.io/media/scripts/_vendors/main.js"></script>
+<!-- Md5 Min JS -->
+<script src="https://joserccblog.github.io/media/scripts/_vendors/md5.min.js"></script>
 
 <script type="application/javascript">
-
-AOS.init();
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+    hljs.initHighlightingOnLoad();
 </script>
 
 
-  
-  
 
-  
-    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
-    <script>
+    
 
-    var options = {
-      shortname: 'josercc',
-      apikey: 'DBJHHPsqZBT5EUYFyQmorAozkwxTDoySOnd4bmdt9G29YFySUFhFE6SLZrSCHee4',
-    }
-    if ('') {
-      options.api = ''
-    }
-    var dsqjs = new DisqusJS(options)
+    
+        <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+        <script>
 
-    </script>
-  
+            var options = {
+                shortname: 'josercc',
+                apikey: 'DBJHHPsqZBT5EUYFyQmorAozkwxTDoySOnd4bmdt9G29YFySUFhFE6SLZrSCHee4',
+            }
+            if ('') {
+                options.api = ''
+            }
+            var dsqjs = new DisqusJS(options)
+
+        </script>
+    
 
 
 

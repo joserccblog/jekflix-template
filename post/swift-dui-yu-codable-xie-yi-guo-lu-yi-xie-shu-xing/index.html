@@ -1,133 +1,257 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
+      
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>Swift 对于 Codable 协议过滤一些属性 | 君赏博客</title>
-<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率">
+<!-- 百度验证 -->
+<meta name="baidu-site-verification" content="1IkquSGR9Z"/>
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>君赏博客</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico?v=1567052486882">
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率"/>
+<meta name="keywords" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率"/>
+
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico">
+
 <link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
 
+<!-- Modernizr JS -->
+<script src="https://joserccblog.github.io/media/scripts/_vendors/modernizr-2.6.2.min.js"></script>
+<!-- FOR IE9 below -->
+<!--[if lt IE 9]>
+<scripts src="https://joserccblog.github.io/media/scripts/_vendors/respond.min.js"></scripts>
+<![endif]-->
 
-  
+<!-- Comment -->
 
-  
-    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
-  
+    
 
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+        <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
+    
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80371795-5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
 
-  gtag('config', 'UA-80371795-5');
-</script>
-
+<link crossorigin="anonymous" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" href="https://lib.baomitu.com/font-awesome/5.8.1/css/all.min.css" rel="stylesheet">
 
   </head>
   <body>
-    <div id="app" class="main">
+  
+<div id="fh5co-offcanvas">
+    <a href="#!" class="fh5co-close-offcanvas js-fh5co-close-offcanvas">
+        <span><i class="icon-cross3"></i> <span>Close</span></span>
+    </a>
+    <div class="fh5co-bio">
+        <figure>
+            <img src="https://joserccblog.github.io/media/images/avatar.png" alt="君赏博客" class="img-responsive">
+        </figure>
+        <h3 class="heading">ABOUT ME</h3>
+        <h2>君赏博客</h2>
+        <p>2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率</p>
+        <ul class="fh5co-social">
+            
+                <li>
+                    
+                </li>
+            
+                <li>
+                    
+                </li>
+            
+                <li>
+                    
+                </li>
+            
+                <li>
+                    
+                </li>
+            
+                <li>
+                    
+                </li>
+            
+        </ul>
+    </div>
 
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://joserccblog.github.io">
-        <img src="https://joserccblog.github.io/images/avatar.png?v=1567052486882" class="site-logo">
-        <h1 class="site-title">君赏博客</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
+    <div class="fh5co-menu">
+        <div class="fh5co-box">
+            <h3 class="heading">搜索</h3>
+            <form action="#">
+                <div class="form-group">
+                    <input type="text" id="bdcsMain" class="form-control" placeholder="输入关键字">
+<!--                    <button type="submit" class="btn btn-sm btn-warning" style="margin-top: 6px; width: 100%">点击搜索</button>-->
+                </div>
+            </form>
+        </div>
+        <div class="fh5co-box">
+            <h3 class="heading">标签</h3>
+            <ul>
+                
+                    <li><a href="https://joserccblog.github.io/tag/ilTRbUeIh">OCUI</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/qFaqD3-EnQ">链式语法</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/swift">Swift</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/ios">iOS</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/framework">Framework</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/carthage">Carthage</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/cocoapods">Cocoapods</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/masonry">Masonry</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/yue-shu-chong-tu">约束冲突</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/uistackview">UIStackView</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/ios11">iOS11</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/sheng-huo">生活</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/zhi-shi-dian">知识点</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/testflight">TestFlight</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/guo-ji-hua">国际化</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/xcode9">Xcode9</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/zi-dong-hua">自动化</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/hei-mo-fa">黑魔法</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/ota">OTA</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/xctest">XCTest</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/appstore">AppStore</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/mac">Mac</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/gan-xiang">感想</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/xcode">Xcode</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/svn">SVN</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/xiang-fa">想法</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/di-san-fang-ku">第三方库</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/mo-kuai-hua">模块化</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/c">C</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/autolayout">AutoLayout</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/xib">Xib</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/clang-format">Clang Format</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/objetive-c">Objetive-C</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/zhou-bao">周报</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/jekyll">Jekyll</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/server">Server</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/uibarbuttonitem">UIBarButtonItem</a></li>
+                
+                    <li><a href="https://joserccblog.github.io/tag/uitextfiled">UITextFiled</a></li>
+                
+            </ul>
+        </div>
     </div>
-    <div>
-      
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-        
-          <a href="/post/contact/" class="site-nav">
-            联系作者
-          </a>
-        
-      
-    </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-          <a class="social-link" href="https://github.com/josercc" target="_blank">
-            <i class="fab fa-github"></i>
-          </a>
-        
-      
-        
-      
-        
-          <a class="social-link" href="https://weibo.com/kuaiqiantong" target="_blank">
-            <i class="fab fa-weibo"></i>
-          </a>
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-    </div>
-  </div>
 </div>
 
+<header id="fh5co-header">
+    <div class="container-fluid">
+        <div class="row">
+            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+            <ul class="fh5co-social">
+                
+                    <li>
+                        <a href="/"
+                         >
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"
+                         >
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"
+                         >
+                            标签
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/post/about"
+                         >
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/post/contact/"
+                         >
+                            联系作者
+                        </a>
+                    </li>
+                
+            </ul>
+            <div class="col-lg-12 col-md-12 text-center">
+                <h1 id="fh5co-logo">
+                    <a href="https://joserccblog.github.io">君赏博客 </a>
+                </h1>
+            </div>
+        </div>
+    </div>
+</header>
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">Swift 对于 Codable 协议过滤一些属性</h2>
-            <div class="post-date">2019-05-07</div>
-            
-              <div class="feature-container" style="background-image: url('data:image/jpeg;base64,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')">
-              </div>
-            
-            <div class="post-content">
-              <h2 id="问题描述">问题描述</h2>
+
+<!--  <a href="#" class="fh5co-post-prev"><span>👈 Prev</span></a>-->
+<!--  <a href="#" class="fh5co-post-next"><span>Next 👉</span></a>-->
+
+  <div class="container-fluid">
+      <div class="row fh5co-post-entry single-entry">
+          <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+              <figure class="animate-box">
+                  
+                      <img src="data:image/jpeg;base64,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" alt="Swift 对于 Codable 协议过滤一些属性" class="img-responsive">
+                  
+              </figure>
+              <span class="fh5co-meta animate-box">
+                  
+                      <div class="tag-container">
+                          
+                              <a href="https://joserccblog.github.io/tag/swift" class="tag">Swift, </a>
+                          
+                      </div>
+                  
+              </span>
+              <h2 class="fh5co-article-title animate-box">Swift 对于 Codable 协议过滤一些属性</h2>
+              <span class="fh5co-meta fh5co-date animate-box">2019-05-07</span>
+
+              <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                  <div class="row">
+                      <div class="col-md-12 animate-box post-content">
+                          <p> <h2 id="问题描述">问题描述</h2>
 <p>我们在 <code>Swift</code> 创建模型的时候，通常要实现系统的 <code>Codable</code>协议来支持模型的 <code>encode</code>和 <code>decode</code>功能。</p>
 <p>但是我们通常并不希望所有的属性都进行编码和解码，比如一些用于计算或者转换临时的私有属性。</p>
 <pre><code class="language-swift">class TestModel: Codable {
@@ -142,78 +266,84 @@
     }
 </code></pre>
 <p>我们实现私有的 <code>CodingKeys</code>属性，把需要进行编码和解码的属性添加进行就行。</p>
+ </p>
+                      </div>
+                  </div>
 
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://joserccblog.github.io/tag/swift" class="tag">
-                    Swift
-                  </a>
-                
+                  <div class="row">
+                      <div class="col-md-12 animate-box">
+                          
+                              <div class="next-post">
+                                  <div class="next">下一篇</div>
+                                  <a href="https://joserccblog.github.io/post/2018-04-17-【已解决】自己制作-framework提示missing-submodule-xxx">
+                                      <h3 class="post-title">
+                                          自己制作 Framework提示Missing submodule xxx
+                                      </h3>
+                                  </a>
+                              </div>
+                          
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-12 animate-box">
+                          
+                              
+
+                              
+                                  <div id="disqus_thread"></div>
+                              
+                          
+                      </div>
+                  </div>
               </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://joserccblog.github.io/post/2018-04-17-【已解决】自己制作-framework提示missing-submodule-xxx">
-                  <h3 class="post-title">
-                    自己制作 Framework提示Missing submodule xxx
-                  </h3>
-                </a>
-              </div>
-            
 
-            
-              
-
-              
-                <div id="disqus_thread" data-aos="fade-in"></div>
-              
-            
-
-          </div>
-
-        </div>
+          </article>
       </div>
-    </div>
+  </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+<footer id="fh5co-footer">
+  <p>Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></p>
+</footer>
+
+
+    <!-- jQuery -->
+<script src="https://joserccblog.github.io/media/scripts/_vendors/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="https://joserccblog.github.io/media/scripts/_vendors/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="https://joserccblog.github.io/media/scripts/_vendors/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="https://joserccblog.github.io/media/scripts/_vendors/jquery.waypoints.min.js"></script>
+<!-- Main JS -->
+<script src="https://joserccblog.github.io/media/scripts/_vendors/main.js"></script>
+<!-- Md5 Min JS -->
+<script src="https://joserccblog.github.io/media/scripts/_vendors/md5.min.js"></script>
 
 <script type="application/javascript">
-
-AOS.init();
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+    hljs.initHighlightingOnLoad();
 </script>
 
 
-  
-  
 
-  
-    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
-    <script>
+    
 
-    var options = {
-      shortname: 'josercc',
-      apikey: 'DBJHHPsqZBT5EUYFyQmorAozkwxTDoySOnd4bmdt9G29YFySUFhFE6SLZrSCHee4',
-    }
-    if ('') {
-      options.api = ''
-    }
-    var dsqjs = new DisqusJS(options)
+    
+        <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+        <script>
 
-    </script>
-  
+            var options = {
+                shortname: 'josercc',
+                apikey: 'DBJHHPsqZBT5EUYFyQmorAozkwxTDoySOnd4bmdt9G29YFySUFhFE6SLZrSCHee4',
+            }
+            if ('') {
+                options.api = ''
+            }
+            var dsqjs = new DisqusJS(options)
+
+        </script>
+    
 
 
 

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://joserccblog.github.io</id>
     <title>君赏博客</title>
-    <updated>2019-09-06T09:19:27.451Z</updated>
+    <updated>2019-09-09T03:28:28.985Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://joserccblog.github.io"/>
     <link rel="self" href="https://joserccblog.github.io/atom.xml"/>
@@ -10,48 +10,6 @@
     <logo>https://joserccblog.github.io/images/avatar.png</logo>
     <icon>https://joserccblog.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, 君赏博客</rights>
-    <entry>
-        <title type="html"><![CDATA[Objective-C 如何实现递进式链式语法]]></title>
-        <id>https://joserccblog.github.io/post/objective-c-ru-he-shi-xian-di-jin-shi-lian-shi-yu-fa</id>
-        <link href="https://joserccblog.github.io/post/objective-c-ru-he-shi-xian-di-jin-shi-lian-shi-yu-fa">
-        </link>
-        <updated>2019-09-06T03:10:03.000Z</updated>
-        <content type="html"><![CDATA[<p>关于链式语法其实很简单，就是写返回值是 Block 类型的方法即可。</p>
-<p>最近要做仿 SwiftUI 的衍生品 OCUI,也是属于自己瞎折腾。但是对于要做成 SwiftUI 的链式语法有些困难。</p>
-<p>比如我们之前写链式语法这样写的</p>
-<pre><code class="language-objc">@interface ClassA : NSObject
-
-- (ClassA *(^)(CGFloat))top;
-- (ClassA *(^)(CGFloat))bottom;
-
-@end
-</code></pre>
-<p>但是如果存在基类，比如下面。</p>
-<pre><code class="language-objc">@interface ClassB: ClassA
-
-- (ClassB *(^)(CGFloat))leading;
-- (ClassB *(^)(CGFloat))trailing;
-
-@end
-</code></pre>
-<p>这样就存在一个问题调用了父类的链式方法再也调用不了子类的链式方法。</p>
-<p>如果想要解决这个问题很简单，把上面的链式代码改成下面即可。</p>
-<pre><code class="language-objc">@interface ClassA : NSObject
-
-- (instancetype(^)(CGFloat))top;
-- (instancetype(^)(CGFloat))bottom;
-
-@end
-  
-@interface ClassB: ClassA
-
-- (instancetype(^)(CGFloat))leading;
-- (instancetype(^)(CGFloat))trailing;
-
-@end
-</code></pre>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[关于Objective-C版本的SwiftUI库的自动生成布局的研究心得]]></title>
         <id>https://joserccblog.github.io/post/guan-yu-objective-c-ban-ben-de-swiftui-ku-de-zi-dong-sheng-cheng-bu-ju-de-yan-jiu-xin-de</id>
@@ -1395,6 +1353,15 @@ typedef NS_ENUM(NSUInteger, GBMaskItemArrowTipPosition) {
 <li>用变量标记 出现之后来回滚动不会再次出现</li>
 </ul>
 <p>这样才能不会有来回快速滚动 或者 只露出一点 就显示出来的 BUG</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[UIView添加到KeyWindow上面自动会被 Release]]></title>
+        <id>https://joserccblog.github.io/post/2017-11-27-uiview添加到keywindow上面自动会被-release</id>
+        <link href="https://joserccblog.github.io/post/2017-11-27-uiview添加到keywindow上面自动会被-release">
+        </link>
+        <updated>2017-11-26T23:40:53.000Z</updated>
+        <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/545662-a87b2f57fecfccd7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 ]]></content>
     </entry>
 </feed>

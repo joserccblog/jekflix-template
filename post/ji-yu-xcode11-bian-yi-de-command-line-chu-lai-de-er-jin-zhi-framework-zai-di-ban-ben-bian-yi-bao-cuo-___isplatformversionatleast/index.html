@@ -237,84 +237,42 @@
           <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
               <figure class="animate-box">
                   
-                      <img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-27-023034.jpg" alt="自定义输入框造轮子大法" class="img-responsive">
+                      <img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-09-16-070825.png" alt="基于 Xcode11编译的 Command Line 出来的 二进制 Framework 在低版本编译报错___isPlatformVersionAtLeast" class="img-responsive">
                   
               </figure>
               <span class="fh5co-meta animate-box">
                   
-                      <div class="tag-container">
-                          
-                              <a href="https://joserccblog.github.io/tag/ios" class="tag">iOS, </a>
-                          
-                              <a href="https://joserccblog.github.io/tag/di-san-fang-ku" class="tag">第三方库, </a>
-                          
-                      </div>
-                  
               </span>
-              <h2 class="fh5co-article-title animate-box">自定义输入框造轮子大法</h2>
-              <span class="fh5co-meta fh5co-date animate-box">2017-11-27</span>
+              <h2 class="fh5co-article-title animate-box">基于 Xcode11编译的 Command Line 出来的 二进制 Framework 在低版本编译报错___isPlatformVersionAtLeast</h2>
+              <span class="fh5co-meta fh5co-date animate-box">2019-09-16</span>
 
               <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
                   <div class="row">
                       <div class="col-md-12 animate-box post-content">
-                          <p> <h1 id="zhaddresstextfiled">ZHAddressTextFiled</h1>
-<p>这个输入框是输入把默认提示语上移，我记得有第三方库，但是我就想造轮子，所以就除了这个。</p>
-<p>现在支持以下:</p>
-<ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7401769"><label class="task-list-item-label" for="task-item-7401769"> 输入框四种状态</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4777322"><label class="task-list-item-label" for="task-item-4777322"> 输入自动显示正确的类型</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9802348"><label class="task-list-item-label" for="task-item-9802348"> 自动显示错误的提示</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-2388434"><label class="task-list-item-label" for="task-item-2388434"> 可扩展</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7449889"><label class="task-list-item-label" for="task-item-7449889"> 支持Cocoapods</label></li>
+                          <p> <p>报错的信息大致如下</p>
+<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2019-09-16-070825.png" alt="1568613843278"></p>
+<p>开始去搜索报错的关键字，但是不存在。谷歌一下，很多关键词都指向了 <code>Xcode11</code>。我也是今天刚更新了最新的 <code>Xcode11 GM</code> 之后默认的 <code>Command Line Tool</code>。</p>
+<p>发布新的支付 <code>Framework</code>也是基于 <code>Xcode11</code> 进行编译的，但是我用自己 <code>Demo</code> 是编译成功的。后来发现用 <code>Xcode10.3</code>编译这个 <code>Demo</code> 同样的报错，用 <code>Xcode10.3</code>编译出来的不会在 <code>Xcode10.3</code>以上的版本报错。</p>
+<p>那么这个问题是基于 <code>Xcode11</code> 出现的无疑了，就果断切到了 <code>Xcode10.3</code>编译。</p>
+<h2 id="解决方法">解决方法</h2>
+<blockquote>
+<p>用于 <code>Xcode10</code> 编译重新发布即可</p>
+</blockquote>
+<p>在发布时候遇到的两个问题点</p>
+<ul>
+<li>
+<p>如果基于 <code>Xcode10.3</code>编译的 <code>Framework</code> ，我最新的 <code>Xcode11</code>的默认名称是 <code>Xcode11</code>，但是会 Pod 发布失败。</p>
+<blockquote>
+<p>发布的时候 <code>Cocoapods</code> 会读取默认的 <code>Xcode</code>，发现我的版本是 <code>Xcode11</code> 但是编译设置的 <code>Xcode10.3</code>之后报错，我切换回来正常发布</p>
+</blockquote>
+</li>
+<li>
+<p>用 <code>Cocoapods1.8.0</code> 发布还是发布到老仓库，之后需要初始化</p>
+<blockquote>
+<p>因为我发布的库属于私有库，但是需要依赖公有库。所有发布时候需要设置公有库地址，发布时候没有改成最新的需要改成 <code>CDN</code> 地址<code>https://cdn.cocoapods.org/</code></p>
+</blockquote>
+</li>
 </ul>
-<p>输入框四种状态:</p>
-<ol>
-<li>
-<p>默认状态:ATFVEditStateNormal</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-90d81c6d31d195ff.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>显示输入框提示语 分割线暗色</p>
-</li>
-<li>
-<p>编辑状态:ATFVEditStateEditing</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-f17b10a3b094c18a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>默认的提示语上移上面 分割线高亮</p>
-</li>
-<li>
-<p>编辑完成:ATFVEditStateEdited</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-7c97b5f990ce1229.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-</li>
-<li>
-<p>显示错误的提示语:ATFVEditStateEditedError</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-6bbc79ab88b390cf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-</li>
-</ol>
-<h2 id="安装">安装</h2>
-<ol>
-<li>
-<p>直接下载github的库 拖拽ZHAddressTextFiled文件包到工程</p>
-</li>
-<li>
-<p>使用cocoapods安装</p>
-<pre><code class="language-ruby">pod ZHAddressTextFiled
-</code></pre>
-</li>
-</ol>
-<h2 id="怎么使用">怎么使用</h2>
-<p>新建一个输入框样式表</p>
-<pre><code class="language-objective-c">ZHAddressTextFiledViewStyle *style = [[ZHAddressTextFiledViewStyle alloc] init]
-</code></pre>
-<p>你可以在样式表配置自己喜欢的样式</p>
-<p>初始化输入框</p>
-<pre><code class="language-objective-c">ZHAddressTextFiledView *addressView = [[ZHAddressTextFiledView alloc] initWithStyle:style frame:CGRectMake(20, 50, [UIScreen mainScreen].bounds.size.width - 40, 50)];
-</code></pre>
-<p>自定义验证错误信息</p>
-<pre><code class="language-objective-c">addressView.validateInputCorrectComplete = ^NSString *(NSString *inputText) {
-    if (inputText.length &lt;= 2) {
-        return @&quot;输入的长度必须大于2&quot;;
-    }
-    return nil;
-};
-</code></pre>
  </p>
                       </div>
                   </div>
@@ -324,9 +282,9 @@
                           
                               <div class="next-post">
                                   <div class="next">下一篇</div>
-                                  <a href="https://joserccblog.github.io/post/2017-11-27-研究一下未知参数的方法">
+                                  <a href="https://joserccblog.github.io/post/guan-yu-objective-c-ban-ben-de-swiftui-ku-de-zi-dong-sheng-cheng-bu-ju-de-yan-jiu-xin-de">
                                       <h3 class="post-title">
-                                          研究一下未知参数的方法
+                                          关于Objective-C版本的SwiftUI库的自动生成布局的研究心得
                                       </h3>
                                   </a>
                               </div>

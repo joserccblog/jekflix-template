@@ -1,282 +1,130 @@
-<!DOCTYPE html>
 <html>
   <head>
-      
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-<!-- 百度验证 -->
-<meta name="baidu-site-verification" content="1IkquSGR9Z"/>
-
-<title>君赏博客</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率"/>
-<meta name="keywords" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率"/>
-
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Jekyll-Admin-Mac-模板处理 | 君赏博客</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率" />
 <link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico">
-
 <link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
 
-<!-- Modernizr JS -->
-<script src="https://joserccblog.github.io/media/scripts/_vendors/modernizr-2.6.2.min.js"></script>
-<!-- FOR IE9 below -->
-<!--[if lt IE 9]>
-<scripts src="https://joserccblog.github.io/media/scripts/_vendors/respond.min.js"></scripts>
-<![endif]-->
-
-<!-- Comment -->
-
+<script src="https://joserccblog.github.io/media/js/jquery.min.js"></script>
+<script src="https://joserccblog.github.io/media/js/masonry.pkgd.min.js"></script>
+<script src="https://joserccblog.github.io/media/js/aos.js"></script>
+<script src="https://joserccblog.github.io/media/js/pace.min.js"></script>
+<script src="https://joserccblog.github.io/media/js/view-image.min.js"></script>
+<script src="https://joserccblog.github.io/media/js/functions.js"></script>
+    <script src="https://joserccblog.github.io/media/js/waterfall.min.js"></script>
+    <script src="https://joserccblog.github.io/media/js/prism.min.js"></script>
     
-
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
     
-        <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
-    
-
-
-<script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
-
-<link crossorigin="anonymous" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" href="https://lib.baomitu.com/font-awesome/5.8.1/css/all.min.css" rel="stylesheet">
-
   </head>
   <body>
-  
-<div id="fh5co-offcanvas">
-    <a href="#!" class="fh5co-close-offcanvas js-fh5co-close-offcanvas">
-        <span><i class="icon-cross3"></i> <span>Close</span></span>
-    </a>
-    <div class="fh5co-bio">
-        <figure>
-            <img src="https://joserccblog.github.io/media/images/avatar.png" alt="君赏博客" class="img-responsive">
-        </figure>
-        <h3 class="heading">ABOUT ME</h3>
-        <h2>君赏博客</h2>
-        <p>2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率</p>
-        <ul class="fh5co-social">
-            
-                <li>
-                    
-                        <a href="https://github.com/josercc" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    
-                </li>
-            
-                <li>
-                    
-                </li>
-            
-                <li>
-                    
-                        <a href="https://weibo.com/kuaiqiantong" target="_blank">
-                            <i class="fab fa-weibo"></i>
-                        </a>
-                    
-                </li>
-            
-                <li>
-                    
-                </li>
-            
-                <li>
-                    
-                </li>
-            
-        </ul>
-    </div>
-
-    <div class="fh5co-menu">
-        <div class="fh5co-box">
-            <h3 class="heading">搜索</h3>
-            <form action="#">
-                <div class="form-group">
-                    <input type="text" id="bdcsMain" class="form-control" placeholder="输入关键字">
-<!--                    <button type="submit" class="btn btn-sm btn-warning" style="margin-top: 6px; width: 100%">点击搜索</button>-->
-                </div>
-            </form>
+            <header id="header" class="grid-container">
+        <!-- start: .menu-wrapper -->
+        <div class="menu-mobile"> 
+          <i class="fa fa-reorder"></i>
         </div>
-        <div class="fh5co-box">
-            <h3 class="heading">标签</h3>
-            <ul>
-                
-                    <li><a href="https://joserccblog.github.io/tag/swift">Swift</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/ios">iOS</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/framework">Framework</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/carthage">Carthage</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/cocoapods">Cocoapods</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/masonry">Masonry</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/yue-shu-chong-tu">约束冲突</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/uistackview">UIStackView</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/ios11">iOS11</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/sheng-huo">生活</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/zhi-shi-dian">知识点</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/testflight">TestFlight</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/guo-ji-hua">国际化</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/xcode9">Xcode9</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/zi-dong-hua">自动化</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/hei-mo-fa">黑魔法</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/ota">OTA</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/xctest">XCTest</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/appstore">AppStore</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/mac">Mac</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/gan-xiang">感想</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/xcode">Xcode</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/svn">SVN</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/xiang-fa">想法</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/di-san-fang-ku">第三方库</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/mo-kuai-hua">模块化</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/c">C</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/autolayout">AutoLayout</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/xib">Xib</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/clang-format">Clang Format</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/objetive-c">Objetive-C</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/zhou-bao">周报</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/jekyll">Jekyll</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/server">Server</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/uibarbuttonitem">UIBarButtonItem</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/uitextfiled">UITextFiled</a></li>
-                
-            </ul>
-        </div>
-    </div>
-</div>
-
-<header id="fh5co-header">
-    <div class="container-fluid">
-        <div class="row">
-            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-            <ul class="fh5co-social">
-                
-                    <li>
-                        <a href="/"
-                         >
-                            首页
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/archives"
-                         >
-                            归档
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/tags"
-                         >
-                            标签
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/post/about"
-                         >
-                            关于
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/post/contact/"
-                         >
-                            联系作者
-                        </a>
-                    </li>
-                
-            </ul>
-            <div class="col-lg-12 col-md-12 text-center">
-                <h1 id="fh5co-logo">
-                    <a href="https://joserccblog.github.io">君赏博客 </a>
-                </h1>
+        <div class="menu-wrapper">
+          <div class="">
+            <div class="logo">
+              <a href="https://joserccblog.github.io"><img src="https://joserccblog.github.io/media/images/logoo.png" alt=""></a>
             </div>
+            <!-- start: .main-nav -->
+
+            <nav class="main-nav grid-container grid-parent">
+              <ul id="menu-header" class="menu gradient-effect">
+                
+                  <li class=""><a href="https://joserccblog.github.io" class="menu">首页</a></li>
+                
+                
+                  <li class="" >
+                    <a href="/archives" class="menu">
+                      归档
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/tags" class="menu">
+                      标签
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/post/about" class="menu">
+                      关于
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/post/contact/" class="menu">
+                      联系作者
+                    </a>
+                  </li>
+                
+              </ul>
+            </nav>
+            <!-- end: .main-nav -->
+            <div class="clear"></div>
+            <div class="border hide-on-tablet hide-on-mobile"></div>
+          </div>    
+          <div class="clear"></div>
         </div>
-    </div>
-</header>
+        <!-- end: .menu-wrapper -->
+        <div class="clear"></div>
+      </header>
 
+      <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
 
-<!--  <a href="#" class="fh5co-post-prev"><span>👈 Prev</span></a>-->
-<!--  <a href="#" class="fh5co-post-next"><span>Next 👉</span></a>-->
+        <div class="center content">
+          <div class="featured-image cover" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-17.png');">
+            <div class="meta top"> 
+              <time class="meta-info" style="float:left;" datetime="2017-11-25"><i class="fa fa-calendar"></i><span class="lately">2 年前</span></time>
+               
+               
+               <span id="/post/2017-11-25-jekyll-admin-mac-模板处理/" class="leancloud_visitors views-counter meta-info">
+                <i class="fa fa-leancloud"></i><span class="leancloud-visitors-count" style="vertical-align: middle;">0</span>
+               </span>
+               
+            </div>
+            <div class="info">
+              <div class="tags ">
+                
+                      <a href="https://joserccblog.github.io/tag/swift" class="ctag ctag-0 ctag-swift" aria-label="">Swift</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/mac" class="ctag ctag-1 ctag-mac" aria-label="">Mac</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/jekyll" class="ctag ctag-2 ctag-jekyll" aria-label="">Jekyll</a>
+                    
+              </div>
+              <h1 class="title ularge white bold">Jekyll-Admin-Mac-模板处理</h1>
+            </div>
+          </div>
+        </div>  
 
-  <div class="container-fluid">
-      <div class="row fh5co-post-entry single-entry">
-          <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
-              <figure class="animate-box">
-                  
-                      <img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-17.png" alt="Jekyll-Admin-Mac-模板处理" class="img-responsive">
-                  
-              </figure>
-              <span class="fh5co-meta animate-box">
-                  
-                      <div class="tag-container">
-                          
-                              <a href="https://joserccblog.github.io/tag/swift" class="tag">Swift, </a>
-                          
-                              <a href="https://joserccblog.github.io/tag/mac" class="tag">Mac, </a>
-                          
-                              <a href="https://joserccblog.github.io/tag/jekyll" class="tag">Jekyll, </a>
-                          
-                      </div>
-                  
-              </span>
-              <h2 class="fh5co-article-title animate-box">Jekyll-Admin-Mac-模板处理</h2>
-              <span class="fh5co-meta fh5co-date animate-box">2017-11-25</span>
-
-              <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
-                  <div class="row">
-                      <div class="col-md-12 animate-box post-content">
-                          <p> <p>本文<code>5600</code>字大约需要花费15分钟阅读，文章图片过多，建议 <code>wifi</code>环境阅读。</p>
+        <div class="epcl-page-wrapper">
+          <div class="left-content grid-70 np-mobile">
+            <article class="main-article post">
+              <section class="post-content">
+                <div class="text">
+                  <p>本文<code>5600</code>字大约需要花费15分钟阅读，文章图片过多，建议 <code>wifi</code>环境阅读。</p>
 <p>[TOC]</p>
 <h3 id="制作导航条">制作导航条</h3>
 <p>在上一篇文章所说，我们已经做出了侧边栏的效果了。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061211.png" alt="CA8ACEBA-C382-47CB-8897-61B6393AA27E"></p>
+<figure data-type="image" tabindex="1"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061211.png" alt="CA8ACEBA-C382-47CB-8897-61B6393AA27E" loading="lazy"></figure>
 <p>上图是右侧的导航条，虽然内容很少，但是确实一直悬浮在最上层的。</p>
 <p>我们新建一个类 <code>NavigationBar</code>类继承于我们的 <code>BaseView</code>，我们再创建一个 <code>NavigationBar.xib</code>。</p>
 <p>因为 <code>NavigationBar</code>高度为 <code>75</code>是固定的，所以布局要让宽度进行自适应。</p>
 <p>我们拖拽一个 <code>NSView</code>继承与 <code>SideMenuItemView</code>,右侧显示当前的版本号。我们先拖拽一个 <code>Label</code>入局如下：</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061212.png" alt="BF5D2639-591A-4372-98B8-699FDB785508"></p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061214.png" alt="349254E0-3BE6-4FC5-BEE8-265CDB9F67C5"></p>
+<figure data-type="image" tabindex="2"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061212.png" alt="BF5D2639-591A-4372-98B8-699FDB785508" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061214.png" alt="349254E0-3BE6-4FC5-BEE8-265CDB9F67C5" loading="lazy"></figure>
 <p>我们设置文本颜色为 <code>9ea1a3</code>，字体<code>20</code>，版本我们就设置为 <code>v0.5.1</code></p>
 <p>我们将刚才的 <code>SideMenuItemView</code>的布局设置如下。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061215.png" alt="C1A8F496-8180-43ED-8A43-96D96B808E24"></p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061218.png" alt="1EC16AEA-AA72-44E9-9A4D-A602737C855F"></p>
+<figure data-type="image" tabindex="4"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061215.png" alt="C1A8F496-8180-43ED-8A43-96D96B808E24" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061218.png" alt="1EC16AEA-AA72-44E9-9A4D-A602737C855F" loading="lazy"></figure>
 <p>我们拖拽一个 <code>NSView</code>试图继承与 <code>NavigationBar</code>放置在 <code>ViewController</code>的试图上面，布局设置如下。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061219.png" alt="F2E08528-38E1-4595-8BDC-38738CADE656"></p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061221.png" alt="7DC5BD13-B9A2-45C0-9519-5B08FCE4047A"></p>
+<figure data-type="image" tabindex="6"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061219.png" alt="F2E08528-38E1-4595-8BDC-38738CADE656" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-061221.png" alt="7DC5BD13-B9A2-45C0-9519-5B08FCE4047A" loading="lazy"></figure>
 <p>我们设置背景颜色为白色。</p>
 <p>我们在 <code>NavigationBar</code>关联试图上面的 <code>SideMenuItemView</code>控件。</p>
 <pre><code class="language-swift">@IBOutlet weak var blogMenuItem: SideMenuItemView!
@@ -289,18 +137,18 @@
     self.blogMenuItem.itemTitle.stringValue = &quot;我的博客&quot;
 }
 </code></pre>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-61222.png" alt="6A3B9BB3-BB39-4183-BFF2-12D0208ADDB9"></p>
+<figure data-type="image" tabindex="8"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-61222.png" alt="6A3B9BB3-BB39-4183-BFF2-12D0208ADDB9" loading="lazy"></figure>
 <p>我们运行起来可以看到这样的效果图了。</p>
 <blockquote>
 <p>⚠️因为之前我们的 <code>SideMenuItemView</code>设置了背景颜色，所以我们在 <code>SideMenuItemView.xib</code>设置默认透明即可。</p>
 </blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-59f73f32947f244a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="B4798919-7E76-43FB-9D13-C66FC0D3F420"></p>
+<figure data-type="image" tabindex="9"><img src="http://upload-images.jianshu.io/upload_images/545662-59f73f32947f244a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="B4798919-7E76-43FB-9D13-C66FC0D3F420" loading="lazy"></figure>
 <p>下面还有一条线，默认情况是不允许出现的，我们设置 <code>SideMenuItemView</code>默认不显示下面的线。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-6e17cce313c98d85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="BE160EC2-93EC-4C8F-82D2-E48B63CF3AB2"></p>
+<figure data-type="image" tabindex="10"><img src="http://upload-images.jianshu.io/upload_images/545662-6e17cce313c98d85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="BE160EC2-93EC-4C8F-82D2-E48B63CF3AB2" loading="lazy"></figure>
 <p>字体颜色我们设置默认为 <code>444444</code>。我们设置 <code>SideMenuItemView</code>图标颜色为 <code>444444</code>。</p>
 <pre><code class="language-swift">self.blogMenuItem.iconImageView.color = NSColor(red:0.267, green:0.267, blue:0.267, alpha:1.000)
 </code></pre>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-a4924ce94dfc6a9b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="535BA904-0C09-4B08-9720-A57003D7030B"></p>
+<figure data-type="image" tabindex="11"><img src="http://upload-images.jianshu.io/upload_images/545662-a4924ce94dfc6a9b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="535BA904-0C09-4B08-9720-A57003D7030B" loading="lazy"></figure>
 <p>现在我们的界面已经做出来了。</p>
 <p>但是我们的博客名字一般都是自己配置的，我们想获取我们自己配置的博客名称怎么办呢？</p>
 <p>我们利用获取配置的请求。</p>
@@ -335,7 +183,7 @@
 <pre><code class="language-ruby">pod 'SwiftyJSON', '~&gt;3.1.4'l
 </code></pre>
 <p>参考资料: [<a href="http://tangplin.github.io/swiftyjson/">SwiftyJSON介绍</a>](http://tangplin.github.io/swiftyjson/)</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-dc441629cfe333b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ECAAD073-4B09-419D-829A-E86FD2C3468B"></p>
+<figure data-type="image" tabindex="12"><img src="http://upload-images.jianshu.io/upload_images/545662-dc441629cfe333b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ECAAD073-4B09-419D-829A-E86FD2C3468B" loading="lazy"></figure>
 <p>我们在官方的文档里面发现了 怎么在 <code>Alamofire</code>使用 <code>SwiftyJSON</code>的代码，我们添加到我们代码里面。</p>
 <pre><code class="language-swift">func loadRequest() {
     Alamofire.request(&quot;http://localhost:4000/_api/configuration&quot;, method: .get).responseJSON { (response) in
@@ -366,8 +214,8 @@ Error Domain=NSURLErrorDomain Code=-1022 &quot;The resource could not be loaded 
 </blockquote>
 <h3 id="ios10开启启用-http-请求"><code>iOS10开启启用 HTTP 请求</code></h3>
 <p>我们打开工程的 <code>info.plist</code>。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-7938cb9b9ee17444.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5584329D-3C64-4BA0-B067-C892A5035F64"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-cc8c25f1d932b1a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="81486772-5A9B-4B75-B129-8615C28A3919"></p>
+<figure data-type="image" tabindex="13"><img src="http://upload-images.jianshu.io/upload_images/545662-7938cb9b9ee17444.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5584329D-3C64-4BA0-B067-C892A5035F64" loading="lazy"></figure>
+<figure data-type="image" tabindex="14"><img src="http://upload-images.jianshu.io/upload_images/545662-cc8c25f1d932b1a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="81486772-5A9B-4B75-B129-8615C28A3919" loading="lazy"></figure>
 <p>此时我们再次的运行发现已经打印出来数据了。</p>
 <p>到目前为止，我们并没有发现 <code>SwiftyJSON</code>可以转 <code>Model</code>模型的功能。这个时候我们考虑换成可以转换模型的库 <code>ObjectMapper</code>。</p>
 <h3 id="使用-objectmapper">使用 <code>ObjectMapper</code></h3>
@@ -408,7 +256,7 @@ Error Domain=NSURLErrorDomain Code=-1022 &quot;The resource could not be loaded 
 }
 </code></pre>
 <p>因为我们的数据是在 <code>Content</code>层次的所以需要剥丝抽茧才可以拿到数据。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-4f7df82c61316148.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="591FBE71-862E-427A-BBE2-193AF0E2EF62"></p>
+<figure data-type="image" tabindex="15"><img src="http://upload-images.jianshu.io/upload_images/545662-4f7df82c61316148.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="591FBE71-862E-427A-BBE2-193AF0E2EF62" loading="lazy"></figure>
 <p>由此可以我们已经可以拿到数据了。</p>
 <p>我们已经拿到了数据，但是我们究竟如何才能让外接知道数据呢。那就用到了回调，在 <code>Swift</code>我们叫做闭包。</p>
 <pre><code class="language-swift">typealias GetConfigurationApiSuccessCompletionHandle = (_ configuration:JekyllConfiguration) -&gt; Void
@@ -485,17 +333,17 @@ func completionHandle(success:GetConfigurationApiSuccessCompletionHandle?, failu
 }
 </code></pre>
 <p>导航条做完之后，我们剩下要做的就是内容区域了。因为 <code>文章</code> <code>页面</code> <code>数据</code>界面可以使用同一个模板，我们就封装成一个模板。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-919c7a4a1a955d1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="073F87F3-FFEE-43C4-B7C4-3B4DEFDB8030"></p>
+<figure data-type="image" tabindex="16"><img src="http://upload-images.jianshu.io/upload_images/545662-919c7a4a1a955d1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="073F87F3-FFEE-43C4-B7C4-3B4DEFDB8030" loading="lazy"></figure>
 <h3 id="封装模块">封装模块</h3>
 <p>这一块区域大部分都是相同的，我们也封装成父类，实现用子类。</p>
 <p>我们新建一个类名字叫做 <code>ContentHeader</code>，高度我们设置为 <code>44</code>。</p>
 <p>我们拖拽一个 <code>Label</code>布局设置如下。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-91fc98288e22661f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="B52017E2-6F68-4B7B-A54A-93342866BAC8"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-6ce0269ee86de073.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="37C089C3-15F8-4FF2-A787-0FCD9770323C"></p>
+<figure data-type="image" tabindex="17"><img src="http://upload-images.jianshu.io/upload_images/545662-91fc98288e22661f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="B52017E2-6F68-4B7B-A54A-93342866BAC8" loading="lazy"></figure>
+<figure data-type="image" tabindex="18"><img src="http://upload-images.jianshu.io/upload_images/545662-6ce0269ee86de073.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="37C089C3-15F8-4FF2-A787-0FCD9770323C" loading="lazy"></figure>
 <p>我们设置字体颜色为 <code>444444</code>，字体大小为 <code>30</code>。</p>
 <p>我们发现有的视频大致分为两类。</p>
 <ul>
-<li><img src="http://upload-images.jianshu.io/upload_images/545662-392bdb28be37515b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="30E92ED8-5264-4E52-9FA5-6999631CCA56">
+<li><img src="http://upload-images.jianshu.io/upload_images/545662-392bdb28be37515b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="30E92ED8-5264-4E52-9FA5-6999631CCA56" loading="lazy">
 <ul>
 <li>文章</li>
 <li>页面</li>
@@ -503,25 +351,25 @@ func completionHandle(success:GetConfigurationApiSuccessCompletionHandle?, failu
 <li>文件</li>
 </ul>
 </li>
-<li><img src="http://upload-images.jianshu.io/upload_images/545662-4c3e1f54862ce7dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="D527DD48-7D96-41BE-958C-980D5FDABD17">
+<li><img src="http://upload-images.jianshu.io/upload_images/545662-4c3e1f54862ce7dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="D527DD48-7D96-41BE-958C-980D5FDABD17" loading="lazy">
 <ul>
 <li>配置</li>
 </ul>
 </li>
 </ul>
 <p>我们放置一个<code>NSView</code>试图用于托管这两种的子试图，布局如下。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-63281f4c88ceb313.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="8E9AEEC5-4B4F-4FB4-91CE-C5169D4D366B"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-6982862bbe46462c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="371F1282-C1BE-41A2-8C1B-ADDCA487CB08"></p>
+<figure data-type="image" tabindex="21"><img src="http://upload-images.jianshu.io/upload_images/545662-63281f4c88ceb313.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="8E9AEEC5-4B4F-4FB4-91CE-C5169D4D366B" loading="lazy"></figure>
+<figure data-type="image" tabindex="22"><img src="http://upload-images.jianshu.io/upload_images/545662-6982862bbe46462c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="371F1282-C1BE-41A2-8C1B-ADDCA487CB08" loading="lazy"></figure>
 <p>我们新建一个类 <code>ContentHeaderValue1</code>展示下面界面。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-392bdb28be37515b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="30E92ED8-5264-4E52-9FA5-6999631CCA56"></p>
+<figure data-type="image" tabindex="23"><img src="http://upload-images.jianshu.io/upload_images/545662-392bdb28be37515b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="30E92ED8-5264-4E52-9FA5-6999631CCA56" loading="lazy"></figure>
 <p>我们设置 <code>ContentHeaderValue1.xib</code>的 <code>View</code>的高度为 <code>40</code>。</p>
 <p>我们在 <code>ContentHeaderValue1.xib</code>拖拽一个 <code>NSView</code>继承与 <code>SideMenuItemView</code>。</p>
 <p>布局如下。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-f26539c359788599.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2A0D64EC-0F35-4B60-985E-55E9E1607F45"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-4b25fab0b144bd12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="E7F69C94-2040-45A8-94A6-D5496FD0A237"></p>
+<figure data-type="image" tabindex="24"><img src="http://upload-images.jianshu.io/upload_images/545662-f26539c359788599.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2A0D64EC-0F35-4B60-985E-55E9E1607F45" loading="lazy"></figure>
+<figure data-type="image" tabindex="25"><img src="http://upload-images.jianshu.io/upload_images/545662-4b25fab0b144bd12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="E7F69C94-2040-45A8-94A6-D5496FD0A237" loading="lazy"></figure>
 <p>我们在右侧拖拽一个 <code>NSTextFiled</code>，布局如下。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-0b351b1a51c67813.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="AD11A2AF-7869-4702-9FA4-A493CE9C9D70"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-0378c56ebb680580.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="584D9E79-B199-42F9-B611-82ED0C0C806B"></p>
+<figure data-type="image" tabindex="26"><img src="http://upload-images.jianshu.io/upload_images/545662-0b351b1a51c67813.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="AD11A2AF-7869-4702-9FA4-A493CE9C9D70" loading="lazy"></figure>
+<figure data-type="image" tabindex="27"><img src="http://upload-images.jianshu.io/upload_images/545662-0378c56ebb680580.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="584D9E79-B199-42F9-B611-82ED0C0C806B" loading="lazy"></figure>
 <p>我们设置 <code>SideMenuItemView</code>的背景颜色为 <code>ff6e00</code>。</p>
 <h3 id="设置-nsview的圆角">设置 <code>NSView</code>的圆角</h3>
 <p>我们可以发现界面很多都用到了圆角，这对于 <code>iOS</code>里面是很常见的。我们新建一个 <code>NSView</code>的分类<code>NSView+CornerRadius</code>用于画圆角。</p>
@@ -554,7 +402,7 @@ func completionHandle(success:GetConfigurationApiSuccessCompletionHandle?, failu
 <p>比如 <code>UIViewController</code>我们直接可以 这样获取 <code>UIViewController.type</code>。但是 <code>self</code>这个关键字我们根本不知道是哪一个类，我们最后查询可以利用下面代码获取。</p>
 <pre><code class="language-swift">let anyClass = type(of:self)
 </code></pre>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-97e2030b0fcd8eb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5EDB0FDC-1A94-4AC3-BAE4-3901381A2C1E"></p>
+<figure data-type="image" tabindex="28"><img src="http://upload-images.jianshu.io/upload_images/545662-97e2030b0fcd8eb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5EDB0FDC-1A94-4AC3-BAE4-3901381A2C1E" loading="lazy"></figure>
 <p>此时我们在 <code>Xib</code>里面已经可以在里面预览到 <code>SideMenuItemView</code>的样子了。</p>
 <h3 id="关于-prepareforinterfacebuilder方法">关于 <code>prepareForInterfaceBuilder()</code>方法</h3>
 <p>这个方法可以只在预览 <code>Xib</code>的时候起作用可以做一些 <code>Moke</code>数据。</p>
@@ -567,7 +415,7 @@ func completionHandle(success:GetConfigurationApiSuccessCompletionHandle?, failu
 }
 </code></pre>
 <p>我们在 <code>SideMenuView.xib</code>已经可以看到我们写的测试数据了。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-7065e0d1e2ab5cf6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="A64D5D7F-18BE-48D6-BE00-CC15682E6A79"></p>
+<figure data-type="image" tabindex="29"><img src="http://upload-images.jianshu.io/upload_images/545662-7065e0d1e2ab5cf6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="A64D5D7F-18BE-48D6-BE00-CC15682E6A79" loading="lazy"></figure>
 <h3 id="解决-nsview不能显示圆角的问题">解决 <code>NSView</code>不能显示圆角的问题。</h3>
 <p>我们刚才 <code>NSView+CornerRadius.swift</code>文件给 <code>NSView</code>做了一个分类用于设置圆角，我们发现并不成功。</p>
 <p>我们需要设置 <code>wantsLayer</code>属性。</p>
@@ -650,13 +498,13 @@ extension NSView {
 }
 </code></pre>
 <p>我们在 <code>ViewController</code>拖拽一个 <code>NSView</code>继承与 <code>ContentHeader</code>。布局设置如下。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-b052012df3b3479a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="7BFCA732-CD1F-416F-BFF7-C4AAF3BB2FE4"></p>
+<figure data-type="image" tabindex="30"><img src="http://upload-images.jianshu.io/upload_images/545662-b052012df3b3479a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="7BFCA732-CD1F-416F-BFF7-C4AAF3BB2FE4" loading="lazy"></figure>
 <p>我们发现右侧样式 <code>1</code>并没有出现，那是因为 <code>@IBInspectable</code>可以设置的类型受限。</p>
 <p>参考资料： <a href="http://rdd7.com/2015/11/%E4%BD%BF%E7%94%A8IBDesignable%E5%92%8CIBInspectable%E6%9E%84%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89UI%E6%8E%A7%E4%BB%B6/">使用IBDesignable和IBInspectable构建自定义UI控件</a>。</p>
 <blockquote>
 <p>⚠️ <code>Xib</code>是走的 <code>init(frame:NSFrame)</code>方法的</p>
 </blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-3f6168519816dac5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="56052464-EEF9-406E-803E-69F4127D3EC3"></p>
+<figure data-type="image" tabindex="31"><img src="http://upload-images.jianshu.io/upload_images/545662-3f6168519816dac5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="56052464-EEF9-406E-803E-69F4127D3EC3" loading="lazy"></figure>
 <p><code>@IBInspectable</code>并不支持我们 <code>enum</code>的类型，我们只能设置 <code>Int</code>类型进行设置了。</p>
 <p>修改 <code>style</code>为 <code>Int</code>类型。</p>
 <pre><code class="language-swift">@IBInspectable var style:Int = 0 {
@@ -676,17 +524,17 @@ extension NSView {
 <blockquote>
 <p>⚠️我们需要设置<code>ContentHeaderStyle</code>继承与 <code>Int</code>类型不然没有初始化方法。</p>
 </blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-92f85111ec53cc34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5893978C-0384-4AA7-9CC5-FB8B8FA39733"></p>
+<figure data-type="image" tabindex="32"><img src="http://upload-images.jianshu.io/upload_images/545662-92f85111ec53cc34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5893978C-0384-4AA7-9CC5-FB8B8FA39733" loading="lazy"></figure>
 <p>此时我们的 <code>Xib</code>已经可以看出来效果了。</p>
 <p>我们运行发现，程序已经崩溃了。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-be982fd268d95f85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="D9D4E892-7584-4328-82C5-C7391A2349A1"></p>
+<figure data-type="image" tabindex="33"><img src="http://upload-images.jianshu.io/upload_images/545662-be982fd268d95f85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="D9D4E892-7584-4328-82C5-C7391A2349A1" loading="lazy"></figure>
 <p>看来是因为什么值为 <code>nil</code>导致的。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-9e8cb65e74eea026.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="185EB7F6-2A31-4A8E-8D36-B65BA0F4C16D"></p>
+<figure data-type="image" tabindex="34"><img src="http://upload-images.jianshu.io/upload_images/545662-9e8cb65e74eea026.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="185EB7F6-2A31-4A8E-8D36-B65BA0F4C16D" loading="lazy"></figure>
 <p>我们发现是因为我们写的方法 <code>loadStyle1()</code>初始化 <code>ContentHeaderValue1</code>传入 <code>nil</code>值导致的。</p>
 <blockquote>
 <p>⚠️ 不清楚为什么经常 <code>Xib</code>显示失败，暂时没找到解决的原因。</p>
 <p>暂时可能是 <code>Cocoapods</code>库导致，导入 <code>Cocoapods</code>库。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-7112b7d1ec0b4d2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="D8D16786-5657-464C-A993-F87DBA95C693"></p>
+<figure data-type="image" tabindex="35"><img src="http://upload-images.jianshu.io/upload_images/545662-7112b7d1ec0b4d2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="D8D16786-5657-464C-A993-F87DBA95C693" loading="lazy"></figure>
 </blockquote>
 <p>因为我们 <code>文章</code> <code>页面</code> <code>数据</code>的页面比较相似我们就 写一个类做一个模板。</p>
 <h3 id="制作-文章-页面-数据的模板">制作 <code>文章</code> <code>页面</code> <code>数据</code>的模板</h3>
@@ -714,7 +562,7 @@ required init?(coder: NSCoder) {
         ]
 }
 </code></pre>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-66fc767bbe0be226.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="17195911-89F8-4653-A385-D51DD45B6089"></p>
+<figure data-type="image" tabindex="36"><img src="http://upload-images.jianshu.io/upload_images/545662-66fc767bbe0be226.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="17195911-89F8-4653-A385-D51DD45B6089" loading="lazy"></figure>
 <p>这样我们就可以在 <code>Xib</code>实时的看到效果了。</p>
 <p>我们之前封装的 <code>SideMenuItemView</code>似乎不太适合我们这里的按钮，如果只是显示文字我们还需要还需要隐藏前面的 <code>NSImageView</code>，我们按钮直接用系统的 <code>NSButton</code>。</p>
 <p>我们替换成 <code>NSButton</code>之后似乎又遇到了另外的棘手的问题，那就是 <code>NSButton</code>竟然没有地方可以设置 <code>title</code>的颜色。</p>
@@ -740,7 +588,7 @@ required init?(coder: NSCoder) {
 </code></pre>
 <h3 id="使用-module名称解决名字冲突问题">使用 <code>Module</code>名称解决名字冲突问题</h3>
 <p>在<code>set</code>方法里面我们为了我们<code>get</code>方法获取是正确的，我们使用 <code>print</code>函数输出。发现竟然弹出打印界面。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-3b14faa1bd0e00ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="458CB6F0-458D-4BA4-BF45-E32642105894"></p>
+<figure data-type="image" tabindex="37"><img src="http://upload-images.jianshu.io/upload_images/545662-3b14faa1bd0e00ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="458CB6F0-458D-4BA4-BF45-E32642105894" loading="lazy"></figure>
 <p>我查看一下原来是 <code>NSView</code>重写了 <code>print</code>导致我们调用直接走 <code>NSView</code>的方法。</p>
 <p>感谢 <code>@2017Swift</code>群里面的 <code>Sin</code>大神帮忙解决了这个问题。遇到命名冲突的可以在前面添加 <code>Module</code>名字。</p>
 <pre><code class="language-swift">Swift.Print(self.titleColor)
@@ -748,13 +596,13 @@ required init?(coder: NSCoder) {
 <p>这样就可以正常的打印了。</p>
 <h3 id="nsbutton设置-attributedtitle之前的对齐方式失效"><code>NSButton</code>设置 <code>attributedTitle</code>之前的对齐方式失效</h3>
 <p>还有一个问题出现了，那就是 <code>Xib</code>设置文字居中，竟然运行在左边。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-ff9502b40d3b920a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="304B23CD-056C-4D8C-A4AA-62BB60E75B22"></p>
+<figure data-type="image" tabindex="38"><img src="http://upload-images.jianshu.io/upload_images/545662-ff9502b40d3b920a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="304B23CD-056C-4D8C-A4AA-62BB60E75B22" loading="lazy"></figure>
 <p>经过查证是下面代码导致的。</p>
 <pre><code class="language-swift">self.attributedTitle = mutableAttributeString
 </code></pre>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-a1e06c7499d00968.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="FD25269A-1E28-4AE6-A6D1-59BE41C72062"></p>
+<figure data-type="image" tabindex="39"><img src="http://upload-images.jianshu.io/upload_images/545662-a1e06c7499d00968.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="FD25269A-1E28-4AE6-A6D1-59BE41C72062" loading="lazy"></figure>
 <p>这个是在 <a href="https://stackoverflow.com/questions/7514157/nsbutton-setalignment-does-not-work">NSButton setAlignment不起作用</a>搜到的解释。意思是我们用 <code>NSAttributedString</code>之前设置对齐方式已经失效了。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-6212343f3c7b8292.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="0BF19AD0-F5EC-4B8E-A6D7-057AD5F7D83B"></p>
+<figure data-type="image" tabindex="40"><img src="http://upload-images.jianshu.io/upload_images/545662-6212343f3c7b8292.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="0BF19AD0-F5EC-4B8E-A6D7-057AD5F7D83B" loading="lazy"></figure>
 <p>我们在 <code>NSMutableAttributedString</code>也看到了说明。我们需要采用 <code>NSMutableParagraphStyle</code>进行设置字体对齐方式了。</p>
 <h3 id="关于-nsmutableparagraphstyle">关于 <code>NSMutableParagraphStyle</code></h3>
 <pre><code class="language-swift">let style = NSMutableParagraphStyle()
@@ -770,7 +618,7 @@ let mutableAttributeString = NSMutableAttributedString(string: self.title, attri
 <p>⚠️ 我们设置字体的颜色也需要在 <code>dict</code>进行富文本设置。</p>
 <p><code>NSFontAttributeName</code>设置字体大小。</p>
 </blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-b06951aa46db03c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="63D1CFAC-56B9-4C9E-9290-2ED27F4D7496"></p>
+<figure data-type="image" tabindex="41"><img src="http://upload-images.jianshu.io/upload_images/545662-b06951aa46db03c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="63D1CFAC-56B9-4C9E-9290-2ED27F4D7496" loading="lazy"></figure>
 <p>我们 <code>Header</code>的框架大体已经做出来了。但是还需要进一步的封装一下。</p>
 <ul>
 <li><code>文章</code>这两个字可以自定义。</li>
@@ -808,11 +656,11 @@ let mutableAttributeString = NSMutableAttributedString(string: self.title, attri
 </code></pre>
 <p>我们新建一个类 <code>PostsView</code>用户展示 <code>文章列表界面</code>。</p>
 <p>我们在 <code>PostsView</code>新增一个 <code>BaseListView</code>布局如下。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-d187ee3cdd86aaab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="DEC6484F-944D-4D00-B81E-B9A624D8A0A4"></p>
+<figure data-type="image" tabindex="42"><img src="http://upload-images.jianshu.io/upload_images/545662-d187ee3cdd86aaab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="DEC6484F-944D-4D00-B81E-B9A624D8A0A4" loading="lazy"></figure>
 <p>为了让 <code>ViewController</code>在右侧可以显示正确的界面，我们在 <code>ViewController</code>的右侧新增一个 <code>NSView</code>作为父试图，布局如下。</p>
 <pre><code class="language-swift">@IBOutlet weak var rightContentView: NSView!
 </code></pre>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-0d28b40fdeb8d529.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="37E8D7A5-DA7D-4A92-86EA-E3C39AB36E8A"></p>
+<figure data-type="image" tabindex="43"><img src="http://upload-images.jianshu.io/upload_images/545662-0d28b40fdeb8d529.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="37E8D7A5-DA7D-4A92-86EA-E3C39AB36E8A" loading="lazy"></figure>
 <p>我们新建一个数组存放我们右侧页面。</p>
 <pre><code class="language-swift">var views:[NSView] = []
 </code></pre>
@@ -858,7 +706,7 @@ let mutableAttributeString = NSMutableAttributedString(string: self.title, attri
 <p>我们在 <code>viewDidLoad</code>方法里面注册我们的类。</p>
 <pre><code class="language-swift">self.addViews(viewType: PostsView.self)
 </code></pre>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-a810e4feae784a6c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5881C5F2-BE46-442E-8EAE-F27E9C0467FC"></p>
+<figure data-type="image" tabindex="44"><img src="http://upload-images.jianshu.io/upload_images/545662-a810e4feae784a6c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5881C5F2-BE46-442E-8EAE-F27E9C0467FC" loading="lazy"></figure>
 <p>我们发现我们并没有出现我们的文章页面。</p>
 <p>因为我们初始化的时候，我们回调的属性还没有初始化，索引我们要在属性 <code>set</code>方法进行一次回调。</p>
 <pre><code class="language-swift">var selectMenuCompletionHandle:SideMenuViewSelectMenuIndexCompletionHandle? {
@@ -885,7 +733,7 @@ let mutableAttributeString = NSMutableAttributedString(string: self.title, attri
 </code></pre>
 <pre><code class="language-swift">self.changeContentView(index: self.sideMenuIndex)
 </code></pre>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-8f73a13fec6e0225.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="B2E036CF-433D-42AE-8D63-91ACC6527355"></p>
+<figure data-type="image" tabindex="45"><img src="http://upload-images.jianshu.io/upload_images/545662-8f73a13fec6e0225.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="B2E036CF-433D-42AE-8D63-91ACC6527355" loading="lazy"></figure>
 <p>貌似只是文章显示出来了，我们的按钮和搜索框并没有出现。</p>
 <p>原来是我们并没有设置右侧 <code>Header</code>的样式，我们在 <code>PostsView</code>声明一下变量。</p>
 <pre><code class="language-swift">@IBOutlet weak var listView: BaseListView! {
@@ -894,92 +742,498 @@ let mutableAttributeString = NSMutableAttributedString(string: self.title, attri
     }
 }
 </code></pre>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-49d257b051b29745.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="B4496E6F-C9BD-469F-B888-BCB02B182993"></p>
+<figure data-type="image" tabindex="46"><img src="http://upload-images.jianshu.io/upload_images/545662-49d257b051b29745.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="B4496E6F-C9BD-469F-B888-BCB02B182993" loading="lazy"></figure>
 <p>此时我们右侧的界面已经出现了。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/545662-009b65ed3ece524e.gif?imageMogr2/auto-orient/strip" alt="12"></p>
+<figure data-type="image" tabindex="47"><img src="http://upload-images.jianshu.io/upload_images/545662-009b65ed3ece524e.gif?imageMogr2/auto-orient/strip" alt="12" loading="lazy"></figure>
 <p>我们的界面最小宽度有些不够，我们设置最小为 <code>900x600</code>。</p>
 <p>第二部教程到此结束。</p>
- </p>
-                      </div>
-                  </div>
 
-                  <div class="row">
-                      <div class="col-md-12 animate-box">
-                          
-                              <div class="next-post">
-                                  <div class="next">下一篇</div>
-                                  <a href="https://joserccblog.github.io/post/2017-11-25-object-c中的黑魔法">
-                                      <h3 class="post-title">
-                                          Object-C中的黑魔法
-                                      </h3>
-                                  </a>
-                              </div>
-                          
-                      </div>
-                  </div>
+                </div>
+                <div class="clear"></div>
+              </section>
+            </article>
+            <div class="clear"></div>
 
-                  <div class="row">
-                      <div class="col-md-12 animate-box">
-                          
-                              
+            <section class="related section">
+              
+              <article class="prev grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-18.png');"></div>
+                 <a href="https://joserccblog.github.io/post/2017-11-25-jekyll-admin-mac-列表" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2017-11-25">2017-11-25</time>
+                  <h4 class="title white no-margin">Jekyll-Admin-Mac-列表</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://joserccblog.github.io/media/images/left-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+              
+              <article class="next grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2017-11-25-objc_magic.png');"></div>
+                 <a href="https://joserccblog.github.io/post/2017-11-25-object-c中的黑魔法" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2017-11-25">2017-11-25</time>
+                  <h4 class="title white no-margin">Object-C中的黑魔法</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://joserccblog.github.io/media/images/right-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
 
-                              
-                                  <div id="disqus_thread"></div>
-                              
-                          
-                      </div>
-                  </div>
-              </div>
+                <div class="clear"></div>
+            </section>
 
-          </article>
-      </div>
-  </div>
+              <div class="clear"></div>
 
-    
-<footer id="fh5co-footer">
-  <p>Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></p>
-</footer>
+              <div id="comments" class="bg-white hosted ">
 
+              
+                
+                
+                  <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
 
-    <!-- jQuery -->
-<script src="https://joserccblog.github.io/media/scripts/_vendors/jquery.min.js"></script>
-<!-- jQuery Easing -->
-<script src="https://joserccblog.github.io/media/scripts/_vendors/jquery.easing.1.3.js"></script>
-<!-- Bootstrap -->
-<script src="https://joserccblog.github.io/media/scripts/_vendors/bootstrap.min.js"></script>
-<!-- Waypoints -->
-<script src="https://joserccblog.github.io/media/scripts/_vendors/jquery.waypoints.min.js"></script>
-<!-- Main JS -->
-<script src="https://joserccblog.github.io/media/scripts/_vendors/main.js"></script>
-<!-- Md5 Min JS -->
-<script src="https://joserccblog.github.io/media/scripts/_vendors/md5.min.js"></script>
+<div id="disqus_thread"></div>
 
-<script type="application/javascript">
-    hljs.initHighlightingOnLoad();
+<script>
+
+var options = {
+  shortname: 'josercc',
+  apikey: 'DBJHHPsqZBT5EUYFyQmorAozkwxTDoySOnd4bmdt9G29YFySUFhFE6SLZrSCHee4',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
 </script>
 
+                
+              
+                <div class="clear"></div>
+              </div>
 
+              <div class="clear"></div>
+            </div>
+          </div>
+      </main>
 
-    
+          <footer id="footer" class="grid-container">
+        <div class="widgets row gradient-effect">
+            <div class="default-sidebar border-effect">
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_epcl_posts_thumbs underline-effect">
+                  <h4 class="widget-title title white bordered">最新文章</h4>
+                  
+                  
+                  <article class="item post-0 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://joserccblog.github.io/post/apple-login-jie-ru-qian-yi-ci-shen-ru-yan-jiu" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display: block;background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2019-09-18-064137.jpg');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2019-09-18">2019-09-18</time>
+                      <h4 class="title usmall">
+                        <a href="https://joserccblog.github.io/post/apple-login-jie-ru-qian-yi-ci-shen-ru-yan-jiu">Apple Login接入前一次深入研究</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-1 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://joserccblog.github.io/post/ji-yu-xcode11-bian-yi-de-command-line-chu-lai-de-er-jin-zhi-framework-zai-di-ban-ben-bian-yi-bao-cuo-___isplatformversionatleast" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display: block;background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2019-09-16-070825.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2019-09-16">2019-09-16</time>
+                      <h4 class="title usmall">
+                        <a href="https://joserccblog.github.io/post/ji-yu-xcode11-bian-yi-de-command-line-chu-lai-de-er-jin-zhi-framework-zai-di-ban-ben-bian-yi-bao-cuo-___isplatformversionatleast">基于 Xcode11编译的 Command Line 出来的 二进制 Framework 在低版本编译报错___isPlatformVersionAtLeast</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-2 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://joserccblog.github.io/post/guan-yu-objective-c-ban-ben-de-swiftui-ku-de-zi-dong-sheng-cheng-bu-ju-de-yan-jiu-xin-de" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display: block;background-image: url('data:image/jpeg;base64,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');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2019-08-29">2019-08-29</time>
+                      <h4 class="title usmall">
+                        <a href="https://joserccblog.github.io/post/guan-yu-objective-c-ban-ben-de-swiftui-ku-de-zi-dong-sheng-cheng-bu-ju-de-yan-jiu-xin-de">关于Objective-C版本的SwiftUI库的自动生成布局的研究心得</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <div class="clear"></div>
+                </section>
+              </div>
 
-    
-        <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
-        <script>
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_tag_cloud underline-effect">
+                  <h4 class="widget-title title white bordered">标签云</h4>
+                  <div class="tagcloud">
+                    
+                      <a href="https://joserccblog.github.io/tag/swift" class="ctag ctag-0 ctag-swift" aria-label="">Swift</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/ios" class="ctag ctag-1 ctag-ios" aria-label="">iOS</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/framework" class="ctag ctag-2 ctag-framework" aria-label="">Framework</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/carthage" class="ctag ctag-3 ctag-carthage" aria-label="">Carthage</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/cocoapods" class="ctag ctag-4 ctag-cocoapods" aria-label="">Cocoapods</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/masonry" class="ctag ctag-5 ctag-masonry" aria-label="">Masonry</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/yue-shu-chong-tu" class="ctag ctag-6 ctag-yue-shu-chong-tu" aria-label="">约束冲突</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/uistackview" class="ctag ctag-7 ctag-uistackview" aria-label="">UIStackView</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/ios11" class="ctag ctag-8 ctag-ios11" aria-label="">iOS11</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/sheng-huo" class="ctag ctag-9 ctag-sheng-huo" aria-label="">生活</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/zhi-shi-dian" class="ctag ctag-10 ctag-zhi-shi-dian" aria-label="">知识点</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/testflight" class="ctag ctag-11 ctag-testflight" aria-label="">TestFlight</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/guo-ji-hua" class="ctag ctag-12 ctag-guo-ji-hua" aria-label="">国际化</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/xcode9" class="ctag ctag-13 ctag-xcode9" aria-label="">Xcode9</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/zi-dong-hua" class="ctag ctag-14 ctag-zi-dong-hua" aria-label="">自动化</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/hei-mo-fa" class="ctag ctag-15 ctag-hei-mo-fa" aria-label="">黑魔法</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/ota" class="ctag ctag-16 ctag-ota" aria-label="">OTA</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/xctest" class="ctag ctag-17 ctag-xctest" aria-label="">XCTest</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/appstore" class="ctag ctag-18 ctag-appstore" aria-label="">AppStore</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/mac" class="ctag ctag-19 ctag-mac" aria-label="">Mac</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/gan-xiang" class="ctag ctag-20 ctag-gan-xiang" aria-label="">感想</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/xcode" class="ctag ctag-21 ctag-xcode" aria-label="">Xcode</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/svn" class="ctag ctag-22 ctag-svn" aria-label="">SVN</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/xiang-fa" class="ctag ctag-23 ctag-xiang-fa" aria-label="">想法</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/di-san-fang-ku" class="ctag ctag-24 ctag-di-san-fang-ku" aria-label="">第三方库</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/mo-kuai-hua" class="ctag ctag-25 ctag-mo-kuai-hua" aria-label="">模块化</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/c" class="ctag ctag-26 ctag-c" aria-label="">C</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/autolayout" class="ctag ctag-27 ctag-autolayout" aria-label="">AutoLayout</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/xib" class="ctag ctag-28 ctag-xib" aria-label="">Xib</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/clang-format" class="ctag ctag-29 ctag-clang-format" aria-label="">Clang Format</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/objetive-c" class="ctag ctag-30 ctag-objetive-c" aria-label="">Objetive-C</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/zhou-bao" class="ctag ctag-31 ctag-zhou-bao" aria-label="">周报</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/jekyll" class="ctag ctag-32 ctag-jekyll" aria-label="">Jekyll</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/server" class="ctag ctag-33 ctag-server" aria-label="">Server</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/uibarbuttonitem" class="ctag ctag-34 ctag-uibarbuttonitem" aria-label="">UIBarButtonItem</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/uitextfiled" class="ctag ctag-35 ctag-uitextfiled" aria-label="">UITextFiled</a>
+                    
+                  </div>
+                  <div class="clear"></div>
+                </section>
+              </div>
 
-            var options = {
-                shortname: 'josercc',
-                apikey: 'DBJHHPsqZBT5EUYFyQmorAozkwxTDoySOnd4bmdt9G29YFySUFhFE6SLZrSCHee4',
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="epcl_about-2" class="widget widget_epcl_about underline-effect">
+                  <h4 class="widget-title title white bordered">关于我</h4>
+                  <div class="avatar">
+                    <a href="" class="translate-effect thumb"><span class="fullimage cover" style="background-image: url(https://joserccblog.github.io/images/avatar.png);"></span></a>
+                  </div>
+                  <div class="info">
+                    <h4 class="title small author-name gradient-effect no-margin"><a href="">君赏博客</a></h4>
+                    <p class="founder">2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率</p>
+                    <div class="social">
+                      
+                          
+                            <a href="https://github.com/josercc" class="translate-effect" target="_blank"><i class="fa fa-github"></i></a>
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                    </div> 
+                  </div>
+                  <div class="clear"></div>
+                  </section>
+              </div>
+
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="logo">
+          <a href="https://joserccblog.github.io"><img class="" src="https://joserccblog.github.io/media/images/logo.png" alt=""></a>
+        </div>
+        <p class="published border-effect">
+          ©2019 共 94 篇文章
+          <br/>
+          Theme <a href="https://gridea.dev/" target="_blank">「breek」</a> Powered by <a href="https://gridea.dev/" target="_blank">「Gridea」</a>
+        </p>
+        
+        <a href="javascript:void(0)" id="back-to-top" class="epcl-button dark" style="display:none">
+          <i class="fa fa-arrow"></i>
+        </a>
+    </footer>
+    <div class="clear"></div>
+
+      <script type="text/javascript">
+       jQuery(document).ready(function($){
+          $("photos img").each(function(){
+              var _a = $("<a></a>").attr("href",this.src);
+              $(this).wrap("<div class='photo'></div>").wrap(_a);
+          })
+          $("figure img").each(function(){
+              var _b = $("<a></a>").attr("href",this.src);
+              $(this).wrap(_b);
+          })
+          isImgLoad(function(){
+            var photos = document.querySelector('photos');
+            if(photos){
+              waterfall(photos);
             }
-            if ('') {
-                options.api = ''
+            $(window).resize(function() {
+             if(photos){
+                  waterfall(photos);
             }
-            var dsqjs = new DisqusJS(options)
+          });
+        });
+        var t_img;
+        var isLoad = true;
+        function isImgLoad(callback){
+          $('photos img').each(function(){
+            if(this.height === 0){
+              isLoad = false;
+              return false;
+            }
+          });
+          if(isLoad){
+            clearTimeout(t_img);
+            callback();
+          }else{
+            isLoad = true;
+            t_img = setTimeout(function(){
+              isImgLoad(callback);
+            },500);
+          }
+        }
+      });
+      </script>
 
-        </script>
-    
-
-
-
-
+    </div>
+    <!-- end: #wrapper -->
   </body>
 </html>

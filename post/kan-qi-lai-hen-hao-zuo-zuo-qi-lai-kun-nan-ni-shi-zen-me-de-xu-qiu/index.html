@@ -1,255 +1,107 @@
-<!DOCTYPE html>
 <html>
   <head>
-      
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-<!-- 百度验证 -->
-<meta name="baidu-site-verification" content="1IkquSGR9Z"/>
-
-<title>君赏博客</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率"/>
-<meta name="keywords" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率"/>
-
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>看起来很好做，做起来困难，你是怎么的需求！ | 君赏博客</title>
+<meta name="description" content="2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率" />
 <link rel="shortcut icon" href="https://joserccblog.github.io/favicon.ico">
-
 <link rel="stylesheet" href="https://joserccblog.github.io/styles/main.css">
 
-<!-- Modernizr JS -->
-<script src="https://joserccblog.github.io/media/scripts/_vendors/modernizr-2.6.2.min.js"></script>
-<!-- FOR IE9 below -->
-<!--[if lt IE 9]>
-<scripts src="https://joserccblog.github.io/media/scripts/_vendors/respond.min.js"></scripts>
-<![endif]-->
-
-<!-- Comment -->
-
+<script src="https://joserccblog.github.io/media/js/jquery.min.js"></script>
+<script src="https://joserccblog.github.io/media/js/masonry.pkgd.min.js"></script>
+<script src="https://joserccblog.github.io/media/js/aos.js"></script>
+<script src="https://joserccblog.github.io/media/js/pace.min.js"></script>
+<script src="https://joserccblog.github.io/media/js/view-image.min.js"></script>
+<script src="https://joserccblog.github.io/media/js/functions.js"></script>
+    <script src="https://joserccblog.github.io/media/js/waterfall.min.js"></script>
+    <script src="https://joserccblog.github.io/media/js/prism.min.js"></script>
     
-
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
     
-        <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
-    
-
-
-<script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
-
-<link crossorigin="anonymous" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" href="https://lib.baomitu.com/font-awesome/5.8.1/css/all.min.css" rel="stylesheet">
-
   </head>
   <body>
-  
-<div id="fh5co-offcanvas">
-    <a href="#!" class="fh5co-close-offcanvas js-fh5co-close-offcanvas">
-        <span><i class="icon-cross3"></i> <span>Close</span></span>
-    </a>
-    <div class="fh5co-bio">
-        <figure>
-            <img src="https://joserccblog.github.io/media/images/avatar.png" alt="君赏博客" class="img-responsive">
-        </figure>
-        <h3 class="heading">ABOUT ME</h3>
-        <h2>君赏博客</h2>
-        <p>2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率</p>
-        <ul class="fh5co-social">
-            
-                <li>
-                    
-                        <a href="https://github.com/josercc" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    
-                </li>
-            
-                <li>
-                    
-                </li>
-            
-                <li>
-                    
-                        <a href="https://weibo.com/kuaiqiantong" target="_blank">
-                            <i class="fab fa-weibo"></i>
-                        </a>
-                    
-                </li>
-            
-                <li>
-                    
-                </li>
-            
-                <li>
-                    
-                </li>
-            
-        </ul>
-    </div>
-
-    <div class="fh5co-menu">
-        <div class="fh5co-box">
-            <h3 class="heading">搜索</h3>
-            <form action="#">
-                <div class="form-group">
-                    <input type="text" id="bdcsMain" class="form-control" placeholder="输入关键字">
-<!--                    <button type="submit" class="btn btn-sm btn-warning" style="margin-top: 6px; width: 100%">点击搜索</button>-->
-                </div>
-            </form>
+            <header id="header" class="grid-container">
+        <!-- start: .menu-wrapper -->
+        <div class="menu-mobile"> 
+          <i class="fa fa-reorder"></i>
         </div>
-        <div class="fh5co-box">
-            <h3 class="heading">标签</h3>
-            <ul>
-                
-                    <li><a href="https://joserccblog.github.io/tag/swift">Swift</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/ios">iOS</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/framework">Framework</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/carthage">Carthage</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/cocoapods">Cocoapods</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/masonry">Masonry</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/yue-shu-chong-tu">约束冲突</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/uistackview">UIStackView</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/ios11">iOS11</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/sheng-huo">生活</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/zhi-shi-dian">知识点</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/testflight">TestFlight</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/guo-ji-hua">国际化</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/xcode9">Xcode9</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/zi-dong-hua">自动化</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/hei-mo-fa">黑魔法</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/ota">OTA</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/xctest">XCTest</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/appstore">AppStore</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/mac">Mac</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/gan-xiang">感想</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/xcode">Xcode</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/svn">SVN</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/xiang-fa">想法</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/di-san-fang-ku">第三方库</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/mo-kuai-hua">模块化</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/c">C</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/autolayout">AutoLayout</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/xib">Xib</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/clang-format">Clang Format</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/objetive-c">Objetive-C</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/zhou-bao">周报</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/jekyll">Jekyll</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/server">Server</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/uibarbuttonitem">UIBarButtonItem</a></li>
-                
-                    <li><a href="https://joserccblog.github.io/tag/uitextfiled">UITextFiled</a></li>
-                
-            </ul>
-        </div>
-    </div>
-</div>
-
-<header id="fh5co-header">
-    <div class="container-fluid">
-        <div class="row">
-            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-            <ul class="fh5co-social">
-                
-                    <li>
-                        <a href="/"
-                         >
-                            首页
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/archives"
-                         >
-                            归档
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/tags"
-                         >
-                            标签
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/post/about"
-                         >
-                            关于
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/post/contact/"
-                         >
-                            联系作者
-                        </a>
-                    </li>
-                
-            </ul>
-            <div class="col-lg-12 col-md-12 text-center">
-                <h1 id="fh5co-logo">
-                    <a href="https://joserccblog.github.io">君赏博客 </a>
-                </h1>
+        <div class="menu-wrapper">
+          <div class="">
+            <div class="logo">
+              <a href="https://joserccblog.github.io"><img src="https://joserccblog.github.io/media/images/logoo.png" alt=""></a>
             </div>
+            <!-- start: .main-nav -->
+
+            <nav class="main-nav grid-container grid-parent">
+              <ul id="menu-header" class="menu gradient-effect">
+                
+                  <li class=""><a href="https://joserccblog.github.io" class="menu">首页</a></li>
+                
+                
+                  <li class="" >
+                    <a href="/archives" class="menu">
+                      归档
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/tags" class="menu">
+                      标签
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/post/about" class="menu">
+                      关于
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/post/contact/" class="menu">
+                      联系作者
+                    </a>
+                  </li>
+                
+              </ul>
+            </nav>
+            <!-- end: .main-nav -->
+            <div class="clear"></div>
+            <div class="border hide-on-tablet hide-on-mobile"></div>
+          </div>    
+          <div class="clear"></div>
         </div>
-    </div>
-</header>
+        <!-- end: .menu-wrapper -->
+        <div class="clear"></div>
+      </header>
 
+      <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
 
-<!--  <a href="#" class="fh5co-post-prev"><span>👈 Prev</span></a>-->
-<!--  <a href="#" class="fh5co-post-next"><span>Next 👉</span></a>-->
+        <div class="center content">
+          <div class="featured-image cover" style="background-image: url('https://diycode.b0.upaiyun.com/photo/2018/de69bdb20fdf8484922d64eaad7bb26b.png');">
+            <div class="meta top"> 
+              <time class="meta-info" style="float:left;" datetime="2019-04-19"><i class="fa fa-calendar"></i><span class="lately">9 个月前</span></time>
+               
+               
+               <span id="/post/kan-qi-lai-hen-hao-zuo-zuo-qi-lai-kun-nan-ni-shi-zen-me-de-xu-qiu/" class="leancloud_visitors views-counter meta-info">
+                <i class="fa fa-leancloud"></i><span class="leancloud-visitors-count" style="vertical-align: middle;">0</span>
+               </span>
+               
+            </div>
+            <div class="info">
+              <div class="tags ">
+                
+              </div>
+              <h1 class="title ularge white bold">看起来很好做，做起来困难，你是怎么的需求！</h1>
+            </div>
+          </div>
+        </div>  
 
-  <div class="container-fluid">
-      <div class="row fh5co-post-entry single-entry">
-          <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
-              <figure class="animate-box">
-                  
-                      <img src="https://diycode.b0.upaiyun.com/photo/2018/de69bdb20fdf8484922d64eaad7bb26b.png" alt="看起来很好做，做起来困难，你是怎么的需求！" class="img-responsive">
-                  
-              </figure>
-              <span class="fh5co-meta animate-box">
-                  
-              </span>
-              <h2 class="fh5co-article-title animate-box">看起来很好做，做起来困难，你是怎么的需求！</h2>
-              <span class="fh5co-meta fh5co-date animate-box">2019-04-19</span>
-
-              <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
-                  <div class="row">
-                      <div class="col-md-12 animate-box post-content">
-                          <p> <p>[TOC]</p>
+        <div class="epcl-page-wrapper">
+          <div class="left-content grid-70 np-mobile">
+            <article class="main-article post">
+              <section class="post-content">
+                <div class="text">
+                  <p>[TOC]</p>
 <blockquote>
 <ul>
 <li>怎么选取一个好的框架做界面更加快速</li>
@@ -266,7 +118,7 @@
 <p>很久没有写文章了，可能是因为太忙，还是不知道怎么写？还是有点懒了。</p>
 <p>一直不知道要写一篇什么样的文章，才能给大家一份交付，不能简单的写一篇就去骗点击。</p>
 <p>最近做了一个会员中心体系的需求，觉得里面有一些坑，也涉及到很多的知识点，觉得是有必要的写一下了。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-011730.jpg" alt=""></p>
+<figure data-type="image" tabindex="1"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-011730.jpg" alt="" loading="lazy"></figure>
 <p>这个界面看上去简约，第一眼看上去又是新增的界面，做这个应该很容易的。但是真正做起来的时候，小细节还是很多的，甚至因为小细节还重新改动过几次。</p>
 <h2 id="关于-injection">关于 Injection</h2>
 <p>这个界面开始做之前，如果你没有还没有听说过 <code>Injection</code>，或者平时还没有使用 <code>Injection</code> 进行过开发，甚至说平时遇到问题就没再用的话，看这篇文章算是对的。</p>
@@ -422,9 +274,9 @@ Bundle(path: &quot;/Applications/InjectionIII.app/Contents/Resources/macOSInject
 }
 </code></pre>
 <p>是不是这个页面 <code>UICollectionView</code> 的代理代码更加简洁了，不是我吹，现在我们工程项目很多实用我的框架。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-035628.png" alt="image-20180823115627496"></p>
+<figure data-type="image" tabindex="2"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-035628.png" alt="image-20180823115627496" loading="lazy"></figure>
 <p>我们工程有23处<code>UITableView</code> 用到了我的代码托管框架。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-053816.png" alt="image-20180823133816054"></p>
+<figure data-type="image" tabindex="3"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-053816.png" alt="image-20180823133816054" loading="lazy"></figure>
 <p>我们工程有8处 <code>UICollectionView</code> 用到了我的代码托管框架。</p>
 <p>因为这个框架让之前的代码更简单和易于维护，这个依赖的数量以后只会只多不减。</p>
 <h3 id="项目的框架">项目的框架</h3>
@@ -435,10 +287,10 @@ Bundle(path: &quot;/Applications/InjectionIII.app/Contents/Resources/macOSInject
 <p>于是我就把一些功能规定放在特意的地方，一些文件放在特定的位置，于是也有了自己的一套框架，下面的链接讲述了这个框架的详细。</p>
 <p><a href="https://www.jianshu.com/p/351ac4ce5a59">模块化架构你为什么这么火，让我如此亲睐你？</a></p>
 <p>看了上面链接的文章，应该已经知道了下面会员中心分组文件所能代表的功能了。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-055053.png" alt="image-20180823135053435"></p>
+<figure data-type="image" tabindex="4"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-055053.png" alt="image-20180823135053435" loading="lazy"></figure>
 <p>这自然是我们写完这个功能才有的这么多的分组，但是开始我们一定会先从 <code>Controller</code> 开始，因为这个是进入这个界面的引流的入口。</p>
 <h3 id="导航条">导航条</h3>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-055340.png" alt="image-20180823135340122"></p>
+<figure data-type="image" tabindex="5"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-055340.png" alt="image-20180823135340122" loading="lazy"></figure>
 <p>我们先从最上面设置导航条开始，我们的返回按钮的样式完全可以在项目初始化设置好即可。</p>
 <p>这是我们的一个新界面，我们只用关心我们显示的标题 <code>VIP Center</code>和右侧显示 <code>Rule</code>的按钮。</p>
 <h4 id="设置导航标题">设置导航标题</h4>
@@ -477,23 +329,23 @@ Bundle(path: &quot;/Applications/InjectionIII.app/Contents/Resources/macOSInject
 <p>我们可以在开始时候设置 <code>Rule</code>按钮隐藏，当我们获取成功数据之后我们再来显示。</p>
 <h2 id="界面的布局">界面的布局</h2>
 <p>我们选取的布局如下</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-074710.jpg" alt=""></p>
+<figure data-type="image" tabindex="6"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-074710.jpg" alt="" loading="lazy"></figure>
 <p>我们把推荐商品上面内容设置为 <code>Section</code> 里面的 <code>Header View</code>。</p>
 <p>我们可以把 UICollectionView 的代码设置如下。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-075147.png" alt="image-20180823155147047"></p>
+<figure data-type="image" tabindex="7"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-075147.png" alt="image-20180823155147047" loading="lazy"></figure>
 <p>对于下面推荐商品的 <code>Cell</code> 的布局和设置，这里不多做太多解释，因为我觉得简单没有必要说。</p>
 <p>现在我们说一下头部。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-082325.jpg" alt=""></p>
+<figure data-type="image" tabindex="8"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-082325.jpg" alt="" loading="lazy"></figure>
 <p>因为头部是一个整体，我们可以把头部塞进去一个 <code>UITableView</code>，<code>UITableView</code> 的布局如上。</p>
 <p>我们总共分为6种不同的 Cell,如果按照判断返回，我们的代码一定是很难维护的。这就引出了 <code>ZHTableViewDataSource</code> 管理器。</p>
 <p>我们布局代码如下。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-092553.jpg" alt=""></p>
+<figure data-type="image" tabindex="9"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-092553.jpg" alt="" loading="lazy"></figure>
 <ul>
 <li>
 <p>会员信息展示</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-092926.jpg" alt=""></p>
+<figure data-type="image" tabindex="10"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-092926.jpg" alt="" loading="lazy"></figure>
 <p>对于会员信息界面有点复杂，我们可以设计如下。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-094334.jpg" alt=""></p>
+<figure data-type="image" tabindex="11"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-23-094334.jpg" alt="" loading="lazy"></figure>
 </li>
 </ul>
 <p><code>🧡 黄色</code>区域我们设置为 <code>UIImageView</code>，因为设计到贝塞尔曲线，甚至还有渐变。我们让对应设计给我们切一张图即可。</p>
@@ -503,9 +355,9 @@ Bundle(path: &quot;/Applications/InjectionIII.app/Contents/Resources/macOSInject
 <ul>
 <li>
 <p>权益最右边需要不显示完全</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-100745.png" alt="image-20180824180745358"></p>
+<figure data-type="image" tabindex="12"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-100745.png" alt="image-20180824180745358" loading="lazy"></figure>
 <p>权益的 <code>UICollectionView</code> 布局如下。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-005927.jpg" alt=""></p>
+<figure data-type="image" tabindex="13"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-005927.jpg" alt="" loading="lazy"></figure>
 <p>因为权益显示的最多是<code>8</code>个，按照设计图设计一个元素<code>80x80</code>的大小计算。是显示不完全的。</p>
 <p>如果想要用户知道右侧还有多余的元素，我们要设置最后一个显示的元素不能完全显示出来。</p>
 <p>为了让左右 元素间距 和元素大小不做太多的改动，我们必须新建一个例子，在 <code>StroryBord</code>或者 <code>Xib</code> 里面新建一个 <code>UICollectionView</code>，用于我们在对应的屏幕宽度调试出最合适的大小。</p>
@@ -516,7 +368,7 @@ Bundle(path: &quot;/Applications/InjectionIII.app/Contents/Resources/macOSInject
 <p>如果对于上面我们要根据屏幕的宽度判断返回不同的值大小，绝对是一种很难维护的代码。</p>
 <p>怎么封装一个工具类，才能更好的扩展使用呢？</p>
 <p>我们假设我们获取对应尺寸的伪代码如下</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-090819.png" alt="image-20180824170819150"></p>
+<figure data-type="image" tabindex="14"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-090819.png" alt="image-20180824170819150" loading="lazy"></figure>
 <p><code>SOA_SCREEN_WIDTH</code>是指向获取屏幕宽度的宏，有人看到伪代码可能会问为什么不直接返回 <code>CGFloat</code> 类型呢。</p>
 <p>这个地方我也考虑过，为了做兼容性。对于根据屏幕尺寸返回对应的不止是 <code>CGFloat</code> 值可能是一些现实文本。</p>
 <p>为了兼容其他类型的情况，我们返回 <code>id</code> 类型。</p>
@@ -525,24 +377,24 @@ Bundle(path: &quot;/Applications/InjectionIII.app/Contents/Resources/macOSInject
 <p>但是，这个功能对于我来说，我是知道怎么使用的。但是对于不清楚我写的人来说，设置之后，想要对应的类型，获取错误岂不是造成崩溃。</p>
 <p>我们都知道对于 <code>NSArray</code> 可以设置泛型，设置和获取的时候我们就可以知道数组具体存的值什么类型了。</p>
 <p>设置泛型其实很简单，我们只需要在定义类的地方加一个泛型。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-093036.png" alt="image-20180824173035530"></p>
+<figure data-type="image" tabindex="15"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-093036.png" alt="image-20180824173035530" loading="lazy"></figure>
 <p>我们也可以给泛型指定特定的类型，具体可以参考一下网上资料。</p>
 <p><a href="https://www.jianshu.com/p/e903b67468b8">iOS 强大的泛型</a></p>
 <h4 id="链式语法">链式语法</h4>
 <p>写到这里，大家可能在想这个类已经封装好了，已经封装很完美了。但是对于我来说，这还不算完美，完美是用起来十分的方便。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-093851.png" alt="image-20180824173850533"></p>
+<figure data-type="image" tabindex="16"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-093851.png" alt="image-20180824173850533" loading="lazy"></figure>
 <p>如果是这样的让其他人使用，虽然也是可以的，但是感觉代码有点臃肿呀。有没有一种代码可以连续的写下去，答案是有的。</p>
 <p>我们可能在日常开发写布局代码时候，使用 <code>Masonry</code> 库的时候。写布局代码可以写成一行是不是很爽。</p>
 <p>我们假设把设置值的写成链式语法的，岂不是扩展更好，代码更加的简洁。我们可以新增三个方法只是链式语法，代码如下。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-095123.png" alt="image-20180824175122680"></p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-095140.png" alt="image-20180824175140263"></p>
+<figure data-type="image" tabindex="17"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-095123.png" alt="image-20180824175122680" loading="lazy"></figure>
+<figure data-type="image" tabindex="18"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-095140.png" alt="image-20180824175140263" loading="lazy"></figure>
 <p>这样我们上面的代码就可以优化成下面的样子。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-095457.png" alt="image-20180824175456487"></p>
+<figure data-type="image" tabindex="19"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-24-095457.png" alt="image-20180824175456487" loading="lazy"></figure>
 <h3 id="会员头部">会员头部</h3>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-024308.png" alt="image-20180827104308338"></p>
+<figure data-type="image" tabindex="20"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-024308.png" alt="image-20180827104308338" loading="lazy"></figure>
 <p>最复杂的界面应该是这个了，这个地方之前没有做好，出现了一些问题优化了很多地方。</p>
 <p>我们设置页面模板如下。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-030621.jpg" alt=""></p>
+<figure data-type="image" tabindex="21"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-030621.jpg" alt="" loading="lazy"></figure>
 <p>头像是固定在中心点位置的，我们设置在 <code>UICollectionView</code> 上面中心点对齐即可。</p>
 <p>头像下面是一段一段的等级对应表，每一段距离都是相等的，并且宽度把整个 <code>UICollectionView</code> 的宽度四等分了。</p>
 <h4 id="方案1-等级图标在最右侧">方案1: 等级图标在最右侧</h4>
@@ -573,31 +425,31 @@ Bundle(path: &quot;/Applications/InjectionIII.app/Contents/Resources/macOSInject
 <p>对于怎么下载和安装，还有一些精深的教程，这里就不多说了，具体可以看上面的官网的网址。</p>
 <p>下面说一下对于我们需要的进度条，我们究竟该怎么做出来。</p>
 <h4 id="新建一个-paintcode-画布">新建一个 PaintCode 画布</h4>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-033253.png" alt="image-20180827113252750"></p>
+<figure data-type="image" tabindex="22"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-033253.png" alt="image-20180827113252750" loading="lazy"></figure>
 <h4 id="设置画布名称和大小">设置画布名称和大小</h4>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-033740.png" alt="image-20180827113740110"></p>
+<figure data-type="image" tabindex="23"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-033740.png" alt="image-20180827113740110" loading="lazy"></figure>
 <p>因为我们需要绘制的代码，根本不知道调用的人需要多大的尺寸，一定不是我们默认的<code>240x120</code>。</p>
 <p>这个是没有关系的，这个会随着我们自定义 <code>UIView</code> 的画布大小进行绘制的。我们为了效果看出来好一些，我们设置成<code>100x4</code>。</p>
 <h4 id="设置缩放比例">设置缩放比例</h4>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-034105.png" alt="image-20180827114104578"></p>
+<figure data-type="image" tabindex="24"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-034105.png" alt="image-20180827114104578" loading="lazy"></figure>
 <p>此时我们显示大小很小，我们很难操作这个画板，我们可以通过上图所示的位置调整缩放的比例。</p>
 <h4 id="设置-frame">设置 Frame</h4>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-034232.png" alt="image-20180827114232778"></p>
+<figure data-type="image" tabindex="25"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-034232.png" alt="image-20180827114232778" loading="lazy"></figure>
 <p>为了能让我们在画板上面的元素进行自适应大小，我们新建一个 <code>Frame</code>。</p>
 <p>设置 <code>Frame</code>的大小如下。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-034353.png" alt="image-20180827114352475"></p>
+<figure data-type="image" tabindex="26"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-034353.png" alt="image-20180827114352475" loading="lazy"></figure>
 <h4 id="试图控件">试图控件</h4>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-034517.png" alt="image-20180827114517459"></p>
+<figure data-type="image" tabindex="27"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-034517.png" alt="image-20180827114517459" loading="lazy"></figure>
 <p>因为进度条需要一个两个颜色进行显示，我们可以新建两个试图控件。我们需要的长方形的试图，所以我们选择红线区域最左侧的一个。</p>
 <h5 id="backgroundview-底部试图">backgroundView 底部试图</h5>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-034821.png" alt="image-20180827114820492"></p>
+<figure data-type="image" tabindex="28"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-034821.png" alt="image-20180827114820492" loading="lazy"></figure>
 <h5 id="progressview">progressView</h5>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-034930.png" alt="image-20180827114930368"></p>
+<figure data-type="image" tabindex="29"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-034930.png" alt="image-20180827114930368" loading="lazy"></figure>
 <h4 id="设置布局约束">设置布局约束</h4>
 <p>从上图看出来我们新建的两个试图设置的固定位置大小为<code>(0,0,100,4)</code>，但是这个写死的绝对不行的，这个就用到了我们刚才新建的 <code>Frame</code>的控件了。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-035415.png" alt="image-20180827115415525"></p>
+<figure data-type="image" tabindex="30"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-035415.png" alt="image-20180827115415525" loading="lazy"></figure>
 <p>我们在刚才设置控件大小的时候可以能已经注意到左侧有一个区域，不知道是怎么回事对吧，我给大家讲解一下就全清楚了。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-054824.jpg" alt=""></p>
+<figure data-type="image" tabindex="31"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-054824.jpg" alt="" loading="lazy"></figure>
 <ul>
 <li><code>Top</code>：代表距离顶部最近试图的间距</li>
 <li><code>Leading</code>：代表距离左边最近试图的间距</li>
@@ -609,60 +461,60 @@ Bundle(path: &quot;/Applications/InjectionIII.app/Contents/Resources/macOSInject
 <li><code>—</code>：实线代表不跟随改变</li>
 </ul>
 <p>对于 <code>backgroundView</code> 我们希望随着外部设置大小自动进行约束改变，那么我们设置约束如下。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-060143.png" alt="image-20180827140143738"></p>
+<figure data-type="image" tabindex="32"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-060143.png" alt="image-20180827140143738" loading="lazy"></figure>
 <p>我们设置宽度和高度跟随约束自动改变。</p>
 <h4 id="变量">变量</h4>
 <p>我们目前需要让外部给我们一个进度值，我们获取进度试图的宽度。对于上面设置约束和写死大小已经不适应我们的需求了。</p>
 <p>我们可以使用变量这个功能，在下面的区域进行设置。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-090210.png" alt="image-20180827170209101"></p>
+<figure data-type="image" tabindex="33"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-090210.png" alt="image-20180827170209101" loading="lazy"></figure>
 <p>因为进度我们在设计的界面是无法获取的，只有使用者才知道当前的进度。我们就新建一个进度的变量，叫做 <code>progress</code>。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-090513.png" alt="image-20180827170420983"></p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-090634.png" alt="image-20180827170633296"></p>
+<figure data-type="image" tabindex="34"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-090513.png" alt="image-20180827170420983" loading="lazy"></figure>
+<figure data-type="image" tabindex="35"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-090634.png" alt="image-20180827170633296" loading="lazy"></figure>
 <p>此时我们已经在变量的列表里面了。</p>
 <p>因为我们是无法获取到刚才设置 <code>Frame</code> 的大小的，所以我们无法进行下一步的操作。我们可以新建一个 <code>Rect</code> 的变量，叫做 <code>Frame</code>，删除之前的约束 <code>Frame</code>。</p>
 <ul>
 <li>
 <p>删除 <code>Frame</code>约束</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-091206.png" alt="image-20180827171206452"></p>
+<figure data-type="image" tabindex="36"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-091206.png" alt="image-20180827171206452" loading="lazy"></figure>
 </li>
 <li>
 <p>新建 <code>Frame Rect</code> 类型的变量</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-091252.png" alt="image-20180827171251261"></p>
+<figure data-type="image" tabindex="37"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-091252.png" alt="image-20180827171251261" loading="lazy"></figure>
 <p>我们设置大小为<code>(0,0,100,4)</code>。</p>
 </li>
 </ul>
 <h4 id="连线">连线</h4>
 <p>我们在刚才已经新建了一个 <code>Frame</code> 的变量来表示我们父试图的 <code>Bounds</code>，但是怎么让 <code>backgroundView</code> 跟随者改变呢?</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-092546.png" alt="image-20180827172546318"></p>
+<figure data-type="image" tabindex="38"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-092546.png" alt="image-20180827172546318" loading="lazy"></figure>
 <p>我们可以按照上图所示，把这个变量通过连线的方式赋值给 <code>backgroundView</code> 的大小。</p>
 <h4 id="公式">公式</h4>
 <p>对于 <code>backgroundView</code> 我们已经设置好大小了，但是对于 <code>progressView</code>，我们该怎么知道大小呢?</p>
 <p>刚才我们已经新建了一个 <code>progress</code>的变量，值的范围是<code>0-1</code>之间。这个时候我们就用到公式了。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-092918.png" alt="image-20180827172917747"></p>
+<figure data-type="image" tabindex="39"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-092918.png" alt="image-20180827172917747" loading="lazy"></figure>
 <p>我们新建一个 <code>progressViewWidth</code> 的变量，公式设置如下。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-093026.png" alt="image-20180827173026282"></p>
+<figure data-type="image" tabindex="40"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-093026.png" alt="image-20180827173026282" loading="lazy"></figure>
 <p>我们新建一个 <code>height</code> 的变量，公式设置如下。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-093202.png" alt="image-20180827173201789"></p>
+<figure data-type="image" tabindex="41"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-093202.png" alt="image-20180827173201789" loading="lazy"></figure>
 <p>我们把刚才设置的 <code>progressViewWidth</code> 和 <code>height</code>变量分别给 <code>progressView</code>的宽度和高度进行赋值。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-093340.png" alt="image-20180827173340346"></p>
+<figure data-type="image" tabindex="42"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-093340.png" alt="image-20180827173340346" loading="lazy"></figure>
 <p>写到这里，我们突然想到。刚才 <code>backgroundView</code>的 <code>Frame</code> 是来源于外部设置的，假设外部设置的起始点不是<code>(0,0)</code>位置的话，那么我们绘制出来的 <code>UI</code> 岂不是成为了笑话。</p>
 <p>为了严谨，为了兼容性好一些，我们新建一个 <code>width</code>的变量，公式设置如下。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-093734.png" alt="image-20180827173734298"></p>
+<figure data-type="image" tabindex="43"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-093734.png" alt="image-20180827173734298" loading="lazy"></figure>
 <p>我们重新设置 <code>progressView</code>的 <code>Frame</code> 如下所示。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-093830.png" alt="image-20180827173830728"></p>
+<figure data-type="image" tabindex="44"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-093830.png" alt="image-20180827173830728" loading="lazy"></figure>
 <h4 id="颜色">颜色</h4>
 <p>对于我们的进度条，我们应该有颜色区分的呀，不然怎么看的出来。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-093928.png" alt="image-20180827173928349"></p>
+<figure data-type="image" tabindex="45"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-093928.png" alt="image-20180827173928349" loading="lazy"></figure>
 <p>我们可以新建两个简单的颜色，黑色和白色。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-094057.png" alt="image-20180827174056556"></p>
+<figure data-type="image" tabindex="46"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-094057.png" alt="image-20180827174056556" loading="lazy"></figure>
 <p>我们按照之前变量的方式给之前新建的 <code>backgroundView</code>设置填充颜色为 <code>backgroundViewColor</code>，给 <code>progressView</code>设置填充颜色为 <code>progressViewColor</code>。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-094234.png" alt="image-20180827174234343"></p>
+<figure data-type="image" tabindex="47"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-094234.png" alt="image-20180827174234343" loading="lazy"></figure>
 <h4 id="效果">效果</h4>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-2018-08-27+17_46_13.gif" alt=""></p>
+<figure data-type="image" tabindex="48"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-2018-08-27+17_46_13.gif" alt="" loading="lazy"></figure>
 <h4 id="修改为方法变量">修改为方法变量</h4>
 <p>为了增加兼容性，我们的两个颜色如果可以通过方法传递进来的话，那样做出来的效果就更好了。</p>
 <p>我们可以通过下面把刚才新建的颜色变量修改为方法的变量。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-094954.png" alt="image-20180827174953951"></p>
+<figure data-type="image" tabindex="49"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-094954.png" alt="image-20180827174953951" loading="lazy"></figure>
 <h4 id="使用">使用</h4>
 <p>使用的方法有两种</p>
 <ul>
@@ -671,16 +523,16 @@ Bundle(path: &quot;/Applications/InjectionIII.app/Contents/Resources/macOSInject
 <blockquote>
 <p>适合简单的试图</p>
 </blockquote>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-095203.png" alt="image-20180827175202653"></p>
+<figure data-type="image" tabindex="50"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-095203.png" alt="image-20180827175202653" loading="lazy"></figure>
 </li>
 <li>
 <p>导出生成类通过类方法在 <code>drawRect</code>方法里面进行调用。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-095304.png" alt="image-20180827175304273"></p>
+<figure data-type="image" tabindex="51"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-095304.png" alt="image-20180827175304273" loading="lazy"></figure>
 </li>
 </ul>
 <p>如果把进度条从 <code>UICollectionViewCell</code> 的左侧开始布局的话，那么就会有一部分会被遮挡。</p>
 <p>为了能让界面看起来好看和显示数据正常一些，我们可以设置布局从按钮的右侧开始布局，右侧按钮的左侧。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-102231.jpg" alt=""></p>
+<figure data-type="image" tabindex="52"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-102231.jpg" alt="" loading="lazy"></figure>
 <p>写到这里，我们怎么让最低等级和最高等级滑动到中心点的位置停下呢。我们根据 <code>UIScrollView</code> 的特性，那么最左侧和最右侧就必然有两个同等大小空白的 <code>UICollectionViewCell</code>。</p>
 <p>我们可以用两个同等大小的空白试图进行填充，也可以用两倍宽度大小试图进行填充。</p>
 <p>写到这里，我们界面其他元素已经不是很大的难度了，再说写了这么多，我也累了😄。</p>
@@ -692,82 +544,471 @@ Bundle(path: &quot;/Applications/InjectionIII.app/Contents/Resources/macOSInject
 <p>虽然有一些瑕疵，但是作为只有一百行的 <code>Shell</code> 文件做到这样功能已经不错了，对于模块化起来十分有用。</p>
 <p>并且对于本文做的会员中心模块，做完后期用这个工具可以很好的梳理中间的一些逻辑依赖。</p>
 <p>比如我命令行到我会员中心的目录。</p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-115215.png" alt="image-20180827193158538"></p>
-<p><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-115220.png" alt="image-20180827193228567"></p>
+<figure data-type="image" tabindex="53"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-115215.png" alt="image-20180827193158538" loading="lazy"></figure>
+<figure data-type="image" tabindex="54"><img src="http://ipicimage-1251019290.coscd.myqcloud.com/2018-08-27-115220.png" alt="image-20180827193228567" loading="lazy"></figure>
 <p>执行 <code>Shell</code> 命令就可以生成一张图片和后缀为<code>.dot</code> 的文件。如果图片看着很乱，可以用</p>
 <p><code>OmniGraffle</code> 软件打开<code>.dot</code> 文件，把一些不必要的依赖删掉，就可以很清晰依赖的逻辑。</p>
- </p>
-                      </div>
-                  </div>
 
-                  <div class="row">
-                      <div class="col-md-12 animate-box">
-                          
-                      </div>
-                  </div>
+                </div>
+                <div class="clear"></div>
+              </section>
+            </article>
+            <div class="clear"></div>
 
-                  <div class="row">
-                      <div class="col-md-12 animate-box">
-                          
-                              
+            <section class="related section">
+              
+              
 
-                              
-                                  <div id="disqus_thread"></div>
-                              
-                          
-                      </div>
-                  </div>
-              </div>
+                <div class="clear"></div>
+            </section>
 
-          </article>
-      </div>
-  </div>
+              <div class="clear"></div>
 
-    
-<footer id="fh5co-footer">
-  <p>Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></p>
-</footer>
+              <div id="comments" class="bg-white hosted ">
 
+              
+                
+                
+                  <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
 
-    <!-- jQuery -->
-<script src="https://joserccblog.github.io/media/scripts/_vendors/jquery.min.js"></script>
-<!-- jQuery Easing -->
-<script src="https://joserccblog.github.io/media/scripts/_vendors/jquery.easing.1.3.js"></script>
-<!-- Bootstrap -->
-<script src="https://joserccblog.github.io/media/scripts/_vendors/bootstrap.min.js"></script>
-<!-- Waypoints -->
-<script src="https://joserccblog.github.io/media/scripts/_vendors/jquery.waypoints.min.js"></script>
-<!-- Main JS -->
-<script src="https://joserccblog.github.io/media/scripts/_vendors/main.js"></script>
-<!-- Md5 Min JS -->
-<script src="https://joserccblog.github.io/media/scripts/_vendors/md5.min.js"></script>
+<div id="disqus_thread"></div>
 
-<script type="application/javascript">
-    hljs.initHighlightingOnLoad();
+<script>
+
+var options = {
+  shortname: 'josercc',
+  apikey: 'DBJHHPsqZBT5EUYFyQmorAozkwxTDoySOnd4bmdt9G29YFySUFhFE6SLZrSCHee4',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
 </script>
 
+                
+              
+                <div class="clear"></div>
+              </div>
 
+              <div class="clear"></div>
+            </div>
+          </div>
+      </main>
 
-    
+          <footer id="footer" class="grid-container">
+        <div class="widgets row gradient-effect">
+            <div class="default-sidebar border-effect">
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_epcl_posts_thumbs underline-effect">
+                  <h4 class="widget-title title white bordered">最新文章</h4>
+                  
+                  
+                  <article class="item post-0 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://joserccblog.github.io/post/apple-login-jie-ru-qian-yi-ci-shen-ru-yan-jiu" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display: block;background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2019-09-18-064137.jpg');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2019-09-18">2019-09-18</time>
+                      <h4 class="title usmall">
+                        <a href="https://joserccblog.github.io/post/apple-login-jie-ru-qian-yi-ci-shen-ru-yan-jiu">Apple Login接入前一次深入研究</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-1 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://joserccblog.github.io/post/ji-yu-xcode11-bian-yi-de-command-line-chu-lai-de-er-jin-zhi-framework-zai-di-ban-ben-bian-yi-bao-cuo-___isplatformversionatleast" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display: block;background-image: url('http://ipicimage-1251019290.coscd.myqcloud.com/2019-09-16-070825.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2019-09-16">2019-09-16</time>
+                      <h4 class="title usmall">
+                        <a href="https://joserccblog.github.io/post/ji-yu-xcode11-bian-yi-de-command-line-chu-lai-de-er-jin-zhi-framework-zai-di-ban-ben-bian-yi-bao-cuo-___isplatformversionatleast">基于 Xcode11编译的 Command Line 出来的 二进制 Framework 在低版本编译报错___isPlatformVersionAtLeast</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-2 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://joserccblog.github.io/post/guan-yu-objective-c-ban-ben-de-swiftui-ku-de-zi-dong-sheng-cheng-bu-ju-de-yan-jiu-xin-de" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display: block;background-image: url('data:image/jpeg;base64,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');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2019-08-29">2019-08-29</time>
+                      <h4 class="title usmall">
+                        <a href="https://joserccblog.github.io/post/guan-yu-objective-c-ban-ben-de-swiftui-ku-de-zi-dong-sheng-cheng-bu-ju-de-yan-jiu-xin-de">关于Objective-C版本的SwiftUI库的自动生成布局的研究心得</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <div class="clear"></div>
+                </section>
+              </div>
 
-    
-        <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
-        <script>
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_tag_cloud underline-effect">
+                  <h4 class="widget-title title white bordered">标签云</h4>
+                  <div class="tagcloud">
+                    
+                      <a href="https://joserccblog.github.io/tag/swift" class="ctag ctag-0 ctag-swift" aria-label="">Swift</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/ios" class="ctag ctag-1 ctag-ios" aria-label="">iOS</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/framework" class="ctag ctag-2 ctag-framework" aria-label="">Framework</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/carthage" class="ctag ctag-3 ctag-carthage" aria-label="">Carthage</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/cocoapods" class="ctag ctag-4 ctag-cocoapods" aria-label="">Cocoapods</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/masonry" class="ctag ctag-5 ctag-masonry" aria-label="">Masonry</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/yue-shu-chong-tu" class="ctag ctag-6 ctag-yue-shu-chong-tu" aria-label="">约束冲突</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/uistackview" class="ctag ctag-7 ctag-uistackview" aria-label="">UIStackView</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/ios11" class="ctag ctag-8 ctag-ios11" aria-label="">iOS11</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/sheng-huo" class="ctag ctag-9 ctag-sheng-huo" aria-label="">生活</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/zhi-shi-dian" class="ctag ctag-10 ctag-zhi-shi-dian" aria-label="">知识点</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/testflight" class="ctag ctag-11 ctag-testflight" aria-label="">TestFlight</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/guo-ji-hua" class="ctag ctag-12 ctag-guo-ji-hua" aria-label="">国际化</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/xcode9" class="ctag ctag-13 ctag-xcode9" aria-label="">Xcode9</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/zi-dong-hua" class="ctag ctag-14 ctag-zi-dong-hua" aria-label="">自动化</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/hei-mo-fa" class="ctag ctag-15 ctag-hei-mo-fa" aria-label="">黑魔法</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/ota" class="ctag ctag-16 ctag-ota" aria-label="">OTA</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/xctest" class="ctag ctag-17 ctag-xctest" aria-label="">XCTest</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/appstore" class="ctag ctag-18 ctag-appstore" aria-label="">AppStore</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/mac" class="ctag ctag-19 ctag-mac" aria-label="">Mac</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/gan-xiang" class="ctag ctag-20 ctag-gan-xiang" aria-label="">感想</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/xcode" class="ctag ctag-21 ctag-xcode" aria-label="">Xcode</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/svn" class="ctag ctag-22 ctag-svn" aria-label="">SVN</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/xiang-fa" class="ctag ctag-23 ctag-xiang-fa" aria-label="">想法</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/di-san-fang-ku" class="ctag ctag-24 ctag-di-san-fang-ku" aria-label="">第三方库</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/mo-kuai-hua" class="ctag ctag-25 ctag-mo-kuai-hua" aria-label="">模块化</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/c" class="ctag ctag-26 ctag-c" aria-label="">C</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/autolayout" class="ctag ctag-27 ctag-autolayout" aria-label="">AutoLayout</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/xib" class="ctag ctag-28 ctag-xib" aria-label="">Xib</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/clang-format" class="ctag ctag-29 ctag-clang-format" aria-label="">Clang Format</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/objetive-c" class="ctag ctag-30 ctag-objetive-c" aria-label="">Objetive-C</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/zhou-bao" class="ctag ctag-31 ctag-zhou-bao" aria-label="">周报</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/jekyll" class="ctag ctag-32 ctag-jekyll" aria-label="">Jekyll</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/server" class="ctag ctag-33 ctag-server" aria-label="">Server</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/uibarbuttonitem" class="ctag ctag-34 ctag-uibarbuttonitem" aria-label="">UIBarButtonItem</a>
+                    
+                      <a href="https://joserccblog.github.io/tag/uitextfiled" class="ctag ctag-35 ctag-uitextfiled" aria-label="">UITextFiled</a>
+                    
+                  </div>
+                  <div class="clear"></div>
+                </section>
+              </div>
 
-            var options = {
-                shortname: 'josercc',
-                apikey: 'DBJHHPsqZBT5EUYFyQmorAozkwxTDoySOnd4bmdt9G29YFySUFhFE6SLZrSCHee4',
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="epcl_about-2" class="widget widget_epcl_about underline-effect">
+                  <h4 class="widget-title title white bordered">关于我</h4>
+                  <div class="avatar">
+                    <a href="" class="translate-effect thumb"><span class="fullimage cover" style="background-image: url(https://joserccblog.github.io/images/avatar.png);"></span></a>
+                  </div>
+                  <div class="info">
+                    <h4 class="title small author-name gradient-effect no-margin"><a href="">君赏博客</a></h4>
+                    <p class="founder">2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率</p>
+                    <div class="social">
+                      
+                          
+                            <a href="https://github.com/josercc" class="translate-effect" target="_blank"><i class="fa fa-github"></i></a>
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                    </div> 
+                  </div>
+                  <div class="clear"></div>
+                  </section>
+              </div>
+
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="logo">
+          <a href="https://joserccblog.github.io"><img class="" src="https://joserccblog.github.io/media/images/logo.png" alt=""></a>
+        </div>
+        <p class="published border-effect">
+          ©2019 共 94 篇文章
+          <br/>
+          Theme <a href="https://gridea.dev/" target="_blank">「breek」</a> Powered by <a href="https://gridea.dev/" target="_blank">「Gridea」</a>
+        </p>
+        
+        <a href="javascript:void(0)" id="back-to-top" class="epcl-button dark" style="display:none">
+          <i class="fa fa-arrow"></i>
+        </a>
+    </footer>
+    <div class="clear"></div>
+
+      <script type="text/javascript">
+       jQuery(document).ready(function($){
+          $("photos img").each(function(){
+              var _a = $("<a></a>").attr("href",this.src);
+              $(this).wrap("<div class='photo'></div>").wrap(_a);
+          })
+          $("figure img").each(function(){
+              var _b = $("<a></a>").attr("href",this.src);
+              $(this).wrap(_b);
+          })
+          isImgLoad(function(){
+            var photos = document.querySelector('photos');
+            if(photos){
+              waterfall(photos);
             }
-            if ('') {
-                options.api = ''
+            $(window).resize(function() {
+             if(photos){
+                  waterfall(photos);
             }
-            var dsqjs = new DisqusJS(options)
+          });
+        });
+        var t_img;
+        var isLoad = true;
+        function isImgLoad(callback){
+          $('photos img').each(function(){
+            if(this.height === 0){
+              isLoad = false;
+              return false;
+            }
+          });
+          if(isLoad){
+            clearTimeout(t_img);
+            callback();
+          }else{
+            isLoad = true;
+            t_img = setTimeout(function(){
+              isImgLoad(callback);
+            },500);
+          }
+        }
+      });
+      </script>
 
-        </script>
-    
-
-
-
-
+    </div>
+    <!-- end: #wrapper -->
   </body>
 </html>

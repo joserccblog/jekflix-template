@@ -2,14 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://joserccblog.github.io</id>
     <title>君赏博客</title>
-    <updated>2019-09-18T06:47:32.384Z</updated>
+    <updated>2020-01-08T10:08:49.368Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://joserccblog.github.io"/>
     <link rel="self" href="https://joserccblog.github.io/atom.xml"/>
     <subtitle>2012年从事iOS开发，资深iOS开发菜鸟，目前在环球易购占坑。喜欢研究偏门技术，喜欢自动化编程，喜欢研究小软件提高编程效率</subtitle>
     <logo>https://joserccblog.github.io/images/avatar.png</logo>
     <icon>https://joserccblog.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2019, 君赏博客</rights>
+    <rights>All rights reserved 2020, 君赏博客</rights>
     <entry>
         <title type="html"><![CDATA[Apple Login接入前一次深入研究]]></title>
         <id>https://joserccblog.github.io/post/apple-login-jie-ru-qian-yi-ci-shen-ru-yan-jiu</id>
